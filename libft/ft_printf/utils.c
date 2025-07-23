@@ -6,11 +6,11 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:03:23 by tcoeffet          #+#    #+#             */
-/*   Updated: 2024/12/13 15:16:44 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:01:22 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../includes/libft.h"
 
 char	*ft_strldup(const char *src, int l)
 {

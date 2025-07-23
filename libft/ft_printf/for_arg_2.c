@@ -6,11 +6,11 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:48:18 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 14:18:45 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:49 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 /*convert the unsigned int given as argument into a string on hexa base and
 returns it*/

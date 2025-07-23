@@ -6,11 +6,11 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:03:23 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 14:18:42 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:48 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 /*converts the char argument into a string and returns it*/
 char	*c_printf(va_list args, t_len *len)

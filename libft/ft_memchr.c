@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: teddy <teddy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 17:28:25 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/01/15 22:16:50 by teddy            ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ by s for the first instance of c. Both c and the bytes of the memory area
 pointed to by s are interpreted as unsigned char. 
 */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

@@ -6,11 +6,11 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:52:53 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 14:18:35 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:45 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 /*convert an unsigned int into an ascii string*/
 char	*ft_utoa(unsigned int n)

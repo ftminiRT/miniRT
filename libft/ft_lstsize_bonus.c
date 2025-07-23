@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:31:31 by tcoeffet          #+#    #+#             */
-/*   Updated: 2024/11/18 10:40:50 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Compte le nombre d’éléments de la liste. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 int	ft_lstsize(t_list *lst)
 {

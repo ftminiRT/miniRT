@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 12:14:36 by tcoeffet          #+#    #+#             */
-/*   Updated: 2024/12/09 11:26:43 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ caractères issue de la chaîne ’s’.
 Cette nouvelle chaîne commence à l’index ’start’ et
 a pour taille maximale ’len’. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

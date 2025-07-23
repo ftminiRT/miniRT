@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:46:02 by tcoeffet          #+#    #+#             */
-/*   Updated: 2024/11/18 10:38:37 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Ajoute l’élément ’new’ à la fin de la liste. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {

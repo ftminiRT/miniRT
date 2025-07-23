@@ -6,7 +6,7 @@
 #    By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/05 16:29:48 by tcoeffet          #+#    #+#              #
-#    Updated: 2025/07/23 14:17:23 by tcoeffet         ###   ########.fr        #
+#    Updated: 2025/07/23 15:58:12 by tcoeffet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,9 +72,11 @@ BONUS =		ft_lstnew_bonus.c\
 
 OBJ = 		$(SOURCES:.c=.o)
 
+OBJ_DIR = obj/
+
 OBJBONUS =	$(BONUS:.c=.o)
 
-HEADERS =	/includes
+HEADERS = -I./includes/
 
 FLAGS = -Wall -Werror -Wextra
 
@@ -82,19 +84,20 @@ CC = cc
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-	$(QUIET)ar -rcs $(NAME) $(OBJ)
-
-%.o : %.c
-	$(QUIET)$(CC) $(FLAGS) -c -I$(HEADERS) -g $< -o $@
-
-bonus : $(OBJBONUS)
-	ar -rcs $(NAME) $(OBJBONUS)
-%.o : %.c
-	$(QUIET)$(CC) $(FLAGS) -c -I$(HEADERS) -g $< -o $@
-
 clean :
-		$(QUIET)rm -f $(OBJ) $(OBJBONUS)
+	$(QUIET) rm -rf $(OBJ_DIR)
+
 fclean : clean
-		$(QUIET)rm -f $(NAME)
+	$(QUIET) rm -f $(NAME)
+
 re : fclean all
+
+$(NAME): $(OBJ_DIR) $(OBJ)
+	$(QUIET) ar -rcs $(NAME) $(OBJ)
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	$(CC) $(CFLAGS) $(HEADER) -o $@ -c $<
+
+
+$(OBJ_DIR) :
+	$(QUIET) mkdir -p $(OBJ_DIR)

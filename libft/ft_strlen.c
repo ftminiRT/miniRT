@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: teddy <teddy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:24:01 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/01/15 22:17:28 by teddy            ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* The strlen() function calculates the length of the string pointed to by s,
 excluding the terminating null byte ('\0'). */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 size_t	ft_strlen(const char *str)
 {

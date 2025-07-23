@@ -6,15 +6,15 @@ MAKEFLAGS += --no-print-directory
 QUIET		=	
 
 CC			= 	cc
-CFLAGS		= 	-Wall -Werror -Wextra -lb -g
+CFLAGS		= 	-Wall -Werror -Wextra -g
 AR			=	ar -rcs
-NAME		= 	minishell
+NAME		= 	miniRT
 
 LIBFT_PATH	=	./libft
 LIBFT		=	$(LIBFT_PATH)/libft.a
 
 INCLUDES	= 	-I$(LIBFT_PATH)/includes\
-				-I ./includes\
+				-I./includes
 
 FILES		= 	
 
@@ -39,6 +39,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 $(OBJ_DIR) : 
 	$(QUIET) mkdir -p $(OBJ_DIR)
+	
 
 all : $(NAME)
 	@ echo "minirt is ready !"

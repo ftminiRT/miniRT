@@ -6,11 +6,11 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 12:41:54 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 14:18:39 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:42 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
 /*calculates the len of the number to be converted into ascii in the
 given base*/

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: teddy <teddy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 12:35:45 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/01/15 22:18:54 by teddy            ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* The atoi() function converts the initial portion of the string pointed to by
 nptr to int. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 static int	is_neg(const char *str)
 {

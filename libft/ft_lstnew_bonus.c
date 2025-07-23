@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 10:51:14 by tcoeffet          #+#    #+#             */
-/*   Updated: 2024/11/18 10:40:34 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ initialisée à l’aide de la valeur du paramètre
 ’content’. La variable ’next’ est initialisée à
 NULL. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 t_list	*ft_lstnew(void *content)
 {

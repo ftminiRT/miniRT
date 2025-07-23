@@ -6,11 +6,11 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 10:26:49 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/01/16 14:19:26 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:02:11 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "./includes/get_next_line.h"
 
 char	*get_next_line(int fd)
 {

@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:24:38 by tcoeffet          #+#    #+#             */
-/*   Updated: 2024/12/13 15:27:35 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ la chaîne ’s1’, sans les caractères spécifiés
 dans ’set’ au début et à la fin de la chaîne de
 caractères. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 static int	is_set(char const c, char const *set)
 {

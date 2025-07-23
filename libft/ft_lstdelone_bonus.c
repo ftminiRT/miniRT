@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:40:10 by tcoeffet          #+#    #+#             */
-/*   Updated: 2024/11/18 11:01:39 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 utilisant la fonction ’del’ puis avec free(3). La
 mémoire de ’next’ ne doit pas être free. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: teddy <teddy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 17:17:17 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/01/15 22:17:33 by teddy            ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 The locale is not taken into account (for a locale-aware comparison, see
 strcoll(3)). The comparison is done using unsigned characters. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbeauman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/23 14:21:26 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 16:05:32 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/07/23 15:53:47 by tbeauman          #+#    #+#             */
+/*   Updated: 2025/07/23 15:53:48 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int ac, char **av)
+void    error_exit(char *msg)
 {
-	(void) ac;
-	(void) av;
-	printf("hello world\n");
-	if (ac < 2)
-		return (printf("Argument file needed\n"), 0);
-	rt_mlx_init(&rt.mlx);
-	mlx_key_hook(rt.mlx.win, &key_pressed, &e);
-	mlx_loop(rt.mlx);
-	clear_mlx(&rt);
-	return (0);
+    printf("%s\n", msg);
+    exit(1);
 }

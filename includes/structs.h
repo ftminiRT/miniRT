@@ -103,7 +103,7 @@ typedef struct  s_mlx
 {
     void        *mlx;
     void        *win;
-    t_mlxdata   *img;
+    t_mlxdata   img;
 }               t_mlx; 
 
 typedef struct  s_env
@@ -113,7 +113,7 @@ typedef struct  s_env
     t_light     ambient;
     t_light     spot;
     t_obj       *objects;
-    t_mlx       *mlx;
+    t_mlx       mlx;
 }               t_env;
 
 #endif

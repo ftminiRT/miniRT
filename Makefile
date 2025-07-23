@@ -24,7 +24,11 @@ INCLUDES	= 	-I$(LIBFT_PATH)/includes \
 FILES		= 	clean\
 error\
 init\
-key_hooks
+intersect_functions\
+key_hooks\
+mlx_tools\
+ray_trace\
+vec3_tools
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

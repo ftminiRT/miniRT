@@ -17,10 +17,10 @@ void    rt_mlx_init(t_mlx *mlx)
     mlx->mlx = mlx_init();
     if (!mlx->mlx)
         error_exit("connection to mlx error");
-    mlx->win = mlx_new_window(mlx->mlx, 1337, 1337, "miniRT");
+    mlx->win = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "miniRT");
     if (!mlx->win)
         error_exit("window error");
-    mlx->img.img = mlx_new_image(mlx->mlx, 1337, 1337);
+    mlx->img.img = mlx_new_image(mlx->mlx, WIDTH, HEIGHT);
     if (!mlx->mlx)
         error_exit("image error");
     mlx->img.addr = mlx_get_data_addr(mlx->img.img,

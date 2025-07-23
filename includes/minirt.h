@@ -19,11 +19,15 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
+# include <stdbool.h>
 # include "../minilibx-linux/mlx.h"
 # include "../minilibx-linux/mlx_int.h"
 # include "structs.h"
 # include "keycodes.h"
 # include "proto.h"
 # include "libft.h"
+
+# define WIDTH 1337
+# define HEIGHT 1337
 
 #endif

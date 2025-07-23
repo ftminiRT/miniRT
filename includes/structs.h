@@ -87,6 +87,12 @@ typedef struct s_obj
     int         id;
 }               t_obj;
 
+typedef struct s_list_obj
+{
+    t_obj       *obj;
+    t_list_obj  *next;
+}               t_list_obj;
+
 typedef struct s_mlxdata
 {
     void        *img;
@@ -112,7 +118,7 @@ typedef struct  s_env
     t_cam       cam;
     t_light     ambient;
     t_light     spot;
-    t_obj       *objects;
+    t_list_obj  *objects;
     t_mlx       mlx;
 }               t_env;
 

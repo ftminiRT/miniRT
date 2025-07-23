@@ -19,8 +19,10 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
-//# include "mlx.h"
+# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 # include "structs.h"
+# include "keycodes.h"
 # include "proto.h"
 # include "libft.h"
 

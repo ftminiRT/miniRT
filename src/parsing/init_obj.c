@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:35:58 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 19:13:34 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 19:59:56 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	init_plane(char **args, t_env *rt)
 	new = create_object(rt);
 	if (!new)
 		return (1);
-	new->obj.type = OT_PLAN;
-	str_to_vec3(&new->obj.plan.pt, args[1]);
-	str_to_vec3(&new->obj.plan.n, args[2]);
+	new->obj.type = OT_PLANE;
+	str_to_vec3(&new->obj.plane.pt, args[1]);
+	str_to_vec3(&new->obj.plane.n, args[2]);
 	str_to_colors(&new->obj.color, args[3]);
 	return (0);
 }

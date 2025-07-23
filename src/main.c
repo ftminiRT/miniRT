@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:21:26 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 19:57:42 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 20:00:31 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	debug_print_object(t_obj obj)
 		printf("pos = %f, %f, %f\n", obj.sphere.center.x, obj.sphere.center.y, obj.sphere.center.z);
 		printf("r = %f\n", obj.sphere.r);
 	}
-	if (obj.type == OT_PLAN)
+	if (obj.type == OT_PLANE)
 	{
 		printf("PLANE ----\n");
-		printf("pt = %f, %f, %f\n", obj.plan.pt.x, obj.plan.pt.y, obj.plan.pt.z);
-		printf("n = %f, %f, %f\n", obj.plan.n.x, obj.plan.n.y, obj.plan.n.z);
+		printf("pt = %f, %f, %f\n", obj.plane.pt.x, obj.plane.pt.y, obj.plane.pt.z);
+		printf("n = %f, %f, %f\n", obj.plane.n.x, obj.plane.n.y, obj.plane.n.z);
 	}
 	if (obj.type == OT_CYL)
 	{
@@ -92,7 +92,6 @@ int	main(int ac, char **av)
 		return (1);
 	//debug_print_set(&rt);
 	rt_mlx_init(&rt.mlx);
-	hardcore_coding(&rt);
 	ray_trace(&rt);
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);
 	mlx_loop(rt.mlx.mlx);

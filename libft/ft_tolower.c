@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: teddy <teddy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:29:27 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/01/15 22:17:00 by teddy            ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ lowercase representation exists in the current locale.  Otherwise, it returns
 c.  The tolower_l() function performs the same task, but uses the locale
 referred to by the locale handle locale. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 int	ft_tolower(int c)
 {

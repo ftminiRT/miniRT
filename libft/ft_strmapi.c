@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 19:00:14 by tcoeffet          #+#    #+#             */
-/*   Updated: 2024/11/18 10:55:34 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ comme second argument. Une nouvelle chaîne de
 caractères est créée (avec malloc(3)), résultant
 des applications successives de ’f’. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {

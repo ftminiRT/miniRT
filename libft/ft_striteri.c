@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: teddy <teddy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:05:16 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/01/15 22:17:18 by teddy            ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ et en passant son index comme premier argument.
 Chaque caractère est transmis par adresse à ’f’
 afin d’être modifié si nécessaire. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {

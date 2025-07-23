@@ -6,11 +6,11 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:12:20 by tcoeffet          #+#    #+#             */
-/*   Updated: 2024/12/13 15:16:39 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:01:12 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../includes/libft.h"
 
 /*
 deals with any arg following a '%' char. return adress of a malloc'd string

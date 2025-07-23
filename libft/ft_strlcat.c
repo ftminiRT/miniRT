@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: teddy <teddy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 12:33:51 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/01/15 22:17:23 by teddy            ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 At most siz-1 characters will be copied. Always NULL terminates
 (unless siz <= strlen(dst)). */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {

@@ -6,13 +6,13 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:34:08 by tcoeffet          #+#    #+#             */
-/*   Updated: 2024/11/18 10:46:13 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Écrit l’entier ’n’ sur le descripteur de fichier donné. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {

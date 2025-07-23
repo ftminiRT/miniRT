@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: teddy <teddy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 16:37:15 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/01/15 22:17:13 by teddy            ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* The  strchr() function returns a pointer to the first occurrence of the
 character c in the string s. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {

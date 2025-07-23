@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: teddy <teddy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 18:12:58 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/01/15 22:17:35 by teddy            ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 string little in the string big, where not more than len characters are
 searched. Characters that appear after a ‘\0’ character are not searched. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {

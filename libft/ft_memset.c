@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: teddy <teddy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 15:00:08 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/01/15 22:19:13 by teddy            ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* The memset() function fills the first n bytes of the memory area pointed to
 by s with the constant byte c. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {

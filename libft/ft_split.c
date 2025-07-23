@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: teddy <teddy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:14:47 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/01/15 22:17:09 by teddy            ###   ########.fr       */
+/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ de chaînes de caractères obtenu en séparant ’s’ à
 l’aide du caractère ’c’, utilisé comme délimiteur.
 Le tableau doit être terminé par NULL. */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 /* static char	*ft_strldup(const char *src, int l)
 {

@@ -32,6 +32,7 @@ typedef struct s_ray
 {
     t_vec3      pt;
     t_vec3      dir;
+    double      hit;
     t_color     color;
 }              t_ray;
 
@@ -55,11 +56,11 @@ typedef struct  s_sphere
     double      r;
 }               t_sphere;
 
-typedef struct  s_plan
+typedef struct  s_plane
 {
     t_vec3      pt;
     t_vec3      n;
-}               t_plan;
+}               t_plane;
 
 typedef struct  s_cyl
 {
@@ -73,19 +74,32 @@ typedef struct  s_cyl
 typedef enum    e_objtype
 {
     OT_SPHERE,
-    OT_PLAN,
-    OT_CYL,
+    OT_PLANE,
+    OT_CYL
 }               t_objtype;
+
+typedef enum    e_axis
+{
+    X_AXIS,
+    Y_AXIS,
+    Z_AXIS
+}               t_axis;
 
 typedef struct s_obj
 {
     t_sphere    sphere;
-    t_plan      plan;
+    t_plane     plane;
     t_cyl       cyl;
     t_objtype   type;
     t_color     color;
     int         id;
 }               t_obj;
+
+typedef struct s_list_obj
+{
+    t_obj       obj;
+    struct s_list_obj  *next;
+}               t_list_obj;
 
 typedef struct s_mlxdata
 {
@@ -103,7 +117,7 @@ typedef struct  s_mlx
 {
     void        *mlx;
     void        *win;
-    t_mlxdata   *img;
+    t_mlxdata   img;
 }               t_mlx; 
 
 typedef struct  s_env
@@ -112,8 +126,8 @@ typedef struct  s_env
     t_cam       cam;
     t_light     ambient;
     t_light     spot;
-    t_obj       *objects;
-    t_mlx       *mlx;
+    t_list_obj  *objects;
+    t_mlx       mlx;
 }               t_env;
 
 #endif

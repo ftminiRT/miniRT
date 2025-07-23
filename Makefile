@@ -6,17 +6,29 @@ MAKEFLAGS += --no-print-directory
 QUIET		=	
 
 CC			= 	cc
-CFLAGS		= 	-Wall -Werror -Wextra -g
+CFLAGS		= 	-Wall -Werror -Wextra -g3 -O3
 AR			=	ar -rcs
 NAME		= 	miniRT
+
+MLX_PATH	=	./minilibx-linux
+MLX			=	minilibx-linux/libmlx_Linux.a
+MLXFLAGS	=	$(MLX) -I$(MLX_PATH) -lX11 -lXext
 
 LIBFT_PATH	=	./libft
 LIBFT		=	$(LIBFT_PATH)/libft.a
 
-INCLUDES	= 	-I$(LIBFT_PATH)/includes\
-				-I./includes
+INCLUDES	= 	-I$(LIBFT_PATH)/includes \
+				-I./includes \
+				-I./minilibx-linux
 
-FILES		= 	
+FILES		= 	clean\
+error\
+init\
+intersect_functions\
+key_hooks\
+mlx_tools\
+ray_trace\
+vec3_tools
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))
@@ -28,8 +40,11 @@ OBJ			=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 OBJ_MAIN	=	$(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC_DIR)$(MAIN))
 
 
-$(NAME) : $(LIBFT) $(OBJ_DIR) $(OBJ) $(OBJ_MAIN)
-	$(QUIET) $(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(OBJ_MAIN) -L$(LIBFT_PATH) -lft -o $(NAME)
+$(NAME) : $(LIBFT) $(MLX) $(OBJ_DIR) $(OBJ) $(OBJ_MAIN)
+	$(QUIET) $(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(OBJ_MAIN) -L$(LIBFT_PATH) -lft $(MLXFLAGS) -lm -o $(NAME)
+
+$(MLX):
+	make -C $(MLX_PATH)
 
 $(LIBFT):
 	$(QUIET) make all -C $(LIBFT_PATH) 
@@ -47,6 +62,9 @@ all : $(NAME)
 clean :
 	rm -rf $(OBJ_DIR)
 	make clean -C $(LIBFT_PATH)
+
+clean_mlx:
+	rm -rf $(MLX_PATH)
 
 fclean : clean
 	rm -f $(NAME)

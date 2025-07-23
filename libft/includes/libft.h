@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:08:41 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/02/07 14:33:33 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 18:35:47 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_abs(int i);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
+void	ft_free_split(char **split);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *src);
 char	*ft_strjoin(char const *s1, char const *s2);

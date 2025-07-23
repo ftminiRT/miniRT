@@ -6,75 +6,77 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:21:26 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 16:05:32 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 19:57:42 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	hardcore_coding(t_env *rt)
+void	debug_print_object(t_obj obj)
 {
-	rt->ambient.brightness = 0.2;
-	rt->ambient.color.r = 255;
-	rt->ambient.color.g = 255;
-	rt->ambient.color.b = 255;
+	if (obj.type == OT_SPHERE)
+	{
+		printf("SPHERE ----\n");
+		printf("pos = %f, %f, %f\n", obj.sphere.center.x, obj.sphere.center.y, obj.sphere.center.z);
+		printf("r = %f\n", obj.sphere.r);
+	}
+	if (obj.type == OT_PLAN)
+	{
+		printf("PLANE ----\n");
+		printf("pt = %f, %f, %f\n", obj.plan.pt.x, obj.plan.pt.y, obj.plan.pt.z);
+		printf("n = %f, %f, %f\n", obj.plan.n.x, obj.plan.n.y, obj.plan.n.z);
+	}
+	if (obj.type == OT_CYL)
+	{
+		printf("CYLINDER ----\n");
+		printf("center = %f, %f, %f\n", obj.cyl.center.x, obj.cyl.center.y, obj.cyl.center.z);
+		printf("n = %f, %f, %f\n", obj.cyl.n.x, obj.cyl.n.y, obj.cyl.n.z);
+		printf("r = %f\n", obj.cyl.r);
+		printf("height = %f\n", obj.cyl.height);
+	}
+	printf("color = %d, %d, %d\n\n\n", obj.color.r, obj.color.g, obj.color.b);
+}
 
-	rt->cam.pos.x = -50;
-	rt->cam.pos.y = 0;
-	rt->cam.pos.z = 20;
-	rt->cam.dir.x = 0;
-	rt->cam.dir.y = 0;
-	rt->cam.dir.z = 1;
-	rt->cam.fov = 70;
+void	debug_print_set(t_env *rt)
+{
+	t_list_obj	*obj;
 
-	rt->spot.pos.x = -40;
-	rt->spot.pos.y = 0;
-	rt->spot.pos.z = 30;
-	rt->spot.brightness = 0.7;
-	rt->spot.color.r = 255;
-	rt->spot.color.g = 255;
-	rt->spot.color.b = 255;
+	printf("\n\nDEBUG : SET\n///////////\n");
+	printf("set amb light ---- \n");
+	printf("brightness = %f\n", rt->ambient.brightness);
+	printf("color = %d, %d, %d\n\n\n", rt->ambient.color.r, rt->ambient.color.g, rt->ambient.color.b);
+	/////
+	printf("set cam ---- \n");
+	printf("pos = %f, %f, %f\n", rt->cam.pos.x, rt->cam.pos.y, rt->cam.pos.z);
+	printf("dir = %f, %f, %f\n", rt->cam.dir.x, rt->cam.dir.y, rt->cam.dir.z);
+	printf("fov = %d\n\n\n", rt->cam.fov);
+	/////
+	printf("set spot light ---- \n");
+	printf("pos = %f, %f, %f\n", rt->spot.pos.x, rt->spot.pos.y, rt->spot.pos.z);
+	printf("brightness = %f\n", rt->spot.brightness);
+	printf("color = %d, %d, %d\n\n\n", rt->spot.color.r, rt->spot.color.g, rt->spot.color.b);
+	/////
+	printf("DEBUG : OBJECTS\n///////////\n");
+	obj = rt->objects;
+	while (obj)
+	{
+		debug_print_object(obj->obj);
+		obj = obj->next;
+	}
+}
 
-	t_list_obj	*plane = malloc(sizeof(t_list_obj));
-	plane->obj.type = OT_PLANE;
-	plane->obj.plane.pt.x = 0;
-	plane->obj.plane.pt.y = 0;
-	plane->obj.plane.pt.z = 0;
-	plane->obj.plane.n.x = 0;
-	plane->obj.plane.n.y = 1.0;
-	plane->obj.plane.n.z = 0;
-	plane->obj.color.r = 10;
-	plane->obj.color.g = 0;
-	plane->obj.color.b = 255;
+void	clear_objects(t_env *rt)
+{
+	t_list_obj	*head;
+	t_list_obj	*next;
 
-	t_list_obj	*sphere = malloc(sizeof(t_list_obj));
-	sphere->obj.type = OT_SPHERE;
-	sphere->obj.sphere.center.x = 0;
-	sphere->obj.sphere.center.y = 0;
-	sphere->obj.sphere.center.z = 20;
-	sphere->obj.sphere.r = 10;
-	sphere->obj.color.r = 255;
-	sphere->obj.color.g = 0;
-	sphere->obj.color.b = 0;
-
-	t_list_obj	*cyl = malloc(sizeof(t_list_obj));
-	cyl->obj.type = OT_CYL;
-	cyl->obj.cyl.center.x = 50.0;
-	cyl->obj.cyl.center.y = 0.0;
-	cyl->obj.cyl.center.z = 20.6;
-	cyl->obj.cyl.n.x = 0.0;
-	cyl->obj.cyl.n.y = 0.0;
-	cyl->obj.cyl.n.z = 1.0;
-	cyl->obj.cyl.r = 14.2;
-	cyl->obj.cyl.height = 21.42;
-	cyl->obj.color.r = 10;
-	cyl->obj.color.g = 0;
-	cyl->obj.color.b = 255;
-
-	plane->next = sphere;
-	sphere->next = cyl;
-	cyl->next = NULL;
-	rt->objects = plane;
+	head = rt->objects;
+	while (head)
+	{
+		next = head->next;
+		free(head);
+		head = next;
+	}
 }
 
 int	main(int ac, char **av)
@@ -86,11 +88,15 @@ int	main(int ac, char **av)
 	printf("hello world\n");
 	if (ac < 2)
 		return (printf("Argument file needed\n"), 0);
+	if (parsing(&rt, av[1]))
+		return (1);
+	//debug_print_set(&rt);
 	rt_mlx_init(&rt.mlx);
 	hardcore_coding(&rt);
 	ray_trace(&rt);
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);
 	mlx_loop(rt.mlx.mlx);
 	clear_mlx(&rt);
+	
 	return (0);
 }

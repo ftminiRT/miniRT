@@ -13,8 +13,16 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include <math.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <errno.h>
+# include "mlx.h"
 # include "structs.h"
 # include "proto.h"
 # include "libft.h"
+
 
 #endif

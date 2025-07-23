@@ -12,8 +12,11 @@
 
 #include "minirt.h"
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	printf("Hello World !\n");
+	t_env	rt;
+
+	if (ac < 2)
+		return (printf("Argument file needed\n"), 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:14:47 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 16:00:23 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:54:54 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@ l’aide du caractère ’c’, utilisé comme délimiteur.
 Le tableau doit être terminé par NULL. */
 
 #include "./includes/libft.h"
+
+void	ft_free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
 
 /* static char	*ft_strldup(const char *src, int l)
 {

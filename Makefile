@@ -22,13 +22,17 @@ INCLUDES	= 	-I$(LIBFT_PATH)/includes \
 				-I./minilibx-linux
 
 FILES		= 	clean\
-error\
-init\
-intersect_functions\
-key_hooks\
-mlx_tools\
-ray_trace\
-vec3_tools
+				error\
+				init\
+				intersect_functions\
+				key_hooks\
+				mlx_tools\
+				ray_trace\
+				vec3_tools \
+				parsing/init_obj \
+				parsing/init_set \
+				parsing/parsing_utils \
+				parsing/parsing
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))
@@ -54,7 +58,8 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 $(OBJ_DIR) : 
 	$(QUIET) mkdir -p $(OBJ_DIR)
-	
+	$(QUIET) mkdir -p $(OBJ_DIR)/parsing
+
 
 all : $(NAME)
 	@ echo "minirt is ready !"

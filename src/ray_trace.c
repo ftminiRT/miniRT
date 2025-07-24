@@ -6,7 +6,7 @@ t_obj    *compute_intersections(t_env *rt, t_ray *ray)
     double      t;
     t_obj       *closest;
 
-    t = -1;
+    t = INFINITY;
     closest = NULL;
     objs = rt->objects;
     while (objs)
@@ -63,9 +63,9 @@ void    ray_trace(t_env *rt)
         i = -1;
         while (++i < WIDTH)
         {
-            ray.dir = vec3_add(rt->cam.pos, vec3_add(
+            ray.dir = vec3_add(
                 vec3_scalmult(rt->cam.fov * (i - (WIDTH / 2)), vec3_right()),
-                vec3_scalmult(rt->cam.fov * ((HEIGHT / 2) - j), vec3_up())));
+                vec3_scalmult(rt->cam.fov * ((HEIGHT / 2) - j), vec3_up()));
             vec3_rotate(&ray.dir, rt->cam.dir);
             vec3_normalize(&ray.dir);
             ray.hit = 0;

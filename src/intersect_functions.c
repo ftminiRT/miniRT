@@ -9,6 +9,7 @@ bool    hit_sphere(t_ray *ray, t_sphere s)
     double  hit;
 
     a = vec3_dot(ray->dir, ray->dir);
+    printf("ray->dir: {%f, %f, %f}\n", ray->dir.x, ray->dir.y, ray->dir.z);
     b = 2 * (ray->dir.x * (ray->pt.x - s.center.x) +
     ray->dir.y * (ray->pt.y - s.center.y) +
     ray->dir.z * (ray->pt.z - s.center.z));
@@ -29,7 +30,7 @@ bool    hit_sphere(t_ray *ray, t_sphere s)
         }
         if (ray->hit > 0 && hit > ray->hit)
             return (false);
-        printf("sphere hit deeper %f\n", hit);
+        printf("sphere hit %f a:%f b:%f c:%f\n", hit, a, b, c);
         ray->hit = hit;
         return (true);
     }

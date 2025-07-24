@@ -88,6 +88,6 @@ void    vec3_rotate(t_vec3 *v, t_vec3 r)
         vec3_rot(v, X_AXIS, r.x);
     if (r.y)
         vec3_rot(v, Y_AXIS, r.y);
-    if (r.x)
+    if (r.z)
         vec3_rot(v, Z_AXIS, r.z);
-    }
+}

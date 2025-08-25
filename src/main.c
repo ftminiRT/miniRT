@@ -83,16 +83,16 @@ int	main(int ac, char **av)
 {
 	t_env	rt;
 
-	(void) ac;
-	(void) av;
-	printf("hello world\n");
+	rt.ambient.is_set = 0;
+	rt.cam.is_set = 0;
+	rt.spot.is_set = 0;
 	if (ac < 2)
 		return (printf("Argument file needed\n"), 0);
 	if (parsing(&rt, av[1]))
 		return (1);
-	//debug_print_set(&rt);
+	debug_print_set(&rt);
 	rt_mlx_init(&rt.mlx);
-	ray_trace(&rt);
+	//ray_trace(&rt);
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);
 	mlx_loop(rt.mlx.mlx);
 	clear_mlx(&rt);

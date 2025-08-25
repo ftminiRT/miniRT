@@ -38,6 +38,7 @@ typedef struct s_ray
 
 typedef struct s_cam
 {
+    bool            is_set;
 	t_vec3			pos;
 	t_vec3			dir;
 	unsigned char	fov;
@@ -45,6 +46,7 @@ typedef struct s_cam
 
 typedef struct s_light
 {
+    bool            is_set;
 	t_vec3			pos;
 	double			brightness;
 	t_color			color;

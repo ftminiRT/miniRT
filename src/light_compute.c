@@ -7,18 +7,18 @@ t_vec3 get_normal(t_obj *obj, t_vec3 hit_point)
     
     if (obj->type == OT_SPHERE)
     {
-        normal = vec3_sub(hit_point, obj->sphere.center);
+        normal = vec3_sub(hit_point, obj->pt);
         vec3_normalize(&normal);
     }
     else if (obj->type == OT_PLANE)
     {
-        normal = obj->plane.n;
+        normal = obj->n;
     }
     else if (obj->type == OT_CYL)
     {
         // Pour un cylindre, calculer la normale selon la position
-        t_vec3 axis_point = vec3_add(obj->cyl.center, 
-                           vec3_scalmult(vec3_dot(vec3_sub(hit_point, obj->cyl.center), obj->cyl.n), obj->cyl.n));
+        t_vec3 axis_point = vec3_add(obj->pt, 
+                           vec3_scalmult(vec3_dot(vec3_sub(hit_point, obj->pt), obj->n), obj->n));
         normal = vec3_sub(hit_point, axis_point);
         vec3_normalize(&normal);
     }

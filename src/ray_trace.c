@@ -2,7 +2,7 @@
 
 t_obj    *compute_intersections(t_env *rt, t_ray *ray)
 {
-    t_list_obj  *objs;
+    t_obj       *objs;
     double      closest_t;
     double      t;
     t_obj       *closest;
@@ -13,36 +13,12 @@ t_obj    *compute_intersections(t_env *rt, t_ray *ray)
     objs = rt->objects;
     while (objs)
     {
-        t = rt->hit_object[objs->obj.type](ray, &objs->ob)
-
-
-        if (objs->obj.type == OT_PLANE)
+        t = rt->hit_object[objs->type](ray, objs);
+        if (0 < t && t < closest_t)
         {
-            t = hit_plane(ray, &objs->obj.plane);
-            if (0 < t && t < closest_t)
-            {
-                closest_t = t;
-                closest = &objs->obj;
-            }
+            closest_t = t;
+            closest = objs;
         }
-        if (objs->obj.type == OT_SPHERE)
-        {
-            t = hit_sphere(ray, &objs->obj.sphere);
-            if (0 < t && t < closest_t)
-            {
-                closest_t = t;
-                closest = &objs->obj;
-            }
-        }
-        if (objs->obj.type == OT_CYL)
-        {
-            t = hit_cylinder(ray, &objs->obj.cyl);
-            if (0 < t && t < closest_t)
-            {
-                closest_t = t;
-                closest = &objs->obj;
-            }
-        }        
         objs = objs->next;
     }
     if (closest)
@@ -81,7 +57,7 @@ void    ray_trace(t_env *rt)
     t_obj       *hitted;
     int         i;
     int         j;
-    t_list_obj *objs;
+    t_obj       *objs;
 
     j = -1;
     hitted = NULL;
@@ -92,10 +68,10 @@ void    ray_trace(t_env *rt)
     objs = rt->objects;
     while(objs)
     {
-        if (objs->obj.type == OT_PLANE)
-            vec3_normalize(&objs->obj.plane.n);
-        if (objs->obj.type == OT_CYL)
-            vec3_normalize(&objs->obj.cyl.n);
+        if (objs->type == OT_PLANE)
+            vec3_normalize(&objs->n);
+        if (objs->type == OT_CYL)
+            vec3_normalize(&objs->n);
         objs = objs->next;
     }
 

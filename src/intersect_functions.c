@@ -1,6 +1,6 @@
 #include "minirt.h"
 
-double    hit_sphere(t_ray *ray, void *sphere)
+double    hit_sphere(t_ray *ray, t_obj *s)
 {
     double  b;
     double  c;
@@ -8,13 +8,11 @@ double    hit_sphere(t_ray *ray, void *sphere)
     double  sqrt_d;
     double  hit1;
     double  hit2;
-    t_sphere    *s;
     t_vec3  oc;
 
-    s = (t_sphere *)sphere;
-    oc = vec3_sub(ray->pt, s->center);
+    oc = vec3_sub(ray->pt, s->pt);
     b = vec3_dot(oc, ray->dir);
-    c = vec3_dot(oc, oc) - s->r * s->r;
+    c = vec3_dot(oc, oc) - s->scal * s->scal;
     delta = b * b - c;
     if (delta < 0)
         return (INFINITY);
@@ -28,14 +26,12 @@ double    hit_sphere(t_ray *ray, void *sphere)
     return (INFINITY);
 }
 
-double    hit_plane(t_ray *r, void *plane)
+double    hit_plane(t_ray *r, t_obj *p)
 {
     double  a;
     double  b;
     double  t;
-    t_plane *p;
 
-    p = (t_plane*)plane;
 
     a = vec3_dot(r->dir, p->n);
     b = vec3_dot(p->n, vec3_sub(r->pt, p->pt));
@@ -47,10 +43,9 @@ double    hit_plane(t_ray *r, void *plane)
     return (t);
 }
 
-double hit_cylinder(t_ray *ray, void *cyl)
+double hit_cylinder(t_ray *ray, t_obj *cy)
 {
-    t_cyl *cy = (t_cyl*)cyl;
-    t_vec3 oc = vec3_sub(ray->pt, cy->center);
+    t_vec3 oc = vec3_sub(ray->pt, cy->pt);
 
     double d_dot_n = vec3_dot(ray->dir, cy->n);
     double oc_dot_n = vec3_dot(oc, cy->n);
@@ -60,7 +55,7 @@ double hit_cylinder(t_ray *ray, void *cyl)
 
     double a = vec3_dot(d_proj, d_proj);
     double b = 2 * vec3_dot(d_proj, oc_proj);
-    double c = vec3_dot(oc_proj, oc_proj) - cy->r * cy->r;
+    double c = vec3_dot(oc_proj, oc_proj) - cy->scal * cy->scal;
 
     double delta = b * b - 4 * a * c;
     if (delta < 0)
@@ -76,9 +71,9 @@ double hit_cylinder(t_ray *ray, void *cyl)
         if (t < EPSILON)
             continue;
         t_vec3 p = vec3_add(ray->pt, vec3_scalmult(t, ray->dir));
-        t_vec3 from_center = vec3_sub(p, cy->center);
+        t_vec3 from_center = vec3_sub(p, cy->pt);
         double h = vec3_dot(from_center, cy->n);
-        if (fabs(h) <= cy->height / 2.0)
+        if (fabs(h) <= cy->scal2 / 2.0)
             return t;
     }
 

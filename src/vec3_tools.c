@@ -25,9 +25,19 @@ t_vec3  vec3_scalmult(double scal, t_vec3 a)
     t_vec3  b;
     
     b.x = scal * a.x;
-    b.y = scal * b.y;
-    b.z = scal * b.z;
+    b.y = scal * a.y;
+    b.z = scal * a.z;
     return (b);
+}
+
+double  vec3_norm(t_vec3 a)
+{
+    return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
+}
+
+double  vec3_sqnorm(t_vec3 a)
+{
+    return (a.x * a.x + a.y * a.y + a.z * a.z);
 }
 
 void  vec3_normalize(t_vec3 *a)
@@ -47,6 +57,15 @@ double  vec3_dot(t_vec3 a, t_vec3 b)
     return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
+t_vec3 vec3_cross(t_vec3 a, t_vec3 b)
+{
+    return (t_vec3){
+        a.y * b.z - a.z * b.y,
+        a.z * b.x - a.x * b.z,
+        a.x * b.y - a.y * b.x
+    };
+}
+
 t_vec3  vec3_up()
 {
     return ((t_vec3) {1, 0, 0});
@@ -55,6 +74,11 @@ t_vec3  vec3_up()
 t_vec3  vec3_right()
 {
     return ((t_vec3) {0, 1, 0});
+}
+
+t_vec3  vec3_forward()
+{
+    return ((t_vec3) {0, 0, 1});
 }
 
 t_vec3  vec3_rot(t_vec3 *v, int axis, double theta)
@@ -90,4 +114,4 @@ void    vec3_rotate(t_vec3 *v, t_vec3 r)
         vec3_rot(v, Y_AXIS, r.y);
     if (r.z)
         vec3_rot(v, Z_AXIS, r.z);
-    }
+}

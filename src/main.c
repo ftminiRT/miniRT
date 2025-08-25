@@ -82,7 +82,7 @@ void	clear_objects(t_env *rt)
 int	main(int ac, char **av)
 {
 	t_env	rt;
-
+	
 	(void) ac;
 	(void) av;
 	printf("hello world\n");
@@ -90,12 +90,12 @@ int	main(int ac, char **av)
 		return (printf("Argument file needed\n"), 0);
 	if (parsing(&rt, av[1]))
 		return (1);
-	//debug_print_set(&rt);
+	debug_print_set(&rt);
+	env_init(&rt);
 	rt_mlx_init(&rt.mlx);
 	ray_trace(&rt);
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);
 	mlx_loop(rt.mlx.mlx);
 	clear_mlx(&rt);
-	
 	return (0);
 }

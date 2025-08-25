@@ -25,7 +25,6 @@ typedef struct s_color
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-	unsigned char	alpha;
 }					t_color;
 
 typedef struct s_ray
@@ -95,12 +94,6 @@ typedef struct s_obj
     int         id;
 }               t_obj;
 
-typedef struct s_list_obj
-{
-    t_obj       obj;
-    struct s_list_obj  *next;
-}               t_list_obj;
-
 typedef struct s_mlxdata
 {
 	void			*img;
@@ -127,7 +120,9 @@ typedef struct s_env
     t_light     ambient;
     t_light     spot;
     t_list_obj  *objects;
+    double      (*hit_object[sizeof(t_objtype)])(t_ray *, void *);
     t_mlx       mlx;
+    int         log_fd;
 }               t_env;
 
 #endif

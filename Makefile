@@ -32,7 +32,8 @@ FILES		= 	clean\
 				parsing/init_obj \
 				parsing/init_set \
 				parsing/parsing_utils \
-				parsing/parsing
+				parsing/parsing \
+				light_compute
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

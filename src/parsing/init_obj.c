@@ -30,15 +30,22 @@ int	init_cylinder(char **args, t_env *rt)
 {
 	t_obj	*new;
 
+	if (count_arg(args) != 6)
+		return (1);
 	new = create_object(rt);
 	if (!new)
 		return (1);
 	new->type = OT_CYL;
-	str_to_vec3(&new->pt, args[1]);
-	str_to_vec3(&new->n, args[2]);
+	if (str_to_vec3(&new->pt, args[1]))
+		return (1);
+	if (str_to_vec3(&new->n, args[2]))
+		return (1);
+	if (check_norm(new->n))
+		return (1);
 	new->scal = ft_atod(args[3]) / 2;
 	new->scal2 = ft_atod(args[4]);
-	str_to_colors(&new->color, args[5]);
+	if (str_to_colors(&new->color, args[5]))
+		return (1);
 	return (0);
 }
 
@@ -46,13 +53,20 @@ int	init_plane(char **args, t_env *rt)
 {
 	t_obj	*new;
 
+	if (count_arg(args) != 4)
+		return (1);
 	new = create_object(rt);
 	if (!new)
 		return (1);
 	new->type = OT_PLANE;
-	str_to_vec3(&new->pt, args[1]);
-	str_to_vec3(&new->n, args[2]);
-	str_to_colors(&new->color, args[3]);
+	if (str_to_vec3(&new->pt, args[1]))
+		return(1);
+	if (str_to_vec3(&new->n, args[2]))
+		return(1);
+	if (check_norm(new->n))
+		return (1);
+	if (str_to_colors(&new->color, args[3]))
+		return (1);
 	return (0);
 }
 
@@ -60,12 +74,16 @@ int	init_sphere(char **args, t_env *rt)
 {
 	t_obj	*new;
 
+	if (count_arg(args) != 4)
+		return (1);
 	new = create_object(rt);
 	if (!new)
 		return (1);
 	new->type = OT_SPHERE;
-	str_to_vec3(&new->pt, args[1]);
+	if (str_to_vec3(&new->pt, args[1]))
+		return (1);
 	new->scal = ft_atod(args[2]) / 2;
-	str_to_colors(&new->color, args[3]);
+	if (str_to_colors(&new->color, args[3]))
+		return (1);
 	return (0);
 }

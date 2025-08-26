@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:21:26 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/26 14:31:19 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:23:09 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ void	debug_print_object(t_obj obj)
 
 void	debug_print_set(t_env *rt)
 {
-	t_obj		*obj;
+	t_obj	*obj;
 
 	printf("\n\nDEBUG : SET\n///////////\n");
 	printf("set amb light ---- \n");
 	printf("brightness = %f\n", rt->ambient.brightness);
-	printf("color = %d, %d, %d\n\n\n", rt->ambient.color.r, rt->ambient.color.g, rt->ambient.color.b);
+	printf("color = %d, %d, %d\n\n\n", rt->ambient.color.r, rt->ambient.color.g,
+		rt->ambient.color.b);
 	/////
 	printf("set cam ---- \n");
 	printf("pos = %f, %f, %f\n", rt->cam.pos.x, rt->cam.pos.y, rt->cam.pos.z);
@@ -52,9 +53,11 @@ void	debug_print_set(t_env *rt)
 	printf("fov = %d\n\n\n", rt->cam.fov);
 	/////
 	printf("set spot light ---- \n");
-	printf("pos = %f, %f, %f\n", rt->spot.pos.x, rt->spot.pos.y, rt->spot.pos.z);
+	printf("pos = %f, %f, %f\n", rt->spot.pos.x, rt->spot.pos.y,
+		rt->spot.pos.z);
 	printf("brightness = %f\n", rt->spot.brightness);
-	printf("color = %d, %d, %d\n\n\n", rt->spot.color.r, rt->spot.color.g, rt->spot.color.b);
+	printf("color = %d, %d, %d\n\n\n", rt->spot.color.r, rt->spot.color.g,
+		rt->spot.color.b);
 	/////
 	printf("DEBUG : OBJECTS\n///////////\n");
 	obj = rt->objects;
@@ -83,12 +86,6 @@ int	main(int ac, char **av)
 {
 	t_env	rt;
 
-	rt.ambient.is_set = 0;
-	rt.cam.is_set = 0;
-	rt.spot.is_set = 0;
-	rt.ambient.is_set = 0;
-	rt.cam.is_set = 0;
-	rt.spot.is_set = 0;
 	if (ac < 2)
 		return (printf("Argument file needed\n"), 0);
 	if (parsing(&rt, av[1]))

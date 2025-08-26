@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   vec3_refs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/23 15:53:47 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/26 14:44:31 by tbeauman         ###   ########.fr       */
+/*   Created: 2025/08/26 15:16:42 by tbeauman          #+#    #+#             */
+/*   Updated: 2025/08/26 15:16:43 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	error_exit(char *msg)
+t_vec3	vec3_up(void)
 {
-	printf("%s\n", msg);
-	exit(1);
+	return ((t_vec3){1, 0, 0});
+}
+
+t_vec3	vec3_right(void)
+{
+	return ((t_vec3){0, 1, 0});
+}
+
+t_vec3	vec3_forward(void)
+{
+	return ((t_vec3){0, 0, 1});
 }

@@ -33,7 +33,11 @@ FILES		= 	clean\
 				parsing/init_set \
 				parsing/parsing_utils \
 				parsing/parsing \
-				light_compute
+				light_compute \
+				vec3_norm \
+				vec3_refs \
+				vec3_rot \
+				color_tools
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

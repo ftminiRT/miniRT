@@ -14,33 +14,50 @@
 
 int	init_cam(char **args, t_env *rt)
 {
+	if (count_arg(args) != 4)
+		return (1);
 	if (rt->cam.is_set)
 		return (1);
 	rt->cam.is_set = 1;
-	str_to_vec3(&rt->cam.pos, args[1]);
-	str_to_vec3(&rt->cam.dir, args[2]);
+	if (str_to_vec3(&rt->cam.pos, args[1]))
+		return (1);
+	if (str_to_vec3(&rt->cam.dir, args[2]))
+		return (1);
+	if (check_norm(rt->cam.dir))
+		return (1);
 	rt->cam.fov = (unsigned char)ft_atoi(args[3]);
+	if (rt->cam.fov < 0 || rt->cam.fov > 180)
+		return (1);
 	return (0);
 }
 
 int	init_spotlight(char **args, t_env *rt)
 {
+	if (count_arg(args) != 4)
+		return (1);
 	if (rt->spot.is_set)
 		return (1);
 	rt->spot.is_set = 1;
-	str_to_vec3(&rt->spot.pos, args[1]);
+	if (str_to_vec3(&rt->spot.pos, args[1]))
+		return (1);
 	rt->spot.brightness = ft_atod(args[2]);
-	str_to_colors(&rt->spot.color, args[3]);
+	if (str_to_colors(&rt->spot.color, args[3]))
+		return (1);
 	return (0);
 }
 
 int	init_amblight(char **args, t_env *rt)
 {
+	if (count_arg(args) != 3)
+		return (1);
 	if (rt->ambient.is_set)
 		return (1);
 	rt->ambient.is_set = 1;
 	rt->ambient.brightness = ft_atod(args[1]);
-	str_to_colors(&rt->ambient.color, args[2]);
+	if (check_brightness(rt->ambient.brightness))
+		return (1);
+	if (str_to_colors(&rt->ambient.color, args[2]))
+		return (1);
 	rt->ambient.pos.x = 0;
 	rt->ambient.pos.y = 0;
 	rt->ambient.pos.z = 0;

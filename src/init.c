@@ -36,7 +36,7 @@ void	env_init(t_env *rt)
 	rt->cam.is_set = 0;
 	rt->ambient.is_set = 0;
 	rt->spot.is_set = 0;
-	while (++i != OT_SPHERE)
+	while (++i != sizeof(t_objtype))
 	{
 		if (i == OT_CYL)
 			rt->hit_object[i] = hit_cylinder;

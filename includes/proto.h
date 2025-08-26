@@ -42,6 +42,12 @@ void    vec3_rotate(t_vec3 *v, t_vec3 r);
 
 int		parsing(t_env *rt, char *file);
 
+//check_values.c
+
+int		check_brightness(double b);
+int		check_norm(t_vec3 n);
+int		count_arg(char **args);
+
 //parsing_utils.c
 double	ft_atod(char *str);
 int		str_to_vec3(t_vec3 *vec, char *str);

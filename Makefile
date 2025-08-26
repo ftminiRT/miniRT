@@ -29,6 +29,7 @@ FILES		= 	clean\
 				mlx_tools\
 				ray_trace\
 				vec3_tools \
+				parsing/check_values\
 				parsing/init_obj \
 				parsing/init_set \
 				parsing/parsing_utils \

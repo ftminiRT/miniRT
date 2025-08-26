@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/26 14:50:17 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/26 16:16:01 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ t_vec3 get_normal(t_obj *obj, t_vec3 hit_point);
 double calculate_diffuse(t_vec3 normal, t_vec3 light_dir);
 double calculate_specular(t_vec3 normal, t_vec3 light_dir, t_vec3 view_dir, double shininess);
 t_color simple_lighting(t_env *rt, t_obj *obj, t_vec3 hit_point);
+t_color	blinn_phong(t_env *rt, t_obj *obj, t_vec3 hit_point);
 
 /////////////// CORE COMPUTE /////////////
 

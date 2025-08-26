@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:58 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 19:56:37 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:45:19 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_obj
     t_vec3      n; // normal
     t_objtype   type;
     t_color     color;
+    double      shine;
     int         id;
     struct s_obj    *next;
 }               t_obj;

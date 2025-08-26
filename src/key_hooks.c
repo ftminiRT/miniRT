@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:57 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/26 15:16:58 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/26 15:38:48 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	key_pressed(int kc, t_env *e)
 {
-	if (kc == KEY_ESC && clear_mlx(e))
+	if (kc == KEY_ESC)
+	{
+		clear_mlx(e);
 		exit(1);
+	}
 	return (1);
 }

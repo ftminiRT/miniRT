@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:48 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/26 18:06:47 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/26 18:46:41 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,11 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 	view = vec3_sub(rt->ray.pt, hit_point);
 	vec3_normalize(&view);
 	reflected = vec3_sub(
-		vec3_scalmult(2.0 * vec3_dot(normal, light), normal),
+		vec3_scalmult(2.0 * fabs(vec3_dot(normal, light)), normal),
 		 light);
 	vec3_normalize(&reflected);
 	ambient = rt->ambient.brightness;
-	diffuse = rt->spot.brightness * fmax(0.0,(vec3_dot(light, normal)));
+	diffuse = rt->spot.brightness * fmax(0.0, fabs((vec3_dot(light, normal))));
 	specular = 0.0;
 	if (vec3_dot(normal, light) > 0.0)
 		specular = rt->spot.brightness *

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 19:54:47 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/26 14:50:17 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,18 @@ int		init_spotlight(char **args, t_env *rt);
 void    env_init(t_env *rt);
 
 /////////////// LIGHT COMPUTE /////////////
+
+t_color color_add(t_color c1, t_color c2);
+t_color color_scale(t_color c, double factor);
+t_color	calc_ambient(t_color base, t_color amb, double bright);
 t_vec3 get_normal(t_obj *obj, t_vec3 hit_point);
 double calculate_diffuse(t_vec3 normal, t_vec3 light_dir);
 double calculate_specular(t_vec3 normal, t_vec3 light_dir, t_vec3 view_dir, double shininess);
-t_color calculate_lighting(t_env *rt, t_obj *obj, t_vec3 hit_point, t_vec3 ray_dir);
 t_color simple_lighting(t_env *rt, t_obj *obj, t_vec3 hit_point);
 
 /////////////// CORE COMPUTE /////////////
 
 t_obj    *compute_intersections(t_env *rt, t_ray *ray);
 
-
-t_color color_add(t_color c1, t_color c2)
-
-t_color color_scale(t_color c, double factor)
-
-t_color	calc_ambient(t_color base, t_color amb, double bright)
-
-t_color	calc_diffuse_spec(t_env *rt, t_obj *obj,
 
 #endif

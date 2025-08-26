@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_hooks.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/26 15:16:57 by tbeauman          #+#    #+#             */
+/*   Updated: 2025/08/26 15:16:58 by tbeauman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
-int     key_pressed(int kc, t_env *e)
+int	key_pressed(int kc, t_env *e)
 {
-    if (kc == KEY_ESC && clear_mlx(e))
-        exit (1);
-    return (1);
+	if (kc == KEY_ESC && clear_mlx(e))
+		exit(1);
+	return (1);
 }

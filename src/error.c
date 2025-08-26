@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:53:47 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/07/23 15:53:48 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/26 14:44:31 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void    error_exit(char *msg)
+void	error_exit(char *msg)
 {
-    printf("%s\n", msg);
-    exit(1);
+	printf("%s\n", msg);
+	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:21:26 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 20:00:31 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/26 14:31:19 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,13 @@ void	clear_objects(t_env *rt)
 int	main(int ac, char **av)
 {
 	t_env	rt;
-	
-	(void) ac;
-	(void) av;
-	printf("hello world\n");
+
+	rt.ambient.is_set = 0;
+	rt.cam.is_set = 0;
+	rt.spot.is_set = 0;
+	rt.ambient.is_set = 0;
+	rt.cam.is_set = 0;
+	rt.spot.is_set = 0;
 	if (ac < 2)
 		return (printf("Argument file needed\n"), 0);
 	if (parsing(&rt, av[1]))

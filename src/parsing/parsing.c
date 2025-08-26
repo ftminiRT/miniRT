@@ -21,27 +21,38 @@ int	init_line_data(char *line, t_env *rt)
 	split = ft_split(line, ' ');
 	if (!split)
 		return (perror("miniRT :"), 1);
-	if (split[0][0] == 'A')
+	else if (!ft_strncmp(split[0], "A", 2))
 		ret = init_amblight(split, rt);
-	if (split[0][0] == 'C')
+	else if (!ft_strncmp(split[0], "C", 2))
 		ret = init_cam(split, rt);
-	if (split[0][0] == 'L')
+	else if (!ft_strncmp(split[0], "L", 2))
 		ret = init_spotlight(split, rt);
-	if (split[0][0] == 's')
+	else if (!ft_strncmp(split[0], "sp", 3))
 		ret = init_sphere(split, rt);
-	if (split[0][0] == 'p')
+	else if (!ft_strncmp(split[0], "pl", 3))
 		ret = init_plane(split, rt);
-	if (split[0][0] == 'c')
+	else if (!ft_strncmp(split[0], "cy", 3))
 		ret = init_cylinder(split, rt);
+	else
+		ret = 1;
 	ft_free_split(split);
 	if (ret)
-		return (perror("miniRT :"), 1);
+		return (write (2, "miniRT : file content error\n", 29), 1);
 	return (0);
 }
 
 int	check_file(char *file)
 {
-	(void) file;
+	int	i;
+
+	i = 0;
+	while (file[i])
+		i++;
+	if (ft_strncmp(file + i - 3, ".rt", 4))
+	{
+		write(2, "Error : file extension invalid\n", 32);
+		return (1);
+	}
 	return (0);
 }
 
@@ -55,7 +66,10 @@ int	parsing(t_env *rt, char *file)
 		return (1);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
+	{
+		perror("miniRT ");
 		return (1);
+	}
 	line = get_next_line(fd);
 	if (!line)
 		return (1);
@@ -67,5 +81,5 @@ int	parsing(t_env *rt, char *file)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return (0);
+	return (!(rt->cam.is_set && rt->ambient.is_set && rt->spot.is_set));
 }

@@ -88,10 +88,10 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (printf("Argument file needed\n"), 0);
+	env_init(&rt);
 	if (parsing(&rt, av[1]))
 		return (1);
 	debug_print_set(&rt);
-	env_init(&rt);
 	rt_mlx_init(&rt.mlx);
 	ray_trace(&rt);
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);

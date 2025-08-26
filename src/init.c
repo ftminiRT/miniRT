@@ -33,6 +33,9 @@ void	env_init(t_env *rt)
 
 	i = OT_SPHERE;
 	rt->hit_object[i] = hit_sphere;
+	rt->cam.is_set = 0;
+	rt->ambient.is_set = 0;
+	rt->spot.is_set = 0;
 	while (++i != OT_SPHERE)
 	{
 		if (i == OT_CYL)

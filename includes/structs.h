@@ -25,7 +25,6 @@ typedef struct s_color
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-	unsigned char	alpha;
 }					t_color;
 
 typedef struct s_ray
@@ -50,27 +49,6 @@ typedef struct s_light
 	t_color			color;
 }					t_light;
 
-typedef struct s_sphere
-{
-	t_vec3			center;
-	double			r;
-}					t_sphere;
-
-typedef struct  s_plane
-{
-    t_vec3      pt;
-    t_vec3      n;
-}               t_plane;
-
-typedef struct s_cyl
-{
-	t_vec3			center;
-	t_vec3			n;
-	double			r;
-	double			height;
-
-}					t_cyl;
-
 typedef enum e_objtype
 {
     OT_SPHERE,
@@ -87,19 +65,15 @@ typedef enum    e_axis
 
 typedef struct s_obj
 {
-    t_sphere    sphere;
-    t_plane     plane;
-    t_cyl       cyl;
+    double      scal; // rayon
+    double      scal2; // height du cylindre
+    t_vec3      pt; // centre / pos
+    t_vec3      n; // normal
     t_objtype   type;
     t_color     color;
     int         id;
+    struct s_obj    *next;
 }               t_obj;
-
-typedef struct s_list_obj
-{
-    t_obj       obj;
-    struct s_list_obj  *next;
-}               t_list_obj;
 
 typedef struct s_mlxdata
 {
@@ -126,8 +100,10 @@ typedef struct s_env
     t_cam       cam;
     t_light     ambient;
     t_light     spot;
-    t_list_obj  *objects;
+    t_obj      *objects;
+    double      (*hit_object[sizeof(t_objtype)])(t_ray *, t_obj *);
     t_mlx       mlx;
+    int         log_fd;
 }               t_env;
 
 #endif

@@ -85,7 +85,7 @@ CC = cc
 all : $(NAME)
 
 clean :
-	$(QUIET) rm -rf $(OBJ_DIR)
+	$(QUIET) rm -rf $(OBJ)
 
 fclean : clean
 	$(QUIET) rm -f $(NAME)
@@ -97,7 +97,6 @@ $(NAME): $(OBJ_DIR) $(OBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) $(HEADER) -o $@ -c $<
-
 
 $(OBJ_DIR) :
 	$(QUIET) mkdir -p $(OBJ_DIR)

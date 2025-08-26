@@ -12,11 +12,11 @@
 
 #include "minirt.h"
 
-t_list_obj	*create_object(t_env *rt)
+t_obj	*create_object(t_env *rt)
 {
-	t_list_obj	*new;
+	t_obj	*new;
 
-	new = malloc(sizeof(t_list_obj));
+	new = malloc(sizeof(t_obj));
 	if (!new)
 		return (perror("miniRT :"), NULL);
 	new->next = NULL;
@@ -28,44 +28,44 @@ t_list_obj	*create_object(t_env *rt)
 
 int	init_cylinder(char **args, t_env *rt)
 {
-	t_list_obj	*new;
+	t_obj	*new;
 
 	new = create_object(rt);
 	if (!new)
 		return (1);
-	new->obj.type = OT_CYL;
-	str_to_vec3(&new->obj.cyl.center, args[1]);
-	str_to_vec3(&new->obj.cyl.n, args[2]);
-	new->obj.cyl.r = ft_atod(args[3]) / 2;
-	new->obj.cyl.height = ft_atod(args[4]);
-	str_to_colors(&new->obj.color, args[5]);
+	new->type = OT_CYL;
+	str_to_vec3(&new->pt, args[1]);
+	str_to_vec3(&new->n, args[2]);
+	new->scal = ft_atod(args[3]) / 2;
+	new->scal2 = ft_atod(args[4]);
+	str_to_colors(&new->color, args[5]);
 	return (0);
 }
 
 int	init_plane(char **args, t_env *rt)
 {
-	t_list_obj	*new;
+	t_obj	*new;
 
 	new = create_object(rt);
 	if (!new)
 		return (1);
-	new->obj.type = OT_PLANE;
-	str_to_vec3(&new->obj.plane.pt, args[1]);
-	str_to_vec3(&new->obj.plane.n, args[2]);
-	str_to_colors(&new->obj.color, args[3]);
+	new->type = OT_PLANE;
+	str_to_vec3(&new->pt, args[1]);
+	str_to_vec3(&new->n, args[2]);
+	str_to_colors(&new->color, args[3]);
 	return (0);
 }
 
 int	init_sphere(char **args, t_env *rt)
 {
-	t_list_obj	*new;
+	t_obj	*new;
 
 	new = create_object(rt);
 	if (!new)
 		return (1);
-	new->obj.type = OT_SPHERE;
-	str_to_vec3(&new->obj.sphere.center, args[1]);
-	new->obj.sphere.r = ft_atod(args[2]) / 2;
-	str_to_colors(&new->obj.color, args[3]);
+	new->type = OT_SPHERE;
+	str_to_vec3(&new->pt, args[1]);
+	new->scal = ft_atod(args[2]) / 2;
+	str_to_colors(&new->color, args[3]);
 	return (0);
 }

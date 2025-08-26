@@ -17,29 +17,29 @@ void	debug_print_object(t_obj obj)
 	if (obj.type == OT_SPHERE)
 	{
 		printf("SPHERE ----\n");
-		printf("pos = %f, %f, %f\n", obj.sphere.center.x, obj.sphere.center.y, obj.sphere.center.z);
-		printf("r = %f\n", obj.sphere.r);
+		printf("pos = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("r = %f\n", obj.scal);
 	}
 	if (obj.type == OT_PLANE)
 	{
 		printf("PLANE ----\n");
-		printf("pt = %f, %f, %f\n", obj.plane.pt.x, obj.plane.pt.y, obj.plane.pt.z);
-		printf("n = %f, %f, %f\n", obj.plane.n.x, obj.plane.n.y, obj.plane.n.z);
+		printf("pt = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
 	}
 	if (obj.type == OT_CYL)
 	{
 		printf("CYLINDER ----\n");
-		printf("center = %f, %f, %f\n", obj.cyl.center.x, obj.cyl.center.y, obj.cyl.center.z);
-		printf("n = %f, %f, %f\n", obj.cyl.n.x, obj.cyl.n.y, obj.cyl.n.z);
-		printf("r = %f\n", obj.cyl.r);
-		printf("height = %f\n", obj.cyl.height);
+		printf("center = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
+		printf("r = %f\n", obj.scal);
+		printf("height = %f\n", obj.scal2);
 	}
 	printf("color = %d, %d, %d\n\n\n", obj.color.r, obj.color.g, obj.color.b);
 }
 
 void	debug_print_set(t_env *rt)
 {
-	t_list_obj	*obj;
+	t_obj		*obj;
 
 	printf("\n\nDEBUG : SET\n///////////\n");
 	printf("set amb light ---- \n");
@@ -60,15 +60,15 @@ void	debug_print_set(t_env *rt)
 	obj = rt->objects;
 	while (obj)
 	{
-		debug_print_object(obj->obj);
+		debug_print_object(*obj);
 		obj = obj->next;
 	}
 }
 
 void	clear_objects(t_env *rt)
 {
-	t_list_obj	*head;
-	t_list_obj	*next;
+	t_obj	*head;
+	t_obj	*next;
 
 	head = rt->objects;
 	while (head)
@@ -82,7 +82,7 @@ void	clear_objects(t_env *rt)
 int	main(int ac, char **av)
 {
 	t_env	rt;
-
+	
 	(void) ac;
 	(void) av;
 	printf("hello world\n");
@@ -90,12 +90,12 @@ int	main(int ac, char **av)
 		return (printf("Argument file needed\n"), 0);
 	if (parsing(&rt, av[1]))
 		return (1);
-	//debug_print_set(&rt);
+	debug_print_set(&rt);
+	env_init(&rt);
 	rt_mlx_init(&rt.mlx);
 	ray_trace(&rt);
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);
 	mlx_loop(rt.mlx.mlx);
 	clear_mlx(&rt);
-	
 	return (0);
 }

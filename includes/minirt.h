@@ -27,7 +27,8 @@
 # include "proto.h"
 # include "libft.h"
 
-# define WIDTH 1337
-# define HEIGHT 1337
+# define WIDTH 500
+# define HEIGHT 500
+# define EPSILON 1e-6
 
 #endif

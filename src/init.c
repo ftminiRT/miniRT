@@ -26,3 +26,18 @@ void    rt_mlx_init(t_mlx *mlx)
     mlx->img.addr = mlx_get_data_addr(mlx->img.img,
         &mlx->img.bits_per_pixel, &mlx->img.line_length, &mlx->img.endian);
 }
+
+void    env_init(t_env *rt)
+{
+    t_objtype   i;
+
+    i = OT_SPHERE;
+    rt->hit_object[i] = hit_sphere;
+    while (++i != OT_SPHERE)
+    {
+        if (i == OT_CYL)
+            rt->hit_object[i] = hit_cylinder;
+        if (i == OT_PLANE)
+            rt->hit_object[i] = hit_plane;
+    }
+}

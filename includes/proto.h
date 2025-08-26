@@ -25,9 +25,14 @@ void    vec3_normalize(t_vec3 *a);
 double  vec3_dot(t_vec3 a, t_vec3 b);
 t_vec3  vec3_up();
 t_vec3  vec3_right();
-bool    hit_sphere(t_ray *r, t_sphere s);
-bool    hit_plane(t_ray *r, t_plane p);
-bool    hit_cylinder(t_ray *r, t_cyl cy);
+t_vec3  vec3_forward();
+double  vec3_norm(t_vec3 a);
+double  vec3_sqnorm(t_vec3 a);
+t_vec3 vec3_cross(t_vec3 a, t_vec3 b);
+double    hit_sphere(t_ray *r, t_obj *s);
+double    hit_plane(t_ray *r, t_obj *p);
+double    hit_cylinder(t_ray *r, t_obj *cy);
+t_vec3 camera_transform(t_vec3 dir_local, t_vec3 cam_dir);
 void    ray_trace(t_env *rt);
 void	putpixel(int x, int y, t_env *rt, t_color c);
 t_vec3  vec3_rot(t_vec3 *v, int axis, double theta);
@@ -50,5 +55,18 @@ int		init_sphere(char **args, t_env *rt);
 int		init_cam(char **args, t_env *rt);
 int		init_amblight(char **args, t_env *rt);
 int		init_spotlight(char **args, t_env *rt);
+void    env_init(t_env *rt);
+
+/////////////// LIGHT COMPUTE /////////////
+t_vec3 get_normal(t_obj *obj, t_vec3 hit_point);
+double calculate_diffuse(t_vec3 normal, t_vec3 light_dir);
+double calculate_specular(t_vec3 normal, t_vec3 light_dir, t_vec3 view_dir, double shininess);
+t_color calculate_lighting(t_env *rt, t_obj *obj, t_vec3 hit_point, t_vec3 ray_dir);
+t_color simple_lighting(t_env *rt, t_obj *obj, t_vec3 hit_point);
+
+/////////////// CORE COMPUTE /////////////
+
+t_obj    *compute_intersections(t_env *rt, t_ray *ray);
+
 
 #endif

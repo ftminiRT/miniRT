@@ -1,96 +1,81 @@
 #include "minirt.h"
 
-bool    hit_sphere(t_ray *ray, t_sphere s)
+double    hit_sphere(t_ray *ray, t_obj *s)
 {
-    double  a;
     double  b;
     double  c;
     double  delta;
-    double  hit;
+    double  sqrt_d;
+    double  hit1;
+    double  hit2;
+    t_vec3  oc;
 
-    a = vec3_dot(ray->dir, ray->dir);
-    b = 2 * (ray->dir.x * (ray->pt.x - s.center.x) +
-    ray->dir.y * (ray->pt.y - s.center.y) +
-    ray->dir.z * (ray->pt.z - s.center.z));
-    c = (ray->pt.x - s.center.x) * (ray->pt.x - s.center.x) +
-    (ray->pt.y - s.center.y) * (ray->pt.y - s.center.y) +
-    (ray->pt.z - s.center.z) * (ray->pt.z - s.center.z) - s.r * s.r;
-    delta = b * b - 4 * a * c;
+    oc = vec3_sub(ray->pt, s->pt);
+    b = vec3_dot(oc, ray->dir);
+    c = vec3_dot(oc, oc) - s->scal * s->scal;
+    delta = b * b - c;
     if (delta < 0)
-        return (false);
-    else
-    {
-        hit = (-b - sqrt(delta)) / (2 * a);
-        if (hit < 0)
-        {
-            hit = (-b + sqrt(delta)) / (2 * a);
-            if (hit < 0)
-                return (false);
-        }
-        if (ray->hit > 0 && hit > ray->hit)
-            return (false);
-        printf("sphere hit deeper %f\n", hit);
-        ray->hit = hit;
-        return (true);
-    }
+        return (INFINITY);
+    sqrt_d = sqrt(delta);
+    hit1 = -b - sqrt_d;
+    hit2 = -b + sqrt_d;
+    if (hit1 > EPSILON)
+        return (hit1);
+    if (hit2 > EPSILON)
+        return (hit2);
+    return (INFINITY);
 }
 
-bool    hit_plane(t_ray *r, t_plane p)
+double    hit_plane(t_ray *r, t_obj *p)
 {
     double  a;
     double  b;
+    double  t;
 
-    a = vec3_dot(r->dir, p.n);
-    b = vec3_dot(p.n, vec3_sub(r->pt, p.pt));
-    if (a == 0)
-        return (false);
-    if (r->hit > 0 && (-b / a) > r->hit)
-        return (false);
-    else if (-b / a < 0)
-    {
-        r->hit = -b / a;
-        return (true);
-    }
-    else
-        return (false);
+
+    a = vec3_dot(r->dir, p->n);
+    b = vec3_dot(p->n, vec3_sub(r->pt, p->pt));
+    if (fabs(a) < EPSILON)
+        return (INFINITY);
+    t = -b / a;
+    if (t < EPSILON)
+        return (INFINITY);
+    return (t);
 }
 
-bool    hit_cylinder(t_ray *ray, t_cyl cy)
+double hit_cylinder(t_ray *ray, t_obj *cy)
 {
-    double  a;
-    double  b;
-    double  c;
-    double  delta;
-    double  hit;
-    t_vec3  new_o;
-    double  smn0; // a rename
-    double  smn1; // a rename
-    double  r;
+    t_vec3 oc = vec3_sub(ray->pt, cy->pt);
 
-    if (cy.n.x == 0 && cy.n.y == 0 && cy.n.z == 0)
-        return (false);
-    new_o = vec3_sub(ray->pt, cy.center);
-    smn0 = vec3_dot(ray->dir, cy.n);
-    smn1 = vec3_dot(new_o, cy.n);
-    r = cy.r;
-    a = vec3_dot(ray->dir, ray->dir) - smn0 * smn0;
-    b = 2 * (vec3_dot(ray->dir, new_o) - smn0 * smn1);
-    c = vec3_dot(new_o, new_o) - smn1 * smn1 - r * r;
-    delta = b * b - 4 * a * c;
+    double d_dot_n = vec3_dot(ray->dir, cy->n);
+    double oc_dot_n = vec3_dot(oc, cy->n);
+
+    t_vec3 d_proj = vec3_sub(ray->dir, vec3_scalmult(d_dot_n, cy->n));
+    t_vec3 oc_proj = vec3_sub(oc, vec3_scalmult(oc_dot_n, cy->n));
+
+    double a = vec3_dot(d_proj, d_proj);
+    double b = 2 * vec3_dot(d_proj, oc_proj);
+    double c = vec3_dot(oc_proj, oc_proj) - cy->scal * cy->scal;
+
+    double delta = b * b - 4 * a * c;
     if (delta < 0)
-        return (false);
-    else
+        return INFINITY;
+
+    double sqrt_d = sqrt(delta);
+    double t1 = (-b - sqrt_d) / (2 * a);
+    double t2 = (-b + sqrt_d) / (2 * a);
+
+    for (int i = 0; i < 2; i++)
     {
-        hit = (-b - sqrt(delta)) / 2 * a;
-        if (hit < 0)
-        {
-            hit = (-b + sqrt(delta)) / (2 * a);
-            if (hit < 0)
-                return (false);
-        }
-        if (ray->hit > 0 && hit > ray->hit)
-            return (hit);
-        ray->hit = hit;
-        return (true);
+        double t = (i == 0) ? t1 : t2;
+        if (t < EPSILON)
+            continue;
+        t_vec3 p = vec3_add(ray->pt, vec3_scalmult(t, ray->dir));
+        t_vec3 from_center = vec3_sub(p, cy->pt);
+        double h = vec3_dot(from_center, cy->n);
+        if (fabs(h) <= cy->scal2 / 2.0)
+            return t;
     }
+
+    return INFINITY;
 }

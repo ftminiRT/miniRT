@@ -69,4 +69,12 @@ t_color simple_lighting(t_env *rt, t_obj *obj, t_vec3 hit_point);
 t_obj    *compute_intersections(t_env *rt, t_ray *ray);
 
 
+t_color color_add(t_color c1, t_color c2)
+
+t_color color_scale(t_color c, double factor)
+
+t_color	calc_ambient(t_color base, t_color amb, double bright)
+
+t_color	calc_diffuse_spec(t_env *rt, t_obj *obj,
+
 #endif

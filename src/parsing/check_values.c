@@ -27,3 +27,10 @@ int count_arg(char **args)
 		i++;
 	return (i);
 }
+
+int	check_angle(double ang)
+{
+	if (ang < 0 || ang > 360)
+		return (1);
+	return (0);
+}

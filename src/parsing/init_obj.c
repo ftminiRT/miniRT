@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:35:58 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 19:59:56 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:21:40 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_obj	*create_object(t_env *rt)
 {
 	t_obj	*new;
 
-	new = malloc(sizeof(t_obj));
+	new = ft_calloc(1, sizeof(t_obj));
 	if (!new)
 		return (perror("miniRT :"), NULL);
 	new->next = NULL;

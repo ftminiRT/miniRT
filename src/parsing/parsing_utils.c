@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:37:33 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/27 15:46:47 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/27 17:32:24 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,16 @@ double	ft_atod(char *str)
 	nb[1] = nb[1] / power;
 	return (nb[0] + nb[1]);
 }
+
 int	str_is_double(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] && str[i] != '\n')
 	{
-		if (!ft_isdigit(str[i]) && str[i] != '.')
+		if (!(ft_isdigit(str[i]) || str[i] == '.' \
+				|| str[i] == '-' || str[i] == '+'))
 			return (0);
 		i++;
 	}
@@ -58,6 +60,7 @@ static int	split_is_numeric(char **split)
 	i = 0;
 	while (i < 3)
 	{
+		printf("in split_is_numeric : str = %s\n", split[i]);
 		if (!str_is_double(split[i]))
 			return (0);
 		i++;

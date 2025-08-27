@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:36:01 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/27 08:40:50 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/27 13:43:32 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	set_new_spotlight(char **args, t_env *rt)
 	current->next = new;
 	if (str_to_vec3(&new->pos, args[1]))
 		return (1);
-	rt->spot.brightness = ft_atod(args[2]);
+	new->brightness = ft_atod(args[2]);
 	if (str_to_colors(&new->color, args[3]))
 		return (1);
 	return (0);
@@ -58,7 +58,6 @@ int	init_spotlight(char **args, t_env *rt)
 	if (rt->spot.is_set)
 		return (set_new_spotlight(args, rt));
 	rt->spot.is_set = 1;
-	rt->spot.next = NULL;
 	if (str_to_vec3(&rt->spot.pos, args[1]))
 		return (1);
 	rt->spot.brightness = ft_atod(args[2]);

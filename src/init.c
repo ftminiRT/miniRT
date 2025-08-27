@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:48:44 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/26 16:31:09 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/27 13:43:46 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	env_init(t_env *rt)
 	rt->cam.is_set = 0;
 	rt->ambient.is_set = 0;
 	rt->spot.is_set = 0;
+	rt->spot.next = NULL;
 	while (++i != sizeof(t_objtype))
 	{
 		if (i == OT_CYL)

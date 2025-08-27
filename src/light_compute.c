@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:26 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/27 12:52:07 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/27 13:42:54 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,9 +175,9 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 		{
 
 			if (obj->type == OT_PLANE)
-				diff_factor = rt->spot.brightness * fabs(vec3_dot(light, normal));
+				diff_factor = cur_spot->brightness * fabs(vec3_dot(light, normal));
 			else
-				diff_factor = rt->spot.brightness * fmax(0.0, vec3_dot(light, normal));
+				diff_factor = cur_spot->brightness * fmax(0.0, vec3_dot(light, normal));
 
 			diffuse = color_scale(color_multiply(cur_spot->color, obj->color), diff_factor * cur_spot->brightness);
 
@@ -186,6 +186,7 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 				spec_factor = cur_spot->brightness *
 					pow(fmax(0.0, vec3_dot(reflected, view)), obj->shine);
 			specular = color_scale(cur_spot->color, spec_factor * cur_spot->brightness);
+
 			ret = color_add(ret, diffuse);
 			ret = color_add(ret, specular);
 		}

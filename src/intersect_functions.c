@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:17:01 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/26 15:17:01 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/27 14:12:53 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ double	hit_cylinder(t_ray *ray, t_obj *cy)
 		if (fabs(h) <= cy->scal2 / 2.0)
 			return (t);
 	}
+	
 	return (INFINITY);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:58 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/26 15:45:19 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/27 08:22:19 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_light
 	t_vec3			pos;
 	double			brightness;
 	t_color			color;
+    struct s_light  *next;
 }					t_light;
 
 typedef enum e_objtype

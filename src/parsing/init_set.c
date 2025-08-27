@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:36:01 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 19:25:37 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/27 08:31:23 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,32 @@ int	init_cam(char **args, t_env *rt)
 	return (0);
 }
 
+int	set_new_spotlight(char **args, t_env *rt)
+{
+	t_light	*new;
+	t_light	*current;
+
+	current = rt->spot.next;
+	new = ft_calloc(1, sizeof(t_light));
+	if (!new)
+		return (1);
+	while (current)
+		current = current->next;
+	current->next = new;
+	if (str_to_vec3(&new->pos, args[1]))
+		return (1);
+	rt->spot.brightness = ft_atod(args[2]);
+	if (str_to_colors(&new->color, args[3]))
+		return (1);
+	return (0);
+}
+
 int	init_spotlight(char **args, t_env *rt)
 {
 	if (count_arg(args) != 4)
 		return (1);
 	if (rt->spot.is_set)
-		return (1);
+		return (set_new_spotlight(args, rt));
 	rt->spot.is_set = 1;
 	if (str_to_vec3(&rt->spot.pos, args[1]))
 		return (1);

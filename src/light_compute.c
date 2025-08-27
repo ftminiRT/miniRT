@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:26 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/27 13:42:54 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/27 13:44:58 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,14 +153,8 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 	t_color	ret;
 
 	normal = get_normal(obj, hit_point);
-	light = vec3_sub(rt->spot.pos, hit_point);
-	vec3_normalize(&light);
 	view = vec3_sub(rt->ray.pt, hit_point);
 	vec3_normalize(&view);
-	reflected = vec3_sub(
-		vec3_scalmult(2.0 * fabs(vec3_dot(normal, light)), normal),
-		 light);
-	vec3_normalize(&reflected);
 
 
 	ambient = color_scale(color_multiply(rt->ambient.color, obj->color), rt->ambient.brightness);
@@ -173,6 +167,12 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 	{
 		if (!in_shadow(rt, cur_spot, hit_point))
 		{
+			light = vec3_sub(cur_spot->pos, hit_point);
+			vec3_normalize(&light);
+			reflected = vec3_sub(
+				vec3_scalmult(2.0 * fabs(vec3_dot(normal, light)), normal),
+				light);
+			vec3_normalize(&reflected);
 
 			if (obj->type == OT_PLANE)
 				diff_factor = cur_spot->brightness * fabs(vec3_dot(light, normal));

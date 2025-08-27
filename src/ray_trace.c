@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:48 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/27 12:22:06 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/27 12:25:25 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ void	ray_trace(t_env *rt)
 				hit_point = vec3_add(rt->ray.pt, vec3_scalmult(rt->ray.hit, rt->ray.dir));
 				color = get_color(rt, hitted, hit_point);
 				putpixel(i, j, rt, color);
-				// putpixel(i, j, rt, blinn_phong(rt, hitted, hit_point));
 			}
 			else
 				putpixel(i, j, rt, (t_color){0, 0, 0});

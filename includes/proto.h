@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/26 16:16:01 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/27 11:38:53 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,10 @@ void    env_init(t_env *rt);
 
 t_color color_add(t_color c1, t_color c2);
 t_color color_scale(t_color c, double factor);
-t_color	calc_ambient(t_color base, t_color amb, double bright);
+t_color color_multiply(t_color c1, t_color c2);
+t_color color_clamp(t_color color);
 t_vec3 get_normal(t_obj *obj, t_vec3 hit_point);
-double calculate_diffuse(t_vec3 normal, t_vec3 light_dir);
-double calculate_specular(t_vec3 normal, t_vec3 light_dir, t_vec3 view_dir, double shininess);
-t_color simple_lighting(t_env *rt, t_obj *obj, t_vec3 hit_point);
-t_color	blinn_phong(t_env *rt, t_obj *obj, t_vec3 hit_point);
+t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
 
 /////////////// CORE COMPUTE /////////////
 

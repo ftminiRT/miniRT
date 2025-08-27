@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:48 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/26 18:52:51 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/27 11:16:42 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,48 +94,6 @@ t_vec3	compute_ray_dir(t_env *rt, int i, int j)
 	py = (1 - 2 * ((j + 0.5) / (double)HEIGHT)) * tan(fov_rad / 2);
 	ret = camera_transform((t_vec3){px, py, 1}, rt->cam.dir);
 	vec3_normalize(&ret);
-	return (ret);
-}
-
-t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
-{
-	t_vec3	normal;
-	t_vec3	light;
-	t_vec3	view;
-	t_vec3	reflected;
-	double	ambient;
-	double	diffuse;
-	double	specular;
-	double	intensity;
-
-	normal = get_normal(obj, hit_point);
-	light = vec3_sub(rt->spot.pos, hit_point);
-	vec3_normalize(&light);
-	view = vec3_sub(rt->ray.pt, hit_point);
-	vec3_normalize(&view);
-	reflected = vec3_sub(
-		vec3_scalmult(2.0 * fabs(vec3_dot(normal, light)), normal),
-		 light);
-	vec3_normalize(&reflected);
-	ambient = rt->ambient.brightness;
-
-	if (obj->type == OT_PLANE)
-		diffuse = rt->spot.brightness * fabs(vec3_dot(light, normal));
-	else
-		diffuse = rt->spot.brightness * fmax(0.0, vec3_dot(light, normal));
-
-	specular = 0.0;
-	if (vec3_dot(normal, light) > 0.0)
-		specular = rt->spot.brightness *
-			pow(fmax(0.0, vec3_dot(reflected, view)), obj->shine);
-
-	intensity = ambient + diffuse + specular;
-
-	t_color	ret;
-
-    ret.r = fmin(255, fmax(0, obj->color.r * intensity));
-    ret.g = fmin(255, fmax(0, obj->color.g * intensity));
-    ret.b = fmin(255, fmax(0, obj->color.b * intensity));
 	return (ret);
 }
 

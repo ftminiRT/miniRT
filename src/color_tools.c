@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:32 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/26 15:16:33 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/27 11:38:26 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,20 @@ t_color	color_scale(t_color c, double factor)
 	return (result);
 }
 
-t_color	calc_ambient(t_color base, t_color amb, double bright)
+t_color color_multiply(t_color c1, t_color c2)
 {
-	t_color	ambient;
-	t_color	amb_scaled;
+    t_color result;
+    result.r = (c1.r / 255.0) * (c2.r / 255.0) * 255.0;
+    result.g = (c1.g / 255.0) * (c2.g / 255.0) * 255.0;
+    result.b = (c1.b / 255.0) * (c2.b / 255.0) * 255.0;
+    return result;
+}
 
-	amb_scaled = color_scale(amb, bright);
-	ambient.r = (unsigned char)((base.r * amb_scaled.r) / 255);
-	ambient.g = (unsigned char)((base.g * amb_scaled.g) / 255);
-	ambient.b = (unsigned char)((base.b * amb_scaled.b) / 255);
-	return (ambient);
+t_color color_clamp(t_color color)
+{
+    t_color result;
+    result.r = fmin(255, fmax(0, color.r));
+    result.g = fmin(255, fmax(0, color.g));
+    result.b = fmin(255, fmax(0, color.b));
+    return result;
 }

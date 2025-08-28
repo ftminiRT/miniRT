@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:56 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/28 13:15:29 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:37:27 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@
 # include "proto.h"
 # include "libft.h"
 
-# define WIDTH 600
-# define HEIGHT 400
+# ifndef WIDTH
+#  define WIDTH 600
+# endif
+# ifndef HEIGHT
+#  define HEIGHT 400
+# endif
 # define EPSILON 1e-6
 
 #endif

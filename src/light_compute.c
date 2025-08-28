@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:26 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/27 15:49:10 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:21:11 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,10 @@ static t_color	compute_diffuse(t_phong phong, t_obj *obj, t_light *cur_spot)
 
 static t_color	compute_specular(t_phong phong, t_obj *obj, t_light *cur_spot)
 {
-	t_vec3	reflected;
 	double	spec_factor;
 	t_color	specular;
 
-	reflected = vec3_sub(
+	phong.reflected = vec3_sub(
 	vec3_scalmult(2.0 * fabs(vec3_dot(phong.normal, phong.light)), phong.normal),
 	phong.light);
 

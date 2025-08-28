@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/08/28 12:01:26 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 14:22:01 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,17 @@ typedef struct s_phong
     t_vec3      reflected;
     t_vec3      normal;
 }               t_phong;
+
+typedef struct s_proj_data
+{
+	t_vec3	d_proj;
+	t_vec3	oc_proj;
+	double	a;
+	double	b;
+	double	c;
+    double  delta;
+    double  sqrt_d;
+}	t_proj_data;
 
 typedef enum e_objtype
 {

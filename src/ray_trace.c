@@ -3,40 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ray_trace.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:48 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 13:24:07 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/28 14:13:29 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-t_obj	*compute_intersections(t_env *rt, t_ray *ray)
-{
-	t_obj	*objs;
-	double	closest_t;
-	double	t;
-	t_obj	*closest;
-
-	closest_t = INFINITY;
-	t = INFINITY;
-	closest = NULL;
-	objs = rt->objects;
-	while (objs)
-	{
-		t = rt->hit_object[objs->type](ray, objs);
-		if (0 < t && t < closest_t)
-		{
-			closest_t = t;
-			closest = objs;
-		}
-		objs = objs->next;
-	}
-	if (closest)
-		ray->hit = closest_t;
-	return (closest);
-}
 
 t_vec3	camera_transform(t_vec3 dir_local, t_vec3 cam_dir)
 {
@@ -65,22 +39,6 @@ t_vec3	camera_transform(t_vec3 dir_local, t_vec3 cam_dir)
 	return (world_dir);
 }
 
-void	normalize_objs_normal(t_env *rt)
-{
-	t_obj	*objs;
-
-	objs = rt->objects;
-	while (objs)
-	{
-		objs->shine = 100;
-		if (objs->type == OT_PLANE)
-			vec3_normalize(&objs->n);
-		if (objs->type == OT_CYL)
-			vec3_normalize(&objs->n);
-		objs = objs->next;
-	}
-}
-
 t_vec3	compute_ray_dir(t_env *rt, int i, int j)
 {
 	t_vec3	ret;
@@ -97,34 +55,32 @@ t_vec3	compute_ray_dir(t_env *rt, int i, int j)
 	return (ret);
 }
 
+void	compute_ray(t_env *rt, t_ray *ray, int i, int j)
+{
+	ray->pt = rt->cam.pos;
+	ray->dir = compute_ray_dir(rt, i, j);
+	ray->hit = INFINITY;
+}
+
 void	ray_trace(t_env *rt)
 {
 	t_obj	*hitted;
 	int		i;
 	int		j;
-	t_vec3	hit_point;
-	t_color	color;
 
-	normalize_objs_normal(rt);
+	init_rt(rt);
 	hitted = NULL;
-	rt->ray.pt = rt->cam.pos;
-	vec3_normalize(&rt->cam.dir);
 	j = -1;
 	while (++j < HEIGHT)
 	{
 		i = -1;
 		while (++i < WIDTH)
 		{
-			rt->ray.pt = rt->cam.pos;
-			rt->ray.dir = compute_ray_dir(rt, i, j);
-			rt->ray.hit = INFINITY;
+			compute_ray(rt, &rt->ray, i, j);
 			hitted = compute_intersections(rt, &rt->ray);
 			if (hitted)
-			{
-				hit_point = vec3_add(rt->ray.pt, vec3_scalmult(rt->ray.hit, rt->ray.dir));
-				color = get_color(rt, hitted, hit_point);
-				putpixel(i, j, rt, color);
-			}
+				putpixel(i, j, rt, get_color(rt, hitted, vec3_add(rt->ray.pt,
+							vec3_scalmult(rt->ray.hit, rt->ray.dir))));
 			else
 				putpixel(i, j, rt, (t_color){0, 0, 0});
 		}

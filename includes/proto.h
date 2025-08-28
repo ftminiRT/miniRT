@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/28 12:01:14 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 14:12:20 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,10 @@ t_vec3  sphere_norm(t_obj *obj, t_vec3 hit_point);
 t_vec3  plane_norm(t_obj *obj, t_vec3 hit_point);
 double     check_discs(t_obj *obj, t_vec3 hit_point);
 t_vec3  cylinder_norm(t_obj *obj, t_vec3 hit_point);
+
+/////////////// INIT /////////////
+
+void	normalize_objs_normal(t_env *rt);
+void	init_rt(t_env *rt);
 
 #endif

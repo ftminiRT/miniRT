@@ -24,7 +24,7 @@ INCLUDES	= 	-I$(LIBFT_PATH)/includes \
 FILES		= 	clean\
 				error\
 				init\
-				intersect_functions\
+				hit_basics\
 				key_hooks\
 				mlx_tools\
 				ray_trace\
@@ -40,7 +40,9 @@ FILES		= 	clean\
 				vec3_refs \
 				vec3_rot \
 				color_tools \
-				basics_norm
+				basics_norm\
+				compute_intersections\
+				hit_cyl
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

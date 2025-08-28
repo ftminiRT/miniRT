@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/08/28 18:50:22 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 19:23:12 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ typedef struct s_proj_data
     double  sqrt_d;
 }	t_proj_data;
 
+# define OBJTYPENUMBER 9
+
 typedef enum e_objtype
 {
     OT_SPHERE,
@@ -169,8 +171,8 @@ typedef struct s_env
     t_light     ambient;
     t_light     spot;
     t_obj      *objects;
-    double      (*hit_object[sizeof(t_objtype)])(t_ray *, t_obj *);
-    t_vec3      (*get_norm[sizeof(t_objtype)])(t_obj *, t_vec3);
+    double      (*hit_object[OBJTYPENUMBER + 1])(t_ray *, t_obj *);
+    t_vec3      (*get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3);
     t_mlx       mlx;
     int         log_fd;
 }               t_env;

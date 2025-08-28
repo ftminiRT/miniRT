@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/28 18:43:29 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 19:46:25 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_vec3	vec3_right(void);
 t_vec3	vec3_forward(void);
 double	vec3_norm(t_vec3 a);
 double	vec3_sqnorm(t_vec3 a);
+t_vec3  vec3_normalized(t_vec3 a);
 t_vec3	vec3_cross(t_vec3 a, t_vec3 b);
 double	hit_sphere(t_ray *r, t_obj *s);
 double	hit_plane(t_ray *r, t_obj *p);
@@ -96,5 +97,8 @@ void	normalize_objs_normal(t_env *rt);
 void	init_rt(t_env *rt);
 
 int				solve_cubic(double *a, double *r);
+
+
+void	debug_print_set(t_env *rt);
 
 #endif

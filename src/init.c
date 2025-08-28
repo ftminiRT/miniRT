@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:48:44 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 18:46:02 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 19:20:02 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,31 +52,16 @@ void	normalize_objs_normal(t_env *rt)
 
 void	env_init(t_env *rt)
 {
-	t_objtype i;
-
-	i = OT_SPHERE;
-	rt->hit_object[i] = hit_sphere;
-	rt->get_norm[i] = sphere_normal;
+	rt->hit_object[OT_SPHERE] = hit_sphere;
+	rt->get_norm[OT_SPHERE] = sphere_normal;
+	rt->hit_object[OT_CYL] = hit_cylinder;
+	rt->get_norm[OT_CYL] = cylinder_normal;
+	rt->hit_object[OT_PLANE] = hit_plane;
+	rt->get_norm[OT_PLANE] = plane_normal;
+	rt->hit_object[OT_MOEB] = hit_moebius;
+	rt->get_norm[OT_MOEB] = moebius_normal;
 	rt->cam.is_set = 0;
 	rt->ambient.is_set = 0;
 	rt->spot.is_set = 0;
 	rt->spot.next = NULL;
-	while (++i != sizeof(t_objtype))
-	{
-		if (i == OT_CYL)
-		{
-			rt->hit_object[i] = hit_cylinder;
-			rt->get_norm[i] = cylinder_normal;
-		}
-		if (i == OT_PLANE)
-		{
-			rt->hit_object[i] = hit_plane;
-			rt->get_norm[i] = plane_normal;
-		}
-		if (i == OT_MOEB)
-		{
-			rt->hit_object[i] = hit_moebius;
-			rt->get_norm[i] = moebius_normal;
-		}
-	}
 }

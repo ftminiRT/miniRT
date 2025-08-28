@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/28 12:00:37 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 12:01:14 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,6 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
 
 t_obj    *compute_intersections(t_env *rt, t_ray *ray);
 
-/////////////// NORM COMPUTE /////////////
-
-t_vec3  sphere_norm(t_obj *obj, t_vec3 hit_point);
-t_vec3  plane_norm(t_obj *obj, t_vec3 hit_point);
-double     check_discs(t_obj *obj, t_vec3 hit_point);
-t_vec3  cylinder_norm(t_obj *obj, t_vec3 hit_point);
 /////////////// NORM COMPUTE /////////////
 
 t_vec3  sphere_norm(t_obj *obj, t_vec3 hit_point);

@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:48:44 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 14:11:06 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:46:02 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ void	normalize_objs_normal(t_env *rt)
 	while (objs)
 	{
 		objs->shine = 100;
-		if (objs->type == OT_PLANE || objs->type == OT_CYL)
+		if (objs->type == OT_PLANE || objs->type == OT_CYL || objs->type == OT_MOEB)
 			vec3_normalize(&objs->n);
+		if (objs->type == OT_MOEB)
+			objs->max = 5;
 		objs = objs->next;
 	}
 }
@@ -54,7 +56,7 @@ void	env_init(t_env *rt)
 
 	i = OT_SPHERE;
 	rt->hit_object[i] = hit_sphere;
-	rt->get_norm[i] = sphere_norm;
+	rt->get_norm[i] = sphere_normal;
 	rt->cam.is_set = 0;
 	rt->ambient.is_set = 0;
 	rt->spot.is_set = 0;
@@ -64,12 +66,17 @@ void	env_init(t_env *rt)
 		if (i == OT_CYL)
 		{
 			rt->hit_object[i] = hit_cylinder;
-			rt->get_norm[i] = cylinder_norm;
+			rt->get_norm[i] = cylinder_normal;
 		}
 		if (i == OT_PLANE)
 		{
 			rt->hit_object[i] = hit_plane;
-			rt->get_norm[i] = plane_norm;
+			rt->get_norm[i] = plane_normal;
+		}
+		if (i == OT_MOEB)
+		{
+			rt->hit_object[i] = hit_moebius;
+			rt->get_norm[i] = moebius_normal;
 		}
 	}
 }

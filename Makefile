@@ -42,7 +42,9 @@ FILES		= 	clean\
 				color_tools \
 				basics_norm\
 				compute_intersections\
-				hit_cyl
+				hit_cyl\
+				hit_moebius\
+				solve_cubic
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/08/28 14:22:01 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:50:22 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,40 @@ typedef struct s_phong
     t_vec3      normal;
 }               t_phong;
 
+typedef struct		s_cubic
+{
+	double			q;
+	double			r;
+	double			bq;
+	double			br;
+	double			bq3;
+	double			br2;
+	double			cr2;
+	double			cq3;
+	double			sqrtbq;
+	double			sgnbr;
+	double			ratio;
+	double			theta;
+	double			norm;
+	double			r0;
+	double			r1;
+	double			r2;
+	double			ba;
+	double			bb;
+	int				i;
+}					t_cubic;
+
+typedef struct		s_moebius
+{
+	double			a;
+	double			b;
+	double			c;
+	double			d;
+	double			e;
+	double			f;
+	double			g;
+}					t_moebius;
+
 typedef struct s_proj_data
 {
 	t_vec3	d_proj;
@@ -81,8 +115,8 @@ typedef enum e_objtype
     OT_TORE,
     OT_TRIANGLE,
     OT_PARA,
+    OT_MOEB,
     OT_HYP,
-    OT_MOEB
 }               t_objtype;
 
 typedef enum    e_axis
@@ -101,6 +135,7 @@ typedef struct s_obj
     t_vec3      pt3;
     double      a; // angle
     t_vec3      n; // normal
+    double      max; //moebius
     t_objtype   type;
     t_color     color;
     double      shine;

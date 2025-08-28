@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/28 14:12:20 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:43:29 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_vec3	vec3_cross(t_vec3 a, t_vec3 b);
 double	hit_sphere(t_ray *r, t_obj *s);
 double	hit_plane(t_ray *r, t_obj *p);
 double	hit_cylinder(t_ray *r, t_obj *cy);
+double			hit_moebius(t_ray *ray, t_obj *obj);
 t_vec3	camera_transform(t_vec3 dir_local, t_vec3 cam_dir);
 void	ray_trace(t_env *rt);
 void	putpixel(int x, int y, t_env *rt, t_color c);
@@ -83,14 +84,17 @@ t_obj    *compute_intersections(t_env *rt, t_ray *ray);
 
 /////////////// NORM COMPUTE /////////////
 
-t_vec3  sphere_norm(t_obj *obj, t_vec3 hit_point);
-t_vec3  plane_norm(t_obj *obj, t_vec3 hit_point);
+t_vec3  sphere_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3  plane_normal(t_obj *obj, t_vec3 hit_point);
 double     check_discs(t_obj *obj, t_vec3 hit_point);
-t_vec3  cylinder_norm(t_obj *obj, t_vec3 hit_point);
+t_vec3  cylinder_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3			moebius_normal(t_obj *obj, t_vec3 hit_point);
 
 /////////////// INIT /////////////
 
 void	normalize_objs_normal(t_env *rt);
 void	init_rt(t_env *rt);
+
+int				solve_cubic(double *a, double *r);
 
 #endif

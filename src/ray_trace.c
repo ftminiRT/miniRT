@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:48 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 14:13:29 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:52:53 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,11 @@ void	ray_trace(t_env *rt)
 	int		i;
 	int		j;
 
+	printf("%d %s\n",__LINE__,__FILE__);
+	fflush(stdout);
 	init_rt(rt);
+	printf("%d %s\n",__LINE__,__FILE__);
+	fflush(stdout);
 	hitted = NULL;
 	j = -1;
 	while (++j < HEIGHT)

@@ -3,14 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:21:26 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/26 15:23:09 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:23:42 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void	debug_print_bonus_object(t_obj obj)
+{
+	if (obj.type == OT_CONE)
+	{
+		printf("CONE ----\n");
+		printf("pos = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
+		printf("a = %f\n", obj.a);
+	}
+	else if (obj.type == OT_TORE)
+	{
+		printf("TORE ----\n");
+		printf("pos = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
+		printf("short ray = %f\n", obj.scal);
+		printf("long ray = %f\n", obj.scal2);
+	}
+	else if (obj.type == OT_TRIANGLE)
+	{
+		printf("TRIANGLE ----\n");
+		printf("pt1 = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("pt2 = %f, %f, %f\n", obj.pt2.x, obj.pt2.y, obj.pt2.z);
+		printf("pt3 = %f, %f, %f\n", obj.pt3.x, obj.pt3.y, obj.pt3.z);
+	}
+	else if (obj.type == OT_PARA || obj.type == OT_HYP)
+	{
+		if (obj.type == OT_PARA)
+			printf("PARABOLOID ----\n");
+		else
+			printf("HYPERBOLOID ----\n");
+		printf("summit = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
+		printf("open factor %f\n", obj.scal);
+	}
+	else if (obj.type == OT_MOEB)
+	{
+		printf("MOEBIUS ----\n");
+		printf("O ray origin = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("D ray dir = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
+		printf("main ray = %f\n", obj.scal);
+		printf("width = %f\n", obj.scal2);
+	}
+	else
+	{
+		printf("error\n");
+	}
+}
 
 void	debug_print_object(t_obj obj)
 {
@@ -20,13 +68,13 @@ void	debug_print_object(t_obj obj)
 		printf("pos = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
 		printf("r = %f\n", obj.scal);
 	}
-	if (obj.type == OT_PLANE)
+	else if (obj.type == OT_PLANE)
 	{
 		printf("PLANE ----\n");
 		printf("pt = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
 		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
 	}
-	if (obj.type == OT_CYL)
+	else if (obj.type == OT_CYL)
 	{
 		printf("CYLINDER ----\n");
 		printf("center = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
@@ -34,6 +82,8 @@ void	debug_print_object(t_obj obj)
 		printf("r = %f\n", obj.scal);
 		printf("height = %f\n", obj.scal2);
 	}
+	else
+		debug_print_bonus_object(obj);
 	printf("color = %d, %d, %d\n\n\n", obj.color.r, obj.color.g, obj.color.b);
 }
 
@@ -92,10 +142,10 @@ int	main(int ac, char **av)
 	if (parsing(&rt, av[1]))
 		return (1);
 	debug_print_set(&rt);
-	rt_mlx_init(&rt.mlx);
-	ray_trace(&rt);
-	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);
-	mlx_loop(rt.mlx.mlx);
-	clear_mlx(&rt);
+	// rt_mlx_init(&rt.mlx);
+	// ray_trace(&rt);
+	// mlx_key_hook(rt.mlx.win, &key_pressed, &rt);
+	// mlx_loop(rt.mlx.mlx);
+	// clear_mlx(&rt);
 	return (0);
 }

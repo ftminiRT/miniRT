@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:37:33 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/27 17:32:24 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:57:45 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static int	split_is_numeric(char **split)
 	i = 0;
 	while (i < 3)
 	{
-		printf("in split_is_numeric : str = %s\n", split[i]);
 		if (!str_is_double(split[i]))
 			return (0);
 		i++;

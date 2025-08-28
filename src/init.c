@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:48:44 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/27 13:43:46 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:22:13 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	env_init(t_env *rt)
 
 	i = OT_SPHERE;
 	rt->hit_object[i] = hit_sphere;
+	rt->get_norm[i] = sphere_norm;
 	rt->cam.is_set = 0;
 	rt->ambient.is_set = 0;
 	rt->spot.is_set = 0;
@@ -40,8 +41,14 @@ void	env_init(t_env *rt)
 	while (++i != sizeof(t_objtype))
 	{
 		if (i == OT_CYL)
+		{
 			rt->hit_object[i] = hit_cylinder;
+			rt->get_norm[i] = cylinder_norm;
+		}
 		if (i == OT_PLANE)
+		{
 			rt->hit_object[i] = hit_plane;
+			rt->get_norm[i] = plane_norm;
+		}
 	}
 }

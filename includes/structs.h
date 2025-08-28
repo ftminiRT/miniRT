@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/23 14:22:58 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/27 15:31:19 by tcoeffet         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/08/28 12:01:26 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
@@ -51,6 +52,14 @@ typedef struct s_light
 	t_color			color;
     struct s_light  *next;
 }					t_light;
+
+typedef struct s_phong
+{
+    t_vec3      light;
+    t_vec3      view;
+    t_vec3      reflected;
+    t_vec3      normal;
+}               t_phong;
 
 typedef enum e_objtype
 {
@@ -115,6 +124,7 @@ typedef struct s_env
     t_light     spot;
     t_obj      *objects;
     double      (*hit_object[sizeof(t_objtype)])(t_ray *, t_obj *);
+    t_vec3      (*get_norm[sizeof(t_objtype)])(t_obj *, t_vec3);
     t_mlx       mlx;
     int         log_fd;
 }               t_env;

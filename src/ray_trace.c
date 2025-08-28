@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:48 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 14:13:29 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 19:30:23 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	ray_trace(t_env *rt)
 	init_rt(rt);
 	hitted = NULL;
 	j = -1;
+	debug_print_set(rt);
 	while (++j < HEIGHT)
 	{
 		i = -1;

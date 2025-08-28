@@ -6,13 +6,13 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 14:25:56 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 14:25:57 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:31:18 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec3	sphere_norm(t_obj *obj, t_vec3 hit_point)
+t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point)
 {
 	t_vec3	normal;
 
@@ -21,7 +21,7 @@ t_vec3	sphere_norm(t_obj *obj, t_vec3 hit_point)
 	return (normal);
 }
 
-t_vec3	plane_norm(t_obj *obj, t_vec3 hit_point)
+t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point)
 {
 	(void)hit_point;
 	return (obj->n);
@@ -45,7 +45,7 @@ double	check_discs(t_obj *obj, t_vec3 hit_point)
 	return (0);
 }
 
-t_vec3	cylinder_norm(t_obj *obj, t_vec3 hit_point)
+t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point)
 {
 	t_vec3	normal;
 	t_vec3	axis_point;

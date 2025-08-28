@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:48:44 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/27 15:22:13 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 14:11:06 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,27 @@ void	rt_mlx_init(t_mlx *mlx)
 		error_exit("image error");
 	mlx->img.addr = mlx_get_data_addr(mlx->img.img, &mlx->img.bits_per_pixel,
 			&mlx->img.line_length, &mlx->img.endian);
+}
+
+void	init_rt(t_env *rt)
+{
+	normalize_objs_normal(rt);
+	vec3_normalize(&rt->cam.dir);
+	rt->ray.pt = rt->cam.pos;
+}
+
+void	normalize_objs_normal(t_env *rt)
+{
+	t_obj	*objs;
+
+	objs = rt->objects;
+	while (objs)
+	{
+		objs->shine = 100;
+		if (objs->type == OT_PLANE || objs->type == OT_CYL)
+			vec3_normalize(&objs->n);
+		objs = objs->next;
+	}
 }
 
 void	env_init(t_env *rt)

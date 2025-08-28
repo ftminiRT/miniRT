@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:21:26 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/28 18:23:42 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:56:42 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,10 @@ int	main(int ac, char **av)
 	if (parsing(&rt, av[1]))
 		return (1);
 	debug_print_set(&rt);
-	// rt_mlx_init(&rt.mlx);
-	// ray_trace(&rt);
-	// mlx_key_hook(rt.mlx.win, &key_pressed, &rt);
-	// mlx_loop(rt.mlx.mlx);
-	// clear_mlx(&rt);
+	rt_mlx_init(&rt.mlx);
+	ray_trace(&rt);
+	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);
+	mlx_loop(rt.mlx.mlx);
+	clear_mlx(&rt);
 	return (0);
 }

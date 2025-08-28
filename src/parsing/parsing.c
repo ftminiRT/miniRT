@@ -6,13 +6,49 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:14:21 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 19:20:24 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/27 17:12:45 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	init_line_data(char *line, t_env *rt)
+int	init_obj_bonus(char **split, t_env *rt)
+{
+	if (!ft_strncmp(split[0], "co", 3))
+		return (init_cone(split, rt));
+	else if (!ft_strncmp(split[0], "to", 3))
+		return (init_tore(split, rt));
+	else if (!ft_strncmp(split[0], "tr", 3))
+		return (init_triangle(split, rt));
+	else if (!ft_strncmp(split[0], "pa", 3))
+		return (init_boloid(split, rt, OT_PARA));
+	else if (!ft_strncmp(split[0], "hy", 3))
+		return (init_boloid(split, rt, OT_HYP));
+	else if (!ft_strncmp(split[0], "mo", 3))
+		return (init_moebius(split, rt));
+	else
+		return (1);
+}
+
+int	init_obj(char **split, t_env *rt)
+{
+	if (!ft_strncmp(split[0], "A", 2))
+		return (init_amblight(split, rt));
+	else if (!ft_strncmp(split[0], "C", 2))
+		return (init_cam(split, rt));
+	else if (!ft_strncmp(split[0], "L", 2))
+		return (init_spotlight(split, rt));
+	else if (!ft_strncmp(split[0], "sp", 3))
+		return (init_sphere(split, rt));
+	else if (!ft_strncmp(split[0], "pl", 3))
+		return (init_plane(split, rt));
+	else if (!ft_strncmp(split[0], "cy", 3))
+		return (init_cylinder(split, rt));
+	else
+		return (init_obj_bonus(split, rt));
+}
+
+int	init_line_data(char *line, t_env *rt, int i)
 {
 	char	**split;
 	int		ret;
@@ -21,23 +57,16 @@ int	init_line_data(char *line, t_env *rt)
 	split = ft_split(line, ' ');
 	if (!split)
 		return (perror("miniRT :"), 1);
-	else if (!ft_strncmp(split[0], "A", 2))
-		ret = init_amblight(split, rt);
-	else if (!ft_strncmp(split[0], "C", 2))
-		ret = init_cam(split, rt);
-	else if (!ft_strncmp(split[0], "L", 2))
-		ret = init_spotlight(split, rt);
-	else if (!ft_strncmp(split[0], "sp", 3))
-		ret = init_sphere(split, rt);
-	else if (!ft_strncmp(split[0], "pl", 3))
-		ret = init_plane(split, rt);
-	else if (!ft_strncmp(split[0], "cy", 3))
-		ret = init_cylinder(split, rt);
 	else
-		ret = 1;
+		ret = init_obj(split, rt);
 	ft_free_split(split);
 	if (ret)
-		return (write (2, "miniRT : file content error\n", 29), 1);
+	{
+		write (2, "miniRT : file content error at line ", 37);
+		write (2, ft_itoa(i), ft_strlen(ft_itoa(i)));
+		write (2, "\n", 1);
+		return (1);
+	}
 	return (0);
 }
 
@@ -60,25 +89,25 @@ int	parsing(t_env *rt, char *file)
 {
 	int		fd;
 	char	*line;
+	int		i;
 
+	i = 0;
 	rt->objects = NULL;
 	if (check_file(file))
 		return (1);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("miniRT ");
-		return (1);
-	}
+		return (perror("miniRT "), 1);
 	line = get_next_line(fd);
 	if (!line)
 		return (1);
 	while (line)
 	{
-		if (init_line_data(line, rt))
+		if (init_line_data(line, rt, i))
 			return (free(line), close(fd), 1);
 		free(line);
 		line = get_next_line(fd);
+		i++;
 	}
 	close(fd);
 	return (!(rt->cam.is_set && rt->ambient.is_set && rt->spot.is_set));

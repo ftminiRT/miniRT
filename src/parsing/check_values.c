@@ -4,9 +4,10 @@ int	check_brightness(double b)
 {
 	return (b < 0.0 || b > 1.0);
 }
+
 int	check_norm(t_vec3 n)
 {
-	int c;
+	int	c;
 
 	c = 1;
 	if (n.x < -1.0 || n.x > 1.0 || \
@@ -18,7 +19,7 @@ int	check_norm(t_vec3 n)
 	return (c);
 }
 
-int count_arg(char **args)
+int	count_arg(char **args)
 {
 	int	i;
 
@@ -26,4 +27,11 @@ int count_arg(char **args)
 	while (args[i])
 		i++;
 	return (i);
+}
+
+int	check_angle(double ang)
+{
+	if (ang < 0 || ang > 360)
+		return (1);
+	return (0);
 }

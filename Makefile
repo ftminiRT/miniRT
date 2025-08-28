@@ -31,6 +31,7 @@ FILES		= 	clean\
 				vec3_tools \
 				parsing/check_values\
 				parsing/init_obj \
+				parsing/init_obj_bonus \
 				parsing/init_set \
 				parsing/parsing_utils \
 				parsing/parsing \

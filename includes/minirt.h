@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:56 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/07/23 19:54:30 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:25:35 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include "proto.h"
 # include "libft.h"
 
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 1500
+# define HEIGHT 1500
 # define EPSILON 1e-6
 
 #endif

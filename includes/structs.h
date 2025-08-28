@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:58 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/27 08:22:19 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:31:19 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,13 @@ typedef enum e_objtype
 {
     OT_SPHERE,
     OT_PLANE,
-    OT_CYL
+    OT_CYL,
+    OT_CONE,
+    OT_TORE,
+    OT_TRIANGLE,
+    OT_PARA,
+    OT_HYP,
+    OT_MOEB
 }               t_objtype;
 
 typedef enum    e_axis
@@ -71,6 +77,9 @@ typedef struct s_obj
     double      scal; // rayon
     double      scal2; // height du cylindre
     t_vec3      pt; // centre / pos
+    t_vec3      pt2;
+    t_vec3      pt3;
+    double      a; // angle
     t_vec3      n; // normal
     t_objtype   type;
     t_color     color;

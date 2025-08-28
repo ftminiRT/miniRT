@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_trace.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:48 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 13:16:35 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/08/28 13:24:07 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	normalize_objs_normal(t_env *rt)
 	objs = rt->objects;
 	while (objs)
 	{
-		objs->shine = 2;
+		objs->shine = 100;
 		if (objs->type == OT_PLANE)
 			vec3_normalize(&objs->n);
 		if (objs->type == OT_CYL)

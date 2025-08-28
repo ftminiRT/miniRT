@@ -39,7 +39,8 @@ FILES		= 	clean\
 				vec3_norm \
 				vec3_refs \
 				vec3_rot \
-				color_tools
+				color_tools \
+				basics_norm
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

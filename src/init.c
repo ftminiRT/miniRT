@@ -41,7 +41,8 @@ void	normalize_objs_normal(t_env *rt)
 	objs = rt->objects;
 	while (objs)
 	{
-		objs->shine = 100;
+		if (!objs->shine)
+			objs->shine = 100;
 		if (objs->type == OT_PLANE || objs->type == OT_CYL || objs->type == OT_MOEB)
 			vec3_normalize(&objs->n);
 		if (objs->type == OT_MOEB)

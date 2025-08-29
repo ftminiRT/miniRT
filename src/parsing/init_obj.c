@@ -29,8 +29,10 @@ t_obj	*create_object(t_env *rt)
 int	init_cylinder(char **args, t_env *rt)
 {
 	t_obj	*new;
+	size_t	arg_len;
 
-	if (count_arg(args) != 6)
+	arg_len = count_arg(args);
+	if (arg_len != 6 && arg_len != 6)
 		return (1);
 	new = create_object(rt);
 	if (!new)
@@ -48,14 +50,19 @@ int	init_cylinder(char **args, t_env *rt)
 	new->scal2 = ft_atod(args[4]);
 	if (str_to_colors(&new->color, args[5]))
 		return (1);
+	if (arg_len == 6)
+		return (set_shine(new, args[5]));
 	return (0);
 }
 
 int	init_plane(char **args, t_env *rt)
 {
 	t_obj	*new;
+	size_t	arg_len;
 
-	if (count_arg(args) != 4)
+	printf("parsing plane \n");
+	arg_len = count_arg(args);
+	if (arg_len != 4 && arg_len != 5)
 		return (1);
 	new = create_object(rt);
 	if (!new)
@@ -69,14 +76,19 @@ int	init_plane(char **args, t_env *rt)
 		return (1);
 	if (str_to_colors(&new->color, args[3]))
 		return (1);
+	if (arg_len == 5)
+		return (set_shine(new, args[4]));
 	return (0);
 }
 
 int	init_sphere(char **args, t_env *rt)
 {
 	t_obj	*new;
+	size_t	arg_len;
 
-	if (count_arg(args) != 4)
+	printf("parsing sphere \n");
+	arg_len = count_arg(args);
+	if (arg_len != 4 && arg_len != 5)
 		return (1);
 	new = create_object(rt);
 	if (!new)
@@ -89,5 +101,7 @@ int	init_sphere(char **args, t_env *rt)
 	new->scal = ft_atod(args[2]) / 2;
 	if (str_to_colors(&new->color, args[3]))
 		return (1);
+	if (arg_len == 5)
+		return (set_shine(new, args[4]));
 	return (0);
 }

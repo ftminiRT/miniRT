@@ -28,12 +28,12 @@ t_vec3	vec3_right(void);
 t_vec3	vec3_forward(void);
 double	vec3_norm(t_vec3 a);
 double	vec3_sqnorm(t_vec3 a);
-t_vec3  vec3_normalized(t_vec3 a);
+t_vec3	vec3_normalized(t_vec3 a);
 t_vec3	vec3_cross(t_vec3 a, t_vec3 b);
 double	hit_sphere(t_ray *r, t_obj *s);
 double	hit_plane(t_ray *r, t_obj *p);
 double	hit_cylinder(t_ray *r, t_obj *cy);
-double			hit_moebius(t_ray *ray, t_obj *obj);
+double	hit_moebius(t_ray *ray, t_obj *obj);
 t_vec3	camera_transform(t_vec3 dir_local, t_vec3 cam_dir);
 void	ray_trace(t_env *rt);
 void	putpixel(int x, int y, t_env *rt, t_color c);
@@ -83,23 +83,22 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
 
 /////////////// CORE COMPUTE /////////////
 
-t_obj    *compute_intersections(t_env *rt, t_ray *ray);
+t_obj	*compute_intersections(t_env *rt, t_ray *ray);
 
 /////////////// NORM COMPUTE /////////////
 
-t_vec3  sphere_normal(t_obj *obj, t_vec3 hit_point);
-t_vec3  plane_normal(t_obj *obj, t_vec3 hit_point);
-double     check_discs(t_obj *obj, t_vec3 hit_point);
-t_vec3  cylinder_normal(t_obj *obj, t_vec3 hit_point);
-t_vec3			moebius_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point);
+double	check_discs(t_obj *obj, t_vec3 hit_point);
+t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point);
 
 /////////////// INIT /////////////
 
 void	normalize_objs_normal(t_env *rt);
 void	init_rt(t_env *rt);
 
-int				solve_cubic(double *a, double *r);
-
+int		solve_cubic(double *a, double *r);
 
 void	debug_print_set(t_env *rt);
 

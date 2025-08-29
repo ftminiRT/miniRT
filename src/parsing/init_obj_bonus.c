@@ -36,7 +36,7 @@ int	init_cone(char **args, t_env *rt)
 	if (str_to_colors(&new->color, args[4]))
 		return (1);
 	if (arg_len == 6)
-		return (set_shine(new, args[5]));	
+		return (set_shine(new, args[5]));
 	return (0);
 }
 
@@ -132,13 +132,14 @@ int	init_moebius(char **args, t_env *rt)
 	new->type = OT_MOEB;
 	if (str_to_vec3(&new->pt, args[1]))
 		return (1);
-	if (!str_is_double(args[2]) || !str_is_double(args[3]) || !str_is_double(args[4]))
+	if (!str_is_double(args[2]) || !str_is_double(args[3]) \
+		|| !str_is_double(args[4]))
 		return (1);
 	new->scal = ft_atod(args[2]);
 	new->scal2 = ft_atod(args[3]);
 	new->max = ft_atod(args[4]);
 	if (str_to_vec3(&new->n, args[5]) || check_norm(new->n))
-		return (1);	
+		return (1);
 	if (str_to_colors(&new->color, args[6]))
 		return (1);
 	if (arg_len == 8)

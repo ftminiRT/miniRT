@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/08/28 19:23:12 by tbeauman         ###   ########.fr       */
+/*   Created: 2025-08-29 13:03:19 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-08-29 13:03:19 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
@@ -30,15 +29,15 @@ typedef struct s_color
 
 typedef struct s_ray
 {
-    t_vec3      pt;
-    t_vec3      dir;
-    double      hit;
-    t_color     color;
+	t_vec3	pt;
+	t_vec3	dir;
+	double	hit;
+	t_color	color;
 }              t_ray;
 
 typedef struct s_cam
 {
-    bool            is_set;
+	bool			is_set;
 	t_vec3			pos;
 	t_vec3			dir;
 	unsigned char	fov;
@@ -46,19 +45,19 @@ typedef struct s_cam
 
 typedef struct s_light
 {
-    bool            is_set;
+	bool			is_set;
 	t_vec3			pos;
 	double			brightness;
 	t_color			color;
-    struct s_light  *next;
+	struct s_light	*next;
 }					t_light;
 
 typedef struct s_phong
 {
-    t_vec3      light;
-    t_vec3      view;
-    t_vec3      reflected;
-    t_vec3      normal;
+	t_vec3	light;
+	t_vec3	view;
+	t_vec3	reflected;
+	t_vec3	normal;
 }               t_phong;
 
 typedef struct		s_cubic
@@ -102,79 +101,79 @@ typedef struct s_proj_data
 	double	a;
 	double	b;
 	double	c;
-    double  delta;
-    double  sqrt_d;
+	double	delta;
+	double	sqrt_d;
 }	t_proj_data;
 
 # define OBJTYPENUMBER 9
 
 typedef enum e_objtype
 {
-    OT_SPHERE,
-    OT_PLANE,
-    OT_CYL,
-    OT_CONE,
-    OT_TORE,
-    OT_TRIANGLE,
-    OT_PARA,
-    OT_MOEB,
-    OT_HYP,
+	OT_SPHERE,
+	OT_PLANE,
+	OT_CYL,
+	OT_CONE,
+	OT_TORE,
+	OT_TRIANGLE,
+	OT_PARA,
+	OT_MOEB,
+	OT_HYP,
 }               t_objtype;
 
 typedef enum    e_axis
 {
-    X_AXIS,
-    Y_AXIS,
-    Z_AXIS
+	X_AXIS,
+	Y_AXIS,
+	Z_AXIS
 }               t_axis;
 
 typedef struct s_obj
 {
-    double      scal; // rayon
-    double      scal2; // height du cylindre
-    t_vec3      pt; // centre / pos
-    t_vec3      pt2;
-    t_vec3      pt3;
-    double      a; // angle
-    t_vec3      n; // normal
-    double      max; //moebius
-    t_objtype   type;
-    t_color     color;
-    double      shine;
-    int         id;
-    struct s_obj    *next;
+	double			scal; // rayon
+	double			scal2; // height du cylindre
+	t_vec3			pt; // centre / pos
+	t_vec3			pt2;
+	t_vec3			pt3;
+	double			a; // angle
+	t_vec3			n; // normal
+	double			max; //moebius
+	t_objtype		type;
+	t_color			color;
+	double			shine;
+	int				id;
+	struct s_obj	*next;
 }               t_obj;
 
 typedef struct s_mlxdata
 {
-	void			*img;
-	char			*addr;
-	int				bits_per_pixel;
-	int				line_length;
-	int				hgt;
-	int				wdt;
-	int				scale;
-	int				endian;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			hgt;
+	int			wdt;
+	int			scale;
+	int			endian;
 }					t_mlxdata;
 
 typedef struct s_mlx
 {
-    void        *mlx;
-    void        *win;
-    t_mlxdata   img;
-}               t_mlx; 
+	void		*mlx;
+	void		*win;
+	t_mlxdata	img;
+}				t_mlx; 
 
 typedef struct s_env
 {
-    t_ray       ray;
-    t_cam       cam;
-    t_light     ambient;
-    t_light     spot;
-    t_obj      *objects;
-    double      (*hit_object[OBJTYPENUMBER + 1])(t_ray *, t_obj *);
-    t_vec3      (*get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3);
-    t_mlx       mlx;
-    int         log_fd;
-}               t_env;
+	t_ray		ray;
+	t_cam		cam;
+	t_light		ambient;
+	t_light		spot;
+	t_obj		*objects;
+	double		(*hit_object[OBJTYPENUMBER + 1])(t_ray *, t_obj *);
+	t_vec3		(*get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3);
+	t_mlx		mlx;
+	int			log_fd;
+}				t_env;
 
 #endif

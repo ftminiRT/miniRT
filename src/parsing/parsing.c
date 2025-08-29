@@ -63,7 +63,7 @@ int	init_line_data(char *line, t_env *rt, int i)
 	if (ret)
 	{
 		write (2, "miniRT : file content error at line ", 37);
-		write (2, ft_itoa(i), ft_strlen(ft_itoa(i)));
+		write (2, ft_itoa(i + 1), ft_strlen(ft_itoa(i + 1)));
 		write (2, "\n", 1);
 		return (1);
 	}

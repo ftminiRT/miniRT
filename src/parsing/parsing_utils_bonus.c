@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-int set_shine(t_obj *new, char *arg)
+int	set_shine(t_obj *new, char *arg)
 {
 	if (!str_is_double(arg))
 		return (1);

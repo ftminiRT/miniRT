@@ -34,6 +34,7 @@ FILES		= 	clean\
 				parsing/init_obj_bonus \
 				parsing/init_set \
 				parsing/parsing_utils \
+				parsing/parsing_utils_bonus \
 				parsing/parsing \
 				light_compute \
 				vec3_norm \

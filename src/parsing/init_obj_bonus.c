@@ -15,9 +15,10 @@
 int	init_cone(char **args, t_env *rt)
 {
 	t_obj	*new;
+	size_t	arg_len;
 
-	printf("debug -> init cone\n");
-	if (count_arg(args) != 5)
+	arg_len = count_arg(args);
+	if (arg_len != 5 && arg_len != 6)
 		return (1);
 	new = create_object(rt);
 	if (!new)
@@ -34,15 +35,18 @@ int	init_cone(char **args, t_env *rt)
 		return (1);
 	if (str_to_colors(&new->color, args[4]))
 		return (1);
+	if (arg_len == 6)
+		return (set_shine(new, args[5]));	
 	return (0);
 }
 
 int	init_tore(char **args, t_env *rt)
 {
 	t_obj	*new;
+	size_t	arg_len;
 
-	printf("debug -> init tore\n");
-	if (count_arg(args) != 6)
+	arg_len = count_arg(args);
+	if (arg_len != 6 && arg_len != 7)
 		return (1);
 	new = create_object(rt);
 	if (!new)
@@ -58,15 +62,18 @@ int	init_tore(char **args, t_env *rt)
 	new->scal2 = ft_atod(args[4]);
 	if (str_to_colors(&new->color, args[5]))
 		return (1);
+	if (arg_len == 7)
+		return (set_shine(new, args[6]));
 	return (0);
 }
 
 int	init_triangle(char **args, t_env *rt)
 {
 	t_obj	*new;
+	size_t	arg_len;
 
-	printf("debug -> init triangle\n");
-	if (count_arg(args) != 5)
+	arg_len = count_arg(args);
+	if (arg_len != 5 && arg_len != 6)
 		return (1);
 	new = create_object(rt);
 	if (!new)
@@ -80,15 +87,18 @@ int	init_triangle(char **args, t_env *rt)
 		return (1);
 	if (str_to_colors(&new->color, args[4]))
 		return (1);
+	if (arg_len == 6)
+		return (set_shine(new, args[5]));
 	return (0);
 }
 
 int	init_boloid(char **args, t_env *rt, t_objtype type)
 {
 	t_obj	*new;
+	size_t	arg_len;
 
-	printf("debug -> init boloid\n");
-	if (count_arg(args) != 5)
+	arg_len = count_arg(args);
+	if (arg_len != 5 && arg_len != 6)
 		return (printf("92"), 1);
 	new = create_object(rt);
 	if (!new)
@@ -103,15 +113,18 @@ int	init_boloid(char **args, t_env *rt, t_objtype type)
 	new->scal = ft_atod(args[3]);
 	if (str_to_colors(&new->color, args[4]))
 		return (printf("103"), 1);
+	if (arg_len == 6)
+		return (set_shine(new, args[5]));
 	return (0);
 }
 
 int	init_moebius(char **args, t_env *rt)
 {
 	t_obj	*new;
+	size_t	arg_len;
 
-	printf("debug -> init moebius\n");
-	if (count_arg(args) != 6)
+	arg_len = count_arg(args);
+	if (arg_len != 6 && arg_len != 7)
 		return (printf("113"), 1);
 	new = create_object(rt);
 	if (!new)
@@ -127,5 +140,7 @@ int	init_moebius(char **args, t_env *rt)
 		return (printf("125"), 1);
 	if (str_to_colors(&new->color, args[5]))
 		return (printf("127"), 1);
+	if (arg_len == 7)
+		return (set_shine(new, args[6]));
 	return (0);
 }

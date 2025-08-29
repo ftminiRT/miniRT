@@ -53,6 +53,8 @@ double	ft_atod(char *str);
 int		str_is_double(char *str);
 int		str_to_vec3(t_vec3 *vec, char *str);
 int		str_to_colors(t_color *clr, char *str);
+//parsing_utils_bonus.c
+int		set_shine(t_obj *new, char *arg);
 //init_obj.c
 t_obj	*create_object(t_env *rt);
 int		init_cylinder(char **args, t_env *rt);

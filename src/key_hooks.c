@@ -24,6 +24,14 @@ static void move_selected(t_env *rt, t_vec3 move)
         rt->selected.obj->pt = vec3_add(rt->selected.obj->pt, move);
 }
 
+static void	rotate_selected(t_env *rt, t_vec3 rot)
+{
+	if (rt->selected.type == CAM)
+		vec3_rotate(&rt->cam.dir, rot);
+	else if (rt->selected.type == OBJ && rt->selected.obj)
+		vec3_rotate(&rt->selected.obj->n, rot);
+}
+
 int	key_pressed(int kc, t_env *rt)
 {
 	double	step = 5;
@@ -40,7 +48,13 @@ int	key_pressed(int kc, t_env *rt)
 	if (kc == KEY_C)
 		rt->selected.type = CAM;
 	if (kc == KEY_S)
+	{
 		rt->selected.type = SPOT;
+		if (rt->selected.spot->next)
+			rt->selected.spot = rt->selected.spot->next;
+		else
+			rt->selected.spot = &rt->spot;
+	}
 	if (kc == KEY_A)
 		rt->selected.type = AMB;
 	if (kc == KEY_LEFT)
@@ -55,6 +69,18 @@ int	key_pressed(int kc, t_env *rt)
 		move_selected(rt, vec3_scalmult(step, fwd));
 	if (kc == KEY_MINUS)
 		move_selected(rt, vec3_scalmult(-step, fwd));
+	if (kc == KEY_J)
+		rotate_selected(rt, (t_vec3){0, -step, 0});
+	if (kc == KEY_L)
+		rotate_selected(rt, (t_vec3){0, step, 0});
+	if (kc == KEY_K)
+		rotate_selected(rt, (t_vec3){-step, 0, 0});
+	if (kc == KEY_I)
+		rotate_selected(rt, (t_vec3){step, 0, 0});
+	if (kc == KEY_U)
+		rotate_selected(rt, (t_vec3){0, 0, -step});
+	if (kc == KEY_O)
+		rotate_selected(rt, (t_vec3){0, 0, step});
 	ray_trace(rt);
 	return (1);
 }

@@ -30,6 +30,10 @@ void	rt_mlx_init(t_mlx *mlx)
 void	init_rt(t_env *rt)
 {
 	normalize_objs_normal(rt);
+	if (rt->ambient.brightness < 0)
+		rt->ambient.brightness = 0;
+	if (rt->ambient.brightness > 1)
+		rt->ambient.brightness = 1;
 	vec3_normalize(&rt->cam.dir);
 	rt->ray.pt = rt->cam.pos;
 }
@@ -45,6 +49,10 @@ void	normalize_objs_normal(t_env *rt)
 			objs->shine = 100;
 		if (objs->type == OT_PLANE || objs->type == OT_CYL || objs->type == OT_MOEB)
 			vec3_normalize(&objs->n);
+		if (objs->scal < 0)
+			objs->scal = 0;
+		if (objs->scal2 < 0)
+			objs->scal2 = 0;	
 		objs = objs->next;
 	}
 }

@@ -94,11 +94,11 @@ void	compute_ray(t_env *rt, t_ray *ray, int i, int j);
 
 /////////////// NORM COMPUTE /////////////
 
-t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point);
-t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3	sphere_normal(t_cam cam, t_obj *obj, t_vec3 hit_point);
+t_vec3	plane_normal(t_cam cam, t_obj *obj, t_vec3 hit_point);
 double	check_discs(t_obj *obj, t_vec3 hit_point);
-t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point);
-t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3	cylinder_normal(t_cam cam, t_obj *obj, t_vec3 hit_point);
+t_vec3	moebius_normal(t_cam cam, t_obj *obj, t_vec3 hit_point);
 
 /////////////// CLEAN /////////////
 

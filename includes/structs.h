@@ -190,7 +190,7 @@ typedef struct s_env
 	t_obj		*objects;
 	t_select	selected;
 	double		(*hit_object[OBJTYPENUMBER + 1])(t_ray *, t_obj *);
-	t_vec3		(*get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3);
+	t_vec3		(*get_norm[OBJTYPENUMBER + 1])(t_cam, t_obj *, t_vec3);
 	t_mlx		mlx;
 	int			log_fd;
 }				t_env;

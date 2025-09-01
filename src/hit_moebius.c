@@ -156,14 +156,13 @@ double hit_moebius(t_ray *ray, t_obj *obj)
 
 /* -------- Normale avec re-projection en monde -------- */
 
-t_vec3 moebius_normal(t_obj *obj, t_vec3 hit_point)
+t_vec3 moebius_normal(t_cam cam, t_obj *obj, t_vec3 hit_point)
 {
     t_vec3  local_n;
     t_vec3  world_n;
     t_basis b;
 
     b = make_basis(obj->n);
-    // On suppose hit_point est déjà en repère local ici
     local_n.x = -2 * obj->scal * hit_point.z
         + 2 * hit_point.x * hit_point.y
         - 4 * hit_point.x * hit_point.z;
@@ -178,5 +177,7 @@ t_vec3 moebius_normal(t_obj *obj, t_vec3 hit_point)
     vec3_normalize(&local_n);
     world_n = local_to_world_vec(local_n, b);
     vec3_normalize(&world_n);
+    if (vec3_dot(world_n, vec3_sub(cam.pos, hit_point)) < 0)
+        world_n = (t_vec3){-world_n.x, -world_n.y, -world_n.z};
     return (world_n);
 }

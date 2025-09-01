@@ -13,6 +13,8 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include "ui.h"
+
 typedef struct s_vec3
 {
 	double			x;
@@ -161,6 +163,7 @@ typedef struct s_mlx
 	void		*mlx;
 	void		*win;
 	t_mlxdata	img;
+	t_mlxdata	ui;
 }				t_mlx; 
 
 typedef enum e_select_type
@@ -191,6 +194,7 @@ typedef struct s_env
 	t_select	selected;
 	double		(*hit_object[OBJTYPENUMBER + 1])(t_ray *, t_obj *);
 	t_vec3		(*get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3);
+	t_ui		ui;
 	t_mlx		mlx;
 	int			log_fd;
 }				t_env;

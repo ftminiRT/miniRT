@@ -26,12 +26,13 @@
 # include "keycodes.h"
 # include "proto.h"
 # include "libft.h"
+# include "ui.h"
 
 # ifndef WIDTH
-#  define WIDTH 600
+#  define WIDTH 700
 # endif
 # ifndef HEIGHT
-#  define HEIGHT 400
+#  define HEIGHT 500
 # endif
 # define EPSILON 1e-6
 

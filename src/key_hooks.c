@@ -33,8 +33,8 @@ int	key_pressed(int kc, t_env *rt)
 
 	if (kc == KEY_ESC)
 	{
-		clear_mlx(e);
-		mrt_cleaner(e);
+		clear_mlx(rt);
+		mrt_cleaner(rt);
 		exit(1);
 	}
 	if (kc == KEY_C)

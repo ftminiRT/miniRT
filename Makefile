@@ -40,6 +40,7 @@ FILES		= 	clean\
 				parsing/parsing_utils \
 				parsing/parsing_utils_bonus \
 				parsing/parsing \
+				ui/ui \
 				light_compute \
 				vec3_norm \
 				vec3_refs \
@@ -97,6 +98,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 $(OBJ_DIR) : 
 	$(QUIET) mkdir -p $(OBJ_DIR)
 	$(QUIET) mkdir -p $(OBJ_DIR)/parsing
+	$(QUIET) mkdir -p $(OBJ_DIR)/ui
 
 
 all : $(NAME)

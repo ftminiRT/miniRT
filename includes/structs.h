@@ -13,6 +13,8 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include "ui.h"
+
 typedef struct s_vec3
 {
 	double			x;
@@ -308,10 +310,11 @@ typedef struct s_reflect_data
 
 typedef struct s_mlx
 {
-	void			*mlx;
-	void			*win;
-	t_mlxdata		img;
-}					t_mlx;
+	void		*mlx;
+	void		*win;
+	t_mlxdata	img;
+	t_mlxdata	ui;
+}				t_mlx; 
 
 typedef enum e_select_type
 {
@@ -347,6 +350,7 @@ typedef struct s_env
 	t_get_uv		get_uv;
 	t_mlx			mlx;
 	int				log_fd;
+	t_ui			ui;
 }					t_env;
 
 #endif

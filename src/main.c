@@ -151,6 +151,7 @@ int	main(int ac, char **av)
 	rt_mlx_init(&rt.mlx);
 	load_textures(&rt);
 	debug_print_set(&rt);
+	display_ui(&rt);
 	ray_trace(&rt);
 	mlx_mouse_hook(rt.mlx.win, &mouse_hook, &rt);
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);

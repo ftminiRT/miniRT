@@ -17,13 +17,15 @@
 
 ////////////// MLX ////////////////
 
-int		clear_mlx(t_env *rt);
-void	error_exit(char *msg);
-void	rt_mlx_init(t_mlx *mlx);
-int		key_pressed(int kc, t_env *e);
-int		close_window(t_env *rt);
-int		mouse_hook(int bt, int x, int y, t_env *e);
-void	putpixel(int x, int y, t_env *rt, t_color c);
+int			clear_mlx(t_env *rt);
+void		error_exit(char *msg);
+void		rt_mlx_init(t_mlx *mlx);
+int			key_pressed(int kc, t_env *e);
+int			close_window(t_env *rt);
+int			mouse_hook(int bt, int x, int y, t_env *e);
+void		putpixel(int x, int y, t_env *rt, t_color c);
+void		putpixel_ui(int x, int y, t_env *rt, t_color c);
+t_mlxdata	*init_img(t_mlx *mlx, t_mlxdata *img, int x, int y);
 
 ////////////// VEC3 LIB ////////////////
 
@@ -62,7 +64,7 @@ int		dblsgn(double x);
 
 ////////////// PARSING ////////////////
 
-int		parsing(t_env *rt, char *file);
+int			parsing(t_env *rt, char *file);
 
 // check_values.c
 int		check_brightness(double b);
@@ -189,5 +191,8 @@ char	*get_next_export_filename(t_env *rt);
 
 void	move_selected(t_env *rt, t_vec3 move);
 void	rotate_selected(t_env *rt, t_vec3 rot);
+
+/////////////// INTERFACE /////////////
+void		display_ui(t_env *rt);
 
 #endif

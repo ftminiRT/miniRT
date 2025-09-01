@@ -46,7 +46,8 @@ FILES		= 	clean\
 				compute_intersections\
 				hit_cyl\
 				hit_moebius\
-				solve_cubic
+				solve_cubic\
+				mouse_hooks
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

@@ -58,6 +58,7 @@ static t_color	compute_specular(t_phong phong, t_obj *obj, t_light *cur_spot)
 
 	phong.reflected = vec3_sub(vec3_scalmult(2.0 * fabs(vec3_dot(phong.normal,
 						phong.light)), phong.normal), phong.light);
+	vec3_normalize(&phong.reflected);
 	spec_factor = 0.0;
 	vec3_normalize(&phong.reflected);
 	if (vec3_dot(phong.normal, phong.light) > 0.0)

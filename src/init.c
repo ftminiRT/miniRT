@@ -63,4 +63,9 @@ void	env_init(t_env *rt)
 	rt->ambient.is_set = 0;
 	rt->spot.is_set = 0;
 	rt->spot.next = NULL;
+	rt->selected.type = CAM;
+	rt->selected.cam = &rt->cam;
+	rt->selected.spot = &rt->spot;
+	rt->selected.amb = &rt->ambient;
+	rt->selected.obj = NULL;
 }

@@ -163,6 +163,24 @@ typedef struct s_mlx
 	t_mlxdata	img;
 }				t_mlx; 
 
+typedef enum e_select_type
+{
+	CAM,
+	SPOT,
+	AMB,
+	OBJ
+}			t_select_type;
+
+
+typedef struct s_select
+{
+	t_cam		*cam;
+	t_obj		*obj;
+	t_light		*spot;
+	t_light		*amb;
+	t_select_type	type;
+}				t_select;
+
 typedef struct s_env
 {
 	t_ray		ray;
@@ -170,6 +188,7 @@ typedef struct s_env
 	t_light		ambient;
 	t_light		spot;
 	t_obj		*objects;
+	t_select	selected;
 	double		(*hit_object[OBJTYPENUMBER + 1])(t_ray *, t_obj *);
 	t_vec3		(*get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3);
 	t_mlx		mlx;

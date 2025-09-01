@@ -143,7 +143,9 @@ int	main(int ac, char **av)
 		return (1);
 	rt_mlx_init(&rt.mlx);
 	ray_trace(&rt);
+	mlx_mouse_hook(rt.mlx.win, &mouse_hook, &rt);
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);
+	mlx_hook(rt.mlx.win, 17, 0, &close_window, &rt);
 	mlx_loop(rt.mlx.mlx);
 	clear_mlx(&rt);
 	mrt_cleaner(&rt);

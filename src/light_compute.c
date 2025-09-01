@@ -59,6 +59,7 @@ static t_color	compute_specular(t_phong phong, t_obj *obj, t_light *cur_spot)
 	phong.reflected = vec3_sub(vec3_scalmult(2.0 * fabs(vec3_dot(phong.normal,
 						phong.light)), phong.normal), phong.light);
 	spec_factor = 0.0;
+	vec3_normalize(&phong.reflected);
 	if (vec3_dot(phong.normal, phong.light) > 0.0)
 		spec_factor = cur_spot->brightness * pow(fmax(0.0,
 					vec3_dot(phong.reflected, phong.view)), obj->shine);
@@ -84,7 +85,6 @@ static void	multi_spotlights(t_env *rt, t_obj *obj, t_vec3 hit_point,
 		{
 			phong.light = vec3_sub(cur_spot->pos, hit_point);
 			vec3_normalize(&phong.light);
-			vec3_normalize(&phong.reflected);
 			diffuse = compute_diffuse(phong, obj, cur_spot);
 			specular = compute_specular(phong, obj, cur_spot);
 			*ret = color_add(*ret, diffuse);

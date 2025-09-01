@@ -38,11 +38,35 @@ typedef enum e_uitype
 	UIT_EMPTY
 }	t_uitype;
 
+typedef enum e_itm_type
+{
+	UIT_SCL_BTN,
+	UIT_EVNT_BTN,
+	UIT_SLDR
+}	t_itm_type;
+
 typedef struct s_uipt
 {
 	int x;
 	int y;
 }	t_uipt;
+
+typedef struct s_scl_btn
+{
+	size_t			offset;
+	double			*value;
+	double			factor;
+}	t_scl_btn;
+
+typedef struct s_items
+{
+	t_uipt			pos;
+	t_itm_type		type;
+	struct s_items	*next;
+	t_scl_btn		*btn;
+	void			*function;
+
+}	t_items;
 
 typedef struct s_uiwin
 {

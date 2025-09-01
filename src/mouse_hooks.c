@@ -12,9 +12,9 @@ t_obj   *clicked_object(t_env *rt, int x, int y)
 void    modify_scal(t_select *s, double step)
 {
     if (s->type == AMB)
-        s->amb->brightness += step;
+        s->amb->brightness += step / 10;
     if (s->type == SPOT)
-        s->spot->brightness += step;
+        s->spot->brightness += step / 10;
     if (s->type == OBJ)
         s->obj->scal += step;
     if (s->type == CAM)

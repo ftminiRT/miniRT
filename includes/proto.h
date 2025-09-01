@@ -93,6 +93,10 @@ double	check_discs(t_obj *obj, t_vec3 hit_point);
 t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point);
 t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point);
 
+/////////////// CLEAN /////////////
+
+void	mrt_cleaner(t_env *rt);
+
 /////////////// INIT /////////////
 
 void	normalize_objs_normal(t_env *rt);

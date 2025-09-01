@@ -27,6 +27,7 @@ FILES		= 	clean\
 				hit_basics\
 				key_hooks\
 				mlx_tools\
+				mrt_cleaner\
 				ray_trace\
 				vec3_tools \
 				parsing/check_values\

@@ -146,5 +146,6 @@ int	main(int ac, char **av)
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);
 	mlx_loop(rt.mlx.mlx);
 	clear_mlx(&rt);
+	mrt_cleaner(&rt);
 	return (0);
 }

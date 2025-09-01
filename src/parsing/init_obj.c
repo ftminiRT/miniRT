@@ -15,14 +15,21 @@
 t_obj	*create_object(t_env *rt)
 {
 	t_obj	*new;
+	t_obj	*current;
 
 	new = ft_calloc(1, sizeof(t_obj));
 	if (!new)
 		return (perror("miniRT :"), NULL);
 	new->next = NULL;
-	if (rt->objects)
-		new->next = rt->objects;
-	rt->objects = new;
+	current = rt->objects;
+	if (!rt->objects)
+		rt->objects = new;
+	else
+	{
+		while (current->next)
+			current = current->next;
+		current->next = new;
+	}
 	return (new);
 }
 

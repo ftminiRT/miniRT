@@ -39,6 +39,5 @@ static void	clean_spots(t_light *current)
 void	mrt_cleaner(t_env *rt)
 {
 	clean_obj(rt->objects);
-	clean_spots(&rt->spot);
-	free(rt);
+	clean_spots(rt->spot.next);
 }

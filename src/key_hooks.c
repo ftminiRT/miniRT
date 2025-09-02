@@ -81,6 +81,8 @@ int	key_pressed(int kc, t_env *rt)
 		rotate_selected(rt, (t_vec3){0, 0, -step});
 	if (kc == KEY_O)
 		rotate_selected(rt, (t_vec3){0, 0, step});
+	if (rt->selected.type == OBJ && kc == KEY_X)
+		rt->selected.obj->checkered = !rt->selected.obj->checkered;
 	ray_trace(rt);
 	return (1);
 }

@@ -65,6 +65,7 @@ void	compute_ray(t_env *rt, t_ray *ray, int i, int j)
 void	ray_trace(t_env *rt)
 {
 	t_obj	*hitted;
+	t_vec3	hit_point;
 	int		i;
 	int		j;
 
@@ -79,8 +80,14 @@ void	ray_trace(t_env *rt)
 			compute_ray(rt, &rt->ray, i, j);
 			hitted = compute_intersections(rt, &rt->ray);
 			if (hitted)
-				putpixel(i, j, rt, get_color(rt, hitted, vec3_add(rt->ray.pt,
-							vec3_scalmult(rt->ray.hit, rt->ray.dir))));
+			{
+				hit_point = vec3_add(rt->ray.pt,
+								vec3_scalmult(rt->ray.hit, rt->ray.dir));
+				if (!hitted->checkered)
+					putpixel(i, j, rt, get_color(rt, hitted, hit_point));
+				else if (hitted->checkered)
+					putpixel(i, j, rt, get_checkered_color(rt, hitted, hit_point));
+			}
 			else
 				putpixel(i, j, rt, (t_color){0, 0, 0});
 		}

@@ -41,11 +41,16 @@ int	mouse_hook(int bt, int x, int y, t_env *rt)
 	step = 1;
 	if (bt == LEFT_CLIC && is_in_window(x, y))
 	{
-		clicked = clicked_object(rt, x, y);
-		if (clicked)
-		{
-			rt->selected.type = OBJ;
-			rt->selected.obj = clicked;
+        if (x >= WIDTH)
+            click_ui(x - WIDTH, y, rt);
+        else
+        {
+            clicked = clicked_object(rt, x, y);
+            if (clicked)
+            {
+                rt->selected.type = OBJ;
+                rt->selected.obj = clicked;
+            }
 		}
 	}
 	if (bt == SCROLL_UP)

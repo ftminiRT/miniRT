@@ -193,6 +193,8 @@ void	move_selected(t_env *rt, t_vec3 move);
 void	rotate_selected(t_env *rt, t_vec3 rot);
 
 /////////////// INTERFACE /////////////
-void		display_ui(t_env *rt);
 
+void		click_ui(int x, int y, t_env *rt);
+void		display_default_ui(t_env *rt);
+int 		ui_init(t_env *rt);
 #endif

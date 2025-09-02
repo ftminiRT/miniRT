@@ -40,6 +40,8 @@ FILES		= 	clean\
 				parsing/parsing_utils \
 				parsing/parsing_utils_bonus \
 				parsing/parsing \
+				ui/click_ui \
+				ui/ui_init \
 				ui/ui \
 				light_compute \
 				vec3_norm \

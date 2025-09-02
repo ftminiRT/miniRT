@@ -43,9 +43,8 @@ static void	put_rgb_picker(t_env *rt, int x, int y)
 	}
 }
 
-void	display_ui(t_env *rt)
-{
-	
+void	display_default_ui(t_env *rt)
+{	
 	display_frames(rt);
 	put_rgb_picker(rt, 20, 20);
 	mlx_put_image_to_window(rt->mlx.mlx, rt->mlx.win, rt->mlx.ui.img, WIDTH, 0);

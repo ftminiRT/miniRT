@@ -32,12 +32,20 @@ t_items *add_new_button(void *value, double factor, t_uipt pos, t_uipt scale)
 int	add_default_buttons(t_env *rt)
 {
 	t_uiwin *win;
+	void *frame;
+	int sizex = 136;
+	int sizey = 66;
 
 	win = rt->ui.current;
 	win->itms = add_new_button(&rt->ambient.brightness, 0.1, (t_uipt){100,100}, (t_uipt){30,30});
 	if (!win->itms)
 		return (1);
-	putpixel_ui(100, 100, rt, (t_color){255, 0, 0});
+	frame = mlx_xpm_file_to_image(rt->mlx.mlx, "./assets/ui_assets/frame_test.xpm", &sizex, &sizey);
+	if (frame)
+		mlx_put_image_to_window(rt->mlx.mlx, rt->mlx.win, frame, WIDTH + 35, 300);
+	else
+		printf("error\n");
+		//putpixel_ui(100, 100, rt, (t_color){255, 0, 0});
 	return (0);
 }
 

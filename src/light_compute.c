@@ -99,8 +99,13 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 {
 	t_color	ambient;
 	t_color	ret;
+	t_color	base_color;
 
-	ambient = color_scale(color_multiply(rt->ambient.color, obj->color),
+	if (obj->checkered)
+		base_color = get_checkered_color(rt, obj, hit_point);
+	else
+		base_color = obj->color;
+	ambient = color_scale(color_multiply(rt->ambient.color, base_color),
 			rt->ambient.brightness);
 	ret = ambient;
 	multi_spotlights(rt, obj, hit_point, &ret);

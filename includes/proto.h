@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/28 19:46:25 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/02 21:48:24 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,18 @@ void	init_rt(t_env *rt);
 int		solve_cubic(double *a, double *r);
 
 void	debug_print_set(t_env *rt);
+
+/////////////// NORMAL MAP /////////////
+
+int	load_normal_map(void *mlx_ptr, t_obj *obj, char *filename);
+void	free_normal_map(void *mlx_ptr, t_obj *obj);
+t_vec3	sample_normal_map(t_obj *obj, float u, float v);
+t_vec3	sample_normal_map_filtered(t_obj *obj, float u, float v);
+t_vec3	sample_normal_at_pixel(t_obj *obj, int x, int y);
+t_vec3	apply_normal_mapping(t_vec3 geo_normal, t_vec3 tangent, t_vec3 bitangent, t_vec3 map_normal);
+t_vec3	compute_sphere_tangent(t_vec3 normal);
+void	compute_sphere_uv(t_vec3 normal, float *u, float *v);
+void	init_object_no_normal_map(t_obj *obj);
+
 
 #endif

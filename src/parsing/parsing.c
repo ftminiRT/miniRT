@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:14:21 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/27 17:12:45 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/09/02 21:24:48 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	init_line_data(char *line, t_env *rt, int i)
 	ft_free_split(split);
 	if (ret)
 	{
-		write (2, "miniRT : file content error at line ", 37);
-		write (2, ft_itoa(i + 1), ft_strlen(ft_itoa(i + 1)));
-		write (2, "\n", 1);
+		ret = write (2, "miniRT : file content error at line ", 37);
+		ret = write (2, ft_itoa(i + 1), ft_strlen(ft_itoa(i + 1)));
+		ret = write (2, "\n", 1);
 		return (1);
 	}
 	return (0);
@@ -79,7 +79,7 @@ int	check_file(char *file)
 		i++;
 	if (ft_strncmp(file + i - 3, ".rt", 4))
 	{
-		write(2, "Error : file extension invalid\n", 32);
+		i = write(2, "Error : file extension invalid\n", 32);
 		return (1);
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-08-29 13:03:19 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-08-29 13:03:19 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/08/29 13:03:19 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/02 21:45:55 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,13 @@ typedef struct s_obj
 	t_color			color;
 	double			shine;
 	int				id;
+	void	*normal_map_img;     // Pointeur vers l'image MLX
+	void	*normal_map_data;    // Données de l'image
+	int		normal_map_width;    // Largeur de la texture
+	int		normal_map_height;   // Hauteur de la texture
+	int		normal_map_bpp;      // Bits per pixel
+	int		normal_map_size_line; // Taille d'une ligne
+	int		normal_map_endian;   // Endianness
 	bool			checkered;
 	struct s_obj	*next;
 }               t_obj;

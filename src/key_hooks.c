@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:57 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/26 15:38:48 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/02 22:44:36 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,22 @@ int	key_pressed(int kc, t_env *rt)
 		rt->selected.obj->max += step / 10;
 	if (rt->selected.type == OBJ && kc == KEY_X)
 		rt->selected.obj->checkered = !rt->selected.obj->checkered;
-	ray_trace(rt);
+if (rt->selected.type == OBJ && kc == KEY_Z)
+{
+    printf("Chargement normal map sur objet type %d\n", rt->selected.obj->type);
+    
+    // Vérifier si l'objet a déjà une normal map
+    if (rt->selected.obj->normal_map_img)
+    {
+        printf("Objet a déjà une normal map, on la free\n");
+		free_normal_map(rt->mlx.mlx, rt->selected.obj);
+    }
+    
+    else if (rt->selected.obj->type == OT_SPHERE)
+        load_normal_map(rt->mlx.mlx, rt->selected.obj, "./textures/venusmap.xpm");
+    else
+        load_normal_map(rt->mlx.mlx, rt->selected.obj, "./textures/onde.xpm");
+}	ray_trace(rt);
 	return (1);
 }
 

@@ -76,7 +76,7 @@ static void	multi_spotlights(t_env *rt, t_obj *obj, t_vec3 hit_point,
 	t_color	specular;
 	t_light	*cur_spot;
 
-	phong.normal = rt->get_norm[obj->type](rt->cam, obj, hit_point);
+	phong.normal = rt->get_norm[obj->type](obj, hit_point);
 	phong.view = vec3_sub(rt->ray.pt, hit_point);
 	vec3_normalize(&phong.view);
 	cur_spot = &rt->spot;

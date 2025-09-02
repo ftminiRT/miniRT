@@ -12,20 +12,18 @@
 
 #include "minirt.h"
 
-t_vec3	sphere_normal(t_cam cam, t_obj *obj, t_vec3 hit_point)
+t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point)
 {
 	t_vec3	normal;
 
-	(void)cam;
 	normal = vec3_sub(hit_point, obj->pt);
 	vec3_normalize(&normal);
 	return (normal);
 }
 
-t_vec3	plane_normal(t_cam cam, t_obj *obj, t_vec3 hit_point)
+t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point)
 {
 	(void)hit_point;
-	(void)cam;
 	return (obj->n);
 }
 
@@ -47,13 +45,12 @@ double	check_discs(t_obj *obj, t_vec3 hit_point)
 	return (0);
 }
 
-t_vec3	cylinder_normal(t_cam cam, t_obj *obj, t_vec3 hit_point)
+t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point)
 {
 	t_vec3	normal;
 	t_vec3	axis_point;
 	double	hit_discs;
 
-	(void)cam;
 	hit_discs = check_discs(obj, hit_point);
 	if (hit_discs)
 		return (vec3_scalmult(hit_discs, obj->n));

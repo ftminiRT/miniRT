@@ -89,7 +89,7 @@ t_color	color_clamp(t_color color);
 t_vec3	get_normal(t_obj *obj, t_vec3 hit_point);
 t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
 t_color get_checkered_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
-
+t_color shade_phong(t_env *rt, t_obj *obj, t_vec3 hit_point, t_vec3 light_pos, t_vec3 cam_pos);
 /////////////// CORE COMPUTE /////////////
 
 t_obj	*compute_intersections(t_env *rt, t_ray *ray);

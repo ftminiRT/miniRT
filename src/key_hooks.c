@@ -81,6 +81,14 @@ int	key_pressed(int kc, t_env *rt)
 		rotate_selected(rt, (t_vec3){0, 0, -step});
 	if (kc == KEY_O)
 		rotate_selected(rt, (t_vec3){0, 0, step});
+	if (rt->selected.type == OBJ && rt->selected.obj->type != OT_MOEB && kc == KEY_MINUS2)
+		rt->selected.obj->scal2 -= step;
+	if (rt->selected.type == OBJ && rt->selected.obj->type != OT_MOEB && kc == KEY_PLUS2)
+		rt->selected.obj->scal2 += step;
+	if (rt->selected.type == OBJ && rt->selected.obj->type == OT_MOEB && kc == KEY_MINUS2)
+		rt->selected.obj->max -= step / 10;
+	if (rt->selected.type == OBJ && rt->selected.obj->type == OT_MOEB && kc == KEY_PLUS2)
+		rt->selected.obj->max += step / 10;
 	ray_trace(rt);
 	return (1);
 }

@@ -106,7 +106,7 @@ void	mrt_cleaner(t_env *rt);
 
 /////////////// INIT /////////////
 
-void	normalize_objs_normal(t_env *rt);
+void	normalize_objs(t_env *rt);
 void	init_rt(t_env *rt);
 
 int		solve_cubic(double *a, double *r);

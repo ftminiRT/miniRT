@@ -35,7 +35,7 @@ typedef enum e_uitype
 	UIT_PARA,
 	UIT_TRIANGLE,
 	UIT_MOEB,
-	UIT_EMPTY
+	UIT_DEFAULT
 }	t_uitype;
 
 typedef enum e_itm_type
@@ -53,33 +53,37 @@ typedef struct s_uipt
 
 typedef struct s_scl_btn
 {
-	size_t			offset;
 	double			*value;
 	double			factor;
+	struct s_uiwin	*linkwin;
 }	t_scl_btn;
 
 typedef struct s_items
 {
-	t_uipt			pos;
 	t_itm_type		type;
-	struct s_items	*next;
-	t_scl_btn		*btn;
+	t_uipt			pos;
+	t_uipt			scale;
+	t_scl_btn		btn;
 	void			*function;
+	struct s_items	*next;
 
 }	t_items;
 
 typedef struct s_uiwin
 {
 	t_uitype		type;
-	struct s_env	*rt;
 	struct s_obj	*obj;
-
+	struct s_cam	*cam;
+	struct s_light	*light;
+	t_items			*itms;
+	struct s_uiwin	*next;
 }	t_uiwin;
 
 typedef struct s_ui
 {
 	t_uiwin *stock;
 	t_uiwin	*current;
+	t_items *itms;
 
 }	t_ui;
 

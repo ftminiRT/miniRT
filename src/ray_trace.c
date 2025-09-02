@@ -71,7 +71,7 @@ void	ray_trace(t_env *rt)
 	init_rt(rt);
 	hitted = NULL;
 	j = -1;
-	debug_print_set(rt);
+	//debug_print_set(rt);
 	while (++j < HEIGHT)
 	{
 		i = -1;

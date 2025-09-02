@@ -116,6 +116,8 @@ int			solve_cubic(double *a, double *r);
 void		debug_print_set(t_env *rt);
 
 /////////////// INTERFACE /////////////
-void		display_ui(t_env *rt);
 
+void		click_ui(int x, int y, t_env *rt);
+void		display_default_ui(t_env *rt);
+int 		ui_init(t_env *rt);
 #endif

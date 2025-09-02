@@ -89,6 +89,10 @@ int	key_pressed(int kc, t_env *rt)
 		rt->selected.obj->max -= step / 10;
 	if (rt->selected.type == OBJ && rt->selected.obj->type == OT_MOEB && kc == KEY_PLUS2)
 		rt->selected.obj->max += step / 10;
+	if (rt->selected.type == OBJ && kc == KEY_X)
+		rt->selected.obj->checkered = !rt->selected.obj->checkered;
+	if (rt->selected.type == OBJ && kc == KEY_X)
+		rt->selected.obj->checkered = !rt->selected.obj->checkered;
 	ray_trace(rt);
 	return (1);
 }

@@ -141,6 +141,7 @@ typedef struct s_obj
 	t_color			color;
 	double			shine;
 	int				id;
+	bool			checkered;
 	struct s_obj	*next;
 }               t_obj;
 

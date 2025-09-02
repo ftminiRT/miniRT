@@ -47,7 +47,8 @@ FILES		= 	clean\
 				hit_cyl\
 				hit_moebius\
 				solve_cubic\
-				mouse_hooks
+				mouse_hooks\
+				checkered
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

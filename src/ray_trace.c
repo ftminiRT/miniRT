@@ -80,7 +80,7 @@ void	ray_trace(t_env *rt)
 			hitted = compute_intersections(rt, &rt->ray);
 			if (hitted)
 				putpixel(i, j, rt, get_color(rt, hitted, vec3_add(rt->ray.pt,
-							vec3_scalmult(rt->ray.hit, rt->ray.dir))));
+								vec3_scalmult(rt->ray.hit, rt->ray.dir))));
 			else
 				putpixel(i, j, rt, (t_color){0, 0, 0});
 		}

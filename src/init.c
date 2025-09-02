@@ -29,7 +29,7 @@ void	rt_mlx_init(t_mlx *mlx)
 
 void	init_rt(t_env *rt)
 {
-	normalize_objs_normal(rt);
+	normalize_objs(rt);
 	if (rt->ambient.brightness < 0)
 		rt->ambient.brightness = 0;
 	if (rt->ambient.brightness > 1)
@@ -38,7 +38,7 @@ void	init_rt(t_env *rt)
 	rt->ray.pt = rt->cam.pos;
 }
 
-void	normalize_objs_normal(t_env *rt)
+void	normalize_objs(t_env *rt)
 {
 	t_obj	*objs;
 

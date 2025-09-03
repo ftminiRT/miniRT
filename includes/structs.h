@@ -94,6 +94,52 @@ typedef struct s_cubic
 	int				i;
 }					t_cubic;
 
+typedef struct		s_quartic
+{
+	double			u[3];
+	double			v[3];
+	double			zarr[4];
+	double			args[3];
+	double			aa;
+	double			pp;
+	double			qq;
+	double			rr;
+	double			rc;
+	double			sc;
+	double			tc;
+	double			mt;
+	double			w1r;
+	double			w1i;
+	double			w2r;
+	double			w2i;
+	double			w3r;
+	double			v1;
+	double			v2;
+	double			arg;
+	double			theta;
+	double			disc;
+	double			h;
+	double			qcub;
+	double			rcub;
+	double			bq;
+	double			br;
+	double			bq3;
+	double			br2;
+	double			cr2;
+	double			cq3;
+	double			sqrtbq;
+	double			sqrtbq3;
+	double			sgnbr;
+	double			modbr;
+	double			norm;
+	double			sqrt_disc;
+	double			ba;
+	double			bb;
+	double			mod_diffbabb;
+	int				k1;
+	int				k2;
+}					t_quartic;
+
 typedef struct s_moebius
 {
 	double			a;
@@ -181,6 +227,13 @@ typedef struct s_obj
 	t_color			color;
 	double			shine;
 	int				id;
+	int				texture_width;
+	int	texture_height;
+	void	*texture_data;
+	void	*texture_img;
+	int		texture_size_line;
+	int		texture_bpp;
+	int		texture_endian;
 	void			*normal_map_img;
 	void			*normal_map_data;
 	int				normal_map_width;

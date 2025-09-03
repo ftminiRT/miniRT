@@ -91,15 +91,26 @@ void	handle_object_mod(int kc, t_env *rt, double step)
 		rt->selected.obj->max += step / 10;
 	if (kc == KEY_X)
 		rt->selected.obj->checkered = !rt->selected.obj->checkered;
-	if (kc == KEY_Z)
+	if (rt->selected.type == OBJ && kc == KEY_Z)
 	{
 		if (rt->selected.obj->normal_map_img)
 			free_normal_map(rt->mlx.mlx, rt->selected.obj);
-		else if (rt->selected.obj->type == OT_SPHERE)
+		else if (rt->selected.obj->type == OT_CYL || rt->selected.obj->type == OT_SPHERE || rt->selected.obj->type == OT_TORE)
 			load_normal_map(rt->mlx.mlx, rt->selected.obj,
 				"./textures/venusmap.xpm");
 		else
 			load_normal_map(rt->mlx.mlx, rt->selected.obj,
 				"./textures/onde.xpm");
 	}
+    if (rt->selected.type == OBJ && kc == KEY_T)
+    {
+        if (rt->selected.obj->texture_img) // Si la texture existe déjà, la libérer
+        {
+            free_texture(rt->mlx.mlx, rt->selected.obj);
+        }
+        else
+        {
+            load_texture(rt->mlx.mlx, rt->selected.obj, "./textures/IanMalcolm.xpm");
+        }
+    }
 }

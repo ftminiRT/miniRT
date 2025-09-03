@@ -49,6 +49,7 @@ double	hit_sphere(t_ray *r, t_obj *s);
 double	hit_plane(t_ray *r, t_obj *p);
 double	hit_cylinder(t_ray *r, t_obj *cy);
 double	hit_moebius(t_ray *ray, t_obj *obj);
+double		hit_torus(t_ray *ray, t_obj *obj);
 
 ////////////// UTILS ////////////////
 
@@ -107,13 +108,14 @@ t_obj	*compute_intersections(t_env *rt, t_ray *ray);
 void	compute_ray(t_env *rt, t_ray *ray, int i, int j);
 void	ray_trace(t_env *rt);
 
-/////////////// NORM COMPUTE /////////////
+/////////////// OBJ NORMALS /////////////
 
 t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point);
 t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point);
 double	check_discs(t_obj *obj, t_vec3 hit_point);
 t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point);
 t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3		torus_normal(t_obj *obj, t_vec3 hit_point);
 
 /////////////// CLEAN /////////////
 
@@ -123,13 +125,25 @@ void	mrt_cleaner(t_env *rt);
 
 void	normalize_objs(t_env *rt);
 void	init_rt(t_env *rt);
-
-int		solve_cubic(double *a, double *r);
-
 void	debug_print_set(t_env *rt);
+
+/////////////// GALOIS ALGEBRA /////////////
+
+int			solve_quadratic(double *a, double *r);
+int		solve_cubic(double *a, double *r);
+int			solve_quartic(double *a, double *r);
+int			swapd(double *a, double *b);
+void		set_d3(double *u, double u0, double u1, double u2);
+int			deal_with_degenerate(double *a, double *r);
+void		find_solution_to_resolvent_cubic(t_quartic *q);
+void		handle_r_and_zarr(double *r, double *zarr);
 
 /////////////// MAPPING /////////////
 
+void	get_plane_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
+void	get_sphere_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
+void	get_torus_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
+void	get_moebius_uv(t_obj *obj, t_vec3 p, int map[2]);
 void	get_cylinder_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
 int	load_normal_map(void *mlx_ptr, t_obj *obj, char *filename);
 void	free_normal_map(void *mlx_ptr, t_obj *obj);
@@ -140,6 +154,8 @@ t_vec3	apply_normal_mapping(t_vec3 geo_normal, t_vec3 tangent, t_vec3 bitangent,
 t_vec3	compute_sphere_tangent(t_vec3 normal);
 void	compute_sphere_uv(t_vec3 normal, float *u, float *v);
 void	init_object_no_normal_map(t_obj *obj);
+int load_texture(void *mlx_ptr, t_obj *obj, char *filename);
+void	free_texture(void *mlx_ptr, t_obj *obj);
 
 /////////////// HOOKS /////////////
 

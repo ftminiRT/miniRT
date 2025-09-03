@@ -23,6 +23,7 @@ INCLUDES	= 	-I$(LIBFT_PATH)/includes \
 
 FILES		= 	clean\
 				error\
+				hit_torus\
 				init\
 				hit_basics\
 				key_hooks\
@@ -52,7 +53,11 @@ FILES		= 	clean\
 				normal_mapping_utils\
 				handle_hooks\
 				get_cylinder_uv\
-				math_utils_moebius
+				math_utils_moebius\
+				solve_quartic\
+				root_compute_utils\
+				solve_quadratic\
+				textures
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

@@ -96,6 +96,43 @@ static void	multi_spotlights(t_env *rt, t_obj *obj, t_vec3 hit_point,
 		cur_spot = cur_spot->next;
 	}
 }
+t_color get_texture_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
+{
+    int map[2];
+    unsigned char *data;
+    int offset;
+    t_color color;
+
+	(void)rt;
+    // Calculer UV selon type d'objet
+    if (obj->type == OT_PLANE)
+        get_plane_uv(obj, hit_point, map);
+    else if (obj->type == OT_SPHERE)
+        get_sphere_uv(obj, hit_point, map);
+    else if (obj->type == OT_CYL)
+        get_cylinder_uv(obj, hit_point, map);
+	else if (obj->type == OT_TORE)
+		get_torus_uv(obj, hit_point, map);
+	else if (obj->type == OT_MOEB)
+		get_moebius_uv(obj, hit_point, map);
+	else
+        return (obj->color);
+
+    // Wrap UV
+    map[0] = (map[0] % obj->texture_width + obj->texture_width) % obj->texture_width;
+    map[1] = (map[1] % obj->texture_height + obj->texture_height) % obj->texture_height;
+
+    // Pointer sur la mémoire de la texture
+    data = (unsigned char *)obj->texture_data;
+    offset = map[1] * obj->texture_size_line + map[0] * (obj->texture_bpp / 8);
+
+    // Lire chaque canal
+    color.r = data[offset + 0]; // Rouge
+    color.g = data[offset + 1]; // Vert
+    color.b = data[offset + 2]; // Bleu
+
+    return (color);
+}
 
 t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 {
@@ -105,6 +142,8 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 
 	if (obj->checkered)
 		base_color = get_checkered_color(rt, obj, hit_point);
+	else if (obj->texture_data)
+		base_color = get_texture_color(rt, obj, hit_point);
 	else
 		base_color = obj->color;
 	ambient = color_scale(color_multiply(rt->ambient.color, base_color),

@@ -49,10 +49,10 @@ void	normalize_objs(t_env *rt)
 			objs->shine = 100;
 		if (objs->type == OT_PLANE || objs->type == OT_CYL || objs->type == OT_MOEB)
 			vec3_normalize(&objs->n);
-		if (objs->scal < 0)
-			objs->scal = 0;
-		if (objs->scal2 < 0)
-			objs->scal2 = 0;	
+		if (objs->scal < EPSILON)
+			objs->scal = EPSILON;
+		if (objs->scal2 < 0.01 && objs->type == OT_TORE)
+			objs->scal2 = 0.01;	
 		objs = objs->next;
 	}
 }
@@ -67,6 +67,8 @@ void	env_init(t_env *rt)
 	rt->get_norm[OT_PLANE] = plane_normal;
 	rt->hit_object[OT_MOEB] = hit_moebius;
 	rt->get_norm[OT_MOEB] = moebius_normal;
+	rt->hit_object[OT_TORE] = hit_torus;
+	rt->get_norm[OT_TORE] = torus_normal;
 	rt->cam.is_set = 0;
 	rt->ambient.is_set = 0;
 	rt->spot.is_set = 0;

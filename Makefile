@@ -49,7 +49,10 @@ FILES		= 	clean\
 				solve_cubic\
 				mouse_hooks\
 				checkered\
-				normal_mapping_utils
+				normal_mapping_utils\
+				handle_hooks\
+				get_cylinder_uv\
+				math_utils_moebius
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

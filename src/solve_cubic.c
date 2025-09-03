@@ -39,7 +39,7 @@ static t_cubic	init_stru(double *a)
 	ret.br2 = ret.br * ret.br;
 	ret.cr2 = 729 * ret.r * ret.r;
 	ret.cq3 = 2916 * ret.q * ret.q * ret.q;
-	ret.sgnbr = ret.br >= 0 ? 1 : -1;
+	ret.sgnbr = (ret.br >= 0) + !(ret.br >= 0) * (-1);;
 	ret.i = 0;
 	return (ret);
 }

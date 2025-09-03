@@ -14,13 +14,9 @@
 
 int	clear_mlx(t_env *rt)
 {
-	printf("%d %s\n", __LINE__, __FILE__);
 	mlx_destroy_window(rt->mlx.mlx, rt->mlx.win);
-	printf("%d %s\n", __LINE__, __FILE__);
 	mlx_destroy_image(rt->mlx.mlx, rt->mlx.img.img);
-	printf("%d %s\n", __LINE__, __FILE__);
 	mlx_destroy_display(rt->mlx.mlx);
-	printf("%d %s\n", __LINE__, __FILE__);
 	free(rt->mlx.mlx);
 	return (1);
 }

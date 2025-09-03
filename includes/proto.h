@@ -24,7 +24,9 @@ void	rt_mlx_init(t_mlx *mlx);
 int		key_pressed(int kc, t_env *e);
 int	    close_window(t_env *rt);
 int	    mouse_hook(int bt, int x, int y, t_env *e);
+void	putpixel(int x, int y, t_env *rt, t_color c);
 
+////////////// VEC3 LIB ////////////////
 
 t_vec3	vec3_add(t_vec3 a, t_vec3 b);
 t_vec3	vec3_sub(t_vec3 a, t_vec3 b);
@@ -38,15 +40,24 @@ double	vec3_norm(t_vec3 a);
 double	vec3_sqnorm(t_vec3 a);
 t_vec3	vec3_normalized(t_vec3 a);
 t_vec3	vec3_cross(t_vec3 a, t_vec3 b);
+t_vec3	vec3_rot(t_vec3 *v, int axis, double theta);
+void	vec3_rotate(t_vec3 *v, t_vec3 r);
+
+////////////// HIT OBJ ////////////////
+
 double	hit_sphere(t_ray *r, t_obj *s);
 double	hit_plane(t_ray *r, t_obj *p);
 double	hit_cylinder(t_ray *r, t_obj *cy);
 double	hit_moebius(t_ray *ray, t_obj *obj);
+
+////////////// UTILS ////////////////
+
+t_basis	make_basis(t_vec3 n);
 t_vec3	camera_transform(t_vec3 dir_local, t_vec3 cam_dir);
-void	ray_trace(t_env *rt);
-void	putpixel(int x, int y, t_env *rt, t_color c);
-t_vec3	vec3_rot(t_vec3 *v, int axis, double theta);
-void	vec3_rotate(t_vec3 *v, t_vec3 r);
+t_vec3	world_to_local_vec(t_vec3 v, t_basis b);
+t_vec3	local_to_world_vec(t_vec3 v, t_basis b);
+t_ray	world_to_local_ray(t_ray r, t_obj *obj, t_basis b);
+int	dblsgn(double x);
 
 ////////////// PARSING ////////////////
 
@@ -89,11 +100,12 @@ t_color	color_clamp(t_color color);
 t_vec3	get_normal(t_obj *obj, t_vec3 hit_point);
 t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
 t_color get_checkered_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
-t_color shade_phong(t_env *rt, t_obj *obj, t_vec3 hit_point, t_vec3 light_pos, t_vec3 cam_pos);
+
 /////////////// CORE COMPUTE /////////////
 
 t_obj	*compute_intersections(t_env *rt, t_ray *ray);
 void	compute_ray(t_env *rt, t_ray *ray, int i, int j);
+void	ray_trace(t_env *rt);
 
 /////////////// NORM COMPUTE /////////////
 
@@ -116,8 +128,9 @@ int		solve_cubic(double *a, double *r);
 
 void	debug_print_set(t_env *rt);
 
-/////////////// NORMAL MAP /////////////
+/////////////// MAPPING /////////////
 
+void	get_cylinder_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
 int	load_normal_map(void *mlx_ptr, t_obj *obj, char *filename);
 void	free_normal_map(void *mlx_ptr, t_obj *obj);
 t_vec3	sample_normal_map(t_obj *obj, float u, float v);
@@ -128,5 +141,17 @@ t_vec3	compute_sphere_tangent(t_vec3 normal);
 void	compute_sphere_uv(t_vec3 normal, float *u, float *v);
 void	init_object_no_normal_map(t_obj *obj);
 
+/////////////// HOOKS /////////////
+
+void	handle_exit(int kc, t_env *rt);
+void	handle_selection(int kc, t_env *rt);
+void	handle_movement(int kc, t_env *rt, double step, t_vec3 fwd);
+void	handle_rotation(int kc, t_env *rt, double step);
+void	handle_object_mod(int kc, t_env *rt, double step);
+
+/////////////// OBJ TRANSFORMATION /////////////
+
+void	move_selected(t_env *rt, t_vec3 move);
+void	rotate_selected(t_env *rt, t_vec3 rot);
 
 #endif

@@ -16,16 +16,11 @@ static void	clean_obj(t_obj *current)
 {
 	t_obj *next;
 
-	printf("%d %s\n", __LINE__, __FILE__);
 	while (current)
 	{
-	printf("%d %s\n", __LINE__, __FILE__);
 		next = current->next;
-	printf("%d %s\n", __LINE__, __FILE__);
 		free(current);
-	printf("%d %s\n", __LINE__, __FILE__);
 		current = next;
-	printf("%d %s\n", __LINE__, __FILE__);
 	}
 }
 
@@ -43,9 +38,6 @@ static void	clean_spots(t_light *current)
 
 void	mrt_cleaner(t_env *rt)
 {
-	printf("%d %s\n", __LINE__, __FILE__);
 	clean_obj(rt->objects);
-	printf("%d %s\n", __LINE__, __FILE__);
 	clean_spots(rt->spot.next);
-	printf("%d %s\n", __LINE__, __FILE__);
 }

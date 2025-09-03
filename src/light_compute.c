@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:26 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 19:23:57 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/03 07:45:19 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ static void	multi_spotlights(t_env *rt, t_obj *obj, t_vec3 hit_point,
 	t_light	*cur_spot;
 
 	phong.normal = rt->get_norm[obj->type](obj, hit_point);
+	if (vec3_dot(rt->ray.dir, phong.normal) > 0)
+		phong.normal = vec3_scalmult(-1, phong.normal);
 	phong.view = vec3_sub(rt->ray.pt, hit_point);
 	vec3_normalize(&phong.view);
 	cur_spot = &rt->spot;

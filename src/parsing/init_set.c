@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_set.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:36:01 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/27 13:43:32 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/09/02 21:21:50 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	init_cam(char **args, t_env *rt)
 	if (check_norm(rt->cam.dir))
 		return (1);
 	rt->cam.fov = (unsigned char)ft_atoi(args[3]);
-	if (rt->cam.fov < 0 || rt->cam.fov > 180)
+	if (rt->cam.fov > 180)
 		return (1);
 	return (0);
 }

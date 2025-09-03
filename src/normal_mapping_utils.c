@@ -1,0 +1,87 @@
+#include "minirt.h"
+
+/**
+ * Charge une normal map XPM sur un objet
+ * @param mlx_ptr: Pointeur MLX
+ * @param obj: Objet sur lequel charger la texture
+ * @param filename: Nom du fichier XPM
+ * @return: 1 si succès, 0 si échec
+ */
+int	load_normal_map(void *mlx_ptr, t_obj *obj, char *filename)
+{
+	if (!mlx_ptr || !obj || !filename)
+		return (0);
+	obj->normal_map_img = mlx_xpm_file_to_image(mlx_ptr, filename,
+			&obj->normal_map_width, &obj->normal_map_height);
+	if (!obj->normal_map_img)
+	{
+		printf("Erreur: Impossible de charger %s\n", filename);
+		return (0);
+	}
+	obj->normal_map_data = mlx_get_data_addr(obj->normal_map_img,
+			&obj->normal_map_bpp, &obj->normal_map_size_line,
+			&obj->normal_map_endian);
+	if (!obj->normal_map_data)
+	{
+		mlx_destroy_image(mlx_ptr, obj->normal_map_img);
+		obj->normal_map_img = NULL;
+		return (0);
+	}
+	printf("Normal map chargée: %dx%d pixels\n", obj->normal_map_width,
+		obj->normal_map_height);
+	return (1);
+}
+
+/**
+ * Libère la mémoire d'une normal map
+ * @param mlx_ptr: Pointeur MLX
+ * @param obj: Objet dont libérer la texture
+ */
+void	free_normal_map(void *mlx_ptr, t_obj *obj)
+{
+	if (!obj)
+		return ;
+	(void)mlx_ptr;
+	obj->normal_map_img = NULL;
+	obj->normal_map_data = NULL;
+	obj->normal_map_width = 0;
+	obj->normal_map_height = 0;
+	obj->normal_map_bpp = 0;
+	obj->normal_map_size_line = 0;
+	obj->normal_map_endian = 0;
+	printf("Normal map reset (MLX cleanup handled by clear_mlx)\n");
+}
+
+/**
+ * Sample une normale depuis la texture à des coordonnées UV données
+ * @param obj: Objet avec la normal map
+ * @param u: Coordonnée U [0,1]
+ * @param v: Coordonnée V [0,1]
+ * @return: Normale en tangent space [-1,1]
+ */
+t_vec3	sample_normal_map(t_obj *obj, float u, float v)
+{
+	t_vec3	map_normal;
+	char	*data;
+	int		x;
+	int		y;
+	int		pixel;
+
+	if (!obj->normal_map_data)
+		return ((t_vec3){0.0, 0.0, 1.0});
+	u = u - floor(u);
+	v = v - floor(v);
+	if (u < 0)
+		u += 1.0;
+	if (v < 0)
+		v += 1.0;
+	x = (int)(u * obj->normal_map_width) % obj->normal_map_width;
+	y = (int)(v * obj->normal_map_height) % obj->normal_map_height;
+	data = (char *)obj->normal_map_data;
+	pixel = *(int *)(data + (y * obj->normal_map_size_line + x
+				* (obj->normal_map_bpp / 8)));
+	map_normal.x = ((pixel & 0xFF0000) >> 16) / 255.0 * 2.0 - 1.0;
+	map_normal.y = ((pixel & 0x00FF00) >> 8) / 255.0 * 2.0 - 1.0;
+	map_normal.z = (pixel & 0x0000FF) / 255.0 * 2.0 - 1.0;
+	return (map_normal);
+}

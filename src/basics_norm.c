@@ -36,14 +36,22 @@ t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point)
 	geo_normal = vec3_sub(hit_point, obj->pt);
 	vec3_normalize(&geo_normal);
 	
+	// return(geo_normal);
 	// Si pas de normal mapping, retourner la normale géométrique
 	if (!obj->normal_map_data)
 		return (geo_normal);
 	
-	// Calculer les coordonnées UV sphériques
-	u = atan2(geo_normal.z, geo_normal.x) / (2.0 * M_PI) + 0.5;
-	v = asin(geo_normal.y) / M_PI + 0.5;
+	// Calculer les coordonnées UV sphériques avec échelle
+	float scale_u = 1.0; // Augmentez pour étirer horizontalement (ex: 2.0, 4.0)
+	float scale_v = 1.0; // Augmentez pour étirer verticalement
 	
+
+
+	u = (atan2(geo_normal.z, geo_normal.x) / (2.0 * M_PI) + 0.5) * scale_u;
+	v = (asin(geo_normal.y) / M_PI + 0.5) * scale_v;
+
+
+
 	// Calculer le vecteur tangent (dérivée par rapport à u)
 	tangent = (t_vec3){-sin(2.0 * M_PI * (u - 0.5)), 0, cos(2.0 * M_PI * (u - 0.5))};
 	vec3_normalize(&tangent);
@@ -69,6 +77,7 @@ t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point)
 	
 	geo_normal = obj->n;
 	
+	// return(geo_normal);
 	// Si pas de normal mapping, retourner la normale géométrique
 	if (!obj->normal_map_data)
 		return (geo_normal);
@@ -88,7 +97,7 @@ t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point)
 	
 	// Calculer les coordonnées UV
 
-	double	text_scal = obj->scal == 0 ? 10 : obj->scal;
+	double	text_scal = obj->scal == 0 ? 100 : obj->scal;
 	u = vec3_dot(local_pos, tangent) / text_scal + 0.5; // scal = taille du plan
 	v = vec3_dot(local_pos, bitangent) / text_scal + 0.5;
 	
@@ -161,6 +170,7 @@ t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point)
 	// Sampler la normal map
 	map_normal = sample_normal_map(obj, u, v);
 	
+	// return (geo_normal);
 	// Appliquer le normal mapping
 	return (apply_normal_mapping(geo_normal, tangent, bitangent, map_normal));
 }

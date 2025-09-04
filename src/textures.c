@@ -13,8 +13,6 @@ int load_texture(void *mlx_ptr, t_obj *obj, char *filename)
                             &obj->texture_bpp,
                             &obj->texture_size_line,
                             &obj->texture_endian);
-    obj->texture_width  = 596;
-    obj->texture_height = 655;
     return (1);
 }
 

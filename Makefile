@@ -52,12 +52,13 @@ FILES		= 	clean\
 				checkered\
 				normal_mapping_utils\
 				handle_hooks\
-				get_cylinder_uv\
 				math_utils_moebius\
 				solve_quartic\
 				root_compute_utils\
 				solve_quadratic\
-				textures
+				textures\
+				get_basics_uv\
+				get_advanced_uv
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

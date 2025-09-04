@@ -225,6 +225,7 @@ typedef struct s_obj
 	double			max;
 	t_objtype		type;
 	t_color			color;
+	t_color			t_color;
 	double			shine;
 	int				id;
 	int				texture_width;

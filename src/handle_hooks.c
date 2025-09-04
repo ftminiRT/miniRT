@@ -100,7 +100,7 @@ void	handle_object_mod(int kc, t_env *rt, double step)
 				"./textures/venusmap.xpm");
 		else
 			load_normal_map(rt->mlx.mlx, rt->selected.obj,
-				"./textures/onde.xpm");
+				"./textures/venusmap.xpm");
 	}
     if (rt->selected.type == OBJ && kc == KEY_T)
     {
@@ -110,7 +110,7 @@ void	handle_object_mod(int kc, t_env *rt, double step)
         }
         else
         {
-            load_texture(rt->mlx.mlx, rt->selected.obj, "./textures/IanMalcolm.xpm");
+            load_texture(rt->mlx.mlx, rt->selected.obj, "./textures/venusmap.xpm");
         }
     }
 }

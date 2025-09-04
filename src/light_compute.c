@@ -46,7 +46,7 @@ static t_color	compute_diffuse(t_phong phong, t_obj *obj, t_light *cur_spot)
 	else
 		diff_factor = cur_spot->brightness * fmax(0.0, vec3_dot(phong.light,
 					phong.normal));
-	diffuse = color_scale(color_multiply(cur_spot->color, obj->color),
+	diffuse = color_scale(color_multiply(cur_spot->color, obj->t_color),
 			diff_factor * cur_spot->brightness);
 	return (diffuse);
 }
@@ -117,19 +117,20 @@ t_color get_texture_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 		get_moebius_uv(obj, hit_point, map);
 	else
         return (obj->color);
-
     // Wrap UV
     map[0] = (map[0] % obj->texture_width + obj->texture_width) % obj->texture_width;
     map[1] = (map[1] % obj->texture_height + obj->texture_height) % obj->texture_height;
+	if (obj->type == OT_PLANE)
+		map[1] = obj->texture_height - 1 - map[1];
 
     // Pointer sur la mémoire de la texture
     data = (unsigned char *)obj->texture_data;
     offset = map[1] * obj->texture_size_line + map[0] * (obj->texture_bpp / 8);
 
     // Lire chaque canal
-    color.r = data[offset + 0]; // Rouge
+    color.r = data[offset + 2]; // Rouge
     color.g = data[offset + 1]; // Vert
-    color.b = data[offset + 2]; // Bleu
+    color.b = data[offset + 0]; // Bleu
 
     return (color);
 }
@@ -146,6 +147,7 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 		base_color = get_texture_color(rt, obj, hit_point);
 	else
 		base_color = obj->color;
+	obj->t_color = base_color;
 	ambient = color_scale(color_multiply(rt->ambient.color, base_color),
 			rt->ambient.brightness);
 	ret = ambient;

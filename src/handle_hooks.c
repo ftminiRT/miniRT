@@ -91,34 +91,11 @@ void	handle_object_mod(int kc, t_env *rt, double step)
 		rt->selected.obj->max += step / 10;
 	if (rt->selected.type == OBJ && kc == KEY_X)
 		rt->selected.obj->checkered = !rt->selected.obj->checkered;
-if (rt->selected.type == OBJ && kc == KEY_R && rt->selected.obj)
-{
-    if (rt->selected.obj->reflect == 0.0)
-        rt->selected.obj->reflect = 0.8;  // Activer la réflexion
-    else
-        rt->selected.obj->reflect = 0.0;  // Désactiver la réflexion
-}
-
-	if (rt->selected.type == OBJ && kc == KEY_Z)
+	if (rt->selected.type == OBJ && kc == KEY_R && rt->selected.obj)
 	{
-		if (rt->selected.obj->normal_map_img)
-			free_normal_map(rt->mlx.mlx, rt->selected.obj);
-		else if (rt->selected.obj->type == OT_CYL || rt->selected.obj->type == OT_SPHERE || rt->selected.obj->type == OT_TORE)
-			load_normal_map(rt->mlx.mlx, rt->selected.obj,
-				"./textures/inception.xpm");
+		if (rt->selected.obj->reflect == 0.0)
+			rt->selected.obj->reflect = 0.8;  // Activer la réflexion
 		else
-			load_normal_map(rt->mlx.mlx, rt->selected.obj,
-				"./textures/inception.xpm");
+			rt->selected.obj->reflect = 0.0;  // Désactiver la réflexion
 	}
-    if (rt->selected.type == OBJ && kc == KEY_T)
-    {
-        if (rt->selected.obj->texture_img) // Si la texture existe déjà, la libérer
-        {
-            free_texture(rt->mlx.mlx, rt->selected.obj);
-        }
-        else
-        {
-            load_texture(rt->mlx.mlx, rt->selected.obj, "./textures/inception.xpm");
-        }
-    }
 }

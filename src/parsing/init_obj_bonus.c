@@ -18,8 +18,6 @@ int	init_cone(char **args, t_env *rt)
 	size_t	arg_len;
 
 	arg_len = count_arg(args);
-	if (arg_len != 5 && arg_len != 6)
-		return (1);
 	new = create_object(rt);
 	if (!new)
 		return (1);
@@ -35,8 +33,8 @@ int	init_cone(char **args, t_env *rt)
 		return (1);
 	if (str_to_colors(&new->color, args[4]))
 		return (1);
-	if (arg_len == 6)
-		return (set_shine(new, args[5]));
+	if (arg_len >= 6)
+		return (set_bonus_attributes(&args[5], rt, new));
 	return (0);
 }
 
@@ -46,8 +44,6 @@ int	init_tore(char **args, t_env *rt)
 	size_t	arg_len;
 
 	arg_len = count_arg(args);
-	if (arg_len != 6 && arg_len != 7)
-		return (1);
 	new = create_object(rt);
 	if (!new)
 		return (1);
@@ -62,8 +58,8 @@ int	init_tore(char **args, t_env *rt)
 	new->scal2 = ft_atod(args[4]);
 	if (str_to_colors(&new->color, args[5]))
 		return (1);
-	if (arg_len == 7)
-		return (set_shine(new, args[6]));
+	if (arg_len >= 7)
+		return (set_bonus_attributes(&args[6], rt, new));
 	return (0);
 }
 
@@ -73,8 +69,6 @@ int	init_triangle(char **args, t_env *rt)
 	size_t	arg_len;
 
 	arg_len = count_arg(args);
-	if (arg_len != 5 && arg_len != 6)
-		return (1);
 	new = create_object(rt);
 	if (!new)
 		return (1);
@@ -98,8 +92,6 @@ int	init_boloid(char **args, t_env *rt, t_objtype type)
 	size_t	arg_len;
 
 	arg_len = count_arg(args);
-	if (arg_len != 5 && arg_len != 6)
-		return (1);
 	new = create_object(rt);
 	if (!new)
 		return (1);
@@ -124,8 +116,6 @@ int	init_moebius(char **args, t_env *rt)
 	size_t	arg_len;
 
 	arg_len = count_arg(args);
-	if (arg_len != 7 && arg_len != 8)
-		return (1);
 	new = create_object(rt);
 	if (!new)
 		return (1);
@@ -142,7 +132,7 @@ int	init_moebius(char **args, t_env *rt)
 		return (1);
 	if (str_to_colors(&new->color, args[6]))
 		return (1);
-	if (arg_len == 8)
-		return (set_shine(new, args[7]));
+	if (arg_len >= 8)
+		return (set_bonus_attributes(&args[7], rt, new));
 	return (0);
 }

@@ -37,10 +37,10 @@ int	key_pressed(int kc, t_env *rt)
 	double	step;
 	t_vec3	fwd;
 
-	step = 5;
-	fwd = vec3_normalized(rt->cam.dir);
 	handle_exit(kc, rt);
 	handle_selection(kc, rt);
+	step = 5;
+	fwd = vec3_normalized(rt->cam.dir);
 	handle_movement(kc, rt, step, fwd);
 	handle_rotation(kc, rt, step);
 	handle_object_mod(kc, rt, step);

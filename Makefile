@@ -58,7 +58,8 @@ FILES		= 	clean\
 				solve_quadratic\
 				textures\
 				get_basics_uv\
-				get_advanced_uv
+				get_advanced_uv\
+				hit_ring
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

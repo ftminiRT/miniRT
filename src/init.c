@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:48:44 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 19:20:02 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:11:24 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	env_init(t_env *rt)
 	rt->get_norm[OT_MOEB] = moebius_normal;
 	rt->hit_object[OT_TORE] = hit_torus;
 	rt->get_norm[OT_TORE] = torus_normal;
+	rt->hit_object[OT_RING] = hit_ring;
+	rt->get_norm[OT_RING] = ring_normal;
 	rt->cam.is_set = 0;
 	rt->ambient.is_set = 0;
 	rt->spot.is_set = 0;

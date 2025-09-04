@@ -38,9 +38,8 @@ void get_moebius_uv(t_obj *obj, t_vec3 p, int map[2])
 {
     t_vec3 rel;
     double u, v;
-    double R, w; // R = rayon du cercle central, w = demi-largeur de la bande
+    double w; // R = rayon du cercle central, w = demi-largeur de la bande
     
-    R = obj->scal2; // grand rayon
     w = obj->scal; // demi-largeur de la bande
     rel = vec3_sub(p, obj->pt);
     

@@ -79,6 +79,13 @@ void	handle_rotation(int kc, t_env *rt, double step)
 
 void	handle_object_mod(int kc, t_env *rt, double step)
 {
+	if (rt->selected.type == OBJ && rt->selected.obj->type == OT_RING &&
+		kc == KEY_Q)
+		rt->selected.obj->scal3 -= 1;
+	if (rt->selected.type == OBJ && rt->selected.obj->type == OT_RING &&
+		kc == KEY_W)
+		rt->selected.obj->scal3 += 1;
+		
 	if (rt->selected.type != OBJ || !rt->selected.obj)
 		return ;
 	if (rt->selected.obj->type != OT_MOEB && kc == KEY_MINUS2)

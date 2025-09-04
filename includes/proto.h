@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/09/02 21:48:24 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:13:01 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ double	hit_plane(t_ray *r, t_obj *p);
 double	hit_cylinder(t_ray *r, t_obj *cy);
 double	hit_moebius(t_ray *ray, t_obj *obj);
 double		hit_torus(t_ray *ray, t_obj *obj);
+double hit_ring(t_ray *ray, t_obj *obj);
 
 ////////////// UTILS ////////////////
 
@@ -90,6 +91,7 @@ int		init_moebius(char **args, t_env *rt);
 int		init_triangle(char **args, t_env *rt);
 int		init_tore(char **args, t_env *rt);
 int		init_cone(char **args, t_env *rt);
+int	init_ring(char **args, t_env *rt);
 //init_set.c
 int		init_cam(char **args, t_env *rt);
 int		init_amblight(char **args, t_env *rt);
@@ -120,7 +122,7 @@ double	check_discs(t_obj *obj, t_vec3 hit_point);
 t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point);
 t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point);
 t_vec3		torus_normal(t_obj *obj, t_vec3 hit_point);
-
+t_vec3  ring_normal(t_obj *obj, t_vec3 hit_point);
 /////////////// CLEAN /////////////
 
 void	mrt_cleaner(t_env *rt);

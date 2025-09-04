@@ -16,12 +16,12 @@
 ////////////// MLX ////////////////
 
 
-int		clear_mlx(t_env *rt);
-void	error_exit(char *msg);
-void	rt_mlx_init(t_mlx *mlx);
-int		key_pressed(int kc, t_env *e);
-int	    close_window(t_env *rt);
-int	    mouse_hook(int bt, int x, int y, t_env *e);
+int			clear_mlx(t_env *rt);
+void		error_exit(char *msg);
+void		rt_mlx_init(t_mlx *mlx);
+int			key_pressed(int kc, t_env *e);
+int	    	close_window(t_env *rt);
+int	    	mouse_hook(int bt, int x, int y, t_env *e);
 
 
 t_vec3		vec3_add(t_vec3 a, t_vec3 b);
@@ -91,8 +91,8 @@ t_color		get_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
 
 /////////////// CORE COMPUTE /////////////
 
-t_obj	*compute_intersections(t_env *rt, t_ray *ray);
-void	compute_ray(t_env *rt, t_ray *ray, int i, int j);
+t_obj		*compute_intersections(t_env *rt, t_ray *ray);
+void		compute_ray(t_env *rt, t_ray *ray, int i, int j);
 
 /////////////// NORM COMPUTE /////////////
 
@@ -104,7 +104,7 @@ t_vec3		moebius_normal(t_obj *obj, t_vec3 hit_point);
 
 /////////////// CLEAN /////////////
 
-void	mrt_cleaner(t_env *rt);
+void		mrt_cleaner(t_env *rt);
 
 /////////////// INIT /////////////
 
@@ -120,4 +120,11 @@ void		debug_print_set(t_env *rt);
 void		click_ui(int x, int y, t_env *rt);
 void		display_default_ui(t_env *rt);
 int 		ui_init(t_env *rt);
+int 		init_ui_panes(t_env *rt);
+int			build_pane_co(t_env *rt, t_uipane *current);
+int			build_pane_cyl(t_env *rt, t_uipane *current);
+int			build_pane_mo(t_env *rt, t_uipane *current);
+int			build_pane_pl(t_env *rt, t_uipane *current);
+int			build_pane_sp(t_env *rt, t_uipane *current);
+int			build_pane_to(t_env *rt, t_uipane *current);
 #endif

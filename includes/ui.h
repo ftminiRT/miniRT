@@ -55,8 +55,17 @@ typedef struct s_scl_btn
 {
 	double			*value;
 	double			factor;
-	struct s_uiwin	*linkwin;
+	struct s_uipane	*linkwin;
 }	t_scl_btn;
+
+typedef struct s_dp_list
+{
+	void				*img;
+	size_t				width;
+	size_t				height;
+	t_uipt				pos;
+	struct s_dp_list	*next;
+}	t_dp_list;
 
 typedef struct s_items
 {
@@ -64,26 +73,27 @@ typedef struct s_items
 	t_uipt			pos;
 	t_uipt			scale;
 	t_scl_btn		btn;
-	void			*function;
+	void			(*function)(t_env *);
 	struct s_items	*next;
-
 }	t_items;
 
-typedef struct s_uiwin
+typedef struct s_uipane
 {
 	t_uitype		type;
 	struct s_obj	*obj;
 	struct s_cam	*cam;
 	struct s_light	*light;
 	t_items			*itms;
-	struct s_uiwin	*next;
-}	t_uiwin;
+	t_dp_list	*dplist;
+	struct s_uipane	*next;
+}	t_uipane;
 
 typedef struct s_ui
 {
-	t_uiwin *stock;
-	t_uiwin	*current;
+	t_uipane *stock;
+	t_uipane	*current;
 	t_items *itms;
+	int		(*build_pane[OBJTYPENUMBER])(t_env *rt, t_uipane *current);
 
 }	t_ui;
 

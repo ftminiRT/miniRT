@@ -12,11 +12,12 @@
 
 #include "minirt.h"
 
-void	exec_button(t_items *itm)
+void	exec_button(t_env *rt, t_items *itm)
 {
-	printf("trying to add %f to %f\n", itm->btn.factor, *itm->btn.value);
-	*itm->btn.value = *itm->btn.value + itm->btn.factor;
-
+	if (itm->type == UIT_SCL_BTN)
+		*itm->btn.value = *itm->btn.value + itm->btn.factor;
+	else
+		itm->function(rt);
 }
 
 int	hit_ui(int x, int y, t_items *itm)
@@ -45,5 +46,5 @@ void click_ui(int x, int y, t_env *rt)
 	}
 	if (!found)
 		return ;
-	exec_button(current);
+	exec_button(rt, current);
 }

@@ -107,7 +107,7 @@ typedef struct s_proj_data
 	double	sqrt_d;
 }	t_proj_data;
 
-# define OBJTYPENUMBER 9
+
 
 typedef enum e_objtype
 {

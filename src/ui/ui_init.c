@@ -31,43 +31,27 @@ t_items *add_new_button(void *value, double factor, t_uipt pos, t_uipt scale)
 
 int	add_default_buttons(t_env *rt)
 {
-	t_uiwin *win;
-	//void *frame;
-	//int sizex = 136;
-	//int sizey = 66;
+	t_uipane *pane;
 
-	win = rt->ui.current;
-	win->itms = add_new_button(&rt->ambient.brightness, 0.1, (t_uipt){100,100}, (t_uipt){30,30});
-	if (!win->itms)
+	pane = rt->ui.current;
+	pane->itms = add_new_button(&rt->ambient.brightness, 0.1, (t_uipt){100,100}, (t_uipt){30,30});
+	if (!pane->itms)
 		return (1);
-	//frame = mlx_xpm_file_to_image(rt->mlx.mlx, "./assets/ui_assets/frame_test.xpm", &sizex, &sizey);
 	putpixel_ui(100, 100, rt, (t_color){255, 0, 0});
-	//if (frame)
-	//	mlx_put_image_to_window(rt->mlx.mlx, rt->mlx.win, frame, WIDTH + 35, 300);	
-	//else
-	//	printf("error\n");
 	return (0);
 }
 
-int	create_default_win(t_env *rt)
-{
-	t_uiwin *dflt;
 
-	dflt = ft_calloc(1, sizeof(t_uiwin));
-	if (!dflt)
-		return (1);
-	dflt->cam = &rt->cam;
-	dflt->light = &rt->ambient;
-	dflt->type = UIT_DEFAULT;
-	rt->ui.current = dflt;
-	rt->ui.stock = dflt;
-	return (0);
-}
 
 int ui_init(t_env *rt)
 {
-
-	if (create_default_win(rt) || add_default_buttons(rt))
+	rt->ui.build_pane[OT_CONE] = build_pane_co;
+	rt->ui.build_pane[OT_CYL] = build_pane_cyl;
+	rt->ui.build_pane[OT_MOEB] = build_pane_mo;
+	rt->ui.build_pane[OT_PLANE] = build_pane_pl;
+	rt->ui.build_pane[OT_SPHERE] = build_pane_sp;
+	rt->ui.build_pane[OT_TORE] = build_pane_to;
+	if (init_ui_panes(rt))
 		return (1);
 	if (!rt->ui.itms)
 		return (1);

@@ -197,4 +197,11 @@ void	rotate_selected(t_env *rt, t_vec3 rot);
 void		click_ui(int x, int y, t_env *rt);
 void		display_default_ui(t_env *rt);
 int 		ui_init(t_env *rt);
+int 		init_ui_panes(t_env *rt);
+int			build_pane_co(t_env *rt, t_uipane *current);
+int			build_pane_cyl(t_env *rt, t_uipane *current);
+int			build_pane_mo(t_env *rt, t_uipane *current);
+int			build_pane_pl(t_env *rt, t_uipane *current);
+int			build_pane_sp(t_env *rt, t_uipane *current);
+int			build_pane_to(t_env *rt, t_uipane *current);
 #endif

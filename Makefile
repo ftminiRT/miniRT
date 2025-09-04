@@ -40,6 +40,13 @@ FILES		= 	clean\
 				parsing/parsing_utils \
 				parsing/parsing_utils_bonus \
 				parsing/parsing \
+				ui/build_pane/ui_build_co \
+				ui/build_pane/ui_build_cyl \
+				ui/build_pane/ui_build_mo \
+				ui/build_pane/ui_build_pl \
+				ui/build_pane/ui_build_sp \
+				ui/build_pane/ui_build_to \
+				ui/build_pane/ui_build_utils \
 				ui/click_ui \
 				ui/ui_init \
 				ui/ui \

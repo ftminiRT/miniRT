@@ -13,6 +13,15 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# ifndef WIDTH
+#  define WIDTH 700
+# endif
+# ifndef HEIGHT
+#  define HEIGHT 500
+# endif
+# define EPSILON 1e-6
+# define OBJTYPENUMBER 9
+
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>

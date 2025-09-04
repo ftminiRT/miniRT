@@ -68,21 +68,20 @@ static t_color	compute_specular(t_phong phong, t_obj *obj, t_light *cur_spot)
 	return (specular);
 }
 
-static t_color	multi_spotlights(t_env *rt, t_obj *obj, t_vec3 hit_point,
-		t_ray ray)
+static void	multi_spotlights(t_env *rt, t_obj *obj, t_vec3 hit_point,
+		t_color *ret)
 {
 	t_phong	phong;
 	t_color	diffuse;
 	t_color	specular;
 	t_light	*cur_spot;
-	t_color	ret;
 
-	ret = (t_color){0,0,0};
 	phong.normal = rt->get_norm[obj->type](obj, hit_point);
-	if (vec3_dot(ray.dir, phong.normal) > 0)
+	if (vec3_dot(rt->ray.dir, phong.normal) > 0)
 		phong.normal = vec3_scalmult(-1, phong.normal);
-	phong.view = vec3_scalmult(-1.0, ray.dir);
-	// phong.view = vec3_sub(ray.pt, hit_point);
+
+	phong.view = vec3_scalmult(-1.0, rt->ray.dir);
+	// phong.view = vec3_sub(rt->ray.pt, hit_point);
 	vec3_normalize(&phong.view);
 
 	cur_spot = &rt->spot;
@@ -94,12 +93,11 @@ static t_color	multi_spotlights(t_env *rt, t_obj *obj, t_vec3 hit_point,
 			vec3_normalize(&phong.light);
 			diffuse = compute_diffuse(phong, obj, cur_spot);
 			specular = compute_specular(phong, obj, cur_spot);
-			ret = color_add(ret, diffuse);
-			ret = color_add(ret, specular);
+			*ret = color_add(*ret, diffuse);
+			*ret = color_add(*ret, specular);
 		}
 		cur_spot = cur_spot->next;
 	}
-	return (ret);
 }
 t_color get_texture_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 {
@@ -127,6 +125,7 @@ t_color get_texture_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
     map[1] = (map[1] % obj->texture_height + obj->texture_height) % obj->texture_height;
 	if (obj->type == OT_PLANE)
 		map[1] = obj->texture_height - 1 - map[1];
+
     // Pointer sur la mémoire de la texture
     data = (unsigned char *)obj->texture_data;
     offset = map[1] * obj->texture_size_line + map[0] * (obj->texture_bpp / 8);
@@ -139,7 +138,7 @@ t_color get_texture_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
     return (color);
 }
 
-t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point, const t_ray ray)
+t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 {
 	t_color	ambient;
 	t_color	ret;
@@ -155,5 +154,6 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point, const t_ray ray)
 	ambient = color_scale(color_multiply(rt->ambient.color, base_color),
 			rt->ambient.brightness);
 	ret = ambient;
-	return (color_add(ret, multi_spotlights(rt, obj, hit_point, ray)));
+	multi_spotlights(rt, obj, hit_point, &ret);
+	return (ret);
 }

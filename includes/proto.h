@@ -99,7 +99,7 @@ t_color	color_scale(t_color c, double factor);
 t_color	color_multiply(t_color c1, t_color c2);
 t_color	color_clamp(t_color color);
 t_vec3	get_normal(t_obj *obj, t_vec3 hit_point);
-t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
+t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point, t_ray ray);
 t_color get_checkered_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
 
 /////////////// CORE COMPUTE /////////////

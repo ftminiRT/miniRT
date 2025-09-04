@@ -223,6 +223,7 @@ typedef struct s_obj
 	double			a;
 	t_vec3			n;
 	double			max;
+	double			reflect;
 	t_objtype		type;
 	t_color			color;
 	t_color			t_color;

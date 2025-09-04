@@ -52,7 +52,9 @@ void	normalize_objs(t_env *rt)
 		if (objs->scal < EPSILON)
 			objs->scal = EPSILON;
 		if (objs->scal2 < 0.01 && objs->type == OT_TORE)
-			objs->scal2 = 0.01;	
+			objs->scal2 = 0.01;
+		// if (objs->type == OT_PLANE)
+		// 	objs->reflect = 0.8;
 		objs = objs->next;
 	}
 }

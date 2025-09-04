@@ -142,6 +142,7 @@ int	main(int ac, char **av)
 	if (parsing(&rt, av[1]))
 		return (1);
 	rt_mlx_init(&rt.mlx);
+	load_textures(&rt);
 	ray_trace(&rt);
 	mlx_mouse_hook(rt.mlx.win, &mouse_hook, &rt);
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);

@@ -16,6 +16,31 @@ int load_texture(void *mlx_ptr, t_obj *obj, char *filename)
     return (1);
 }
 
+void	load_textures(t_env *rt)
+{
+	t_obj	*obj;
+
+	obj = rt->objects;
+	while (obj)
+	{
+		if (obj->texture_filename)
+		{
+			printf("loading texture [%s]\n", obj->texture_filename);
+			if (!load_texture(rt->mlx.mlx, obj,
+				obj->texture_filename))
+				obj->texture_data = NULL;
+		}
+		if (obj->normal_map_filename)
+		{
+			printf("loading texture [%s]\n", obj->texture_filename);
+			if (!load_normal_map(rt->mlx.mlx, obj,
+				obj->normal_map_filename))
+				obj->normal_map_data = NULL;
+		}
+		obj = obj->next;
+	}
+}
+
 /**
  * Libère la mémoire d'une texture
  * @param mlx_ptr: Pointeur MLX

@@ -75,6 +75,10 @@ int		str_to_vec3(t_vec3 *vec, char *str);
 int		str_to_colors(t_color *clr, char *str);
 //parsing_utils_bonus.c
 int		set_shine(t_obj *new, char *arg);
+int	set_texture(t_obj *new, char *arg);
+int	set_normal_map(t_obj *new, char *arg);
+int	set_reflect(t_obj *new, char *arg);
+int     set_bonus_attributes(char **args, t_env *rt, t_obj *new);
 //init_obj.c
 t_obj	*create_object(t_env *rt);
 int		init_cylinder(char **args, t_env *rt);
@@ -156,6 +160,7 @@ void	compute_sphere_uv(t_vec3 normal, float *u, float *v);
 void	init_object_no_normal_map(t_obj *obj);
 int load_texture(void *mlx_ptr, t_obj *obj, char *filename);
 void	free_texture(void *mlx_ptr, t_obj *obj);
+void	load_textures(t_env *rt);
 
 /////////////// HOOKS /////////////
 

@@ -229,6 +229,7 @@ typedef struct s_obj
 	t_color			t_color;
 	double			shine;
 	int				id;
+	char			*texture_filename;
 	int				texture_width;
 	int	texture_height;
 	void	*texture_data;
@@ -236,6 +237,7 @@ typedef struct s_obj
 	int		texture_size_line;
 	int		texture_bpp;
 	int		texture_endian;
+	char			*normal_map_filename;
 	void			*normal_map_img;
 	void			*normal_map_data;
 	int				normal_map_width;

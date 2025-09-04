@@ -28,11 +28,14 @@
 # include "libft.h"
 
 # ifndef WIDTH
-#  define WIDTH 600
+// #  define WIDTH 1920
+# define WIDTH 600
 # endif
 # ifndef HEIGHT
+// #  define HEIGHT 1080
 #  define HEIGHT 400
 # endif
 # define EPSILON 1e-6
+# define MAX_DEPTH 10
 
 #endif

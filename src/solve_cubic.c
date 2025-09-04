@@ -17,16 +17,6 @@
 ** arranging them ordered in r and returning the number of the roots (1 or 3)
 */
 
-int			swapd(double *a, double *b)
-{
-	double	tmp;
-
-	tmp = *b;
-	*b = *a;
-	*a = tmp;
-	return (1);
-}
-
 static t_cubic	init_stru(double *a)
 {
 	t_cubic	ret;

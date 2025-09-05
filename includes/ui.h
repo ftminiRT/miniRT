@@ -55,7 +55,6 @@ typedef struct s_scl_btn
 {
 	double			*value;
 	double			factor;
-	struct s_uipane	*linkwin;
 }	t_scl_btn;
 
 typedef struct s_dp_list
@@ -84,15 +83,15 @@ typedef struct s_uipane
 	struct s_cam	*cam;
 	struct s_light	*light;
 	t_items			*itms;
-	t_dp_list	*dplist;
+	t_dp_list		*dplist;
 	struct s_uipane	*next;
 }	t_uipane;
 
 typedef struct s_ui
 {
-	t_uipane *stock;
+	t_uipane	*stock;
 	t_uipane	*current;
-	t_items *itms;
+	t_items 	*dft_itms;
 	int		(*build_pane[OBJTYPENUMBER])(t_env *rt, t_uipane *current);
 
 }	t_ui;

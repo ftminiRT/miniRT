@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:14:21 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/09/02 21:24:48 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:09:57 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	init_obj_bonus(char **split, t_env *rt)
 		return (init_cone(split, rt));
 	else if (!ft_strncmp(split[0], "to", 3))
 		return (init_tore(split, rt));
+	else if (!ft_strncmp(split[0], "ri", 3))
+		return (init_ring(split, rt));
 	else if (!ft_strncmp(split[0], "tr", 3))
 		return (init_triangle(split, rt));
 	else if (!ft_strncmp(split[0], "pa", 3))

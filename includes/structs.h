@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:03:19 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/09/02 21:45:55 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:07:47 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ typedef struct s_proj_data
 	double			sqrt_d;
 }					t_proj_data;
 
-# define OBJTYPENUMBER 9
+# define OBJTYPENUMBER 10
 
 typedef enum e_objtype
 {
@@ -182,6 +182,7 @@ typedef enum e_objtype
 	OT_PARA,
 	OT_MOEB,
 	OT_HYP,
+	OT_RING
 }					t_objtype;
 
 typedef enum e_axis
@@ -217,6 +218,7 @@ typedef struct s_obj
 {
 	double			scal;
 	double			scal2;
+	double			scal3;
 	t_vec3			pt;
 	t_vec3			pt2;
 	t_vec3			pt3;

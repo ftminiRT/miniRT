@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:56 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/08/28 19:08:13 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:18:39 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@
 # include "libft.h"
 
 # ifndef WIDTH
-#  define WIDTH 1920
-// # define WIDTH 600
+// #  define WIDTH 1920
+# define WIDTH 600
 # endif
 # ifndef HEIGHT
-#  define HEIGHT 1080
-// #  define HEIGHT 400
+// #  define HEIGHT 1080
+#  define HEIGHT 400
 # endif
 # define EPSILON 1e-6
 # define MAX_DEPTH 10

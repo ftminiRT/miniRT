@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:48:44 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 19:20:02 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/05 08:10:23 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,15 @@ void	normalize_objs(t_env *rt)
 	{
 		if (!objs->shine)
 			objs->shine = 100;
-		if (objs->type == OT_PLANE || objs->type == OT_CYL || objs->type == OT_MOEB)
+		if (objs->type == OT_PLANE || objs->type == OT_CYL || objs->type == OT_MOEB ||
+			objs->type == OT_TORE || objs->type == OT_RING)
 			vec3_normalize(&objs->n);
 		if (objs->scal < EPSILON)
 			objs->scal = EPSILON;
-		if (objs->scal2 < 0.01 && objs->type == OT_TORE)
-			objs->scal2 = 0.01;
-		// if (objs->type == OT_PLANE)
-		// 	objs->reflect = 0.8;
+		if (objs->scal2 < EPSILON && (objs->type == OT_TORE || objs->type == OT_RING))
+			objs->scal2 = 0;
+		if (objs->scal3 < EPSILON && objs->type == OT_RING)
+			objs->scal3 = 0;
 		objs = objs->next;
 	}
 }
@@ -71,6 +72,8 @@ void	env_init(t_env *rt)
 	rt->get_norm[OT_MOEB] = moebius_normal;
 	rt->hit_object[OT_TORE] = hit_torus;
 	rt->get_norm[OT_TORE] = torus_normal;
+	rt->hit_object[OT_RING] = hit_ring;
+	rt->get_norm[OT_RING] = ring_normal;
 	rt->cam.is_set = 0;
 	rt->ambient.is_set = 0;
 	rt->spot.is_set = 0;

@@ -18,7 +18,15 @@ double	ft_atod(char *str)
 	double	power;
 	char	**split;
 	int		len;
+	int		sign;
 
+	sign = 1;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
 	split = ft_split(str, '.');
 	if (!split)
 		return (perror("miniRT"), 0);
@@ -35,7 +43,7 @@ double	ft_atod(char *str)
 		len--;
 	}
 	nb[1] = nb[1] / power;
-	return (nb[0] + nb[1]);
+	return (nb[0] * sign + nb[1] * sign);
 }
 
 int	str_is_double(char *str)

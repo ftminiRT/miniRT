@@ -1,0 +1,5 @@
+A 0.5 255,255,255
+C -50,10,20 1,0,0 70
+L -100,40,-30 0.8 255,255,255
+sp 200.0,15.0,20.6 100 255,200,255 t:./textures/venusmap.xpm n:./textures/venusmap.xpm
+to 200,15,20.6 1,1,0 20 35 243,150,73 10 t:./textures/venusmap.xpm n:./textures/venusmap.xpm

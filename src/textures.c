@@ -2,10 +2,10 @@
 
 int load_texture(void *mlx_ptr, t_obj *obj, char *filename)
 {
-    if (!mlx_ptr || !obj || !filename)
-        return (0);
+	if (!mlx_ptr || !obj || !filename)
+		return (0);
 
-    obj->texture_img = mlx_xpm_file_to_image(mlx_ptr, filename,
+	obj->texture_img = mlx_xpm_file_to_image(mlx_ptr, filename,
         &obj->texture_width, &obj->texture_height);
     if (!obj->texture_img)
         return (0);

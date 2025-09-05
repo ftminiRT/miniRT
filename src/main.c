@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 19:55:52 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 19:56:03 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:38:01 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ void	debug_print_bonus_object(t_obj obj)
 		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
 		printf("short ray = %f\n", obj.scal);
 		printf("long ray = %f\n", obj.scal2);
+	}
+	else if (obj.type == OT_RING)
+	{
+		printf("ri %f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("%f,%f,%f ", obj.n.x, obj.n.y, obj.n.z);
+		printf("%f ", obj.scal);
+		printf("%f ", obj.scal2);
+		printf("%f\n", obj.scal3);
 	}
 	else if (obj.type == OT_TRIANGLE)
 	{

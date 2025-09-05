@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keycodes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-08-29 13:02:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-08-29 13:02:57 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/08/29 13:02:57 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/04 23:23:00 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define KEY_N 110
 # define KEY_O 111
 # define KEY_P 112
+# define KEY_Q 113
 # define KEY_R 114
 # define KEY_S 115
 # define KEY_T 116

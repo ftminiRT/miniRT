@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:26 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/09/03 07:45:19 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/05 07:48:38 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ t_color get_texture_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 		get_torus_uv(obj, hit_point, map);
 	else if (obj->type == OT_MOEB)
 		get_moebius_uv(obj, hit_point, map);
+	else if (obj->type == OT_RING)
+		get_ring_uv(obj, hit_point, map);
 	else
         return (obj->color);
     // Wrap UV

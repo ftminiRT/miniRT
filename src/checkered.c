@@ -26,6 +26,8 @@ t_color	get_checkered_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
         get_torus_uv(obj, hit_point, map);
     else if (obj->type == OT_MOEB)
         get_moebius_uv(obj, hit_point, map);
+	else if (obj->type == OT_RING)
+		get_ring_uv(obj, hit_point, map);
 	else
 		return (obj->color);
 

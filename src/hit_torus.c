@@ -56,6 +56,8 @@ double		hit_torus(t_ray *ray, t_obj *obj)
 	double	roots[4];
 	int		num_real_roots;
 
+	if (!obj->scal || !obj->scal2)
+		return (INFINITY);
 	compute_coeffs(ray, obj, a);
 	num_real_roots = solve_quartic(a, roots);
 	if (num_real_roots == 0)

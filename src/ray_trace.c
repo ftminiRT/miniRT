@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ray_trace.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/26 15:16:48 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/09/05 08:26:16 by tbeauman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "minirt.h"
 
@@ -87,8 +76,6 @@ void	compute_ray(t_env *rt, t_ray *ray, int i, int j)
 // 	}
 // 	mlx_put_image_to_window(rt->mlx.mlx, rt->mlx.win, rt->mlx.img.img, 0, 0);
 // }
-#define MAX_DEPTH 10
-
 // Fonction de réflexion
 t_vec3 reflect(t_vec3 I, t_vec3 N)
 {
@@ -145,7 +132,7 @@ void ray_trace(t_env *rt)
     int i, j;
 
     init_rt(rt);
-	debug_print_set(rt);
+    debug_print_set(rt);
     for (j = 0; j < HEIGHT; j++)
     {
         for (i = 0; i < WIDTH; i++)

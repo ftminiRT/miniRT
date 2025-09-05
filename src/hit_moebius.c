@@ -96,46 +96,15 @@ t_vec3 moebius_normal(t_obj *obj, t_vec3 hit_point)
 	t_vec3 map_normal;
 	t_normap normap;
 
-	// Normale géométrique
 	geo_normal = vec3_sub(hit_point, obj->pt);
 	vec3_normalize(&geo_normal);
-
-	// Si pas de normal map, retourner normale géométrique
 	if (!obj->normal_map_data)
 		return (geo_normal);
-
-	// Base tangentielle approximative
 	tangent = (t_vec3){-geo_normal.y, geo_normal.x, 0};
 	vec3_normalize(&tangent);
 	bitangent = vec3_cross(geo_normal, tangent);
-
-	// Coordonnées UV pour le bump
 	normap.u = atan2(hit_point.y, hit_point.x) / (2.0 * M_PI) + 0.5;
-	normap.v = 0.5 + hit_point.z / obj->scal; // largeur bande
-
-	// Sample bump map
+	normap.v = 0.5 + hit_point.z / obj->scal;
 	map_normal = sample_normal_map(obj, normap.u, normap.v);
-
-	// Appliquer la perturbation
 	return apply_normal_mapping(geo_normal, tangent, bitangent, map_normal);
 }
-
-// t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point)
-// {
-// 	t_vec3	local_n;
-// 	t_vec3	world_n;
-// 	t_basis	b;
-
-// 	b = make_basis(obj->n);
-// 	local_n.x = -2 * obj->scal * hit_point.z + 2 * hit_point.x * hit_point.y - 4
-// 		* hit_point.x * hit_point.z;
-// 	local_n.y = -obj->scal2 + hit_point.x * hit_point.x + 3 * hit_point.y
-// 		* hit_point.y - 4 * hit_point.y * hit_point.z + hit_point.z
-// 		* hit_point.z;
-// 	local_n.z = -2 * obj->scal * hit_point.x - 2 * hit_point.x * hit_point.x - 2
-// 		* hit_point.y * hit_point.y + 2 * hit_point.y * hit_point.z;
-// 	vec3_normalize(&local_n);
-// 	world_n = local_to_world_vec(local_n, b);
-// 	vec3_normalize(&world_n);
-// 	return (world_n);
-// }

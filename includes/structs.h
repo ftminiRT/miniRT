@@ -71,6 +71,13 @@ typedef struct s_normap
 	t_vec3			bitangent;
 }					t_normap;
 
+typedef struct s_basis
+{
+	t_vec3	u;
+	t_vec3	v;
+	t_vec3	w;
+}				t_basis;
+
 typedef struct s_cubic
 {
 	double			q;
@@ -151,12 +158,18 @@ typedef struct s_moebius
 	double			g;
 }					t_moebius;
 
-typedef struct s_basis
+typedef struct s_ring
 {
-	t_vec3			u;
-	t_vec3			v;
-	t_vec3			w;
-}					t_basis;
+	t_vec3	ro;
+	t_vec3	rd;
+	double	r;
+	double	dd;
+	double	e;
+	double	f;
+	double	four_r2;
+
+}				t_ring;
+
 
 typedef struct s_proj_data
 {
@@ -169,7 +182,7 @@ typedef struct s_proj_data
 	double			sqrt_d;
 }					t_proj_data;
 
-# define OBJTYPENUMBER 10
+# define OBJTYPENUMBER 7
 
 typedef enum e_objtype
 {
@@ -178,10 +191,7 @@ typedef enum e_objtype
 	OT_CYL,
 	OT_CONE,
 	OT_TORE,
-	OT_TRIANGLE,
-	OT_PARA,
 	OT_MOEB,
-	OT_HYP,
 	OT_RING
 }					t_objtype;
 
@@ -262,6 +272,18 @@ typedef struct s_mlxdata
 	int				scale;
 	int				endian;
 }					t_mlxdata;
+
+typedef	struct s_reflect_data
+{
+	t_obj   *hitted;
+    t_vec3  hit_point;
+	t_color local_color;
+    t_color reflected_color;
+	t_vec3	normal;
+	t_vec3 	reflected;
+	t_ray	reflected_ray;
+
+}				t_reflect_data;
 
 typedef struct s_mlx
 {

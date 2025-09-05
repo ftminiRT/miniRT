@@ -86,9 +86,7 @@ int		init_cylinder(char **args, t_env *rt);
 int		init_plane(char **args, t_env *rt);
 int		init_sphere(char **args, t_env *rt);
 //init_obj_bonus.c
-int		init_boloid(char **args, t_env *rt, t_objtype type);
 int		init_moebius(char **args, t_env *rt);
-int		init_triangle(char **args, t_env *rt);
 int		init_tore(char **args, t_env *rt);
 int		init_cone(char **args, t_env *rt);
 int	init_ring(char **args, t_env *rt);

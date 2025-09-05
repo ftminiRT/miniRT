@@ -35,6 +35,7 @@ FILES		= 	clean\
 				parsing/init_obj \
 				parsing/init_obj_bonus \
 				parsing/init_set \
+				parsing/ft_atod\
 				parsing/parsing_utils \
 				parsing/parsing_utils_bonus \
 				parsing/parsing \
@@ -59,7 +60,9 @@ FILES		= 	clean\
 				textures\
 				get_basics_uv\
 				get_advanced_uv\
-				hit_ring
+				hit_ring\
+				camera_transform\
+				ring_normal
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

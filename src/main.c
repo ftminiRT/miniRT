@@ -37,30 +37,14 @@ void	debug_print_bonus_object(t_obj obj)
 		printf("%f ", obj.scal2);
 		printf("%f\n", obj.scal3);
 	}
-	else if (obj.type == OT_TRIANGLE)
-	{
-		printf("TRIANGLE ----\n");
-		printf("pt1 = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("pt2 = %f, %f, %f\n", obj.pt2.x, obj.pt2.y, obj.pt2.z);
-		printf("pt3 = %f, %f, %f\n", obj.pt3.x, obj.pt3.y, obj.pt3.z);
-	}
-	else if (obj.type == OT_PARA || obj.type == OT_HYP)
-	{
-		if (obj.type == OT_PARA)
-			printf("PARABOLOID ----\n");
-		else
-			printf("HYPERBOLOID ----\n");
-		printf("summit = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
-		printf("open factor %f\n", obj.scal);
-	}
 	else if (obj.type == OT_MOEB)
 	{
-		printf("MOEBIUS ----\n");
-		printf("O ray origin = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("D ray dir = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
-		printf("main ray = %f\n", obj.scal);
-		printf("width = %f\n", obj.scal2);
+		printf("mo ");
+		printf("%f, %f, %f ", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("%f, %f, %f ", obj.n.x, obj.n.y, obj.n.z);
+		printf("%f \n", obj.scal);
+		printf("%f \n", obj.scal2);
+		printf("%f \n", obj.scal3);
 	}
 	else
 	{

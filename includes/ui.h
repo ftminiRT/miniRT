@@ -20,6 +20,17 @@
 # define UI_HEIGHT 500
 # define UI_CS_WIDTH 2
 # define UI_CS HEIGHT 5
+# define STEP_COLOR 5
+# define STEP_POS 5
+# define STEP_SH 10
+# define STEP_RF 0.1
+# define STEP_RAY_SP 5
+# define STEP_RAY_CY 5
+# define STEP_RAY_TO 5
+# define STEP_BIGRAY_TO 5
+# define STEP_RAY_RI 5
+# define STEP_BIGRAY_RI 5
+# define BTNSZ (t_uipt){26, 26}
 
 typedef enum e_itm_type
 {
@@ -69,5 +80,6 @@ typedef struct s_ui
 	void	*pane_img[OBJTYPENUMBER];
 
 }	t_ui;
+
 
 #endif

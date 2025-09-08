@@ -39,13 +39,17 @@ FILES		= 	clean\
 				parsing/parsing \
 				ui/build_pane/ui_build_co \
 				ui/build_pane/ui_build_cyl \
+				ui/build_pane/ui_build_dft \
 				ui/build_pane/ui_build_mo \
 				ui/build_pane/ui_build_pl \
+				ui/build_pane/ui_build_ri \
 				ui/build_pane/ui_build_sp \
+				ui/build_pane/ui_build_spot \
 				ui/build_pane/ui_build_to \
 				ui/build_pane/ui_build_utils \
 				ui/click_ui \
 				ui/ui_init \
+				ui/ui_panes \
 				ui/ui \
 				light_compute \
 				vec3_norm \
@@ -85,6 +89,8 @@ $(OBJ_DIR) :
 	$(QUIET) mkdir -p $(OBJ_DIR)
 	$(QUIET) mkdir -p $(OBJ_DIR)/parsing
 	$(QUIET) mkdir -p $(OBJ_DIR)/ui
+	$(QUIET) mkdir -p $(OBJ_DIR)/ui/build_pane
+
 
 
 all : $(NAME)

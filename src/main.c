@@ -29,23 +29,6 @@ void	debug_print_bonus_object(t_obj obj)
 		printf("short ray = %f\n", obj.scal);
 		printf("long ray = %f\n", obj.scal2);
 	}
-	else if (obj.type == OT_TRIANGLE)
-	{
-		printf("TRIANGLE ----\n");
-		printf("pt1 = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("pt2 = %f, %f, %f\n", obj.pt2.x, obj.pt2.y, obj.pt2.z);
-		printf("pt3 = %f, %f, %f\n", obj.pt3.x, obj.pt3.y, obj.pt3.z);
-	}
-	else if (obj.type == OT_PARA || obj.type == OT_HYP)
-	{
-		if (obj.type == OT_PARA)
-			printf("PARABOLOID ----\n");
-		else
-			printf("HYPERBOLOID ----\n");
-		printf("summit = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
-		printf("open factor %f\n", obj.scal);
-	}
 	else if (obj.type == OT_MOEB)
 	{
 		printf("MOEBIUS ----\n");
@@ -96,19 +79,16 @@ void	debug_print_set(t_env *rt)
 	printf("brightness = %f\n", rt->ambient.brightness);
 	printf("color = %d, %d, %d\n\n\n", rt->ambient.color.r, rt->ambient.color.g,
 		rt->ambient.color.b);
-	/////
 	printf("set cam ---- \n");
 	printf("pos = %f, %f, %f\n", rt->cam.pos.x, rt->cam.pos.y, rt->cam.pos.z);
 	printf("dir = %f, %f, %f\n", rt->cam.dir.x, rt->cam.dir.y, rt->cam.dir.z);
 	printf("fov = %d\n\n\n", rt->cam.fov);
-	/////
 	printf("set spot light ---- \n");
 	printf("pos = %f, %f, %f\n", rt->spot.pos.x, rt->spot.pos.y,
 		rt->spot.pos.z);
 	printf("brightness = %f\n", rt->spot.brightness);
 	printf("color = %d, %d, %d\n\n\n", rt->spot.color.r, rt->spot.color.g,
 		rt->spot.color.b);
-	/////
 	printf("DEBUG : OBJECTS\n///////////\n");
 	obj = rt->objects;
 	while (obj)
@@ -137,14 +117,14 @@ int	main(int ac, char **av)
 	t_env	rt;
 
 	if (ac < 2)
-		return (printf("Argument file needed\n"), 0);
+		return (printf("%d, %s\n",__LINE__, __FILE__), printf("Argument file needed\n"), 0);
 	env_init(&rt);
 	if (parsing(&rt, av[1]))
-		return (1);
+		return (printf("%d, %s\n",__LINE__, __FILE__),  1);
 	rt_mlx_init(&rt.mlx);
-	display_default_ui(&rt);
+	display_ui(&rt);
 	if (ui_init(&rt))
-		return (mrt_cleaner(&rt), 1);
+		return (printf("%d, %s\n",__LINE__, __FILE__), mrt_cleaner(&rt), 1);
 	ray_trace(&rt);
 	mlx_mouse_hook(rt.mlx.win, &mouse_hook, &rt);
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);

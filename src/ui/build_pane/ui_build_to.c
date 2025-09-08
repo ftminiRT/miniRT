@@ -12,7 +12,9 @@
 
 #include "minirt.h"
 
-int	build_pane_to(t_env *rt, t_uipane *current)
+int	build_pane_to(void *rt, t_uipane *current)
 {
+	(void) rt;
+	(void) current;
 	return (0);
 }

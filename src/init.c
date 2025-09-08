@@ -20,10 +20,8 @@ void	rt_mlx_init(t_mlx *mlx)
 	mlx->win = mlx_new_window(mlx->mlx, WIDTH + UI_WIDTH, HEIGHT, "miniRT");
 	if (!mlx->win)
 		error_exit("window error");
-	printf("test\n");
 	mlx->img.img = init_img(mlx, &mlx->img, WIDTH, HEIGHT);
 	mlx->ui.img = init_img(mlx, &mlx->ui, UI_WIDTH, UI_HEIGHT);
-	printf("test3\n");
 }
 
 void	init_rt(t_env *rt)
@@ -67,4 +65,5 @@ void	env_init(t_env *rt)
 	rt->selected.spot = &rt->spot;
 	rt->selected.amb = &rt->ambient;
 	rt->selected.obj = NULL;
+	rt->ui.dft_itms = 0;
 }

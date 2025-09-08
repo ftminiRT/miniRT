@@ -69,9 +69,7 @@ int			init_cylinder(char **args, t_env *rt);
 int			init_plane(char **args, t_env *rt);
 int			init_sphere(char **args, t_env *rt);
 //init_obj_bonus.c
-int			init_boloid(char **args, t_env *rt, t_objtype type);
 int			init_moebius(char **args, t_env *rt);
-int			init_triangle(char **args, t_env *rt);
 int			init_tore(char **args, t_env *rt);
 int			init_cone(char **args, t_env *rt);
 //init_set.c
@@ -118,13 +116,18 @@ void		debug_print_set(t_env *rt);
 /////////////// INTERFACE /////////////
 
 void		click_ui(int x, int y, t_env *rt);
-void		display_default_ui(t_env *rt);
+void		display_ui(t_env *rt);
 int 		ui_init(t_env *rt);
 int 		init_ui_panes(t_env *rt);
-int			build_pane_co(t_env *rt, t_uipane *current);
-int			build_pane_cyl(t_env *rt, t_uipane *current);
-int			build_pane_mo(t_env *rt, t_uipane *current);
-int			build_pane_pl(t_env *rt, t_uipane *current);
-int			build_pane_sp(t_env *rt, t_uipane *current);
-int			build_pane_to(t_env *rt, t_uipane *current);
+void		init_pane_builders(t_env *rt);
+t_items		*add_new_button(void *value, double factor, t_uipt pos, t_uipt scale);
+int			build_pane_co(void *rt, t_uipane *current);
+int			build_pane_cyl(void *rt, t_uipane *current);
+int			build_pane_dft(void *rt, t_uipane *current);
+int			build_pane_mo(void *rt, t_uipane *current);
+int			build_pane_pl(void *rt, t_uipane *current);
+int			build_pane_ri(void *rt, t_uipane *current);
+int			build_pane_sp(void *rt, t_uipane *current);
+int			build_pane_spot(void *rt, t_uipane *current);
+int			build_pane_to(void *rt, t_uipane *current);
 #endif

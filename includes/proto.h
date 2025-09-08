@@ -123,8 +123,10 @@ int		swapd(double *a, double *b);
 
 t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point);
 t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point);
-double	check_discs(t_obj *obj, t_vec3 hit_point);
+t_vec3 torus_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3	ring_normal(t_obj *obj, t_vec3 hit_point);
 t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point);
+double	check_discs(t_obj *obj, t_vec3 hit_point);
 t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point);
 
 /////////////// CLEAN /////////////

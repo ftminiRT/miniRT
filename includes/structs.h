@@ -13,6 +13,7 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include "minirt.h"
 # include "ui.h"
 
 typedef struct s_vec3
@@ -205,8 +206,6 @@ typedef struct s_proj_data
 	double			sqrt_d;
 }					t_proj_data;
 
-# define OBJTYPENUMBER 9
-
 typedef enum e_objtype
 {
 	OT_SPHERE,
@@ -216,7 +215,8 @@ typedef enum e_objtype
 	OT_TORE,
 	OT_MOEB,
 	OT_RING,
-	OT_LIGHT
+	OT_LIGHT,
+	OT_DFT
 }               t_objtype;
 
 typedef enum e_axis
@@ -346,9 +346,11 @@ typedef struct s_env
 	t_light		spot;
 	t_obj		*objects;
 	t_select	selected;
-	double		(*hit_object[OBJTYPENUMBER + 1])(t_ray *, t_obj *);
-	t_vec3		(*get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3);
+	t_hit_funcs	hit_object;
+	t_get_norm	get_norm;
+	t_get_uv	get_uv;
 	t_mlx		mlx;
+	t_ui		ui;
 	int			log_fd;
 }				t_env;
 

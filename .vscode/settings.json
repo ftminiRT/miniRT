@@ -3,6 +3,7 @@
         "minirt.h": "c",
         "limits": "c",
         "libft.h": "c",
-        "proto.h": "c"
+        "proto.h": "c",
+        "keycodes.h": "c"
     }
 }

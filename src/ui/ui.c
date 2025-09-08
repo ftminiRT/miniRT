@@ -38,7 +38,7 @@ void	ui_print_values(t_env *rt, void *img)
 
 	type = rt->ui.current->type;
 	display_color_frame(rt, img, type);
-	wipe_ui_values(rt, img);
+	// wipe_ui_values(rt, img);
 	//faire un tableau de fonction pour chaque type de fenetre
 }
 

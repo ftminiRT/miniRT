@@ -151,7 +151,6 @@ int	main(int ac, char **av)
 	rt_mlx_init(&rt.mlx);
 	load_textures(&rt);
 	debug_print_set(&rt);
-	display_ui(&rt);
 	if (ui_init(&rt))
 		return (printf("%d, %s\n",__LINE__, __FILE__), mrt_cleaner(&rt), 1);
 	display_ui(&rt);

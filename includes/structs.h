@@ -209,14 +209,16 @@ typedef struct s_proj_data
 
 typedef enum e_objtype
 {
+	OT_DFT,
 	OT_SPHERE,
 	OT_PLANE,
 	OT_CYL,
 	OT_CONE,
 	OT_TORE,
 	OT_MOEB,
-	OT_RING
-}					t_objtype;
+	OT_RING,
+	OT_LIGHT
+}               t_objtype;
 
 typedef enum e_axis
 {

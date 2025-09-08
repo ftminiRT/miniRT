@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ui_build_mo.c                                      :+:      :+:    :+:   */
+/*   ui_build_spot.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-int	build_pane_mo(void *rt, t_uipane *current)
+int	build_pane_spot(void *rt, t_uipane *current)
 {
 	(void) rt;
 	(void) current;

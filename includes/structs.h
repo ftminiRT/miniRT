@@ -351,6 +351,7 @@ typedef struct s_env
 	t_get_uv	get_uv;
 	t_mlx		mlx;
 	t_ui		ui;
+	bool		autorender;
 	int			log_fd;
 }				t_env;
 

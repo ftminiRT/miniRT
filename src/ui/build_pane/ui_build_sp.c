@@ -14,7 +14,7 @@
 
 int	build_pane_sp(void *rt, t_uipane *current)
 {
-	double step = 1;
+	double step = 50;
 	t_obj *o;
 
 	(void)rt;

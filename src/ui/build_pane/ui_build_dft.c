@@ -16,7 +16,7 @@ int	build_pane_dft(void *rt, t_uipane *current)
 {
 	t_cam	*c;
 	t_light	*a;
-	int		step = 5;
+	int		step = 50;
 
 	(void)rt;
 	c = current->cam;

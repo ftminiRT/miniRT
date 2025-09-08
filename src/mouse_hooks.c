@@ -21,17 +21,10 @@ void	modify_scal(t_select *s, double step)
 		s->cam->fov += step;
 }
 
-static bool is_in_window(int x, int y)
-{
-	return (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT);
-}
-
-static bool useful_hook(int bt)
-{
-	if (bt == SCROLL_UP || bt == SCROLL_DOWN)
-		return (true);
-	return (false);
-}
+// static bool is_in_window(int x, int y)
+// {
+// 	return (x >= 0 && x < WIDTH + UI_WIDTH && y >= 0 && y < HEIGHT);
+// }
 
 static t_uipane *get_current(t_env *rt, t_obj *clicked)
 {
@@ -49,7 +42,7 @@ int	mouse_hook(int bt, int x, int y, t_env *rt)
 	double	step;
 
 	step = 1;
-	if (bt == LEFT_CLIC && is_in_window(x, y))
+	if (bt == LEFT_CLIC)
 	{
         if (x >= WIDTH)
             click_ui(x - WIDTH, y, rt);
@@ -68,10 +61,8 @@ int	mouse_hook(int bt, int x, int y, t_env *rt)
 		modify_scal(&rt->selected, step);
 	if (bt == SCROLL_DOWN)
 		modify_scal(&rt->selected, -step);
-	if (useful_hook(bt))
-	{
+    if (rt->render)
         ray_trace(rt);
-    }
     display_ui(rt);
 	return (1);
 }

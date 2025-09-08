@@ -15,7 +15,10 @@
 void	exec_button(t_env *rt, t_items *itm)
 {
 	if (itm->type == UIT_SCL_BTN)
+	{
+		printf("bouton\n");
 		*itm->btn.value = *itm->btn.value + itm->btn.factor;
+	}
 	else
 		itm->function(rt);
 }

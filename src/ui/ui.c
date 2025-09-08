@@ -1,29 +1,54 @@
 #include "minirt.h"
 #include "ui.h"
 
-static void	put_rgb_picker(t_env *rt, int x, int y)
+void	display_color_frame(t_env *rt, void *img, t_objtype type)
+{
+	t_color *clr;
+
+	(void)	img;
+	if (type == OT_LIGHT || type == OT_DFT)
+		clr = &rt->ui.current->light->color;
+	else
+		clr = &rt->ui.current->obj->color;
+	printf("r:%d g:%d b:%d\n", clr->r, clr->g, clr->b);
+}
+
+void	wipe_ui_values(t_env *rt, void *img)
 {
 	int	i;
-	int j;
+	int	j;
 
-	i = 0;
-	while (i < 3)
+	(void) rt;
+	j = 79;
+	while (j < 495)
 	{
-		j = 30;
-		while (j < 150)
+		i = 149;
+		while (i < 200)
 		{
-			putpixel_ui(x + j, y, rt, (t_color){160, 160, 160});
-			putpixel_ui(x + j, y + 1, rt, (t_color){160, 160, 160});
-			j++;
+			putpixel_ui_img(i, j, (t_color){0,0,0}, img);
+			printf("%d, %d\n", i, j);
+			i++;
 		}
-		i++;
-		y += 22;
+		j++;
 	}
+
+}
+
+void	ui_print_values(t_env *rt, void *img)
+{
+	t_objtype type;
+
+	type = rt->ui.current->type;
+	display_color_frame(rt, img, type);
+	wipe_ui_values(rt, img);
+	//faire un tableau de fonction pour chaque type de fenetre
 }
 
 void	display_ui(t_env *rt)
 {	
 	void	*img;
+
 	img = rt->ui.pane_img[rt->ui.current->type];
+	ui_print_values(rt, img);
 	mlx_put_image_to_window(rt->mlx.mlx, rt->mlx.win, img, WIDTH, 0);
 }

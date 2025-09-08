@@ -25,6 +25,7 @@ int			close_window(t_env *rt);
 int			mouse_hook(int bt, int x, int y, t_env *e);
 void		putpixel(int x, int y, t_env *rt, t_color c);
 void		putpixel_ui(int x, int y, t_env *rt, t_color c);
+void		putpixel_ui_img(int x, int y, t_color c, void *img);
 t_mlxdata	*init_img(t_mlx *mlx, t_mlxdata *img, int x, int y);
 
 ////////////// VEC3 LIB ////////////////

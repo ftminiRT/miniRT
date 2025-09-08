@@ -33,6 +33,16 @@ static bool useful_hook(int bt)
 	return (false);
 }
 
+static t_uipane *get_current(t_env *rt, t_obj *clicked)
+{
+    t_uipane *current;
+
+    current = rt->ui.stock;
+    while (current && current->obj != clicked)
+        current = current->next;
+    return (current);
+}
+
 int	mouse_hook(int bt, int x, int y, t_env *rt)
 {
 	t_obj	*clicked;
@@ -50,6 +60,7 @@ int	mouse_hook(int bt, int x, int y, t_env *rt)
             {
                 rt->selected.type = OBJ;
                 rt->selected.obj = clicked;
+                rt->ui.current = get_current(rt, clicked);
             }
 		}
 	}

@@ -63,7 +63,7 @@ typedef struct s_items
 
 typedef struct s_uipane
 {
-	t_objtype		type;
+	size_t			type;
 	struct s_obj	*obj;
 	struct s_cam	*cam;
 	struct s_light	*light;

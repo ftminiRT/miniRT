@@ -154,6 +154,7 @@ int	main(int ac, char **av)
 	display_ui(&rt);
 	if (ui_init(&rt))
 		return (printf("%d, %s\n",__LINE__, __FILE__), mrt_cleaner(&rt), 1);
+	display_ui(&rt);
 	ray_trace(&rt);
 	mlx_mouse_hook(rt.mlx.win, &mouse_hook, &rt);
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);

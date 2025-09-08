@@ -87,7 +87,7 @@ void	normalize_objs(t_env *rt)
 			|| objs->type == OT_RING)
 			vec3_normalize(&objs->n);
 		if (objs->scal < EPSILON)
-			objs->scal = EPSILON;
+			objs->scal = 0;
 		if (objs->scal2 < EPSILON && (objs->type == OT_TORE
 				|| objs->type == OT_RING))
 			objs->scal2 = 0;

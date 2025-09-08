@@ -1,0 +1,101 @@
+#include "minirt.h"
+
+void	handle_r_and_zarr(double *r, double *zarr)
+{
+	r[0] = zarr[0];
+	r[1] = zarr[1];
+	r[2] = zarr[2];
+	r[3] = zarr[3];
+}
+
+static void	compute_coeffs(t_ray *ray, t_obj *obj, double *a)
+{
+	t_basis	b;
+	t_ring	to;
+
+	to.br = obj->scal2;
+	to.r = obj->scal;
+	init_base(obj, &b);
+	to.ro = (t_vec3){vec3_dot(vec3_sub(ray->pt, obj->pt), b.u),
+		vec3_dot(vec3_sub(ray->pt, obj->pt), b.w), vec3_dot(vec3_sub(ray->pt,
+				obj->pt), b.v)};
+	to.rd = (t_vec3){vec3_dot(ray->dir, b.u), vec3_dot(ray->dir, b.w),
+		vec3_dot(ray->dir, b.v)};
+	to.dd = vec3_dot(to.rd, to.rd);
+	to.e = vec3_dot(to.ro, to.ro) - (to.br * to.br + to.r * to.r);
+	to.f = vec3_dot(to.ro, to.rd);
+	to.four_br2 = 4.0 * to.br * to.br;
+	a[0] = (to.e * to.e - to.four_br2 * (to.r * to.r - to.ro.y * to.ro.y))
+		/ (to.dd * to.dd);
+	a[1] = (4.0 * to.f * to.e + 2.0 * to.four_br2 * to.ro.y * to.rd.y) / (to.dd
+			* to.dd);
+	a[2] = (2.0 * to.dd * to.e + 4.0 * to.f * to.f + to.four_br2 * to.rd.y
+			* to.rd.y) / (to.dd * to.dd);
+	a[3] = (4.0 * to.dd * to.f) / (to.dd * to.dd);
+}
+
+double	hit_torus(t_ray *ray, t_obj *obj)
+{
+	double	a[4];
+	double	roots[4];
+	int		num_real_roots;
+
+	if (!obj->scal || !obj->scal2)
+		return (INFINITY);
+	compute_coeffs(ray, obj, a);
+	num_real_roots = solve_quartic(a, roots);
+	if (num_real_roots == 0)
+		return (INFINITY);
+	if (num_real_roots == 2)
+	{
+		if (roots[0] >= 0)
+			return (roots[0]);
+		if (roots[1] >= 0)
+			return (roots[1]);
+		return (INFINITY);
+	}
+	num_real_roots = -1;
+	while (++num_real_roots < 4)
+		if (roots[num_real_roots] > 0)
+			return (roots[num_real_roots]);
+	return (INFINITY);
+}
+
+t_vec3 torus_normal(t_obj *obj, t_vec3 hit_point)
+{
+    t_vec3 geo_normal;
+    t_normap normap;
+    t_basis b;
+    t_vec3 local_hit;
+    t_vec3 center_to_hit;
+    t_vec3 center_ring;
+    double br, r;
+    
+    br = obj->scal2;
+    r = obj->scal;
+    init_base(obj, &b);
+    local_hit = (t_vec3){
+        vec3_dot(vec3_sub(hit_point, obj->pt), b.u),
+        vec3_dot(vec3_sub(hit_point, obj->pt), b.w), 
+        vec3_dot(vec3_sub(hit_point, obj->pt), b.v)
+    };
+    center_to_hit = (t_vec3){local_hit.x, 0, local_hit.z};
+    vec3_normalize(&center_to_hit);
+    center_ring = vec3_scalmult(br, center_to_hit);
+    geo_normal = vec3_sub(local_hit, center_ring);
+    vec3_normalize(&geo_normal);
+    geo_normal = (t_vec3){
+        vec3_dot(geo_normal, b.u),
+        vec3_dot(geo_normal, b.w),
+        vec3_dot(geo_normal, b.v)
+    };
+    if (!obj->normal_map_data)
+        return (geo_normal);
+    normap.tangent = vec3_cross(obj->n, geo_normal);
+    vec3_normalize(&normap.tangent);
+    normap.bitangent = obj->n;
+    normap.u = atan2(center_to_hit.z, center_to_hit.x) / (2.0 * M_PI) + 0.5;
+    normap.v = 0.5 + local_hit.y / (2.0 * r);
+    return (apply_normal_mapping(geo_normal, normap.tangent, normap.bitangent,
+            sample_normal_map(obj, normap.u, normap.v)));
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keycodes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-08-29 13:02:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-08-29 13:02:57 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/08/29 13:02:57 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/04 23:23:00 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,35 @@
 # define KEY_8 56
 # define KEY_9 57
 # define KEY_PLUS 65451
+# define KEY_PLUS2 61
 # define KEY_MINUS 65453
+# define KEY_MINUS2 45 
 # define KEY_ESC 65307
 # define KEY_ENTER 65293
 # define KEY_TAB 65289
 # define KEY_A 97
 # define KEY_B 98
 # define KEY_C 99
+# define KEY_E 101
 # define KEY_F 102
 # define KEY_I 105
 # define KEY_J 106
+# define KEY_K 107
+# define KEY_L 108
 # define KEY_M 109
 # define KEY_N 110
 # define KEY_O 111
 # define KEY_P 112
+# define KEY_Q 113
+# define KEY_R 114
 # define KEY_S 115
 # define KEY_T 116
+# define KEY_U 117
+# define KEY_V 118
+# define KEY_W 119
+# define KEY_X 120
+# define KEY_Y 121
+# define KEY_Z 122
 # define KEY_LEFT 65361
 # define KEY_UP 65362
 # define KEY_RIGHT 65363

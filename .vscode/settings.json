@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "minirt.h": "c"
+        "minirt.h": "c",
+        "limits": "c",
+        "libft.h": "c",
+        "proto.h": "c"
     }
 }

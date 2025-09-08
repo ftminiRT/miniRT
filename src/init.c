@@ -6,11 +6,46 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:48:44 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 19:20:02 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/05 08:10:23 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void	init_quartic_solver(t_quartic *q, double *a)
+{
+	q->aa = a[3] * a[3];
+	q->pp = a[2] - (3.0 / 8.0) * q->aa;
+	q->qq = a[1] - (1.0 / 2.0) * a[3] * (a[2] - (1.0 / 4.0) * q->aa);
+	q->rr = a[0] - (1.0 / 4.0) * (a[3] * a[1] - (1.0 / 4.0) * q->aa * (a[2]
+				- (3.0 / 16.0) * q->aa));
+	q->rc = (1.0 / 2.0) * q->pp;
+	q->sc = (1.0 / 4.0) * ((1.0 / 4.0) * q->pp * q->pp - q->rr);
+	q->tc = -((1.0 / 8.0) * q->qq * (1.0 / 8.0) * q->qq);
+	q->qcub = (q->rc * q->rc - 3 * q->sc);
+	q->rcub = (2 * q->rc * q->rc * q->rc - 9 * q->rc * q->sc + 27 * q->tc);
+	q->bq = q->qcub / 9;
+	q->br = q->rcub / 54;
+	q->bq3 = q->bq * q->bq * q->bq;
+	q->br2 = q->br * q->br;
+	q->cr2 = 729 * q->rcub * q->rcub;
+	q->cq3 = 2916 * q->qcub * q->qcub * q->qcub;
+	q->disc = (q->cr2 - q->cq3) / 2125764.0;
+	q->w1r = 0.0;
+	q->w1i = 0.0;
+	q->w2r = 0.0;
+	q->w2i = 0.0;
+}
+
+void	init_base(t_obj *obj, t_basis *b)
+{
+	b->w = vec3_normalized(obj->n);
+	if (fabs(b->w.y) < 0.9)
+		b->u = vec3_normalized(vec3_cross((t_vec3){0, 1, 0}, b->w));
+	else
+		b->u = vec3_normalized(vec3_cross((t_vec3){1, 0, 0}, b->w));
+	b->v = vec3_cross(b->w, b->u);
+}
 
 void	rt_mlx_init(t_mlx *mlx)
 {
@@ -26,12 +61,16 @@ void	rt_mlx_init(t_mlx *mlx)
 
 void	init_rt(t_env *rt)
 {
-	normalize_objs_normal(rt);
+	normalize_objs(rt);
+	if (rt->ambient.brightness < 0)
+		rt->ambient.brightness = 0;
+	if (rt->ambient.brightness > 1)
+		rt->ambient.brightness = 1;
 	vec3_normalize(&rt->cam.dir);
 	rt->ray.pt = rt->cam.pos;
 }
 
-void	normalize_objs_normal(t_env *rt)
+void	normalize_objs(t_env *rt)
 {
 	t_obj	*objs;
 
@@ -40,30 +79,17 @@ void	normalize_objs_normal(t_env *rt)
 	{
 		if (!objs->shine)
 			objs->shine = 100;
-		if (objs->type == OT_PLANE || objs->type == OT_CYL || objs->type == OT_MOEB)
+		if (objs->type == OT_PLANE || objs->type == OT_CYL
+			|| objs->type == OT_MOEB || objs->type == OT_TORE
+			|| objs->type == OT_RING)
 			vec3_normalize(&objs->n);
+		if (objs->scal < EPSILON)
+			objs->scal = 0;
+		if (objs->scal2 < EPSILON && (objs->type == OT_TORE
+				|| objs->type == OT_RING))
+			objs->scal2 = 0;
+		if (objs->scal3 < EPSILON && objs->type == OT_RING)
+			objs->scal3 = 0;
 		objs = objs->next;
 	}
-}
-
-void	env_init(t_env *rt)
-{
-	rt->hit_object[OT_SPHERE] = hit_sphere;
-	rt->get_norm[OT_SPHERE] = sphere_normal;
-	rt->hit_object[OT_CYL] = hit_cylinder;
-	rt->get_norm[OT_CYL] = cylinder_normal;
-	rt->hit_object[OT_PLANE] = hit_plane;
-	rt->get_norm[OT_PLANE] = plane_normal;
-	rt->hit_object[OT_MOEB] = hit_moebius;
-	rt->get_norm[OT_MOEB] = moebius_normal;
-	rt->cam.is_set = 0;
-	rt->ambient.is_set = 0;
-	rt->spot.is_set = 0;
-	rt->spot.next = NULL;
-	rt->selected.type = CAM;
-	rt->selected.cam = &rt->cam;
-	rt->selected.spot = &rt->spot;
-	rt->selected.amb = &rt->ambient;
-	rt->selected.obj = NULL;
-	rt->ui.dft_itms = 0;
 }

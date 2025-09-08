@@ -105,12 +105,17 @@ t_color	color_clamp(t_color color);
 t_vec3	get_normal(t_obj *obj, t_vec3 hit_point);
 t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point, t_ray ray);
 t_color get_checkered_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
+bool	in_shadow(t_env *rt, t_light *spot, t_vec3 hit_point);
 
 /////////////// CORE COMPUTE /////////////
 
 t_obj	*compute_intersections(t_env *rt, t_ray *ray);
 void	compute_ray(t_env *rt, t_ray *ray, int i, int j);
 void	ray_trace(t_env *rt);
+
+/////////////// UTILS /////////////
+
+int	swapd(double *a, double *b);
 
 /////////////// OBJ NORMALS /////////////
 
@@ -130,6 +135,8 @@ void	mrt_cleaner(t_env *rt);
 void	normalize_objs(t_env *rt);
 void	init_rt(t_env *rt);
 void	debug_print_set(t_env *rt);
+void	init_base(t_obj *obj, t_basis *b);
+void	init_quartic_solver(t_quartic *q, double *a);
 
 /////////////// GALOIS ALGEBRA /////////////
 
@@ -141,6 +148,7 @@ void		set_d3(double *u, double u0, double u1, double u2);
 int			deal_with_degenerate(double *a, double *r);
 void		find_solution_to_resolvent_cubic(t_quartic *q);
 void		handle_r_and_zarr(double *r, double *zarr);
+void	deal_with_pos_disc(t_quartic *q);
 
 /////////////// MAPPING /////////////
 

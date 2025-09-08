@@ -88,13 +88,13 @@ double	hit_moebius(t_ray *ray, t_obj *obj)
 	return (choose_mobi_root(root, solve_cubic(a, root), &local_ray, obj));
 }
 
-t_vec3 moebius_normal(t_obj *obj, t_vec3 hit_point)
+t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point)
 {
-	t_vec3 geo_normal;
-	t_vec3 tangent;
-	t_vec3 bitangent;
-	t_vec3 map_normal;
-	t_normap normap;
+	t_vec3		geo_normal;
+	t_vec3		tangent;
+	t_vec3		bitangent;
+	t_vec3		map_normal;
+	t_normap	normap;
 
 	geo_normal = vec3_sub(hit_point, obj->pt);
 	vec3_normalize(&geo_normal);
@@ -106,5 +106,5 @@ t_vec3 moebius_normal(t_obj *obj, t_vec3 hit_point)
 	normap.u = atan2(hit_point.y, hit_point.x) / (2.0 * M_PI) + 0.5;
 	normap.v = 0.5 + hit_point.z / obj->scal;
 	map_normal = sample_normal_map(obj, normap.u, normap.v);
-	return apply_normal_mapping(geo_normal, tangent, bitangent, map_normal);
+	return (apply_normal_mapping(geo_normal, tangent, bitangent, map_normal));
 }

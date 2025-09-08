@@ -1,42 +1,27 @@
 #include "minirt.h"
 
-static void	init_base(t_obj *obj, t_basis *b)
-{
-	b->w = vec3_normalized(obj->n);
-	if (fabs(b->w.y) < 0.9)
-		b->u = vec3_normalized(vec3_cross((t_vec3){0, 1, 0}, b->w));
-	else
-		b->u = vec3_normalized(vec3_cross((t_vec3){1, 0, 0}, b->w));
-	b->v = vec3_cross(b->w, b->u);
-}
-
 static void	change_basis(t_ray *ray, t_obj *obj, t_vec3 *ro, t_vec3 *rd)
 {
-    t_basis b;
+	t_basis	b;
 	t_vec3	tmp;
 
 	init_base(obj, &b);
 	tmp = vec3_sub(ray->pt, obj->pt);
-	*ro = (t_vec3){
-		vec3_dot(tmp, b.u), vec3_dot(tmp, b.w), vec3_dot(tmp, b.v)};
-	*rd = (t_vec3){
-		vec3_dot(ray->dir, b.u),
-		vec3_dot(ray->dir, b.w),
+	*ro = (t_vec3){vec3_dot(tmp, b.u), vec3_dot(tmp, b.w), vec3_dot(tmp, b.v)};
+	*rd = (t_vec3){vec3_dot(ray->dir, b.u), vec3_dot(ray->dir, b.w),
 		vec3_dot(ray->dir, b.v)};
 }
 
 static void	apply_scaling(t_vec3 *ro, t_vec3 *rd, t_obj *obj, double *R)
 {
-	*ro = (t_vec3){ro->x / obj->scal, ro->y / obj->scal3,
-		ro->z / obj->scal};
-	*rd = (t_vec3){rd->x / obj->scal, rd->y / obj->scal3,
-		rd->z / obj->scal};
+	*ro = (t_vec3){ro->x / obj->scal, ro->y / obj->scal3, ro->z / obj->scal};
+	*rd = (t_vec3){rd->x / obj->scal, rd->y / obj->scal3, rd->z / obj->scal};
 	*R /= obj->scal;
 }
 
 static void	compute_coeffs_one_ring(t_ray *ray, t_obj *obj, double *a)
 {
-    t_ring  r;
+	t_ring	r;
 
 	r.r = obj->scal2;
 	change_basis(ray, obj, &r.ro, &r.rd);
@@ -44,10 +29,12 @@ static void	compute_coeffs_one_ring(t_ray *ray, t_obj *obj, double *a)
 	r.dd = vec3_dot(r.rd, r.rd);
 	r.e = vec3_dot(r.ro, r.ro) - (r.r * r.r + 1.0);
 	r.f = vec3_dot(r.ro, r.rd);
-	r.four_r2 = 4.0 * r.r * r.r;
-	a[0] = (r.e * r.e - r.four_r2 * (1.0 - r.ro.y * r.ro.y)) / (r.dd * r.dd);
-	a[1] = (4.0 * r.f * r.e + 2.0 * r.four_r2 * r.ro.y * r.rd.y) / (r.dd * r.dd);
-	a[2] = (2.0 * r.dd * r.e + 4.0 * r.f * r.f + r.four_r2 * r.rd.y * r.rd.y) / (r.dd * r.dd);
+	r.four_br2 = 4.0 * r.r * r.r;
+	a[0] = (r.e * r.e - r.four_br2 * (1.0 - r.ro.y * r.ro.y)) / (r.dd * r.dd);
+	a[1] = (4.0 * r.f * r.e + 2.0 * r.four_br2 * r.ro.y * r.rd.y) / (r.dd
+			* r.dd);
+	a[2] = (2.0 * r.dd * r.e + 4.0 * r.f * r.f + r.four_br2 * r.rd.y * r.rd.y)
+		/ (r.dd * r.dd);
 	a[3] = (4.0 * r.dd * r.f) / (r.dd * r.dd);
 }
 

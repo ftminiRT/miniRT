@@ -79,15 +79,12 @@ void	handle_rotation(int kc, t_env *rt, double step)
 
 void	handle_object_mod(int kc, t_env *rt, double step)
 {
-	if (rt->selected.type == OBJ &&
-			rt->selected.obj->type == OT_RING &&
-			kc == KEY_Q)
+	if (rt->selected.type == OBJ && rt->selected.obj->type == OT_RING
+		&& kc == KEY_Q)
 		rt->selected.obj->scal3 -= 1;
-	if (rt->selected.type == OBJ &&
-			rt->selected.obj->type == OT_RING &&
-			kc == KEY_W)
+	if (rt->selected.type == OBJ && rt->selected.obj->type == OT_RING
+		&& kc == KEY_W)
 		rt->selected.obj->scal3 += 1;
-		
 	if (rt->selected.type != OBJ || !rt->selected.obj)
 		return ;
 	if (rt->selected.obj->type == OT_MOEB && kc == KEY_MINUS2)
@@ -97,6 +94,10 @@ void	handle_object_mod(int kc, t_env *rt, double step)
 	if (rt->selected.obj->type == OT_RING && kc == KEY_MINUS2)
 		rt->selected.obj->scal2 -= step;
 	if (rt->selected.obj->type == OT_RING && kc == KEY_PLUS2)
+		rt->selected.obj->scal2 += step;
+	if (rt->selected.obj->type == OT_TORE && kc == KEY_MINUS2)
+		rt->selected.obj->scal2 -= step;
+	if (rt->selected.obj->type == OT_TORE && kc == KEY_PLUS2)
 		rt->selected.obj->scal2 += step;
 	if (rt->selected.type == OBJ && kc == KEY_X)
 		rt->selected.obj->checkered = !rt->selected.obj->checkered;

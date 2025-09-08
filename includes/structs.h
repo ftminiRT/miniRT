@@ -58,6 +58,8 @@ typedef struct s_phong
 	t_vec3			view;
 	t_vec3			reflected;
 	t_vec3			normal;
+	t_color			diffuse;
+	t_color			specular;
 }					t_phong;
 
 typedef struct s_normap
@@ -162,13 +164,26 @@ typedef struct s_ring
 {
 	t_vec3	ro;
 	t_vec3	rd;
+	double	br;
 	double	r;
 	double	dd;
 	double	e;
 	double	f;
-	double	four_r2;
-
+	double	four_br2;
 }				t_ring;
+
+typedef struct s_ring_uv
+{
+	t_vec3	u_axis;
+	t_vec3	v_axis;
+	t_vec3	w_axis;
+	t_vec3	rel;
+	t_vec3	local;
+	double	theta;
+	double	u;
+	double	v;
+	double	phi;
+}	t_ring_uv;
 
 
 typedef struct s_proj_data
@@ -311,6 +326,7 @@ typedef struct s_select
 
 typedef double		(*t_hit_funcs[OBJTYPENUMBER + 1])(t_ray *, t_obj *);
 typedef t_vec3		(*t_get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3);
+typedef void		(*t_get_uv[OBJTYPENUMBER + 1])(t_obj *, t_vec3, int map[2]);
 
 typedef struct s_env
 {
@@ -322,6 +338,7 @@ typedef struct s_env
 	t_select		selected;
 	t_hit_funcs		hit_object;
 	t_get_norm		get_norm;
+	t_get_uv		get_uv;
 	t_mlx			mlx;
 	int				log_fd;
 }					t_env;

@@ -19,7 +19,8 @@ double	vec3_norm(t_vec3 a)
 
 t_vec3	vec3_normalized(t_vec3 a)
 {
-	return ((t_vec3){a.x / vec3_norm(a), a.y / vec3_norm(a), a.z / vec3_norm(a)});
+	return ((t_vec3){a.x / vec3_norm(a), a.y / vec3_norm(a), a.z
+		/ vec3_norm(a)});
 }
 
 double	vec3_sqnorm(t_vec3 a)

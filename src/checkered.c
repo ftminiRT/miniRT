@@ -9,7 +9,6 @@ int	ft_clamp(double x, int min, int max)
 	return (x);
 }
 
-
 t_color	get_checkered_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 {
 	int	map[2];
@@ -23,37 +22,15 @@ t_color	get_checkered_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 	else if (obj->type == OT_CYL)
 		get_cylinder_uv(obj, hit_point, map);
 	else if (obj->type == OT_TORE)
-        get_torus_uv(obj, hit_point, map);
-    else if (obj->type == OT_MOEB)
-        get_moebius_uv(obj, hit_point, map);
+		get_torus_uv(obj, hit_point, map);
+	else if (obj->type == OT_MOEB)
+		get_moebius_uv(obj, hit_point, map);
 	else if (obj->type == OT_RING)
 		get_ring_uv(obj, hit_point, map);
 	else
 		return (obj->color);
-
 	checker = (map[0] + map[1]) % 2;
 	if (checker == 0)
 		return (obj->color);
 	return ((t_color){0, 0, 0});
 }
-
-
-// t_color	get_checkered_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
-// {
-// 	int	map[2];
-// 	int	checker;
-
-// 	(void)rt;
-// 	if (obj->type == OT_PLANE)
-// 		get_plane_uv(obj, hit_point, map);
-// 	else if (obj->type == OT_SPHERE)
-// 		get_sphere_uv(obj, hit_point, map);
-// 	else if (obj->type == OT_CYL)
-// 		get_cylinder_uv(obj, hit_point, map);
-// 	else
-// 		return (obj->color);
-// 	checker = (map[0] + map[1]) % 2;
-// 	if (checker == 0)
-// 		return (obj->color);
-// 	return ((t_color){0, 0, 0});
-// }

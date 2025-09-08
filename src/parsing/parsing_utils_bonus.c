@@ -60,9 +60,9 @@ int	set_reflect(t_obj *new, char *arg)
 	return (0);
 }
 
-int     set_bonus_attributes(char **args, t_env *rt, t_obj *new)
+int	set_bonus_attributes(char **args, t_env *rt, t_obj *new)
 {
-	int		i;
+	int i;
 
 	(void)rt;
 	i = 0;
@@ -70,8 +70,7 @@ int     set_bonus_attributes(char **args, t_env *rt, t_obj *new)
 	{
 		if (args[i][ft_strlen(args[i]) - 1] == '\n')
 			args[i][ft_strlen(args[i]) - 1] = 0;
-		if (!ft_strncmp(args[i], "s:", 2) && 
-			set_shine(new, args[i] + 2))
+		if (!ft_strncmp(args[i], "s:", 2) && set_shine(new, args[i] + 2))
 			return (1);
 		if (!ft_strncmp(args[i], "t:", 2))
 		{
@@ -79,13 +78,11 @@ int     set_bonus_attributes(char **args, t_env *rt, t_obj *new)
 			if (!ft_strncmp(args[i] + 2, "checkered", 10))
 				new->checkered = 1;
 			else if (set_texture(new, args[i] + 2))
-				return(1);
+				return (1);
 		}
-		if (!ft_strncmp(args[i], "n:", 2) &&
-			set_normal_map(new, args[i] + 2))
+		if (!ft_strncmp(args[i], "n:", 2) && set_normal_map(new, args[i] + 2))
 			return (1);
-		if (!ft_strncmp(args[i], "r:", 2) &&
-			set_reflect(new, args[i] + 2))
+		if (!ft_strncmp(args[i], "r:", 2) && set_reflect(new, args[i] + 2))
 			return (1);
 		i++;
 	}

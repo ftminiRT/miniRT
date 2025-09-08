@@ -89,53 +89,6 @@ int	init_ring(char **args, t_env *rt)
 	return (0);
 }
 
-int	init_triangle(char **args, t_env *rt)
-{
-	t_obj	*new;
-	size_t	arg_len;
-
-	arg_len = count_arg(args);
-	new = create_object(rt);
-	if (!new)
-		return (1);
-	new->type = OT_TRIANGLE;
-	if (str_to_vec3(&new->pt, args[1]))
-		return (1);
-	if (str_to_vec3(&new->pt2, args[2]))
-		return (1);
-	if (str_to_vec3(&new->pt3, args[3]))
-		return (1);
-	if (str_to_colors(&new->color, args[4]))
-		return (1);
-	if (arg_len == 6)
-		return (set_shine(new, args[5]));
-	return (0);
-}
-
-int	init_boloid(char **args, t_env *rt, t_objtype type)
-{
-	t_obj	*new;
-	size_t	arg_len;
-
-	arg_len = count_arg(args);
-	new = create_object(rt);
-	if (!new)
-		return (1);
-	new->type = type;
-	if (str_to_vec3(&new->pt, args[1]))
-		return (1);
-	if (str_to_vec3(&new->n, args[2]) || check_norm(new->n))
-		return (1);
-	if (!str_is_double(args[3]))
-		return (1);
-	new->scal = ft_atod(args[3]);
-	if (str_to_colors(&new->color, args[4]))
-		return (1);
-	if (arg_len == 6)
-		return (set_shine(new, args[5]));
-	return (0);
-}
-
 int	init_moebius(char **args, t_env *rt)
 {
 	t_obj	*new;

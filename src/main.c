@@ -16,18 +16,18 @@ void	debug_print_bonus_object(t_obj obj)
 {
 	if (obj.type == OT_CONE)
 	{
-		printf("CONE ----\n");
-		printf("pos = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
-		printf("a = %f\n", obj.a);
+		printf("co ");
+		printf("%f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("%f,%f,%f ", obj.n.x, obj.n.y, obj.n.z);
+		printf("%f", obj.a);
 	}
 	else if (obj.type == OT_TORE)
 	{
-		printf("TORE ----\n");
-		printf("pos = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
-		printf("short ray = %f\n", obj.scal);
-		printf("long ray = %f\n", obj.scal2);
+		printf("to ");
+		printf("%f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("%f,%f,%f ", obj.n.x, obj.n.y, obj.n.z);
+		printf("%f ", obj.scal);
+		printf("%f ", obj.scal2);
 	}
 	else if (obj.type == OT_RING)
 	{
@@ -35,32 +35,16 @@ void	debug_print_bonus_object(t_obj obj)
 		printf("%f,%f,%f ", obj.n.x, obj.n.y, obj.n.z);
 		printf("%f ", obj.scal);
 		printf("%f ", obj.scal2);
-		printf("%f\n", obj.scal3);
-	}
-	else if (obj.type == OT_TRIANGLE)
-	{
-		printf("TRIANGLE ----\n");
-		printf("pt1 = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("pt2 = %f, %f, %f\n", obj.pt2.x, obj.pt2.y, obj.pt2.z);
-		printf("pt3 = %f, %f, %f\n", obj.pt3.x, obj.pt3.y, obj.pt3.z);
-	}
-	else if (obj.type == OT_PARA || obj.type == OT_HYP)
-	{
-		if (obj.type == OT_PARA)
-			printf("PARABOLOID ----\n");
-		else
-			printf("HYPERBOLOID ----\n");
-		printf("summit = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
-		printf("open factor %f\n", obj.scal);
+		printf("%f ", obj.scal3);
 	}
 	else if (obj.type == OT_MOEB)
 	{
-		printf("MOEBIUS ----\n");
-		printf("O ray origin = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("D ray dir = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
-		printf("main ray = %f\n", obj.scal);
-		printf("width = %f\n", obj.scal2);
+		printf("mo ");
+		printf("%f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("%f ", obj.scal);
+		printf("%f ", obj.scal2);
+		printf("%f ", obj.max);
+		printf("%f,%f,%f ", obj.n.x, obj.n.y, obj.n.z);
 	}
 	else
 	{
@@ -72,52 +56,68 @@ void	debug_print_object(t_obj obj)
 {
 	if (obj.type == OT_SPHERE)
 	{
-		printf("SPHERE ----\n");
-		printf("pos = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("r = %f\n", obj.scal);
+		printf("sp");
+		printf("%f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("%f ", obj.scal);
 	}
 	else if (obj.type == OT_PLANE)
 	{
-		printf("PLANE ----\n");
-		printf("pt = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
+		printf("pl ");
+		printf("%f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("%f,%f,%f ", obj.n.x, obj.n.y, obj.n.z);
 	}
 	else if (obj.type == OT_CYL)
 	{
-		printf("CYLINDER ----\n");
-		printf("center = %f, %f, %f\n", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("n = %f, %f, %f\n", obj.n.x, obj.n.y, obj.n.z);
-		printf("r = %f\n", obj.scal);
-		printf("height = %f\n", obj.scal2);
+		printf("cy ");
+		printf("%f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("%f,%f,%f ", obj.n.x, obj.n.y, obj.n.z);
+		printf("%f ", obj.scal);
+		printf("%f ", obj.scal2);
 	}
 	else
 		debug_print_bonus_object(obj);
-	printf("color = %d, %d, %d\n\n\n", obj.color.r, obj.color.g, obj.color.b);
+	printf("%d,%d,%d ", obj.color.r, obj.color.g, obj.color.b);
+	if (BONUS)
+	{	
+		printf("s:%f ", obj.shine);
+		printf("r:%f", obj.reflect);
+		if (obj.checkered)
+			printf(" t:checkered");
+		else if (obj.texture_filename)
+			printf(" t:%s", obj.texture_filename);
+		if (obj.normal_map_filename)
+			printf(" n:%s",obj.normal_map_filename);
+	}
+	printf("\n");
 }
 
 void	debug_print_set(t_env *rt)
 {
 	t_obj	*obj;
+	t_light	*spots;
 
 	printf("\n\nDEBUG : SET\n///////////\n");
-	printf("set amb light ---- \n");
-	printf("brightness = %f\n", rt->ambient.brightness);
-	printf("color = %d, %d, %d\n\n\n", rt->ambient.color.r, rt->ambient.color.g,
+	printf("A ");
+	printf("%f ", rt->ambient.brightness);
+	printf("%d,%d,%d\n", rt->ambient.color.r, rt->ambient.color.g,
 		rt->ambient.color.b);
 	/////
-	printf("set cam ---- \n");
-	printf("pos = %f, %f, %f\n", rt->cam.pos.x, rt->cam.pos.y, rt->cam.pos.z);
-	printf("dir = %f, %f, %f\n", rt->cam.dir.x, rt->cam.dir.y, rt->cam.dir.z);
-	printf("fov = %d\n\n\n", rt->cam.fov);
+	printf("C ");
+	printf("%f,%f,%f ", rt->cam.pos.x, rt->cam.pos.y, rt->cam.pos.z);
+	printf("%f,%f,%f ", rt->cam.dir.x, rt->cam.dir.y, rt->cam.dir.z);
+	printf("%d\n", rt->cam.fov);
 	/////
-	printf("set spot light ---- \n");
-	printf("pos = %f, %f, %f\n", rt->spot.pos.x, rt->spot.pos.y,
-		rt->spot.pos.z);
-	printf("brightness = %f\n", rt->spot.brightness);
-	printf("color = %d, %d, %d\n\n\n", rt->spot.color.r, rt->spot.color.g,
-		rt->spot.color.b);
-	/////
-	printf("DEBUG : OBJECTS\n///////////\n");
+	spots = &rt->spot;
+	while (spots)
+	{
+		printf("L ");
+		printf("%f,%f,%f ", spots->pos.x, spots->pos.y,
+			spots->pos.z);
+		printf("%f ", spots->brightness);
+		printf("%d,%d,%d\n", spots->color.r, spots->color.g,
+			spots->color.b);
+		spots = spots->next;
+	}
 	obj = rt->objects;
 	while (obj)
 	{
@@ -151,6 +151,7 @@ int	main(int ac, char **av)
 		return (1);
 	rt_mlx_init(&rt.mlx);
 	load_textures(&rt);
+	debug_print_set(&rt);
 	ray_trace(&rt);
 	mlx_mouse_hook(rt.mlx.win, &mouse_hook, &rt);
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);

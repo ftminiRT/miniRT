@@ -12,40 +12,6 @@
 
 #include "minirt.h"
 
-double	ft_atod(char *str)
-{
-	double	nb[2];
-	double	power;
-	char	**split;
-	int		len;
-	int		sign;
-
-	sign = 1;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	split = ft_split(str, '.');
-	if (!split)
-		return (perror("miniRT"), 0);
-	nb[0] = ft_atoi(split[0]);
-	if (!split[1])
-		return (ft_free_split(split), nb[0]);
-	nb[1] = ft_atoi(split[1]);
-	len = ft_strlen(split[1]);
-	ft_free_split(split);
-	power = 1;
-	while (len)
-	{
-		power = power * 10;
-		len--;
-	}
-	nb[1] = nb[1] / power;
-	return (nb[0] * sign + nb[1] * sign);
-}
-
 int	str_is_double(char *str)
 {
 	int	i;
@@ -53,8 +19,8 @@ int	str_is_double(char *str)
 	i = 0;
 	while (str[i] && str[i] != '\n')
 	{
-		if (!(ft_isdigit(str[i]) || str[i] == '.' \
-				|| str[i] == '-' || str[i] == '+'))
+		if (!(ft_isdigit(str[i]) || str[i] == '.' || str[i] == '-'
+				|| str[i] == '+'))
 			return (0);
 		i++;
 	}
@@ -84,9 +50,11 @@ int	str_to_vec3(t_vec3 *vec, char *str)
 		return (perror("miniRT :"), 1);
 	if (count_arg(split) != 3 || !split_is_numeric(split))
 		return (ft_free_split(split), 1);
+	printf("strings: {%s} {%s} {%s}\n", split[0], split[1], split[2]);
 	vec->x = ft_atod(split[0]);
 	vec->y = ft_atod(split[1]);
 	vec->z = ft_atod(split[2]);
+	printf("doubles: {%f} {%f} {%f} \n", vec->x, vec->y, vec->z);
 	ft_free_split(split);
 	return (0);
 }

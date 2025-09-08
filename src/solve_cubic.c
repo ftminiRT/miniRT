@@ -29,12 +29,13 @@ static t_cubic	init_stru(double *a)
 	ret.br2 = ret.br * ret.br;
 	ret.cr2 = 729 * ret.r * ret.r;
 	ret.cq3 = 2916 * ret.q * ret.q * ret.q;
-	ret.sgnbr = (ret.br >= 0) + !(ret.br >= 0) * (-1);;
+	ret.sgnbr = (ret.br >= 0) + !(ret.br >= 0) * (-1);
+	;
 	ret.i = 0;
 	return (ret);
 }
 
-static int		solve_second_case(t_cubic c, double *a, double *r)
+static int	solve_second_case(t_cubic c, double *a, double *r)
 {
 	c.sqrtbq = sqrt(c.bq);
 	if (c.br > 0)
@@ -52,7 +53,7 @@ static int		solve_second_case(t_cubic c, double *a, double *r)
 	return (3);
 }
 
-static int		solve_third_case(t_cubic c, double *a, double *r)
+static int	solve_third_case(t_cubic c, double *a, double *r)
 {
 	c.ratio = c.sgnbr * sqrt(c.br2 / c.bq3);
 	c.theta = acos(c.ratio);
@@ -74,7 +75,7 @@ static int		solve_third_case(t_cubic c, double *a, double *r)
 	return (3);
 }
 
-static int		solve_fourth_case(t_cubic c, double *a, double *r)
+static int	solve_fourth_case(t_cubic c, double *a, double *r)
 {
 	c.ba = -c.sgnbr * pow(fabs(c.br) + sqrt(c.br2 - c.bq3), 1.0 / 3.0);
 	c.bb = c.bq / c.ba;
@@ -82,9 +83,9 @@ static int		solve_fourth_case(t_cubic c, double *a, double *r)
 	return (1);
 }
 
-int				solve_cubic(double *a, double *r)
+int	solve_cubic(double *a, double *r)
 {
-	t_cubic		c;
+	t_cubic	c;
 
 	c = init_stru(a);
 	if (c.br == 0 && c.bq == 0)

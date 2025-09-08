@@ -58,6 +58,8 @@ typedef struct s_phong
 	t_vec3			view;
 	t_vec3			reflected;
 	t_vec3			normal;
+	t_color			diffuse;
+	t_color			specular;
 }					t_phong;
 
 typedef struct s_normap
@@ -70,6 +72,13 @@ typedef struct s_normap
 	t_vec3			tangent;
 	t_vec3			bitangent;
 }					t_normap;
+
+typedef struct s_basis
+{
+	t_vec3	u;
+	t_vec3	v;
+	t_vec3	w;
+}				t_basis;
 
 typedef struct s_cubic
 {
@@ -151,12 +160,31 @@ typedef struct s_moebius
 	double			g;
 }					t_moebius;
 
-typedef struct s_basis
+typedef struct s_ring
 {
-	t_vec3			u;
-	t_vec3			v;
-	t_vec3			w;
-}					t_basis;
+	t_vec3	ro;
+	t_vec3	rd;
+	double	br;
+	double	r;
+	double	dd;
+	double	e;
+	double	f;
+	double	four_br2;
+}				t_ring;
+
+typedef struct s_ring_uv
+{
+	t_vec3	u_axis;
+	t_vec3	v_axis;
+	t_vec3	w_axis;
+	t_vec3	rel;
+	t_vec3	local;
+	double	theta;
+	double	u;
+	double	v;
+	double	phi;
+}	t_ring_uv;
+
 
 typedef struct s_proj_data
 {
@@ -169,7 +197,8 @@ typedef struct s_proj_data
 	double			sqrt_d;
 }					t_proj_data;
 
-# define OBJTYPENUMBER 10
+
+# define OBJTYPENUMBER 7 // a incrementer si on rajoute un objtype dans l'enum
 
 typedef enum e_objtype
 {
@@ -178,10 +207,7 @@ typedef enum e_objtype
 	OT_CYL,
 	OT_CONE,
 	OT_TORE,
-	OT_TRIANGLE,
-	OT_PARA,
 	OT_MOEB,
-	OT_HYP,
 	OT_RING
 }					t_objtype;
 
@@ -263,6 +289,18 @@ typedef struct s_mlxdata
 	int				endian;
 }					t_mlxdata;
 
+typedef	struct s_reflect_data
+{
+	t_obj   *hitted;
+    t_vec3  hit_point;
+	t_color local_color;
+    t_color reflected_color;
+	t_vec3	normal;
+	t_vec3 	reflected;
+	t_ray	reflected_ray;
+
+}				t_reflect_data;
+
 typedef struct s_mlx
 {
 	void			*mlx;
@@ -289,6 +327,7 @@ typedef struct s_select
 
 typedef double		(*t_hit_funcs[OBJTYPENUMBER + 1])(t_ray *, t_obj *);
 typedef t_vec3		(*t_get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3);
+typedef void		(*t_get_uv[OBJTYPENUMBER + 1])(t_obj *, t_vec3, int map[2]);
 
 typedef struct s_env
 {
@@ -300,6 +339,7 @@ typedef struct s_env
 	t_select		selected;
 	t_hit_funcs		hit_object;
 	t_get_norm		get_norm;
+	t_get_uv		get_uv;
 	t_mlx			mlx;
 	int				log_fd;
 }					t_env;

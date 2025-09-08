@@ -12,6 +12,28 @@
 
 #include "minirt.h"
 
+bool	is_valid_key_code(int kc, t_env *rt)
+{
+	if (kc == KEY_ESC)
+		return (true);
+	if (kc == KEY_C || kc == KEY_A || kc == KEY_S)
+		return (true);
+	if (kc == KEY_LEFT || kc == KEY_RIGHT || kc == KEY_UP || kc == KEY_DOWN
+		|| kc == KEY_PLUS || kc == KEY_MINUS)
+		return (true);
+	if (kc == KEY_J || kc == KEY_L || kc == KEY_K || kc == KEY_I)
+		return (true);
+	if (rt->selected.type != CAM && (kc == KEY_U || kc == KEY_O))
+		return (true);
+	if (rt->selected.type == OBJ && rt->selected.obj)
+	{
+		if (rt->selected.obj->type == OT_RING && (kc == KEY_Q || kc == KEY_W))
+			return (true);
+		if (kc == KEY_MINUS2 || kc == KEY_PLUS2 || kc == KEY_X)
+			return (true);
+	}
+	return (false);
+}
 void	move_selected(t_env *rt, t_vec3 move)
 {
 	if (rt->selected.type == CAM)
@@ -44,7 +66,8 @@ int	key_pressed(int kc, t_env *rt)
 	handle_movement(kc, rt, step, fwd);
 	handle_rotation(kc, rt, step);
 	handle_object_mod(kc, rt, step);
-	ray_trace(rt);
+	if (is_valid_key_code(kc, rt))
+		ray_trace(rt);
 	return (1);
 }
 

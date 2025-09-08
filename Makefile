@@ -25,6 +25,7 @@ FILES		= 	clean\
 				error\
 				hit_torus\
 				init\
+				env_init\
 				hit_basics\
 				key_hooks\
 				mlx_tools\
@@ -35,6 +36,7 @@ FILES		= 	clean\
 				parsing/init_obj \
 				parsing/init_obj_bonus \
 				parsing/init_set \
+				parsing/ft_atod\
 				parsing/parsing_utils \
 				parsing/parsing_utils_bonus \
 				parsing/parsing \
@@ -58,8 +60,15 @@ FILES		= 	clean\
 				solve_quadratic\
 				textures\
 				get_basics_uv\
+				get_cyl_uv\
+				get_ring_uv\
 				get_advanced_uv\
-				hit_ring
+				hit_ring\
+				camera_transform\
+				ring_normal\
+				utils\
+				solve_quartic_helpers\
+				in_shadow
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

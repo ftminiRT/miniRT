@@ -13,12 +13,15 @@ static int	solve_linear(double a, double b, double *r)
 
 static void	fill_roots(double *a, double d, double *r)
 {
-	double sgnb;
-	double temp;
-	double r1;
-	double r2;
+	double	sgnb;
+	double	temp;
+	double	r1;
+	double	r2;
 
-	sgnb = (a[1] > 0 ? 1 : -1);
+	if (a[1] > 0)
+		sgnb = 1;
+	else
+		sgnb = -1;
 	temp = -0.5 * (a[1] + sgnb * sqrt(d));
 	r1 = temp / a[2];
 	r2 = a[0] / temp;
@@ -34,7 +37,7 @@ static void	fill_roots(double *a, double d, double *r)
 	}
 }
 
-int			solve_quadratic(double *a, double *r)
+int	solve_quadratic(double *a, double *r)
 {
 	double	d;
 	double	s;

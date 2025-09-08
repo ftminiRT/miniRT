@@ -20,12 +20,6 @@ int	init_obj_bonus(char **split, t_env *rt)
 		return (init_tore(split, rt));
 	else if (!ft_strncmp(split[0], "ri", 3))
 		return (init_ring(split, rt));
-	else if (!ft_strncmp(split[0], "tr", 3))
-		return (init_triangle(split, rt));
-	else if (!ft_strncmp(split[0], "pa", 3))
-		return (init_boloid(split, rt, OT_PARA));
-	else if (!ft_strncmp(split[0], "hy", 3))
-		return (init_boloid(split, rt, OT_HYP));
 	else if (!ft_strncmp(split[0], "mo", 3))
 		return (init_moebius(split, rt));
 	else

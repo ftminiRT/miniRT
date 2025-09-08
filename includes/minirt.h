@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <sys/stat.h>
 # include <stdio.h>
 # include <errno.h>
 # include <stdbool.h>
@@ -29,7 +30,7 @@
 
 # ifndef WIDTH
 // #  define WIDTH 2560
-# define WIDTH 600
+#  define WIDTH 600
 # endif
 # ifndef HEIGHT
 // #  define HEIGHT 1440

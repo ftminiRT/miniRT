@@ -33,6 +33,7 @@
 # define KEY_A 97
 # define KEY_B 98
 # define KEY_C 99
+# define KEY_E 101
 # define KEY_F 102
 # define KEY_I 105
 # define KEY_J 106

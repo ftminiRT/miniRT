@@ -44,6 +44,7 @@ t_vec3		camera_transform(t_vec3 dir_local, t_vec3 cam_dir);
 void		ray_trace(t_env *rt);
 void		putpixel(int x, int y, t_env *rt, t_color c);
 void		putpixel_ui(int x, int y, t_env *rt, t_color c);
+void		putpixel_ui_img(int x, int y, t_color c, void *img);
 t_mlxdata	*init_img(t_mlx *mlx, t_mlxdata *img, int x, int y);
 t_vec3		vec3_rot(t_vec3 *v, int axis, double theta);
 void		vec3_rotate(t_vec3 *v, t_vec3 r);

@@ -68,6 +68,12 @@ int	key_pressed(int kc, t_env *rt)
 	handle_object_mod(kc, rt, step);
 	if (kc == KEY_E)
 		export_to_rt(rt);
+	if (kc == KEY_T)
+	{
+		rt->render = !rt->render;
+		if (rt->render)
+			ray_trace(rt);
+	}
 	if (is_valid_key_code(kc, rt))
 		ray_trace(rt);
 	return (1);

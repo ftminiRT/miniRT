@@ -6,7 +6,7 @@ MAKEFLAGS += --no-print-directory
 QUIET		=	
 
 CC			= 	cc
-CFLAGS		= 	-Wall -Werror -Wextra -g3 -O3
+CFLAGS		= 	-Wall -Werror -Wextra -g
 AR			=	ar -rcs
 NAME		= 	miniRT
 

@@ -29,8 +29,8 @@ int	build_pane_mo(void *rt, t_uipane *current)
 		add_btn(setb(&o->n.x, -step, pt(106, 272), BTNSZ), i) ||
 		add_btn(setb(&o->n.y, -step, pt(106, 302), BTNSZ), i) ||
 		add_btn(setb(&o->n.z, -step, pt(106, 332), BTNSZ), i) ||
-		add_btn(setb(&o->scal, -step, pt(106, 392), BTNSZ), i) ||
-		add_btn(setb(&o->scal2, -step, pt(106, 362), BTNSZ), i) ||
+		add_btn(setb(&o->scal, -step, pt(106, 362), BTNSZ), i) ||
+		add_btn(setb(&o->max, -step, pt(106, 392), BTNSZ), i) ||
 		add_btn(setb(&o->shine, -STEP_SH, pt(106, 422), BTNSZ), i) ||
 		// add_btn(setb(&o->reflect, -STEP_RF, pt(106, 452}, BTNSZ), i) ||
 		add_btn(setb(&o->color.r, step, pt(136, 92), BTNSZ), i) ||
@@ -42,8 +42,8 @@ int	build_pane_mo(void *rt, t_uipane *current)
 		add_btn(setb(&o->n.x, step, pt(136, 272), BTNSZ), i) ||
 		add_btn(setb(&o->n.y, step, pt(136, 302), BTNSZ), i) ||
 		add_btn(setb(&o->n.z, step, pt(136, 332), BTNSZ), i) ||
-		add_btn(setb(&o->scal2, -step, pt(106, 362), BTNSZ), i) ||
-		add_btn(setb(&o->scal, step, pt(136, 392), BTNSZ), i) ||
+		add_btn(setb(&o->scal, step, pt(136, 362), BTNSZ), i) ||
+		add_btn(setb(&o->max, -step, pt(106, 392), BTNSZ), i) ||
 		add_btn(setb(&o->shine, STEP_SH, pt(136, 422), BTNSZ), i))// ||
 		// add_btn(setb(&o->reflect, STEP_RF, pt(136, 452}, BTNSZ), i))
 		return (1);

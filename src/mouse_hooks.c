@@ -21,13 +21,25 @@ void	modify_scal(t_select *s, double step)
 		s->cam->fov += step;
 }
 
+static bool is_in_window(int x, int y)
+{
+	return (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT);
+}
+
+static bool useful_hook(int bt)
+{
+	if (bt == SCROLL_UP || bt == SCROLL_DOWN)
+		return (true);
+	return (false);
+}
+
 int	mouse_hook(int bt, int x, int y, t_env *rt)
 {
 	t_obj	*clicked;
 	double	step;
 
 	step = 1;
-	if (bt == LEFT_CLIC)
+	if (bt == LEFT_CLIC && is_in_window(x, y))
 	{
 		clicked = clicked_object(rt, x, y);
 		if (clicked)
@@ -40,6 +52,7 @@ int	mouse_hook(int bt, int x, int y, t_env *rt)
 		modify_scal(&rt->selected, step);
 	if (bt == SCROLL_DOWN)
 		modify_scal(&rt->selected, -step);
-	ray_trace(rt);
+	if (useful_hook(bt))
+		ray_trace(rt);
 	return (1);
 }

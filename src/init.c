@@ -56,7 +56,7 @@ void	rt_mlx_init(t_mlx *mlx)
 	if (!mlx->win)
 		error_exit("window error");
 	mlx->img.img = mlx_new_image(mlx->mlx, WIDTH, HEIGHT);
-	if (!mlx->mlx)
+	if (!mlx->img.img)
 		error_exit("image error");
 	mlx->img.addr = mlx_get_data_addr(mlx->img.img, &mlx->img.bits_per_pixel,
 			&mlx->img.line_length, &mlx->img.endian);

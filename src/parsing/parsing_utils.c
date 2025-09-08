@@ -50,9 +50,11 @@ int	str_to_vec3(t_vec3 *vec, char *str)
 		return (perror("miniRT :"), 1);
 	if (count_arg(split) != 3 || !split_is_numeric(split))
 		return (ft_free_split(split), 1);
+	printf("strings: {%s} {%s} {%s}\n", split[0], split[1], split[2]);
 	vec->x = ft_atod(split[0]);
 	vec->y = ft_atod(split[1]);
 	vec->z = ft_atod(split[2]);
+	printf("doubles: {%f} {%f} {%f} \n", vec->x, vec->y, vec->z);
 	ft_free_split(split);
 	return (0);
 }

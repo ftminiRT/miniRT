@@ -3,13 +3,14 @@
 
 int	sign_str(char **str)
 {
+	int	sign;
+
+	sign = 1;
+	if (**str == '-')
+		sign = -1;
 	if (**str == '-' || **str == '+')
-	{
 		(*str)++;
-		if (**str == '-')
-			return (-1);
-	}
-	return (1);
+	return (sign);
 }
 
 double	ft_atod(char *str)
@@ -26,7 +27,7 @@ double	ft_atod(char *str)
 		return (perror("miniRT"), 0);
 	nb[0] = ft_atoi(split[0]);
 	if (!split[1])
-		return (ft_free_split(split), nb[0]);
+		return (ft_free_split(split), nb[0] * sign);
 	nb[1] = ft_atoi(split[1]);
 	len = ft_strlen(split[1]);
 	ft_free_split(split);
@@ -36,5 +37,5 @@ double	ft_atod(char *str)
 		power = power * 10;
 		len--;
 	}
-	return (nb[0] * sign + (nb[1] / power) * sign);
+	return ((nb[0] + (nb[1] / power)) * sign);
 }

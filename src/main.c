@@ -56,9 +56,9 @@ void	debug_print_object(t_obj obj)
 {
 	if (obj.type == OT_SPHERE)
 	{
-		printf("sp");
+		printf("sp ");
 		printf("%f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("%f ", obj.scal);
+		printf("%f ", 2 * obj.scal);
 	}
 	else if (obj.type == OT_PLANE)
 	{
@@ -71,7 +71,7 @@ void	debug_print_object(t_obj obj)
 		printf("cy ");
 		printf("%f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);
 		printf("%f,%f,%f ", obj.n.x, obj.n.y, obj.n.z);
-		printf("%f ", obj.scal);
+		printf("%f ", 2 * obj.scal);
 		printf("%f ", obj.scal2);
 	}
 	else
@@ -96,7 +96,6 @@ void	debug_print_set(t_env *rt)
 	t_obj	*obj;
 	t_light	*spots;
 
-	printf("\n\nDEBUG : SET\n///////////\n");
 	printf("A ");
 	printf("%f ", rt->ambient.brightness);
 	printf("%d,%d,%d\n", rt->ambient.color.r, rt->ambient.color.g,
@@ -157,7 +156,6 @@ int	main(int ac, char **av)
 	mlx_key_hook(rt.mlx.win, &key_pressed, &rt);
 	mlx_hook(rt.mlx.win, 17, 0, &close_window, &rt);
 	mlx_loop(rt.mlx.mlx);
-	clear_mlx(&rt);
-	mrt_cleaner(&rt);
+	mega_clean(&rt);
 	return (0);
 }

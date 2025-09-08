@@ -68,7 +68,9 @@ FILES		= 	clean\
 				ring_normal\
 				utils\
 				solve_quartic_helpers\
-				in_shadow
+				in_shadow\
+				export\
+				export_filename
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

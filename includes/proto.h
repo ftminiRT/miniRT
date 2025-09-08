@@ -17,13 +17,12 @@
 
 ////////////// MLX ////////////////
 
-
 int		clear_mlx(t_env *rt);
 void	error_exit(char *msg);
 void	rt_mlx_init(t_mlx *mlx);
 int		key_pressed(int kc, t_env *e);
-int	    close_window(t_env *rt);
-int	    mouse_hook(int bt, int x, int y, t_env *e);
+int		close_window(t_env *rt);
+int		mouse_hook(int bt, int x, int y, t_env *e);
 void	putpixel(int x, int y, t_env *rt, t_color c);
 
 ////////////// VEC3 LIB ////////////////
@@ -49,8 +48,8 @@ double	hit_sphere(t_ray *r, t_obj *s);
 double	hit_plane(t_ray *r, t_obj *p);
 double	hit_cylinder(t_ray *r, t_obj *cy);
 double	hit_moebius(t_ray *ray, t_obj *obj);
-double		hit_torus(t_ray *ray, t_obj *obj);
-double hit_ring(t_ray *ray, t_obj *obj);
+double	hit_torus(t_ray *ray, t_obj *obj);
+double	hit_ring(t_ray *ray, t_obj *obj);
 
 ////////////// UTILS ////////////////
 
@@ -59,38 +58,38 @@ t_vec3	camera_transform(t_vec3 dir_local, t_vec3 cam_dir);
 t_vec3	world_to_local_vec(t_vec3 v, t_basis b);
 t_vec3	local_to_world_vec(t_vec3 v, t_basis b);
 t_ray	world_to_local_ray(t_ray r, t_obj *obj, t_basis b);
-int	dblsgn(double x);
+int		dblsgn(double x);
 
 ////////////// PARSING ////////////////
 
 int		parsing(t_env *rt, char *file);
 
-//check_values.c
+// check_values.c
 int		check_brightness(double b);
 int		check_norm(t_vec3 n);
 int		count_arg(char **args);
-//parsing_utils.c
+// parsing_utils.c
 double	ft_atod(char *str);
 int		str_is_double(char *str);
 int		str_to_vec3(t_vec3 *vec, char *str);
 int		str_to_colors(t_color *clr, char *str);
-//parsing_utils_bonus.c
+// parsing_utils_bonus.c
 int		set_shine(t_obj *new, char *arg);
-int	set_texture(t_obj *new, char *arg);
-int	set_normal_map(t_obj *new, char *arg);
-int	set_reflect(t_obj *new, char *arg);
-int     set_bonus_attributes(char **args, t_env *rt, t_obj *new);
-//init_obj.c
+int		set_texture(t_obj *new, char *arg);
+int		set_normal_map(t_obj *new, char *arg);
+int		set_reflect(t_obj *new, char *arg);
+int		set_bonus_attributes(char **args, t_env *rt, t_obj *new);
+// init_obj.c
 t_obj	*create_object(t_env *rt);
 int		init_cylinder(char **args, t_env *rt);
 int		init_plane(char **args, t_env *rt);
 int		init_sphere(char **args, t_env *rt);
-//init_obj_bonus.c
+// init_obj_bonus.c
 int		init_moebius(char **args, t_env *rt);
 int		init_tore(char **args, t_env *rt);
 int		init_cone(char **args, t_env *rt);
-int	init_ring(char **args, t_env *rt);
-//init_set.c
+int		init_ring(char **args, t_env *rt);
+// init_set.c
 int		init_cam(char **args, t_env *rt);
 int		init_amblight(char **args, t_env *rt);
 int		init_spotlight(char **args, t_env *rt);
@@ -104,7 +103,7 @@ t_color	color_multiply(t_color c1, t_color c2);
 t_color	color_clamp(t_color color);
 t_vec3	get_normal(t_obj *obj, t_vec3 hit_point);
 t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point, t_ray ray);
-t_color get_checkered_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
+t_color	get_checkered_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
 bool	in_shadow(t_env *rt, t_light *spot, t_vec3 hit_point);
 
 /////////////// CORE COMPUTE /////////////
@@ -115,7 +114,7 @@ void	ray_trace(t_env *rt);
 
 /////////////// UTILS /////////////
 
-int	swapd(double *a, double *b);
+int		swapd(double *a, double *b);
 
 /////////////// OBJ NORMALS /////////////
 
@@ -124,11 +123,14 @@ t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point);
 double	check_discs(t_obj *obj, t_vec3 hit_point);
 t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point);
 t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point);
-t_vec3		torus_normal(t_obj *obj, t_vec3 hit_point);
-t_vec3  ring_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3	torus_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3	ring_normal(t_obj *obj, t_vec3 hit_point);
 /////////////// CLEAN /////////////
 
 void	mrt_cleaner(t_env *rt);
+int		mega_clean(t_env *rt);
+void	exit_from_export(t_vec3int info, t_env *rt, char *filename,
+			char *error);
 
 /////////////// INIT /////////////
 
@@ -140,14 +142,14 @@ void	init_quartic_solver(t_quartic *q, double *a);
 
 /////////////// GALOIS ALGEBRA /////////////
 
-int			solve_quadratic(double *a, double *r);
+int		solve_quadratic(double *a, double *r);
 int		solve_cubic(double *a, double *r);
-int			solve_quartic(double *a, double *r);
-int			swapd(double *a, double *b);
-void		set_d3(double *u, double u0, double u1, double u2);
-int			deal_with_degenerate(double *a, double *r);
-void		find_solution_to_resolvent_cubic(t_quartic *q);
-void		handle_r_and_zarr(double *r, double *zarr);
+int		solve_quartic(double *a, double *r);
+int		swapd(double *a, double *b);
+void	set_d3(double *u, double u0, double u1, double u2);
+int		deal_with_degenerate(double *a, double *r);
+void	find_solution_to_resolvent_cubic(t_quartic *q);
+void	handle_r_and_zarr(double *r, double *zarr);
 void	deal_with_pos_disc(t_quartic *q);
 
 /////////////// MAPPING /////////////
@@ -156,18 +158,19 @@ void	get_plane_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
 void	get_sphere_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
 void	get_torus_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
 void	get_moebius_uv(t_obj *obj, t_vec3 p, int map[2]);
-void get_ring_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
+void	get_ring_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
 void	get_cylinder_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
-int	load_normal_map(void *mlx_ptr, t_obj *obj, char *filename);
+int		load_normal_map(void *mlx_ptr, t_obj *obj, char *filename);
 void	free_normal_map(void *mlx_ptr, t_obj *obj);
 t_vec3	sample_normal_map(t_obj *obj, float u, float v);
 t_vec3	sample_normal_map_filtered(t_obj *obj, float u, float v);
 t_vec3	sample_normal_at_pixel(t_obj *obj, int x, int y);
-t_vec3	apply_normal_mapping(t_vec3 geo_normal, t_vec3 tangent, t_vec3 bitangent, t_vec3 map_normal);
+t_vec3	apply_normal_mapping(t_vec3 geo_normal, t_vec3 tangent,
+			t_vec3 bitangent, t_vec3 map_normal);
 t_vec3	compute_sphere_tangent(t_vec3 normal);
 void	compute_sphere_uv(t_vec3 normal, float *u, float *v);
 void	init_object_no_normal_map(t_obj *obj);
-int load_texture(void *mlx_ptr, t_obj *obj, char *filename);
+int		load_texture(void *mlx_ptr, t_obj *obj, char *filename);
 void	free_texture(void *mlx_ptr, t_obj *obj);
 void	load_textures(t_env *rt);
 
@@ -178,6 +181,9 @@ void	handle_selection(int kc, t_env *rt);
 void	handle_movement(int kc, t_env *rt, double step, t_vec3 fwd);
 void	handle_rotation(int kc, t_env *rt, double step);
 void	handle_object_mod(int kc, t_env *rt, double step);
+void	export_to_rt(t_env *rt);
+void	handle_export(int kc, t_env *rt);
+char	*get_next_export_filename(t_env *rt);
 
 /////////////// OBJ TRANSFORMATION /////////////
 

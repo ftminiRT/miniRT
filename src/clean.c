@@ -47,3 +47,23 @@ int	clear_mlx(t_env *rt)
 	free(rt->mlx.mlx);
 	return (1);
 }
+
+int		mega_clean(t_env *rt)
+{
+	clear_mlx(rt);
+	mrt_cleaner(rt);
+	return (1);
+}
+
+void	exit_from_export(t_vec3int info, t_env *rt, char *filename,
+		char *error)
+{
+	perror(error);
+	if (info.x >= 1)
+		close(info.y);
+	if (info.x >= 2)
+		close(info.z);
+	free(filename);
+	mega_clean(rt);
+	exit(1);
+}

@@ -20,6 +20,13 @@ typedef struct s_vec3
 	double			z;
 }					t_vec3;
 
+typedef struct s_vec3int
+{
+	int				x;
+	int				y;
+	int				z;
+}					t_vec3int;
+
 typedef struct s_color
 {
 	unsigned char	r;
@@ -75,10 +82,10 @@ typedef struct s_normap
 
 typedef struct s_basis
 {
-	t_vec3	u;
-	t_vec3	v;
-	t_vec3	w;
-}				t_basis;
+	t_vec3			u;
+	t_vec3			v;
+	t_vec3			w;
+}					t_basis;
 
 typedef struct s_cubic
 {
@@ -103,7 +110,7 @@ typedef struct s_cubic
 	int				i;
 }					t_cubic;
 
-typedef struct		s_quartic
+typedef struct s_quartic
 {
 	double			u[3];
 	double			v[3];
@@ -162,29 +169,28 @@ typedef struct s_moebius
 
 typedef struct s_ring
 {
-	t_vec3	ro;
-	t_vec3	rd;
-	double	br;
-	double	r;
-	double	dd;
-	double	e;
-	double	f;
-	double	four_br2;
-}				t_ring;
+	t_vec3			ro;
+	t_vec3			rd;
+	double			br;
+	double			r;
+	double			dd;
+	double			e;
+	double			f;
+	double			four_br2;
+}					t_ring;
 
 typedef struct s_ring_uv
 {
-	t_vec3	u_axis;
-	t_vec3	v_axis;
-	t_vec3	w_axis;
-	t_vec3	rel;
-	t_vec3	local;
-	double	theta;
-	double	u;
-	double	v;
-	double	phi;
-}	t_ring_uv;
-
+	t_vec3			u_axis;
+	t_vec3			v_axis;
+	t_vec3			w_axis;
+	t_vec3			rel;
+	t_vec3			local;
+	double			theta;
+	double			u;
+	double			v;
+	double			phi;
+}					t_ring_uv;
 
 typedef struct s_proj_data
 {
@@ -196,7 +202,6 @@ typedef struct s_proj_data
 	double			delta;
 	double			sqrt_d;
 }					t_proj_data;
-
 
 # define OBJTYPENUMBER 7 // a incrementer si on rajoute un objtype dans l'enum
 
@@ -259,12 +264,12 @@ typedef struct s_obj
 	int				id;
 	char			*texture_filename;
 	int				texture_width;
-	int	texture_height;
-	void	*texture_data;
-	void	*texture_img;
-	int		texture_size_line;
-	int		texture_bpp;
-	int		texture_endian;
+	int				texture_height;
+	void			*texture_data;
+	void			*texture_img;
+	int				texture_size_line;
+	int				texture_bpp;
+	int				texture_endian;
 	char			*normal_map_filename;
 	void			*normal_map_img;
 	void			*normal_map_data;
@@ -289,17 +294,17 @@ typedef struct s_mlxdata
 	int				endian;
 }					t_mlxdata;
 
-typedef	struct s_reflect_data
+typedef struct s_reflect_data
 {
-	t_obj   *hitted;
-    t_vec3  hit_point;
-	t_color local_color;
-    t_color reflected_color;
-	t_vec3	normal;
-	t_vec3 	reflected;
-	t_ray	reflected_ray;
+	t_obj			*hitted;
+	t_vec3			hit_point;
+	t_color			local_color;
+	t_color			reflected_color;
+	t_vec3			normal;
+	t_vec3			reflected;
+	t_ray			reflected_ray;
 
-}				t_reflect_data;
+}					t_reflect_data;
 
 typedef struct s_mlx
 {

@@ -91,13 +91,15 @@ void	handle_object_mod(int kc, t_env *rt, double step)
 		rt->selected.obj->max -= step / 10;
 	if (rt->selected.obj->type == OT_MOEB && kc == KEY_PLUS2)
 		rt->selected.obj->max += step / 10;
-	if (rt->selected.obj->type == OT_RING && kc == KEY_MINUS2)
+	if ((rt->selected.obj->type == OT_RING
+		|| rt->selected.obj->type == OT_TORE
+		|| rt->selected.obj->type == OT_CYL)
+		&& kc == KEY_MINUS2)
 		rt->selected.obj->scal2 -= step;
-	if (rt->selected.obj->type == OT_RING && kc == KEY_PLUS2)
-		rt->selected.obj->scal2 += step;
-	if (rt->selected.obj->type == OT_TORE && kc == KEY_MINUS2)
-		rt->selected.obj->scal2 -= step;
-	if (rt->selected.obj->type == OT_TORE && kc == KEY_PLUS2)
+	if ((rt->selected.obj->type == OT_RING
+		|| rt->selected.obj->type == OT_TORE
+		|| rt->selected.obj->type == OT_CYL)
+		&& kc == KEY_PLUS2)
 		rt->selected.obj->scal2 += step;
 	if (rt->selected.type == OBJ && kc == KEY_X)
 		rt->selected.obj->checkered = !rt->selected.obj->checkered;

@@ -61,21 +61,41 @@ double	hit_torus(t_ray *ray, t_obj *obj)
 	return (INFINITY);
 }
 
-t_vec3	torus_normal(t_obj *obj, t_vec3 hit_point)
+t_vec3 torus_normal(t_obj *obj, t_vec3 hit_point)
 {
-	t_vec3		geo_normal;
-	t_normap	normap;
-
-	geo_normal = vec3_sub(hit_point, obj->pt);
-	geo_normal.y = 0;
-	vec3_normalize(&geo_normal);
-	if (!obj->normal_map_data)
-		return (geo_normal);
-	normap.tangent = vec3_cross(obj->n, geo_normal);
-	vec3_normalize(&normap.tangent);
-	normap.bitangent = obj->n;
-	normap.u = atan2(geo_normal.z, geo_normal.x) / (2.0 * M_PI) + 0.5;
-	normap.v = 0.5 + vec3_dot(hit_point, obj->n) / obj->scal2;
-	return (apply_normal_mapping(geo_normal, normap.tangent, normap.bitangent,
-			sample_normal_map(obj, normap.u, normap.v)));
+    t_vec3 geo_normal;
+    t_normap normap;
+    t_basis b;
+    t_vec3 local_hit;
+    t_vec3 center_to_hit;
+    t_vec3 center_ring;
+    double br, r;
+    
+    br = obj->scal2;
+    r = obj->scal;
+    init_base(obj, &b);
+    local_hit = (t_vec3){
+        vec3_dot(vec3_sub(hit_point, obj->pt), b.u),
+        vec3_dot(vec3_sub(hit_point, obj->pt), b.w), 
+        vec3_dot(vec3_sub(hit_point, obj->pt), b.v)
+    };
+    center_to_hit = (t_vec3){local_hit.x, 0, local_hit.z};
+    vec3_normalize(&center_to_hit);
+    center_ring = vec3_scalmult(br, center_to_hit);
+    geo_normal = vec3_sub(local_hit, center_ring);
+    vec3_normalize(&geo_normal);
+    geo_normal = (t_vec3){
+        vec3_dot(geo_normal, b.u),
+        vec3_dot(geo_normal, b.w),
+        vec3_dot(geo_normal, b.v)
+    };
+    if (!obj->normal_map_data)
+        return (geo_normal);
+    normap.tangent = vec3_cross(obj->n, geo_normal);
+    vec3_normalize(&normap.tangent);
+    normap.bitangent = obj->n;
+    normap.u = atan2(center_to_hit.z, center_to_hit.x) / (2.0 * M_PI) + 0.5;
+    normap.v = 0.5 + local_hit.y / (2.0 * r);
+    return (apply_normal_mapping(geo_normal, normap.tangent, normap.bitangent,
+            sample_normal_map(obj, normap.u, normap.v)));
 }

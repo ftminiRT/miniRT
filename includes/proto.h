@@ -209,4 +209,9 @@ int			build_pane_ri(void *rt, t_uipane *current);
 int			build_pane_sp(void *rt, t_uipane *current);
 int			build_pane_spot(void *rt, t_uipane *current);
 int			build_pane_to(void *rt, t_uipane *current);
+t_uipt pt(int x, int y);
+t_items setb(void *value, double factor, t_uipt pos, t_uipt scale);
+void	add_back(t_items *new, t_uipane *pane);
+int		add_btn(t_items og, t_uipane *pane);
+
 #endif

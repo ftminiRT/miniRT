@@ -55,6 +55,7 @@ int	mouse_hook(int bt, int x, int y, t_env *rt)
         modify_scal(&rt->selected, step);
     if (bt == SCROLL_DOWN)
         modify_scal(&rt->selected, -step);
+    display_ui(rt);
     ray_trace(rt);
     return (1);
 }

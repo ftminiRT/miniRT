@@ -27,15 +27,20 @@ void	init_pane_builders(t_env *rt)
 
 int	create_pane(t_env *rt, t_obj *obj)
 {
+	t_uipane	*new;
 	t_uipane	*current;
 
-	current = ft_calloc(1, sizeof(t_uipane));
-	if (!current)
+	new = ft_calloc(1, sizeof(t_uipane));
+	if (!new)
 		return (1);
-	current->type = obj->type;
-	current->obj = obj;
-	if (rt->ui.build_pane[obj->type](rt, current))
+	new->type = obj->type;
+	new->obj = obj;
+	if (rt->ui.build_pane[obj->type](rt, new))
 		return (1);
+	current = rt->ui.stock;
+	while (current->next)
+		current = current->next;
+	current->next = new;
 	return (0);
 }
 

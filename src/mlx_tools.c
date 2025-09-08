@@ -47,6 +47,6 @@ void	putpixel_ui_img(int x, int y, t_color c, void *img)
 
 	if (x < 0 || x >= UI_WIDTH|| y < 0 || y >= UI_HEIGHT)
 		return ;
-	iimg_addr = (int *)img;
+	iimg_addr = (int *)&img;
 	iimg_addr[x + y * UI_WIDTH] = (c.r << 16) | (c.g << 8) | c.b;
 }

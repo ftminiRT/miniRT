@@ -26,12 +26,10 @@ void	wipe_ui_values(t_env *rt, void *img)
 		while (i < 200)
 		{
 			putpixel_ui_img(i, j, (t_color){0,0,0}, img);
-			printf("%d, %d\n", i, j);
 			i++;
 		}
 		j++;
 	}
-
 }
 
 void	ui_print_values(t_env *rt, void *img)

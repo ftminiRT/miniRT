@@ -32,18 +32,18 @@ t_items setb(void *value, double factor, t_uipt pos, t_uipt scale)
 
 void	add_back(t_items *new, t_uipane *pane)
 {
-	t_uipane *head;
+	t_items    *head;
 
-	if (!pane)
+	if (!pane->itms)
 	{
-		pane = new;
+		pane->itms = new;
 		return ;
 	}
-	head = pane;
-	while (pane->next)
-		pane = pane->next;
-	pane->next = new;
-	pane = head;
+    head = pane->itms;
+	while (pane->itms->next)
+		pane->itms = pane->itms->next;
+	pane->itms->next = new;
+	pane->itms = head;
 }
 
 int		add_btn(t_items og, t_uipane *pane)
@@ -62,5 +62,6 @@ int		add_btn(t_items og, t_uipane *pane)
 	new->scale.y = og.scale.y;
 	new->next = NULL;
 	add_back(new, pane);
+    return (0);
 }
 

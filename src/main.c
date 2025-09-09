@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 19:55:52 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/09/04 23:38:01 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:22:40 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,17 +144,17 @@ int	main(int ac, char **av)
 	t_env	rt;
 
 	if (ac < 2)
-		return (printf("%d, %s\n",__LINE__, __FILE__), printf("Argument file needed\n"), 0);
+		return (printf("Argument file needed\n"), 0);
 	env_init(&rt);
 	if (parsing(&rt, av[1]))
-		return (printf("%d, %s\n",__LINE__, __FILE__),  1);
-	rt_mlx_init(&rt.mlx);
+		return (1);
+	rt_mlx_init(&rt, &rt.mlx);
 	load_textures(&rt);
-	debug_print_set(&rt);
-	printf("%d, %s\n",__LINE__, __FILE__);
+	//debug_print_set(&rt);
+	//printf("%d, %s\n",__LINE__, __FILE__);
 	if (ui_init(&rt))
-		return (printf("%d, %s\n",__LINE__, __FILE__), mrt_cleaner(&rt), 1);
-	printf("%d, %s\n",__LINE__, __FILE__);
+		return (mrt_cleaner(&rt), 1);
+	//printf("%d, %s\n",__LINE__, __FILE__);
 	display_ui(&rt);
 	ray_trace(&rt);
 	mlx_mouse_hook(rt.mlx.win, &mouse_hook, &rt);

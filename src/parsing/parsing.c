@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:14:21 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/09/04 23:09:57 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:12:59 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ int	init_obj_bonus(char **split, t_env *rt)
 		return (init_ring(split, rt));
 	else if (!ft_strncmp(split[0], "mo", 3))
 		return (init_moebius(split, rt));
-	else
-		return (1);
+	else if (split[0][0] == '\n')
+		return (0);
+	return (1);
 }
 
 int	init_obj(char **split, t_env *rt)
@@ -52,13 +53,13 @@ int	init_line_data(char *line, t_env *rt, int i)
 	ret = 0;
 	split = ft_split(line, ' ');
 	if (!split)
-		return (perror("miniRT :"), 1);
+		return (perror("Error :"), 1);
 	else
 		ret = init_obj(split, rt);
 	ft_free_split(split);
 	if (ret)
 	{
-		ret = write (2, "miniRT : file content error at line ", 37);
+		ret = write (2, "Error : file content error at line ", 36);
 		ret = write (2, ft_itoa(i + 1), ft_strlen(ft_itoa(i + 1)));
 		ret = write (2, "\n", 1);
 		return (1);
@@ -66,7 +67,7 @@ int	init_line_data(char *line, t_env *rt, int i)
 	return (0);
 }
 
-int	check_file(char *file)
+int	check_extension(char *file)
 {
 	int	i;
 
@@ -89,7 +90,7 @@ int	parsing(t_env *rt, char *file)
 
 	i = 0;
 	rt->objects = NULL;
-	if (check_file(file))
+	if (check_extension(file))
 		return (1);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)

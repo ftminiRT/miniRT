@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:48:44 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/09/05 08:10:23 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:29:34 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ void	init_base(t_obj *obj, t_basis *b)
 	b->v = vec3_cross(b->w, b->u);
 }
 
-void	rt_mlx_init(t_mlx *mlx)
+void	rt_mlx_init(t_env *rt, t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
 	if (!mlx->mlx)
-		error_exit("connection to mlx error");
+		error_exit(rt, "Error : connection to mlx error");
 	mlx->win = mlx_new_window(mlx->mlx, WIDTH + UI_WIDTH, HEIGHT, "miniRT");
 	if (!mlx->win)
-		error_exit("window error");
+		error_exit(rt, "Error : window error");
 	mlx->img.img = init_img(mlx, &mlx->img, WIDTH, HEIGHT);
 	mlx->ui.img = init_img(mlx, &mlx->ui, UI_WIDTH, UI_HEIGHT);
 }

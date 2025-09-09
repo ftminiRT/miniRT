@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-02 11:25:52 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-09-02 11:25:52 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/09/02 11:25:52 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/09 18:15:55 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ int	set_pane_img(t_env *rt, t_objtype type, char *path)
 	height = UI_HEIGHT;
 	height = UI_HEIGHT;
 	width = UI_WIDTH;
-	printf("loading file : [%s] w:%d h:%d t:%d\n", path, width, height, type);
 	new_img = mlx_xpm_file_to_image(rt->mlx.mlx, path, &width, &height);
 	if (!new_img)
-		return (write(2, "miniRT : error while loading xpm img\n", 38), 1);
+		return (write(2, "Error : error while loading xpm img\n", 37), 1);
 	rt->ui.pane_img[type] = new_img;
 	return (0);
 }
@@ -93,25 +92,13 @@ int	add_default_buttons(t_env *rt)
 int	ui_init(t_env *rt)
 {
 	init_pane_builders(rt);
-	printf("%d, %s\n", __LINE__, __FILE__);
-	fflush(stdout);
 	init_pane_fillers(rt);
-	printf("%d, %s\n", __LINE__, __FILE__);
-	fflush(stdout);
 	if (init_pane_img(rt))
 		return (1);
-	printf("%d, %s\n", __LINE__, __FILE__);
-	fflush(stdout);
 	if (init_ui_panes(rt))
 		return (1);
-	printf("%d, %s\n", __LINE__, __FILE__);
-	fflush(stdout);
 	if (add_default_buttons(rt))
 		return (1);
-	printf("%d, %s\n", __LINE__, __FILE__);
-	fflush(stdout);
 	display_ui(rt);
-	printf("%d, %s\n", __LINE__, __FILE__);
-	fflush(stdout);
 	return (0);
 }

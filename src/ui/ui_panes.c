@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_panes.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-04 13:59:34 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-09-04 13:59:34 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/09/04 13:59:34 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/09 18:16:09 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,13 @@ int	create_default_pane(t_env *rt)
 	dflt = ft_calloc(1, sizeof(t_uipane));
 	if (!dflt)
 		return (1);
-	printf("%d, %s\n", __LINE__, __FILE__);
-	fflush(stdout);
 	dflt->cam = &rt->cam;
 	dflt->light = &rt->ambient;
 	dflt->type = OT_DFT;
-	printf("%d, %s\n", __LINE__, __FILE__);
-	fflush(stdout);
 	if (build_pane_events(rt, dflt))
 		return (1);
-	printf("%d, %s\n", __LINE__, __FILE__);
-	fflush(stdout);
 	if (build_pane_dft(rt, dflt))
 		return (1);
-	printf("%d, %s\n", __LINE__, __FILE__);
-	fflush(stdout);
 	rt->ui.current = dflt;
 	rt->ui.stock = dflt;
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/09/05 07:52:16 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:22:06 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 ////////////// MLX ////////////////
 
 int			clear_mlx(t_env *rt);
-void		error_exit(char *msg);
-void		rt_mlx_init(t_mlx *mlx);
+void		error_exit(t_env *rt, char *msg);
+void		rt_mlx_init(t_env *rt, t_mlx *mlx);
 int			key_pressed(int kc, t_env *e);
 int			close_window(t_env *rt);
 int			mouse_hook(int bt, int x, int y, t_env *e);

@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 15:53:47 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 14:27:21 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:21:02 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	error_exit(char *msg)
+void	error_exit(t_env *rt, char *msg)
 {
-	printf("%s\n", msg);
-	exit(1);
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
+	mrt_cleaner(rt);
 }

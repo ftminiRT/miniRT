@@ -43,7 +43,7 @@ void	export_to_rt(t_env *rt)
 	fd = setup_export_file(filename, rt);
 	stdout_backup = backup_stdout(fd, filename, rt);
 	redirect_to_file(fd, stdout_backup, filename, rt);
-	debug_print_set(rt);
+	//debug_print_set(rt);
 	if (dup2(stdout_backup, STDOUT_FILENO) == -1)
 		perror("Erreur lors de la restauration de stdout");
 	close(stdout_backup);

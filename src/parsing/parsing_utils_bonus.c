@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-08-29 11:57:56 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-08-29 11:57:56 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/08/29 11:57:56 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/09 18:15:37 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int	set_bonus_attributes(char **args, t_env *rt, t_obj *new)
 			return (1);
 		if (!ft_strncmp(args[i], "t:", 2))
 		{
-			printf("%d %s\n", __LINE__, __FILE__);
 			if (!ft_strncmp(args[i] + 2, "checkered", 10))
 				new->checkered = 1;
 			else if (set_texture(new, args[i] + 2))

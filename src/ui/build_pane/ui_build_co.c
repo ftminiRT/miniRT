@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_build_co.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-04 15:19:25 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-09-04 15:19:25 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/09/04 15:19:25 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/09 14:29:43 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	build_pane_co(void *rt, t_uipane *current)
 {
-	t_obj *o;
-	t_basis b;
+	t_obj	*o;
+	t_basis	b;
 
 	o = current->obj;
 	build_local_basis(rt, &o->local_basis);
@@ -26,12 +26,12 @@ int	build_pane_co(void *rt, t_uipane *current)
 		return (1);
 	if (build_pane_dir(rt, current, &o->n, 272))
 		return (1);
-	if (build_pane_mat(rt, current, 392))
+	if (build_pane_mat(rt, current, 362))
 		return (1);
 	if (add_btn(setb((t_btn_data){&o->scal, -STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(106, 362), BTNSZ), current)
+			pt(106, 332), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&o->scal, STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(136, 362), BTNSZ), current))
+			pt(136, 332), BTNSZ), current))
 		return (1);
 	return (0);
 }

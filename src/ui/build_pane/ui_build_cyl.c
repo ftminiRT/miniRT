@@ -26,16 +26,16 @@ int	build_pane_cyl(void *rt, t_uipane *current)
 		return (1);
 	if (build_pane_dir(rt, current, &o->n, 272))
 		return (1);
-	if (build_pane_mat(rt, current, 422))
+	if (build_pane_mat(rt, current, 392))
 		return (1);
 	if (add_btn(setb((t_btn_data){&o->scal2, -STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(106, 362), BTNSZ), current)
+			pt(106, 332), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&o->scal, -STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(106, 392), BTNSZ), current)
+			pt(106, 362), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&o->scal2, STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(136, 362), BTNSZ), current)
+			pt(136, 332), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&o->scal, STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(136, 392), BTNSZ), current))
+			pt(136, 362), BTNSZ), current))
 		return (1);
 	return (0);
 }

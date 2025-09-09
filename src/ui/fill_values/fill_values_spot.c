@@ -12,7 +12,6 @@ int	fill_values_spot(void *rt, t_uipane *cur)
 	putstr_ui((t_env *)rt, 157, 212, dota(rt, s->pos.y));
 	putstr_ui((t_env *)rt, 157, 242, dota(rt, s->pos.z));
 	putstr_ui((t_env *)rt, 157, 272, dota(rt, s->brightness));
-	// putstr_ui((t_env*)rt, 157, 242, dota(rt, s->index));
-	// s->index a implementer
+	putstr_ui((t_env *)rt, 157, 302, ft_itoa(s->index));
 	return (0);
 }

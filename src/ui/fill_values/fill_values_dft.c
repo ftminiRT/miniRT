@@ -18,7 +18,6 @@ int	fill_values_dft(void *rt, t_uipane *cur)
 	putstr_ui((t_env *)rt, 157, 302, dota(rt, c->pos.z));
 	putstr_ui((t_env *)rt, 157, 332, dota(rt, c->dir.x));
 	putstr_ui((t_env *)rt, 157, 362, dota(rt, c->dir.y));
-	putstr_ui((t_env *)rt, 157, 392, dota(rt, c->dir.z));
-	putstr_ui((t_env *)rt, 157, 422, dota(rt, c->fov));
+	putstr_ui((t_env *)rt, 157, 392, dota(rt, c->fov));
 	return (0);
 }

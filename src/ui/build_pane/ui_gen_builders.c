@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ui_gen_builders.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/09 13:25:55 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/09 14:47:44 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	build_pane_color(void *rt, t_uipane *current)
@@ -62,17 +74,17 @@ int	build_pane_pos(void *rt, t_uipane *current, t_vec3 *pos, int y)
 	b = get_local_basis(rt, current);
 	if (current->type == OT_LIGHT)
 		step = STEP_SPOS;
-	if (add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(-step, b.w),
+	if (add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(-step, b.u),
 				UIT_MV_BTN}, pt(106, y), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(-step, b.v),
 				UIT_MV_BTN}, pt(106, y + 30), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(-step, b.u),
+		|| add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(-step, b.w),
 				UIT_MV_BTN}, pt(106, y + 60), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(step, b.w),
+		|| add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(step, b.u),
 				UIT_MV_BTN}, pt(136, y), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(step, b.v),
 				UIT_MV_BTN}, pt(136, y + 30), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(step, b.u),
+		|| add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(step, b.w),
 				UIT_MV_BTN}, pt(136, y + 60), BTNSZ), current))
 		return (1);
 	return (0);
@@ -82,17 +94,13 @@ int	build_pane_dir(void *rt, t_uipane *current, t_vec3 *dir, int y)
 {
 	(void)rt;
 	if (add_btn(setb((t_btn_data){dir, 0, (t_vec3){-STEP_ROT, 0, 0},
-				UIT_ROT_BTN}, pt(106, y), BTNSZ), current)
+			UIT_ROT_BTN}, pt(106, y), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){dir, 0, (t_vec3){0, -STEP_ROT, 0},
-				UIT_ROT_BTN}, pt(106, y + 30), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){dir, 0, (t_vec3){0, 0, -STEP_ROT},
-				UIT_ROT_BTN}, pt(106, y + 60), BTNSZ), current)
+			UIT_ROT_BTN}, pt(106, y + 30), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){dir, 0, (t_vec3){STEP_ROT, 0, 0},
-				UIT_ROT_BTN}, pt(136, y), BTNSZ), current)
+			UIT_ROT_BTN}, pt(136, y), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){dir, 0, (t_vec3){0, STEP_ROT, 0},
-				UIT_ROT_BTN}, pt(136, y + 30), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){dir, 0, (t_vec3){0, 0, STEP_ROT},
-				UIT_ROT_BTN}, pt(136, y + 60), BTNSZ), current))
+			UIT_ROT_BTN}, pt(136, y + 30), BTNSZ), current))
 		return (1);
 	return (0);
 }

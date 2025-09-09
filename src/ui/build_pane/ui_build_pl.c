@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_build_pl.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-04 15:19:25 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-09-04 15:19:25 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/09/04 15:19:25 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/09 15:06:49 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	build_pane_pl(void *rt, t_uipane *current)
 		return (1);
 	if (build_pane_dir(rt, current, &o->n, 272))
 		return (1);
-	if (build_pane_mat(rt, current, 362))
+	if (build_pane_mat(rt, current, 332))
 		return (1);
 	return (0);
 }

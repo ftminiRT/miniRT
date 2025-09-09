@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_set.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:36:01 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/09/02 21:21:50 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 13:41:27 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ int	init_cam(char **args, t_env *rt)
 
 int	set_new_spotlight(char **args, t_env *rt)
 {
-	t_light	*new;
-	t_light	*current;
+	t_light			*new;
+	t_light			*current;
+	static size_t	index;
 
 	current = &rt->spot;
 	new = ft_calloc(1, sizeof(t_light));
@@ -46,6 +47,8 @@ int	set_new_spotlight(char **args, t_env *rt)
 	if (str_to_vec3(&new->pos, args[1]))
 		return (1);
 	new->brightness = ft_atod(args[2]);
+	new->index = index + 1;
+	index++;
 	if (str_to_colors(&new->color, args[3]))
 		return (1);
 	return (0);
@@ -57,6 +60,7 @@ int	init_spotlight(char **args, t_env *rt)
 		return (1);
 	if (rt->spot.is_set)
 		return (set_new_spotlight(args, rt));
+	rt->spot.index = 0;
 	rt->spot.is_set = 1;
 	if (str_to_vec3(&rt->spot.pos, args[1]))
 		return (1);

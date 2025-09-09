@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:03:19 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/09/04 23:07:47 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 13:30:21 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_light
 	double				brightness;
 	t_color				color;
 	t_basis				local_basis;
+	size_t				index;
 	struct s_light		*next;
 }						t_light;
 

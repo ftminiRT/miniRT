@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_build_ri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-08 12:21:12 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-09-08 12:21:12 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/09/08 12:21:12 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/09 15:17:06 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 static int	build_ring_btns(void *rt, t_uipane *current, t_obj *o)
 {
+	(void) rt;
 	if (add_btn(setb((t_btn_data){&o->scal, -STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(106, 362), BTNSZ), current)
+				pt(106, 332), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&o->scal2, -STEP_BIGRAY, VEC0,
 				UIT_SCL_BTN}, pt(106, 392), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&o->scal3, -STEP_RING, VEC0, UIT_SCL_BTN},
-				pt(106, 392), BTNSZ), current)
+				pt(106, 362), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&o->scal, STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(136, 362), BTNSZ), current)
+				pt(136, 332), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&o->scal2, STEP_BIGRAY, VEC0, UIT_SCL_BTN},
-				pt(136, 392), BTNSZ), current)
+				pt(136, 362), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&o->scal3, STEP_RING, VEC0, UIT_SCL_BTN},
-				pt(136, 392), BTNSZ), current))
+				pt(136, 362), BTNSZ), current))
 		return (1);
 	return (0);
 }
@@ -44,7 +45,7 @@ int	build_pane_ri(void *rt, t_uipane *current)
 		return (1);
 	if (build_pane_dir(rt, current, &o->n, 272))
 		return (1);
-	if (build_pane_mat(rt, current, 452))
+	if (build_pane_mat(rt, current, 422))
 		return (1);
 	if (build_ring_btns(rt, current, o))
 		return (1);

@@ -32,9 +32,9 @@ int	build_pane_dft(void *rt, t_uipane *current)
 	if (build_pane_dir(rt, current, &c->dir, 332))
 		return (1);
 	if (add_btn(setb((t_btn_data){&c->fov, -STEP_FOV, VEC0, UIT_FOV_BTN},
-				pt(106, 422), BTNSZ), current)
+			pt(106, 392), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&c->fov, STEP_FOV, VEC0, UIT_FOV_BTN},
-				pt(136, 422), BTNSZ), current))
+			pt(136, 392), BTNSZ), current))
 		return (1);
 	return (0);
 }

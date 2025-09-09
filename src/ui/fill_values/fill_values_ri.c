@@ -13,11 +13,10 @@ int	fill_values_ri(void *rt, t_uipane *cur)
 	putstr_ui((t_env *)rt, 157, 242, dota(rt, o->pt.z));
 	putstr_ui((t_env *)rt, 157, 272, dota(rt, o->n.x));
 	putstr_ui((t_env *)rt, 157, 302, dota(rt, o->n.y));
-	putstr_ui((t_env *)rt, 157, 332, dota(rt, o->n.z));
-	putstr_ui((t_env *)rt, 157, 362, dota(rt, o->scal));
-	putstr_ui((t_env *)rt, 157, 392, dota(rt, o->scal2));
-	putstr_ui((t_env *)rt, 157, 422, dota(rt, o->scal3));
-	putstr_ui((t_env *)rt, 157, 452, dota(rt, o->shine));
-	putstr_ui((t_env *)rt, 157, 482, dota(rt, o->reflect));
+	putstr_ui((t_env *)rt, 157, 332, dota(rt, o->scal));
+	putstr_ui((t_env *)rt, 157, 362, dota(rt, o->scal2));
+	putstr_ui((t_env *)rt, 157, 392, dota(rt, o->scal3));
+	putstr_ui((t_env *)rt, 157, 422, dota(rt, o->shine));
+	putstr_ui((t_env *)rt, 157, 452, dota(rt, o->reflect));
 	return (0);
 }

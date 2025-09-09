@@ -12,71 +12,57 @@
 
 #include "minirt.h"
 
-t_uipt pt(int x, int y)
+t_uipt	pt(int x, int y)
 {
-    return ((t_uipt){x, y});
+	return ((t_uipt){x, y});
 }
 
-// t_items setb(void *value, double factor, t_uipt pos, t_uipt scale, t_vec3 v, t_itm_type type)
-// {
-// 	t_items	new;
-
-// 	new.type = type;
-// 	new.btn.factor = factor;
-// 	new.btn.value = value;
-// 	new.btn.v = v;
-// 	new.pos.x = pos.x;
-// 	new.pos.y = pos.y;
-// 	new.scale.x = scale.x;
-// 	new.scale.y = scale.y;
-// 	return (new);
-// }
-
-t_items setb(t_btn_data data, t_uipt pos, t_uipt scale)
+t_items	setb(t_btn_data data, t_uipt pos, t_uipt scale)
 {
-    t_items new;
+	t_items	new;
 
-    new.type = data.type;
-    new.pos = pos;       // position dans l'UI
-    new.scale = scale;   // taille du bouton
-    new.btn.value = data.value;
-    new.btn.factor = data.factor;
-    new.btn.v = data.v;  // vecteur pour mouvement/rotation
-    new.function = NULL;
-
-    return new;
+	new.type = data.type;
+	new.pos = pos;
+	new.scale = scale;
+	new.btn.value = data.value;
+	new.btn.factor = data.factor;
+	new.btn.v = data.v;
+	new.function = NULL;
+	return (new);
 }
+
 void	add_back(t_items *new, t_uipane *pane)
 {
-	t_items    *head;
+	t_items	*head;
 
 	if (!pane->itms)
 	{
 		pane->itms = new;
 		return ;
 	}
-    head = pane->itms;
+	head = pane->itms;
 	while (pane->itms->next)
 		pane->itms = pane->itms->next;
 	pane->itms->next = new;
 	pane->itms = head;
 }
 
-void build_local_basis(void *rt, t_basis *b)
+void	build_local_basis(void *rt, t_basis *b)
 {
-    t_env *e = (t_env*)rt;
+	t_env	*e;
 
-    b->u = vec3_normalized(e->cam.dir);
+	e = (t_env *)rt;
+	b->u = vec3_normalized(e->cam.dir);
 	b->v = (t_vec3){0, 1, 0};
 	if (fabs(vec3_dot(b->u, b->v)) > 0.999)
-        b->v = (t_vec3){1, 0, 0};
-    b->w = vec3_normalized(vec3_cross(b->u, b->v));
-    b->v = vec3_cross(b->w, b->u); // assure orthonormalité
+		b->v = (t_vec3){1, 0, 0};
+	b->w = vec3_normalized(vec3_cross(b->u, b->v));
+	b->v = vec3_cross(b->w, b->u);
 }
 
-int		add_btn(t_items og, t_uipane *pane)
+int	add_btn(t_items og, t_uipane *pane)
 {
-	t_items *new;
+	t_items	*new;
 
 	new = ft_calloc(1, sizeof(t_items));
 	if (!new)
@@ -91,6 +77,5 @@ int		add_btn(t_items og, t_uipane *pane)
 	new->btn.v = og.btn.v;
 	new->next = NULL;
 	add_back(new, pane);
-    return (0);
+	return (0);
 }
-

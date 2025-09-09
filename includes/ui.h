@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef UI_H
-#define UI_H
+# define UI_H
 
 # include "minirt.h"
 # include "vec3.h"
@@ -34,8 +34,16 @@
 # define STEP_RING 2
 # define STEP_BRI 0.1
 # define STEP_FOV 10
-# define BTNSZ (t_uipt){26, 26}
-# define VEC0 (t_vec3){0, 0, 0}
+# define BTNSZ  \
+	(t_uipt)   \
+	{          \
+		26, 26 \
+	}
+# define VEC0    \
+	(t_vec3)    \
+	{           \
+		0, 0, 0 \
+	}
 
 typedef enum e_itm_type
 {
@@ -53,28 +61,28 @@ typedef enum e_itm_type
 	UIT_RND_BTN,
 	UIT_SEL_BTN,
 	UIT_DFT_PANE
-}	t_itm_type;
+}					t_itm_type;
 
 typedef struct s_uipt
 {
-	int x;
-	int y;
-}	t_uipt;
+	int				x;
+	int				y;
+}					t_uipt;
 
 typedef struct s_scl_btn
 {
 	double			*value;
 	double			factor;
 	t_vec3			v;
-}	t_scl_btn;
+}					t_scl_btn;
 
-typedef struct s_btn_data {
-    void    *value;
-    double  factor;
-    t_vec3  v;
-    t_itm_type type;
-}   t_btn_data;
-
+typedef struct s_btn_data
+{
+	void			*value;
+	double			factor;
+	t_vec3			v;
+	t_itm_type		type;
+}					t_btn_data;
 
 typedef struct s_items
 {
@@ -84,7 +92,7 @@ typedef struct s_items
 	t_scl_btn		btn;
 	void			(*function)(void *rt);
 	struct s_items	*next;
-}	t_items;
+}					t_items;
 
 typedef struct s_uipane
 {
@@ -94,18 +102,20 @@ typedef struct s_uipane
 	struct s_light	*light;
 	t_items			*itms;
 	struct s_uipane	*next;
-}	t_uipane;
+}					t_uipane;
+
+typedef int			(*t_build_pane[OBJTYPENUMBER + 1])(void *, t_uipane *);
+typedef int			(*t_fill_values[OBJTYPENUMBER + 1])(void *, t_uipane *);
 
 typedef struct s_ui
 {
-	t_uipane	*stock;
-	t_uipane	*current;
-	t_items 	*dft_itms;
-	int		(*build_pane[OBJTYPENUMBER])(void *rt, t_uipane *current);
-	int	(*fill_values[OBJTYPENUMBER])(void *, t_uipane *);
-	void	*pane_img[OBJTYPENUMBER];
+	t_uipane		*stock;
+	t_uipane		*current;
+	t_items			*dft_itms;
+	t_build_pane	build_pane;
+	t_fill_values	fill_values;
+	void			*pane_img[OBJTYPENUMBER];
 
-}	t_ui;
-
+}					t_ui;
 
 #endif

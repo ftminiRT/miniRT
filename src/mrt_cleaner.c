@@ -38,6 +38,12 @@ static void	clean_spots(t_light *current)
 
 void	mrt_cleaner(t_env *rt)
 {
+	printf("%d %s\n", __LINE__, __FILE__);
+	fflush(stdout);
 	clean_obj(rt->objects);
+	printf("%d %s\n", __LINE__, __FILE__);
+	fflush(stdout);
 	clean_spots(rt->spot.next);
+	printf("%d %s\n", __LINE__, __FILE__);
+	fflush(stdout);
 }

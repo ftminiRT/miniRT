@@ -53,6 +53,7 @@ FILES		= 	clean\
 				ui/build_pane/ui_build_to \
 				ui/build_pane/ui_build_utils \
 				ui/build_pane/ui_build_events \
+				ui/build_pane/ui_gen_builders \
 				ui/fill_values/fill_values_co \
 				ui/fill_values/fill_values_cyl \
 				ui/fill_values/fill_values_dft \
@@ -67,6 +68,7 @@ FILES		= 	clean\
 				ui/ui_init \
 				ui/ui_panes \
 				ui/ui \
+				ui/ui_select_spot \
 				light_compute \
 				vec3_norm \
 				vec3_refs \

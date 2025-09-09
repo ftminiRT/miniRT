@@ -44,6 +44,7 @@ int	init_pane_img(t_env *rt)
 {
 	t_objtype	i;
 	char		*path[OBJTYPENUMBER];
+	
 
 	path[OT_CONE] = PATH_CONE;
 	path[OT_CYL] = PATH_CYL;
@@ -55,14 +56,12 @@ int	init_pane_img(t_env *rt)
 	path[OT_SPHERE] = PATH_SP;
 	path[OT_TORE] = PATH_TOR;
 
-	i = OT_DFT;
-	while (1)
+	i = 0;
+	while (i < OBJTYPENUMBER)
 	{
 		if (set_pane_img(rt, i, path[i]))
 			return (1);
-		i = (i + 1) % OBJTYPENUMBER;
-		if (i == OT_DFT)
-			break ;
+		i++;
 	}
 	return (0);
 }
@@ -95,13 +94,25 @@ int	add_default_buttons(t_env *rt)
 int ui_init(t_env *rt)
 {
 	init_pane_builders(rt);
+	printf("%d, %s\n",__LINE__, __FILE__);
+	fflush(stdout);
 	init_pane_fillers(rt);
+	printf("%d, %s\n",__LINE__, __FILE__);
+	fflush(stdout);
 	if (init_pane_img(rt))
 		return (1);
+	printf("%d, %s\n",__LINE__, __FILE__);
+	fflush(stdout);
 	if (init_ui_panes(rt))
 		return (1);
+	printf("%d, %s\n",__LINE__, __FILE__);
+	fflush(stdout);
 	if (add_default_buttons(rt))
 		return (1);
+	printf("%d, %s\n",__LINE__, __FILE__);
+	fflush(stdout);
 	display_ui(rt);
+	printf("%d, %s\n",__LINE__, __FILE__);
+	fflush(stdout);
 	return (0);
 }

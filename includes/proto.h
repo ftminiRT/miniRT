@@ -13,7 +13,8 @@
 #ifndef PROTO_H
 # define PROTO_H
 
-# include "minirt.h"
+# include "ui.h"
+# include "structs.h"
 
 ////////////// MLX ////////////////
 
@@ -219,8 +220,9 @@ int			build_pane_sp(void *rt, t_uipane *current);
 int			build_pane_spot(void *rt, t_uipane *current);
 int			build_pane_to(void *rt, t_uipane *current);
 t_uipt pt(int x, int y);
-t_items setb(void *value, double factor, t_uipt pos, t_uipt scale);
+t_items setb(t_btn_data data, t_uipt pos, t_uipt scale);
 void	add_back(t_items *new, t_uipane *pane);
 int		add_btn(t_items og, t_uipane *pane);
+void	build_local_basis(void *rt, t_basis *b);
 
 #endif

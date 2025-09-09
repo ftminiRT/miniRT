@@ -68,6 +68,8 @@ int	create_default_pane(t_env *rt)
 	dflt->cam = &rt->cam;
 	dflt->light = &rt->ambient;
 	dflt->type = OT_DFT;
+	if (build_pane_dft(rt, dflt))
+		return (1);
 	rt->ui.current = dflt;
 	rt->ui.stock = dflt;
 	return (0);

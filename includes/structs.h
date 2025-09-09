@@ -14,21 +14,7 @@
 # define STRUCTS_H
 
 # include "minirt.h"
-# include "ui.h"
-
-typedef struct s_vec3
-{
-	double			x;
-	double			y;
-	double			z;
-}					t_vec3;
-
-typedef struct s_vec3int
-{
-	int				x;
-	int				y;
-	int				z;
-}					t_vec3int;
+# include "vec3.h"
 
 typedef struct s_color
 {
@@ -50,6 +36,7 @@ typedef struct s_cam
 	bool			is_set;
 	t_vec3			pos;
 	t_vec3			dir;
+	t_basis			local_basis;
 	unsigned char	fov;
 }					t_cam;
 
@@ -82,13 +69,6 @@ typedef struct s_normap
 	t_vec3			tangent;
 	t_vec3			bitangent;
 }					t_normap;
-
-typedef struct s_basis
-{
-	t_vec3			u;
-	t_vec3			v;
-	t_vec3			w;
-}					t_basis;
 
 typedef struct s_cubic
 {
@@ -265,6 +245,7 @@ typedef struct s_obj
 	t_color			t_color;
 	double			shine;
 	int				id;
+	t_basis			local_basis;
 	char			*texture_filename;
 	int				texture_width;
 	int				texture_height;
@@ -335,7 +316,7 @@ typedef struct s_select
 }					t_select;
 
 typedef struct s_env t_env;
-
+typedef struct s_ui t_ui;
 typedef double		(*t_hit_funcs[OBJTYPENUMBER + 1])(t_ray *, t_obj *);
 typedef t_vec3		(*t_get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3, t_env *);
 typedef void		(*t_get_uv[OBJTYPENUMBER + 1])(t_obj *, t_vec3, int map[2]);

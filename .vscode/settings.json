@@ -4,6 +4,8 @@
         "limits": "c",
         "libft.h": "c",
         "proto.h": "c",
-        "keycodes.h": "c"
+        "keycodes.h": "c",
+        "vec3.h": "c",
+        "mlx_int.h": "c"
     }
 }

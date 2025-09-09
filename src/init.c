@@ -77,8 +77,8 @@ void	normalize_objs(t_env *rt)
 	objs = rt->objects;
 	while (objs)
 	{
-		if (!objs->shine)
-			objs->shine = 100;
+		if (objs->shine <= 0)
+			objs->shine = 1;
 		if (objs->type == OT_PLANE || objs->type == OT_CYL
 			|| objs->type == OT_MOEB || objs->type == OT_TORE
 			|| objs->type == OT_RING)

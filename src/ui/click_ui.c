@@ -11,16 +11,51 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-void	exec_button(t_env *rt, t_items *itm)
+void	move_vec3(t_vec3 *v, t_vec3 move)
 {
+	*v = vec3_add(*v, move);
+}
+
+void	rotate_vec3(t_vec3 *n, t_vec3 rot)
+{
+	vec3_rotate(n, rot);
+}
+
+void exec_button(t_env *rt, t_items *itm)
+{
+	double *val;
+	unsigned char *u8val;
+
+	if (!itm)
+		return;
+
 	if (itm->type == UIT_SCL_BTN)
 	{
-		printf("bouton\n");
-		*itm->btn.value = *itm->btn.value + itm->btn.factor;
+		val = (double*)itm->btn.value;
+		*val = fmax(0, *val + itm->btn.factor);
 	}
-	else
+	else if (itm->type == UIT_01_BTN)
+	{
+		val = (double*)itm->btn.value;
+		*val = fmin(1, fmax(0, *val + itm->btn.factor));
+	}
+	else if (itm->type == UIT_COL_BTN)
+	{
+		u8val = (unsigned char*)itm->btn.value;
+		*u8val = (unsigned char)fmin(255, fmax(0, *u8val + itm->btn.factor));
+	}
+	else if (itm->type == UIT_FOV_BTN)
+	{
+		u8val = (unsigned char*)itm->btn.value;
+		*u8val = (unsigned char)fmin(170, fmax(0, *u8val + itm->btn.factor));
+	}
+	else if (itm->type == UIT_MV_BTN)
+		move_vec3((t_vec3*)itm->btn.value, itm->btn.v);
+	else if (itm->type == UIT_ROT_BTN)
+		rotate_vec3((t_vec3*)itm->btn.value, itm->btn.v);
+	else if (itm->function)
 		itm->function(rt);
+	debug_print_set(rt);
 }
 
 int	hit_ui(int x, int y, t_items *itm)

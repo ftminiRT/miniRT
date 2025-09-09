@@ -27,7 +27,9 @@ FILES		= 	clean\
 				init\
 				env_init\
 				hit_basics\
-				key_hooks\
+				hooks/key_hooks\
+				hooks/mouse_hooks\
+				hooks/handle_hooks\
 				mlx_tools\
 				mrt_cleaner\
 				ray_trace\
@@ -65,10 +67,8 @@ FILES		= 	clean\
 				hit_moebius\
 				moebius_normal\
 				solve_cubic\
-				mouse_hooks\
 				checkered\
 				normal_mapping_utils\
-				handle_hooks\
 				math_utils_moebius\
 				solve_quartic\
 				root_compute_utils\
@@ -114,6 +114,7 @@ $(OBJ_DIR) :
 	$(QUIET) mkdir -p $(OBJ_DIR)/parsing
 	$(QUIET) mkdir -p $(OBJ_DIR)/ui
 	$(QUIET) mkdir -p $(OBJ_DIR)/ui/build_pane
+	$(QUIET) mkdir -p $(OBJ_DIR)/hooks
 
 
 

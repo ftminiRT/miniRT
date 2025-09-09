@@ -34,10 +34,8 @@
 # include <stdbool.h>
 # include "../minilibx-linux/mlx.h"
 # include "../minilibx-linux/mlx_int.h"
-# include "structs.h"
 # include "keycodes.h"
 # include "proto.h"
 # include "libft.h"
-
 
 #endif

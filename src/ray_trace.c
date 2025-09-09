@@ -4,14 +4,16 @@
 t_vec3	compute_ray_dir(t_env *rt, int i, int j)
 {
 	t_vec3	ret;
-	double	fov_rad;
+	double	fov_xrad;
+	double	fov_yrad;
 	double	px;
 	double	py;
 
-	fov_rad = rt->cam.fov * M_PI / 180.0;
-	px = (2 * ((i + 0.5) / (double)WIDTH) - 1) * tan(fov_rad / 2)
+	fov_xrad = rt->cam.fov * M_PI / 180.0;
+	fov_yrad = 2 * atan(tan(fov_xrad / 2) / ((double)WIDTH / (double)HEIGHT));
+	px = (2 * ((i + 0.5) / (double)WIDTH) - 1) * tan(fov_xrad / 2)
 		* ((double)WIDTH / (double)HEIGHT);
-	py = (1 - 2 * ((j + 0.5) / (double)HEIGHT)) * tan(fov_rad / 2);
+	py = (1 - 2 * ((j + 0.5) / (double)HEIGHT)) * tan(fov_yrad / 2);
 	ret = camera_transform((t_vec3){px, py, 1}, rt->cam.dir);
 	vec3_normalize(&ret);
 	return (ret);

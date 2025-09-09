@@ -14,27 +14,36 @@
 #define UI_H
 
 # include "minirt.h"
-# include "structs.h"
+# include "vec3.h"
 
 # define UI_WIDTH 200
 # define UI_HEIGHT 500
 # define UI_CS_WIDTH 2
 # define UI_CS HEIGHT 5
-# define STEP_COLOR 5
+# define STEP_COL 50
 # define STEP_POS 5
-# define STEP_SH 10
+# define STEP_ROT 15
+# define STEP_CAMROT 5
+# define STEP_SH 50
 # define STEP_RF 0.1
-# define STEP_RAY_SP 5
-# define STEP_RAY_CY 5
-# define STEP_RAY_TO 5
-# define STEP_BIGRAY_TO 5
-# define STEP_RAY_RI 5
-# define STEP_BIGRAY_RI 5
+# define STEP_RAY 2
+# define STEP_HEI 5
+# define STEP_MAX 1
+# define STEP_BIGRAY 5
+# define STEP_RING 2
+# define STEP_BRI 0.1
+# define STEP_FOV 10
 # define BTNSZ (t_uipt){26, 26}
+# define VEC0 (t_vec3){0, 0, 0}
 
 typedef enum e_itm_type
 {
 	UIT_SCL_BTN,
+	UIT_COL_BTN,
+	UIT_FOV_BTN,
+	UIT_01_BTN,
+	UIT_ROT_BTN,
+	UIT_MV_BTN,
 	UIT_EVNT_BTN,
 	UIT_SLDR
 }	t_itm_type;
@@ -49,7 +58,16 @@ typedef struct s_scl_btn
 {
 	double			*value;
 	double			factor;
+	t_vec3			v;
 }	t_scl_btn;
+
+typedef struct s_btn_data {
+    void    *value;
+    double  factor;
+    t_vec3  v;
+    t_itm_type type;
+}   t_btn_data;
+
 
 typedef struct s_items
 {

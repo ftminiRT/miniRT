@@ -103,11 +103,11 @@ int	build_pane_mat(void *rt, t_uipane *current, int y)
 
 	(void)rt;
 	o = current->obj;
-	if (add_btn(setb((t_btn_data){&o->shine, -STEP_SH, VEC0, UIT_SCL_BTN},
+	if (add_btn(setb((t_btn_data){&o->shine, (double)1 / STEP_SH, VEC0, UIT_SH_BTN},
 				pt(106, y), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&o->reflect, -STEP_RF, VEC0, UIT_01_BTN},
 				pt(106, y + 30), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->shine, STEP_SH, VEC0, UIT_SCL_BTN},
+		|| add_btn(setb((t_btn_data){&o->shine, STEP_SH, VEC0, UIT_SH_BTN},
 				pt(136, y), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&o->reflect, STEP_RF, VEC0, UIT_01_BTN},
 				pt(136, y + 30), BTNSZ), current))

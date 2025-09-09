@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_build_mo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-04 15:19:25 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-09-04 15:19:25 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/09/04 15:19:25 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/09 15:00:33 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	build_pane_mo(void *rt, t_uipane *current)
 	build_local_basis(rt, &b);
 	o = current->obj;
 	o->local_basis = b;
+	(void)b;
 	if (build_pane_color(rt, current))
 		return (1);
 	if (build_pane_pos(rt, current, &o->pt, 182))

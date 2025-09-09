@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-01 10:22:52 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-09-01 10:22:52 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/09/01 10:22:52 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/09 15:22:35 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define STEP_SPOS 25
 # define STEP_ROT 15
 # define STEP_CAMROT 5
-# define STEP_SH 50
+# define STEP_SH 2
 # define STEP_RF 0.1
 # define STEP_RAY 2
 # define STEP_HEI 5
@@ -49,6 +49,7 @@ typedef enum e_itm_type
 {
 	UIT_SCL_BTN,
 	UIT_COL_BTN,
+	UIT_SH_BTN,
 	UIT_FOV_BTN,
 	UIT_01_BTN,
 	UIT_ROT_BTN,

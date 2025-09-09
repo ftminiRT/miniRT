@@ -20,6 +20,7 @@ int	build_pane_cyl(void *rt, t_uipane *current)
 	build_local_basis(rt, &b);
 	o = current->obj;
 	o->local_basis = b;
+	(void)b;
 	if (build_pane_color(rt, current))
 		return (1);
 	if (build_pane_pos(rt, current, &o->pt, 182))

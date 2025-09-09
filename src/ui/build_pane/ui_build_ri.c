@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_build_ri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-08 12:21:12 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-09-08 12:21:12 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/09/08 12:21:12 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/09 14:59:54 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	build_ring_btns(void *rt, t_uipane *current, t_obj *o)
 {
+	(void)rt;
 	if (add_btn(setb((t_btn_data){&o->scal, -STEP_RAY, VEC0, UIT_SCL_BTN},
 				pt(106, 362), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&o->scal2, -STEP_BIGRAY, VEC0,

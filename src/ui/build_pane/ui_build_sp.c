@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_build_sp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-04 15:19:25 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-09-04 15:19:25 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/09/04 15:19:25 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/09 15:00:10 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	build_pane_sp(void *rt, t_uipane *current)
 	o = current->obj;
 	build_local_basis(rt, &o->local_basis);
 	b = o->local_basis;
+	(void)b;
 	if (build_pane_color(rt, current))
 		return (1);
 	if (build_pane_pos(rt, current, &o->pt, 182))

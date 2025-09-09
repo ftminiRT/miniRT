@@ -4,9 +4,7 @@ int	fill_values_dft(void *rt, t_uipane *cur)
 {
 	t_light	*a;
 	t_cam	*c;
-	t_env	*e;
 
-	e = (t_env *)rt;
 	a = cur->light;
 	c = cur->cam;
 	putstr_ui((t_env *)rt, 157, 92, dota(rt, a->color.r));

@@ -20,6 +20,7 @@ int	build_pane_dft(void *rt, t_uipane *current)
 	build_local_basis(rt, &b);
 	current->cam->local_basis = b;
 	c = current->cam;
+	(void)b;
 	if (build_pane_color(rt, current))
 		return (1);
 	if (add_btn(setb((t_btn_data){&current->light->brightness, -STEP_BRI, VEC0,

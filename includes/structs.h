@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:03:19 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/09/04 23:07:47 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:01:30 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,7 @@ typedef struct s_proj_data
 
 typedef enum e_objtype
 {
+	OT_DFT,
 	OT_SPHERE,
 	OT_PLANE,
 	OT_CYL,
@@ -216,8 +217,7 @@ typedef enum e_objtype
 	OT_TORE,
 	OT_MOEB,
 	OT_RING,
-	OT_LIGHT,
-	OT_DFT
+	OT_LIGHT
 }						t_objtype;
 
 typedef enum e_axis

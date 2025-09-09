@@ -30,8 +30,14 @@ static void	handle_value_buttons(t_env *rt, t_items *itm)
 
 static void	handle_vector_buttons(t_env *rt, t_items *itm)
 {
+	double *value;
 	(void)rt;
-	if (itm->type == UIT_MV_BTN)
+	if (itm->type == UIT_SH_BTN)
+	{
+		value = (double*)itm->btn.value;
+		*value = fmax(1, *value * itm->btn.factor);
+	}
+	else if (itm->type == UIT_MV_BTN)
 		move_vec3((t_vec3 *)itm->btn.value, itm->btn.v);
 	else if (itm->type == UIT_ROT_BTN)
 		vec3_rotate((t_vec3 *)itm->btn.value, itm->btn.v);
@@ -43,7 +49,7 @@ static void	handle_selection_buttons(t_env *rt, t_items *itm)
 		rt->ui.current = get_prev_spot(rt);
 	else if (itm->type == UIT_SEL_BTN && itm->btn.factor == 1)
 		rt->ui.current = get_next_spot(rt);
-	else if (itm->type == UIT_SPOT_BTN && itm->type != OT_LIGHT)
+	else if (itm->type == UIT_SPOT_BTN)
 		rt->ui.current = get_spot(rt);
 	else if (itm->type == UIT_CAM_BTN)
 		rt->ui.current = get_default_pane_addr(rt);

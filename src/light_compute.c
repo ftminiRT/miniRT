@@ -69,8 +69,6 @@ static t_color	multi_spotlights(t_env *rt, t_obj *obj, t_vec3 hit_point,
 			phong.specular = compute_specular(phong, obj, cur_spot);
 			ret = color_add(ret, phong.specular);
 		}
-		if (rt->basicrt)
-				return (ret);
 		cur_spot = cur_spot->next;
 	}
 	return (ret);

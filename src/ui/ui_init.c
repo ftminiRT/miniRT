@@ -95,6 +95,7 @@ int	add_default_buttons(t_env *rt)
 int ui_init(t_env *rt)
 {
 	init_pane_builders(rt);
+	init_pane_fillers(rt);
 	if (init_pane_img(rt))
 		return (1);
 	if (init_ui_panes(rt))

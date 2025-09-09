@@ -22,6 +22,7 @@
 # define UI_CS HEIGHT 5
 # define STEP_COL 50
 # define STEP_POS 5
+# define STEP_SPOS 25
 # define STEP_ROT 15
 # define STEP_CAMROT 5
 # define STEP_SH 50
@@ -45,7 +46,13 @@ typedef enum e_itm_type
 	UIT_ROT_BTN,
 	UIT_MV_BTN,
 	UIT_EVNT_BTN,
-	UIT_SLDR
+	UIT_SLDR,
+	UIT_EXPORT_BTN,
+	UIT_SPOT_BTN,
+	UIT_CAM_BTN,
+	UIT_RND_BTN,
+	UIT_SEL_BTN,
+	UIT_DFT_PANE
 }	t_itm_type;
 
 typedef struct s_uipt
@@ -95,6 +102,7 @@ typedef struct s_ui
 	t_uipane	*current;
 	t_items 	*dft_itms;
 	int		(*build_pane[OBJTYPENUMBER])(void *rt, t_uipane *current);
+	int	(*fill_values[OBJTYPENUMBER])(void *, t_uipane *);
 	void	*pane_img[OBJTYPENUMBER];
 
 }	t_ui;

@@ -22,9 +22,9 @@ int build_pane_dft(void *rt, t_uipane *current)
 	current->cam->local_basis = b;
 	c = current->cam;
 	a = current->light;
-	if (add_btn(setb((t_btn_data){&a->color.r, -STEP_COL, VEC0, UIT_SCL_BTN}, pt(106, 92), BTNSZ), current) ||
-		add_btn(setb((t_btn_data){&a->color.g, -STEP_COL, VEC0, UIT_SCL_BTN}, pt(106, 122), BTNSZ), current) ||
-		add_btn(setb((t_btn_data){&a->color.b, -STEP_COL, VEC0, UIT_SCL_BTN}, pt(106, 152), BTNSZ), current) ||
+	if (add_btn(setb((t_btn_data){&a->color.r, -STEP_COL, VEC0, UIT_COL_BTN}, pt(106, 92), BTNSZ), current) ||
+		add_btn(setb((t_btn_data){&a->color.g, -STEP_COL, VEC0, UIT_COL_BTN}, pt(106, 122), BTNSZ), current) ||
+		add_btn(setb((t_btn_data){&a->color.b, -STEP_COL, VEC0, UIT_COL_BTN}, pt(106, 152), BTNSZ), current) ||
 		add_btn(setb((t_btn_data){&a->brightness, -STEP_BRI, VEC0, UIT_SCL_BTN}, pt(106, 182), BTNSZ), current) ||
 		add_btn(setb((t_btn_data){&c->pos, 0, vec3_scalmult(-STEP_POS, b.w), UIT_MV_BTN}, pt(106, 242), BTNSZ), current) ||
 		add_btn(setb((t_btn_data){&c->pos, 0, vec3_scalmult(-STEP_POS, b.v), UIT_MV_BTN}, pt(106, 272), BTNSZ), current) ||
@@ -33,9 +33,9 @@ int build_pane_dft(void *rt, t_uipane *current)
 		add_btn(setb((t_btn_data){&c->dir, 0, (t_vec3){0,-STEP_CAMROT,0}, UIT_ROT_BTN}, pt(106, 362), BTNSZ), current) ||
 		add_btn(setb((t_btn_data){&c->dir, 0, (t_vec3){-STEP_CAMROT,0,0}, UIT_ROT_BTN}, pt(106, 392), BTNSZ), current) ||
 		add_btn(setb((t_btn_data){&c->fov, -STEP_FOV, VEC0, UIT_FOV_BTN}, pt(106, 422), BTNSZ), current) ||
-		add_btn(setb((t_btn_data){&a->color.r, STEP_COL, VEC0, UIT_SCL_BTN}, pt(136, 92), BTNSZ), current) ||
-		add_btn(setb((t_btn_data){&a->color.g, STEP_COL, VEC0, UIT_SCL_BTN}, pt(136, 122), BTNSZ), current) ||
-		add_btn(setb((t_btn_data){&a->color.b, STEP_COL, VEC0, UIT_SCL_BTN}, pt(136, 152), BTNSZ), current) ||
+		add_btn(setb((t_btn_data){&a->color.r, STEP_COL, VEC0, UIT_COL_BTN}, pt(136, 92), BTNSZ), current) ||
+		add_btn(setb((t_btn_data){&a->color.g, STEP_COL, VEC0, UIT_COL_BTN}, pt(136, 122), BTNSZ), current) ||
+		add_btn(setb((t_btn_data){&a->color.b, STEP_COL, VEC0, UIT_COL_BTN}, pt(136, 152), BTNSZ), current) ||
 		add_btn(setb((t_btn_data){&a->brightness, STEP_BRI, VEC0, UIT_SCL_BTN}, pt(136, 182), BTNSZ), current) ||
 		add_btn(setb((t_btn_data){&c->pos, 0, vec3_scalmult(STEP_POS, b.w), UIT_MV_BTN}, pt(136, 242), BTNSZ), current) ||
 		add_btn(setb((t_btn_data){&c->pos, 0, vec3_scalmult(STEP_POS, b.v), UIT_MV_BTN}, pt(136, 272), BTNSZ), current) ||

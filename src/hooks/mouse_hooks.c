@@ -44,6 +44,7 @@ int	mouse_hook(int bt, int x, int y, t_env *rt)
 	step = 1;
 	if (bt == LEFT_CLIC)
 	{
+		printf("clicked {%d, %d}\n", x, y);
         if (x >= WIDTH)
             click_ui(x - WIDTH, y, rt);
         else

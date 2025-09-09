@@ -46,6 +46,7 @@ typedef struct s_light
 	t_vec3			pos;
 	double			brightness;
 	t_color			color;
+	t_basis			local_basis;
 	struct s_light	*next;
 }					t_light;
 

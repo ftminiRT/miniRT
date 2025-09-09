@@ -52,6 +52,17 @@ FILES		= 	clean\
 				ui/build_pane/ui_build_spot \
 				ui/build_pane/ui_build_to \
 				ui/build_pane/ui_build_utils \
+				ui/build_pane/ui_build_events \
+				ui/fill_values/fill_values_co \
+				ui/fill_values/fill_values_cyl \
+				ui/fill_values/fill_values_dft \
+				ui/fill_values/fill_values_mo \
+				ui/fill_values/fill_values_pl \
+				ui/fill_values/fill_values_ri \
+				ui/fill_values/fill_values_sp \
+				ui/fill_values/fill_values_spot \
+				ui/fill_values/fill_values_to \
+				ui/fill_values/fv_utils \
 				ui/click_ui \
 				ui/ui_init \
 				ui/ui_panes \
@@ -114,6 +125,7 @@ $(OBJ_DIR) :
 	$(QUIET) mkdir -p $(OBJ_DIR)/parsing
 	$(QUIET) mkdir -p $(OBJ_DIR)/ui
 	$(QUIET) mkdir -p $(OBJ_DIR)/ui/build_pane
+	$(QUIET) mkdir -p $(OBJ_DIR)/ui/fill_values
 	$(QUIET) mkdir -p $(OBJ_DIR)/hooks
 
 

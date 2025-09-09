@@ -28,6 +28,7 @@ void		putpixel(int x, int y, t_env *rt, t_color c);
 void		putpixel_ui(int x, int y, t_env *rt, t_color c);
 void		putpixel_ui_img(int x, int y, t_color c, void *img);
 t_mlxdata	*init_img(t_mlx *mlx, t_mlxdata *img, int x, int y);
+void putstr_ui(t_env *rt, int x, int y, char *str);
 
 ////////////// VEC3 LIB ////////////////
 
@@ -219,10 +220,23 @@ int			build_pane_ri(void *rt, t_uipane *current);
 int			build_pane_sp(void *rt, t_uipane *current);
 int			build_pane_spot(void *rt, t_uipane *current);
 int			build_pane_to(void *rt, t_uipane *current);
+int			build_pane_events(void *rt, t_uipane *current);
 t_uipt pt(int x, int y);
 t_items setb(t_btn_data data, t_uipt pos, t_uipt scale);
 void	add_back(t_items *new, t_uipane *pane);
 int		add_btn(t_items og, t_uipane *pane);
 void	build_local_basis(void *rt, t_basis *b);
+int    fill_values_co(void *rt, t_uipane *cur);
+int    fill_values_cy(void *rt, t_uipane *cur);
+int    fill_values_dft(void *rt, t_uipane *cur);
+int    fill_values_mo(void *rt, t_uipane *cur);
+int    fill_values_pl(void *rt, t_uipane *cur);
+int    fill_values_ri(void *rt, t_uipane *cur);
+int    fill_values_sp(void *rt, t_uipane *cur);
+int    fill_values_spot(void *rt, t_uipane *cur);
+int    fill_values_to(void *rt, t_uipane *cur);
+void	init_pane_fillers(t_env *rt);
+char    *dota(t_env *rt, double n);
+
 
 #endif

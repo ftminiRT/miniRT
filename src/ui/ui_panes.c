@@ -25,6 +25,19 @@ void	init_pane_builders(t_env *rt)
 	rt->ui.build_pane[OT_LIGHT] = build_pane_spot;
 }
 
+void	init_pane_fillers(t_env *rt)
+{
+	rt->ui.fill_values[OT_DFT] = fill_values_dft;
+	rt->ui.fill_values[OT_CONE] = fill_values_co;
+	rt->ui.fill_values[OT_CYL] = fill_values_cy;
+	rt->ui.fill_values[OT_MOEB] = fill_values_mo;
+	rt->ui.fill_values[OT_PLANE] = fill_values_pl;
+	rt->ui.fill_values[OT_RING] = fill_values_ri;
+	rt->ui.fill_values[OT_SPHERE] = fill_values_sp;
+	rt->ui.fill_values[OT_TORE] = fill_values_to;
+	rt->ui.fill_values[OT_LIGHT] = fill_values_spot;
+}
+
 int	create_pane(t_env *rt, t_obj *obj)
 {
 	t_uipane	*new;
@@ -35,6 +48,8 @@ int	create_pane(t_env *rt, t_obj *obj)
 		return (1);
 	new->type = obj->type;
 	new->obj = obj;
+	if (build_pane_events(rt, new))
+		return (1);
 	if (rt->ui.build_pane[obj->type](rt, new))
 		return (1);
 	current = rt->ui.stock;
@@ -47,14 +62,21 @@ int	create_pane(t_env *rt, t_obj *obj)
 int	create_pane_l(t_env *rt, t_light *light)
 {
 	t_uipane	*current;
+	t_uipane	*last;
 
 	current = ft_calloc(1, sizeof(t_uipane));
 	if (!current)
 		return (1);
 	current->type = OT_LIGHT;
 	current->light = light;
+	if (build_pane_events(rt, current))
+		return (1);
 	if (rt->ui.build_pane[OT_LIGHT](rt, current))
 		return (1);
+	last = rt->ui.stock;
+	while (last->next)
+		last = last->next;
+	last->next = current;
 	return (0);
 }
 
@@ -68,6 +90,8 @@ int	create_default_pane(t_env *rt)
 	dflt->cam = &rt->cam;
 	dflt->light = &rt->ambient;
 	dflt->type = OT_DFT;
+	if (build_pane_events(rt, dflt))
+		return (1);
 	if (build_pane_dft(rt, dflt))
 		return (1);
 	rt->ui.current = dflt;

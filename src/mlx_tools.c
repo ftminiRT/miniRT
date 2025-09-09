@@ -41,12 +41,22 @@ void	putpixel_ui(int x, int y, t_env *rt, t_color c)
 	iimg_addr[x + y * UI_WIDTH] = (c.r << 16) | (c.g << 8) | c.b;
 }
 
-void	putpixel_ui_img(int x, int y, t_color c, void *img)
+void putpixel_ui_img(int x, int y, t_color c, void *img)
 {
-	int	*iimg_addr;
+    char    *data_addr;
+    int     bits_per_pixel;
+    int     line_size;
+    int     endian;
+    int     *pixels;
 
-	if (x < 0 || x >= UI_WIDTH|| y < 0 || y >= UI_HEIGHT)
-		return ;
-	iimg_addr = (int *)&img;
-	iimg_addr[x + y * UI_WIDTH] = (c.r << 16) | (c.g << 8) | c.b;
+    if (x < 0 || x >= UI_WIDTH || y < 0 || y >= UI_HEIGHT)
+        return ;
+    data_addr = mlx_get_data_addr(img, &bits_per_pixel, &line_size, &endian);
+    pixels = (int *)data_addr;
+    pixels[x + y * (line_size / 4)] = (c.r << 16) | (c.g << 8) | c.b;
+}
+
+void putstr_ui(t_env *rt, int x, int y, char *str)
+{
+    mlx_string_put(rt->mlx.mlx, rt->mlx.win, WIDTH + x, y, 0xfffffff, str);
 }

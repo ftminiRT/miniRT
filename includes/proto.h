@@ -194,6 +194,8 @@ void		handle_exit(int kc, t_env *rt);
 void		handle_selection(int kc, t_env *rt);
 void		handle_movement(int kc, t_env *rt, double step, t_vec3 fwd);
 void		handle_rotation(int kc, t_env *rt, double step);
+void		rot_cam(int kc, t_env *rt, double step);
+void		rot_obj(int kc, t_env *rt, double step);
 void		handle_object_mod(int kc, t_env *rt, double step);
 void		export_to_rt(t_env *rt);
 void		handle_export(int kc, t_env *rt);
@@ -248,9 +250,13 @@ int			fill_values_sp(void *rt, t_uipane *cur);
 int			fill_values_spot(void *rt, t_uipane *cur);
 int			fill_values_to(void *rt, t_uipane *cur);
 void		init_pane_fillers(t_env *rt);
+void		init_pane_builders(t_env *rt);
+void		init_pane_fillers(t_env *rt);
 char		*dota(t_env *rt, double n);
 t_uipane	*get_prev_spot(t_env *rt);
 t_uipane	*get_next_spot(t_env *rt);
 t_uipane	*get_spot(t_env *rt);
+t_uipane	*get_default_pane_addr(t_env *rt);
+void		exec_button(t_env *rt, t_items *itm);
 
 #endif

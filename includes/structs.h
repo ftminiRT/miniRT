@@ -152,6 +152,25 @@ typedef struct s_moebius
 	double				g;
 }						t_moebius;
 
+typedef	struct s_moebnorm
+{
+	double				t;
+	double				s;
+	t_vec3				dp_dt;
+	t_vec3				dp_ds;
+}				t_moebnorm;
+
+typedef struct s_torusnorm
+{
+	t_basis		b;
+	t_vec3		local_hit;
+	t_vec3		center_to_hit;
+	t_vec3		center_ring;
+	double		br;
+	double		r;
+}				t_torusnorm;
+
+
 typedef struct s_ring
 {
 	t_vec3				ro;

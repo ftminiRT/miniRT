@@ -37,5 +37,7 @@
 # include "keycodes.h"
 # include "proto.h"
 # include "libft.h"
+# include "ui.h"
+# include "structs.h"
 
 #endif

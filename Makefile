@@ -30,6 +30,7 @@ FILES		= 	clean\
 				hooks/key_hooks\
 				hooks/mouse_hooks\
 				hooks/handle_hooks\
+				hooks/handle_rota\
 				mlx_tools\
 				mrt_cleaner\
 				ray_trace\
@@ -65,7 +66,9 @@ FILES		= 	clean\
 				ui/fill_values/fill_values_to \
 				ui/fill_values/fv_utils \
 				ui/click_ui \
+				ui/exec_button \
 				ui/ui_init \
+				ui/ui_init2 \
 				ui/ui_panes \
 				ui/ui \
 				ui/ui_select_spot \
@@ -79,6 +82,7 @@ FILES		= 	clean\
 				hit_cyl\
 				hit_moebius\
 				moebius_normal\
+				torus_normal\
 				solve_cubic\
 				checkered\
 				normal_mapping_utils\

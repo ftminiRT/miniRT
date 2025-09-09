@@ -37,14 +37,13 @@ int	set_pane_img(t_env *rt, t_objtype type, char *path)
 	if (!new_img)
 		return (write(2, "miniRT : error while loading xpm img\n", 38), 1);
 	rt->ui.pane_img[type] = new_img;
-	return (0);	
+	return (0);
 }
 
 int	init_pane_img(t_env *rt)
 {
 	t_objtype	i;
 	char		*path[OBJTYPENUMBER];
-	
 
 	path[OT_CONE] = PATH_CONE;
 	path[OT_CYL] = PATH_CYL;
@@ -55,7 +54,6 @@ int	init_pane_img(t_env *rt)
 	path[OT_RING] = PATH_RING;
 	path[OT_SPHERE] = PATH_SP;
 	path[OT_TORE] = PATH_TOR;
-
 	i = 0;
 	while (i < OBJTYPENUMBER)
 	{
@@ -66,7 +64,7 @@ int	init_pane_img(t_env *rt)
 	return (0);
 }
 
-t_items *add_new_button(void *value, double factor, t_uipt pos, t_uipt scale)
+t_items	*add_new_button(void *value, double factor, t_uipt pos, t_uipt scale)
 {
 	t_items	*new;
 
@@ -84,35 +82,36 @@ t_items *add_new_button(void *value, double factor, t_uipt pos, t_uipt scale)
 
 int	add_default_buttons(t_env *rt)
 {
-	rt->ui.dft_itms = add_new_button(&rt->ambient.brightness, 0.1, (t_uipt){100,100}, (t_uipt){30,30});
+	rt->ui.dft_itms = add_new_button(&rt->ambient.brightness, 0.1, (t_uipt){100,
+			100}, (t_uipt){30, 30});
 	if (!rt->ui.dft_itms)
 		return (1);
 	putpixel_ui(100, 100, rt, (t_color){255, 0, 0});
 	return (0);
 }
 
-int ui_init(t_env *rt)
+int	ui_init(t_env *rt)
 {
 	init_pane_builders(rt);
-	printf("%d, %s\n",__LINE__, __FILE__);
+	printf("%d, %s\n", __LINE__, __FILE__);
 	fflush(stdout);
 	init_pane_fillers(rt);
-	printf("%d, %s\n",__LINE__, __FILE__);
+	printf("%d, %s\n", __LINE__, __FILE__);
 	fflush(stdout);
 	if (init_pane_img(rt))
 		return (1);
-	printf("%d, %s\n",__LINE__, __FILE__);
+	printf("%d, %s\n", __LINE__, __FILE__);
 	fflush(stdout);
 	if (init_ui_panes(rt))
 		return (1);
-	printf("%d, %s\n",__LINE__, __FILE__);
+	printf("%d, %s\n", __LINE__, __FILE__);
 	fflush(stdout);
 	if (add_default_buttons(rt))
 		return (1);
-	printf("%d, %s\n",__LINE__, __FILE__);
+	printf("%d, %s\n", __LINE__, __FILE__);
 	fflush(stdout);
 	display_ui(rt);
-	printf("%d, %s\n",__LINE__, __FILE__);
+	printf("%d, %s\n", __LINE__, __FILE__);
 	fflush(stdout);
 	return (0);
 }

@@ -12,32 +12,6 @@
 
 #include "minirt.h"
 
-void	init_pane_builders(t_env *rt)
-{
-	rt->ui.build_pane[OT_DFT] = build_pane_dft;
-	rt->ui.build_pane[OT_CONE] = build_pane_co;
-	rt->ui.build_pane[OT_CYL] = build_pane_cyl;
-	rt->ui.build_pane[OT_MOEB] = build_pane_mo;
-	rt->ui.build_pane[OT_PLANE] = build_pane_pl;
-	rt->ui.build_pane[OT_RING] = build_pane_ri;
-	rt->ui.build_pane[OT_SPHERE] = build_pane_sp;
-	rt->ui.build_pane[OT_TORE] = build_pane_to;
-	rt->ui.build_pane[OT_LIGHT] = build_pane_spot;
-}
-
-void	init_pane_fillers(t_env *rt)
-{
-	rt->ui.fill_values[OT_DFT] = fill_values_dft;
-	rt->ui.fill_values[OT_CONE] = fill_values_co;
-	rt->ui.fill_values[OT_CYL] = fill_values_cy;
-	rt->ui.fill_values[OT_MOEB] = fill_values_mo;
-	rt->ui.fill_values[OT_PLANE] = fill_values_pl;
-	rt->ui.fill_values[OT_RING] = fill_values_ri;
-	rt->ui.fill_values[OT_SPHERE] = fill_values_sp;
-	rt->ui.fill_values[OT_TORE] = fill_values_to;
-	rt->ui.fill_values[OT_LIGHT] = fill_values_spot;
-}
-
 int	create_pane(t_env *rt, t_obj *obj)
 {
 	t_uipane	*new;
@@ -82,33 +56,32 @@ int	create_pane_l(t_env *rt, t_light *light)
 
 int	create_default_pane(t_env *rt)
 {
-	t_uipane *dflt;
+	t_uipane	*dflt;
 
 	dflt = ft_calloc(1, sizeof(t_uipane));
 	if (!dflt)
 		return (1);
-	printf("%d, %s\n",__LINE__, __FILE__);
+	printf("%d, %s\n", __LINE__, __FILE__);
 	fflush(stdout);
 	dflt->cam = &rt->cam;
 	dflt->light = &rt->ambient;
 	dflt->type = OT_DFT;
-	printf("%d, %s\n",__LINE__, __FILE__);
+	printf("%d, %s\n", __LINE__, __FILE__);
 	fflush(stdout);
-
 	if (build_pane_events(rt, dflt))
 		return (1);
-	printf("%d, %s\n",__LINE__, __FILE__);
+	printf("%d, %s\n", __LINE__, __FILE__);
 	fflush(stdout);
 	if (build_pane_dft(rt, dflt))
 		return (1);
-	printf("%d, %s\n",__LINE__, __FILE__);
+	printf("%d, %s\n", __LINE__, __FILE__);
 	fflush(stdout);
 	rt->ui.current = dflt;
 	rt->ui.stock = dflt;
 	return (0);
 }
 
-int init_ui_panes(t_env *rt)
+int	init_ui_panes(t_env *rt)
 {
 	t_obj	*current;
 	t_light	*current_l;

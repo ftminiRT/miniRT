@@ -12,6 +12,24 @@
 
 #include "minirt.h"
 
+static int	build_ring_btns(void *rt, t_uipane *current, t_obj *o)
+{
+	if (add_btn(setb((t_btn_data){&o->scal, -STEP_RAY, VEC0, UIT_SCL_BTN},
+				pt(106, 362), BTNSZ), current)
+		|| add_btn(setb((t_btn_data){&o->scal2, -STEP_BIGRAY, VEC0,
+				UIT_SCL_BTN}, pt(106, 392), BTNSZ), current)
+		|| add_btn(setb((t_btn_data){&o->scal3, -STEP_RING, VEC0, UIT_SCL_BTN},
+				pt(106, 392), BTNSZ), current)
+		|| add_btn(setb((t_btn_data){&o->scal, STEP_RAY, VEC0, UIT_SCL_BTN},
+				pt(136, 362), BTNSZ), current)
+		|| add_btn(setb((t_btn_data){&o->scal2, STEP_BIGRAY, VEC0, UIT_SCL_BTN},
+				pt(136, 392), BTNSZ), current)
+		|| add_btn(setb((t_btn_data){&o->scal3, STEP_RING, VEC0, UIT_SCL_BTN},
+				pt(136, 392), BTNSZ), current))
+		return (1);
+	return (0);
+}
+
 int	build_pane_ri(void *rt, t_uipane *current)
 {
 	t_obj	*o;
@@ -28,18 +46,7 @@ int	build_pane_ri(void *rt, t_uipane *current)
 		return (1);
 	if (build_pane_mat(rt, current, 452))
 		return (1);
-	if (add_btn(setb((t_btn_data){&o->scal, -STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(106, 362), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->scal2, -STEP_BIGRAY, VEC0,
-				UIT_SCL_BTN}, pt(106, 392), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->scal3, -STEP_RING, VEC0, UIT_SCL_BTN},
-				pt(106, 392), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->scal, STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(136, 362), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->scal2, STEP_BIGRAY, VEC0, UIT_SCL_BTN},
-				pt(136, 392), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->scal3, STEP_RING, VEC0, UIT_SCL_BTN},
-				pt(136, 392), BTNSZ), current))
+	if (build_ring_btns(rt, current, o))
 		return (1);
 	return (0);
 }

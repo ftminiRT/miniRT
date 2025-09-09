@@ -25,57 +25,6 @@ t_uipane	*get_default_pane_addr(t_env *rt)
 	}
 	return (NULL);
 }
-void	exec_button(t_env *rt, t_items *itm)
-{
-	double			*val;
-	unsigned char	*u8val;
-
-	if (!itm)
-		return ;
-	if (itm->type == UIT_SCL_BTN)
-	{
-		val = (double *)itm->btn.value;
-		*val = fmax(0, *val + itm->btn.factor);
-	}
-	else if (itm->type == UIT_01_BTN)
-	{
-		val = (double *)itm->btn.value;
-		*val = fmin(1, fmax(0, *val + itm->btn.factor));
-	}
-	else if (itm->type == UIT_COL_BTN)
-	{
-		u8val = (unsigned char *)itm->btn.value;
-		*u8val = (unsigned char)fmin(255, fmax(0, *u8val + itm->btn.factor));
-	}
-	else if (itm->type == UIT_FOV_BTN)
-	{
-		u8val = (unsigned char *)itm->btn.value;
-		*u8val = (unsigned char)fmin(170, fmax(0, *u8val + itm->btn.factor));
-	}
-	else if (itm->type == UIT_MV_BTN)
-		move_vec3((t_vec3 *)itm->btn.value, itm->btn.v);
-	else if (itm->type == UIT_ROT_BTN)
-		vec3_rotate((t_vec3 *)itm->btn.value, itm->btn.v);
-	else if (itm->type == UIT_SEL_BTN && itm->btn.factor == -1)
-		rt->ui.current = get_prev_spot(rt);
-	else if (itm->type == UIT_SEL_BTN && itm->btn.factor == 1)
-		rt->ui.current = get_next_spot(rt);
-	else if (itm->type == UIT_SPOT_BTN && itm->type != OT_LIGHT)
-		rt->ui.current = get_spot(rt);
-	else if (itm->type == UIT_CAM_BTN)
-		rt->ui.current = get_default_pane_addr(rt);
-	else if (itm->type == UIT_EXPORT_BTN)
-		export_to_rt(rt);
-	else if (itm->type == UIT_RND_BTN)
-	{
-		rt->render = !rt->render;
-		rt->basicrt = !rt->basicrt;
-		if (!rt->render)
-			ray_trace(rt);
-	}
-	else if (itm->function)
-		itm->function(rt);
-}
 
 int	hit_ui(int x, int y, t_items *itm)
 {

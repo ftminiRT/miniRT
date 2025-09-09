@@ -3,12 +3,12 @@
 
 void	display_color_frame(t_env *rt, void *img, t_objtype type)
 {
-	t_color clr;
+	t_color	clr;
 	int		i;
 	int		j;
 
-	(void)	img;
-	if (type == OT_LIGHT|| type == OT_DFT)
+	(void)img;
+	if (type == OT_LIGHT || type == OT_DFT)
 		clr = rt->ui.current->light->color;
 	else
 		clr = rt->ui.current->obj->color;
@@ -30,14 +30,14 @@ void	wipe_ui_values(t_env *rt, void *img)
 	int	i;
 	int	j;
 
-	(void) rt;
+	(void)rt;
 	j = 79;
 	while (j < 495)
 	{
 		i = 149;
 		while (i < 200)
 		{
-			putpixel_ui_img(i, j, (t_color){0,0,0}, img);
+			putpixel_ui_img(i, j, (t_color){0, 0, 0}, img);
 			i++;
 		}
 		j++;
@@ -46,17 +46,16 @@ void	wipe_ui_values(t_env *rt, void *img)
 
 void	ui_print_values(t_env *rt, void *img)
 {
-	t_objtype type;
+	t_objtype	type;
 
 	type = rt->ui.current->type;
 	display_color_frame(rt, img, type);
 	wipe_ui_values(rt, img);
-	//faire un tableau de fonction pour chaque type de fenetre
 }
 
 void	display_ui(t_env *rt)
-{	
-	void	*img;
+{
+	void *img;
 
 	img = rt->ui.pane_img[rt->ui.current->type];
 	ui_print_values(rt, img);

@@ -52,31 +52,9 @@ void	handle_movement(int kc, t_env *rt, double step, t_vec3 fwd)
 void	handle_rotation(int kc, t_env *rt, double step)
 {
 	if (rt->selected.type == CAM)
-	{
-		if (kc == KEY_J)
-			rotate_selected(rt, (t_vec3){0, -step, 0});
-		if (kc == KEY_L)
-			rotate_selected(rt, (t_vec3){0, step, 0});
-		if (kc == KEY_K)
-			rotate_selected(rt, (t_vec3){0, 0, -step});
-		if (kc == KEY_I)
-			rotate_selected(rt, (t_vec3){0, 0, step});
-	}
+		rot_cam(kc, rt, step);
 	else
-	{
-		if (kc == KEY_J)
-			rotate_selected(rt, (t_vec3){0, -step, 0});
-		if (kc == KEY_L)
-			rotate_selected(rt, (t_vec3){0, step, 0});
-		if (kc == KEY_K)
-			rotate_selected(rt, (t_vec3){-step, 0, 0});
-		if (kc == KEY_I)
-			rotate_selected(rt, (t_vec3){step, 0, 0});
-		if (kc == KEY_U)
-			rotate_selected(rt, (t_vec3){0, 0, -step});
-		if (kc == KEY_O)
-			rotate_selected(rt, (t_vec3){0, 0, step});
-	}
+		rot_obj(kc, rt, step);
 }
 
 void	handle_object_mod(int kc, t_env *rt, double step)

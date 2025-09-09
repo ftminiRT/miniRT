@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:03:19 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/09/09 15:01:30 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 23:14:29 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,8 +339,7 @@ typedef struct s_select
 typedef struct s_env	t_env;
 typedef struct s_ui		t_ui;
 typedef double			(*t_hit_funcs[OBJTYPENUMBER + 1])(t_ray *, t_obj *);
-typedef t_vec3			(*t_get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3,
-				t_env *);
+typedef t_vec3			(*t_get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3);
 typedef void			(*t_get_uv[OBJTYPENUMBER + 1])(t_obj *, t_vec3,
 				int map[2]);
 
@@ -359,7 +358,6 @@ typedef struct s_env
 	t_ui				ui;
 	size_t				nb_spots;
 	bool				render;
-	bool				basicrt;
 	int					log_fd;
 }						t_env;
 

@@ -19,7 +19,7 @@ void	handle_selection(int kc, t_env *rt)
 	if (kc == KEY_S)
 	{
 		rt->selected.type = SPOT;
-		if (rt->basicrt)
+		if (!rt->selected.spot)
 			rt->selected.spot = &rt->spot;
 		else if (rt->selected.spot->next)
 			rt->selected.spot = rt->selected.spot->next;

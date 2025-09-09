@@ -7,16 +7,16 @@ int	fill_values_dft(void *rt, t_uipane *cur)
 
 	a = cur->light;
 	c = cur->cam;
-	putstr_ui((t_env *)rt, 157, 92, dota(rt, a->color.r));
-	putstr_ui((t_env *)rt, 157, 122, dota(rt, a->color.g));
-	putstr_ui((t_env *)rt, 157, 152, dota(rt, a->color.b));
-	putstr_ui((t_env *)rt, 157, 182, dota(rt, a->brightness));
-	putstr_ui((t_env *)rt, 157, 242, dota(rt, c->pos.x));
-	putstr_ui((t_env *)rt, 157, 272, dota(rt, c->pos.y));
-	putstr_ui((t_env *)rt, 157, 302, dota(rt, c->pos.z));
-	putstr_ui((t_env *)rt, 157, 332, dota(rt, c->dir.x));
-	putstr_ui((t_env *)rt, 157, 362, dota(rt, c->dir.y));
-	putstr_ui((t_env *)rt, 157, 392, dota(rt, c->dir.z));
-	putstr_ui((t_env *)rt, 157, 422, dota(rt, c->fov));
+	putnbr_ui((t_env *)rt, 157, 92, a->color.r);
+	putnbr_ui((t_env *)rt, 157, 122, a->color.g);
+	putnbr_ui((t_env *)rt, 157, 152, a->color.b);
+	putnbr_ui((t_env *)rt, 157, 182, a->brightness);
+	putnbr_ui((t_env *)rt, 157, 242, c->pos.x);
+	putnbr_ui((t_env *)rt, 157, 272, c->pos.y);
+	putnbr_ui((t_env *)rt, 157, 302, c->pos.z);
+	putnbr_ui((t_env *)rt, 157, 332, c->dir.x);
+	putnbr_ui((t_env *)rt, 157, 362, c->dir.y);
+	putnbr_ui((t_env *)rt, 157, 392, c->dir.z);
+	putnbr_ui((t_env *)rt, 157, 422, c->fov);
 	return (0);
 }

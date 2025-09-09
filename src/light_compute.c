@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:26 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/09/05 07:48:38 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 23:15:43 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static t_color	multi_spotlights(t_env *rt, t_obj *obj, t_vec3 hit_point,
 	t_color	ret;
 
 	ret = (t_color){0, 0, 0};
-	phong.normal = rt->get_norm[obj->type](obj, hit_point, rt);
+	phong.normal = rt->get_norm[obj->type](obj, hit_point);
 	if (vec3_dot(ray.dir, phong.normal) > 0)
 		phong.normal = vec3_scalmult(-1, phong.normal);
 	phong.view = vec3_scalmult(-1.0, ray.dir);
@@ -103,9 +103,7 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point, const t_ray ray)
 	t_color	ret;
 	t_color	base_color;
 
-	if (rt->basicrt)
-		base_color = obj->color;
-	else if (obj->checkered)
+	if (obj->checkered)
 		base_color = get_checkered_color(rt, obj, hit_point);
 	else if (obj->texture_data)
 		base_color = get_texture_color(rt, obj, hit_point);

@@ -36,12 +36,12 @@ static t_vec3	moebius_geo_normal(t_moebnorm *comp, t_basis b)
 	return (geo_normal);
 }
 
-static t_vec3	moebius_apply_normal_mapping(t_env *rt, t_obj *obj,
+static t_vec3	moebius_apply_normal_mapping(t_obj *obj,
 		t_vec3 geo_normal, t_moebnorm comp)
 {
 	t_normap	normap;
 
-	if (!obj->normal_map_data || rt->basicrt)
+	if (!obj->normal_map_data)
 		return (geo_normal);
 	normap.tangent = local_to_world_vec(comp.dp_dt, make_basis(obj->n));
 	vec3_normalize(&normap.tangent);
@@ -56,7 +56,7 @@ static t_vec3	moebius_apply_normal_mapping(t_env *rt, t_obj *obj,
 			sample_normal_map(obj, normap.u, normap.v)));
 }
 
-t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point, t_env *rt)
+t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point)
 {
 	t_moebnorm	comp;
 	t_basis		b;
@@ -66,5 +66,5 @@ t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point, t_env *rt)
 	moebius_local_coords(obj, hit_point, b, &comp);
 	moebius_derivatives(obj, &comp);
 	geo_normal = moebius_geo_normal(&comp, b);
-	return (moebius_apply_normal_mapping(rt, obj, geo_normal, comp));
+	return (moebius_apply_normal_mapping(obj, geo_normal, comp));
 }

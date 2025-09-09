@@ -67,7 +67,6 @@ void	exec_button(t_env *rt, t_items *itm)
 	else if (itm->type == UIT_RND_BTN)
 	{
 		rt->render = !rt->render;
-		rt->basicrt = !rt->basicrt;
 		if (!rt->render)
 			ray_trace(rt);
 	}

@@ -21,12 +21,12 @@ static t_vec3	torus_geo_normal(t_torusnorm *comp, t_vec3 geo_normal)
 			vec3_scalmult(geo_normal.z, comp->b.v)));
 }
 
-static t_vec3	torus_apply_normal_mapping(t_env *rt, t_obj *obj,
+static t_vec3	torus_apply_normal_mapping(t_obj *obj,
 		t_vec3 geo_normal, t_torusnorm comp)
 {
 	t_normap	normap;
 
-	if (!obj->normal_map_data || rt->basicrt)
+	if (!obj->normal_map_data)
 		return (geo_normal);
 	normap.tangent = vec3_cross(obj->n, geo_normal);
 	vec3_normalize(&normap.tangent);
@@ -38,7 +38,7 @@ static t_vec3	torus_apply_normal_mapping(t_env *rt, t_obj *obj,
 			sample_normal_map(obj, normap.u, normap.v)));
 }
 
-t_vec3	torus_normal(t_obj *obj, t_vec3 hit_point, t_env *rt)
+t_vec3	torus_normal(t_obj *obj, t_vec3 hit_point)
 {
 	t_torusnorm	comp;
 	t_vec3		geo_normal;
@@ -48,5 +48,5 @@ t_vec3	torus_normal(t_obj *obj, t_vec3 hit_point, t_env *rt)
 	init_base(obj, &comp.b);
 	geo_normal = torus_local_hit(obj, hit_point, &comp);
 	geo_normal = torus_geo_normal(&comp, geo_normal);
-	return (torus_apply_normal_mapping(rt, obj, geo_normal, comp));
+	return (torus_apply_normal_mapping(obj, geo_normal, comp));
 }

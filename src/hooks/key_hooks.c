@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:57 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/09/03 07:41:04 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 23:10:10 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ int	key_pressed(int kc, t_env *rt)
 		if (rt->render)
 			ray_trace(rt);
 	}
-	if (kc == KEY_B)
-		rt->basicrt = !rt->basicrt;
 	if (is_valid_key_code(kc, rt))
 		ray_trace(rt);
 	return (1);

@@ -59,7 +59,7 @@ static t_vec3	normal_with_map(t_obj *obj, t_vec3 pl, t_vec3 geo_normal,
 			sample_normal_map(obj, normap.u, normap.v)));
 }
 
-t_vec3	ring_normal(t_obj *obj, t_vec3 hit_point, t_env *rt)
+t_vec3	ring_normal(t_obj *obj, t_vec3 hit_point)
 {
 	t_basis	b;
 	t_vec3	pl;
@@ -70,7 +70,7 @@ t_vec3	ring_normal(t_obj *obj, t_vec3 hit_point, t_env *rt)
 	pl = local_point(hit_point, obj, b);
 	n_local = local_normal(pl, obj);
 	geo_normal = world_normal(n_local, b);
-	if (!obj->normal_map_data || rt->basicrt)
+	if (!obj->normal_map_data)
 		return (geo_normal);
 	return (normal_with_map(obj, pl, geo_normal, b.u));
 }

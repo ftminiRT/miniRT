@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/09/05 07:52:16 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 23:13:51 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		putpixel(int x, int y, t_env *rt, t_color c);
 void		putpixel_ui(int x, int y, t_env *rt, t_color c);
 void		putpixel_ui_img(int x, int y, t_color c, void *img);
 t_mlxdata	*init_img(t_mlx *mlx, t_mlxdata *img, int x, int y);
-void		putstr_ui(t_env *rt, int x, int y, char *str);
+void		putnbr_ui(t_env *rt, int x, int y, double nbr);
 
 ////////////// VEC3 LIB ////////////////
 
@@ -125,13 +125,13 @@ int			swapd(double *a, double *b);
 
 /////////////// OBJ NORMALS /////////////
 
-t_vec3		sphere_normal(t_obj *obj, t_vec3 hit_point, t_env *rt);
-t_vec3		plane_normal(t_obj *obj, t_vec3 hit_point, t_env *rt);
-t_vec3		torus_normal(t_obj *obj, t_vec3 hit_point, t_env *rt);
-t_vec3		ring_normal(t_obj *obj, t_vec3 hit_point, t_env *rt);
-t_vec3		cylinder_normal(t_obj *obj, t_vec3 hit_point, t_env *rt);
+t_vec3		sphere_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3		plane_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3		torus_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3		ring_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3		cylinder_normal(t_obj *obj, t_vec3 hit_point);
 double		check_discs(t_obj *obj, t_vec3 hit_point);
-t_vec3		moebius_normal(t_obj *obj, t_vec3 hit_point, t_env *rt);
+t_vec3		moebius_normal(t_obj *obj, t_vec3 hit_point);
 
 /////////////// CLEAN /////////////
 

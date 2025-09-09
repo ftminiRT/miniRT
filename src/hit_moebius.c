@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 19:44:09 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/28 19:47:16 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 23:05:58 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ double	hit_moebius(t_ray *ray, t_obj *obj)
 // 	double angle = atan2(hit_point.y, hit_point.x);
 // 	geo_normal.z += sin(angle/2); // facteur de torsion léger
 // 	vec3_normalize(&geo_normal);
-// 	if (!obj->normal_map_data || rt->basicrt)
+// 	if (!obj->normal_map_data)
 // 		return (geo_normal);
 // 	tangent = (t_vec3){-geo_normal.y, geo_normal.x, 0};
 // 	vec3_normalize(&tangent);

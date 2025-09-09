@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:51 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/08/26 15:16:52 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 23:03:59 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,11 @@ void	putpixel_ui_img(int x, int y, t_color c, void *img)
 	pixels[x + y * (line_size / 4)] = (c.r << 16) | (c.g << 8) | c.b;
 }
 
-void	putstr_ui(t_env *rt, int x, int y, char *str)
+void	putnbr_ui(t_env *rt, int x, int y, double nbr)
 {
+	char *str;
+
+	str = dota(rt, nbr);
 	mlx_string_put(rt->mlx.mlx, rt->mlx.win, WIDTH + x, y, 0xfffffff, str);
+	free(str);
 }

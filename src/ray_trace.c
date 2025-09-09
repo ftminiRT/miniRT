@@ -43,9 +43,11 @@ t_color	trace_ray(t_env *rt, t_ray ray, int depth)
 		return ((t_color){0, 0, 0});
 	d.hit_point = vec3_add(ray.pt, vec3_scalmult(ray.hit, ray.dir));
 	d.local_color = get_color(rt, d.hitted, d.hit_point, ray);
+	if (rt->basicrt)
+		return (d.local_color);
 	if (d.hitted->reflect > 0.0)
 	{
-		d.normal = rt->get_norm[d.hitted->type](d.hitted, d.hit_point);
+		d.normal = rt->get_norm[d.hitted->type](d.hitted, d.hit_point, rt);
 		d.reflected = reflect(ray.dir, d.normal);
 		d.hit_point = vec3_add(d.hit_point, vec3_scalmult(EPSILON, d.normal));
 		d.reflected_ray = (t_ray){d.hit_point, d.reflected, 0, (t_color){0, 0,

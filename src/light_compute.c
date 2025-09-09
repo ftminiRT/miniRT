@@ -18,10 +18,10 @@ static t_color	compute_diffuse(t_phong phong, t_obj *obj, t_light *cur_spot)
 	t_color	diffuse;
 
 	if (obj->type == OT_PLANE)
-		diff_factor = cur_spot->brightness * fabs(vec3_dot(phong.light,
+		diff_factor = fabs(vec3_dot(phong.light,
 					phong.normal));
 	else
-		diff_factor = cur_spot->brightness * fmax(0.0, vec3_dot(phong.light,
+		diff_factor = fmax(0.0, vec3_dot(phong.light,
 					phong.normal));
 	diffuse = color_scale(color_multiply(cur_spot->color, obj->t_color),
 			diff_factor * cur_spot->brightness);
@@ -37,7 +37,6 @@ static t_color	compute_specular(t_phong phong, t_obj *obj, t_light *cur_spot)
 						phong.light)), phong.normal), phong.light);
 	vec3_normalize(&phong.reflected);
 	spec_factor = 0.0;
-	vec3_normalize(&phong.reflected);
 	if (vec3_dot(phong.normal, phong.light) > 0.0)
 		spec_factor = cur_spot->brightness * pow(fmax(0.0,
 					vec3_dot(phong.reflected, phong.view)), obj->shine);
@@ -53,7 +52,7 @@ static t_color	multi_spotlights(t_env *rt, t_obj *obj, t_vec3 hit_point,
 	t_color	ret;
 
 	ret = (t_color){0, 0, 0};
-	phong.normal = rt->get_norm[obj->type](obj, hit_point);
+	phong.normal = rt->get_norm[obj->type](obj, hit_point, rt);
 	if (vec3_dot(ray.dir, phong.normal) > 0)
 		phong.normal = vec3_scalmult(-1, phong.normal);
 	phong.view = vec3_scalmult(-1.0, ray.dir);
@@ -66,10 +65,12 @@ static t_color	multi_spotlights(t_env *rt, t_obj *obj, t_vec3 hit_point,
 			phong.light = vec3_sub(cur_spot->pos, hit_point);
 			vec3_normalize(&phong.light);
 			phong.diffuse = compute_diffuse(phong, obj, cur_spot);
-			phong.specular = compute_specular(phong, obj, cur_spot);
 			ret = color_add(ret, phong.diffuse);
+			phong.specular = compute_specular(phong, obj, cur_spot);
 			ret = color_add(ret, phong.specular);
 		}
+		if (rt->basicrt)
+				return (ret);
 		cur_spot = cur_spot->next;
 	}
 	return (ret);
@@ -104,7 +105,9 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point, const t_ray ray)
 	t_color	ret;
 	t_color	base_color;
 
-	if (obj->checkered)
+	if (rt->basicrt)
+		base_color = obj->color;
+	else if (obj->checkered)
 		base_color = get_checkered_color(rt, obj, hit_point);
 	else if (obj->texture_data)
 		base_color = get_texture_color(rt, obj, hit_point);

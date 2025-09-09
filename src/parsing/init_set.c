@@ -63,6 +63,7 @@ int	init_spotlight(char **args, t_env *rt)
 	rt->spot.brightness = ft_atod(args[2]);
 	if (str_to_colors(&rt->spot.color, args[3]))
 		return (1);
+	rt->nb_spots++;
 	return (0);
 }
 

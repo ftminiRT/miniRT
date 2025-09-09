@@ -63,6 +63,7 @@ FILES		= 	clean\
 				compute_intersections\
 				hit_cyl\
 				hit_moebius\
+				moebius_normal\
 				solve_cubic\
 				mouse_hooks\
 				checkered\

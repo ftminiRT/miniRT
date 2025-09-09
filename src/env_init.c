@@ -45,5 +45,7 @@ void	env_init(t_env *rt)
 	rt->selected.amb = &rt->ambient;
 	rt->selected.obj = NULL;
 	rt->ui.dft_itms = 0;
+	rt->nb_spots = 0;
 	rt->render = false;
+	rt->basicrt = false;
 }

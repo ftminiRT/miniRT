@@ -61,7 +61,7 @@ double	hit_torus(t_ray *ray, t_obj *obj)
 	return (INFINITY);
 }
 
-t_vec3 torus_normal(t_obj *obj, t_vec3 hit_point)
+t_vec3 torus_normal(t_obj *obj, t_vec3 hit_point, t_env *rt)
 {
     t_vec3 geo_normal;
     t_normap normap;
@@ -84,12 +84,12 @@ t_vec3 torus_normal(t_obj *obj, t_vec3 hit_point)
     center_ring = vec3_scalmult(br, center_to_hit);
     geo_normal = vec3_sub(local_hit, center_ring);
     vec3_normalize(&geo_normal);
-    geo_normal = (t_vec3){
-        vec3_dot(geo_normal, b.u),
-        vec3_dot(geo_normal, b.w),
-        vec3_dot(geo_normal, b.v)
-    };
-    if (!obj->normal_map_data)
+    geo_normal = vec3_add(
+        vec3_add(vec3_scalmult(geo_normal.x, b.u),
+        		vec3_scalmult(geo_normal.y, b.w)),
+        	vec3_scalmult(geo_normal.z, b.v)
+	);
+    if (!obj->normal_map_data || rt->basicrt)
         return (geo_normal);
     normap.tangent = vec3_cross(obj->n, geo_normal);
     vec3_normalize(&normap.tangent);

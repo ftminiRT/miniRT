@@ -334,8 +334,10 @@ typedef struct s_select
 	t_select_type	type;
 }					t_select;
 
+typedef struct s_env t_env;
+
 typedef double		(*t_hit_funcs[OBJTYPENUMBER + 1])(t_ray *, t_obj *);
-typedef t_vec3		(*t_get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3);
+typedef t_vec3		(*t_get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3, t_env *);
 typedef void		(*t_get_uv[OBJTYPENUMBER + 1])(t_obj *, t_vec3, int map[2]);
 
 typedef struct s_env
@@ -351,7 +353,9 @@ typedef struct s_env
 	t_get_uv	get_uv;
 	t_mlx		mlx;
 	t_ui		ui;
+	size_t		nb_spots;
 	bool		render;
+	bool		basicrt;
 	int			log_fd;
 }				t_env;
 

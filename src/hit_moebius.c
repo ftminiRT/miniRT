@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-int	inside(t_obj *m, t_vec3 h)
+int	inside_moebius(t_obj *m, t_vec3 h)
 {
 	double	t;
 	double	s;
@@ -42,7 +42,7 @@ static double	choose_mobi_root(double *roots, int ret, t_ray *ray, t_obj *obj)
 		if (roots[i] > EPSILON)
 		{
 			hit = vec3_add(vec3_scalmult(roots[i], ray->dir), ray->pt);
-			if (inside(obj, hit))
+			if (inside_moebius(obj, hit))
 				return (roots[i]);
 		}
 		i++;
@@ -88,23 +88,27 @@ double	hit_moebius(t_ray *ray, t_obj *obj)
 	return (choose_mobi_root(root, solve_cubic(a, root), &local_ray, obj));
 }
 
-t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point)
-{
-	t_vec3		geo_normal;
-	t_vec3		tangent;
-	t_vec3		bitangent;
-	t_vec3		map_normal;
-	t_normap	normap;
+// t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point, t_env *rt)
+// {
+// 	t_vec3		geo_normal;
+// 	t_vec3		tangent;
+// 	t_vec3		bitangent;
+// 	t_vec3		map_normal;
+// 	t_normap	normap;
 
-	geo_normal = vec3_sub(hit_point, obj->pt);
-	vec3_normalize(&geo_normal);
-	if (!obj->normal_map_data)
-		return (geo_normal);
-	tangent = (t_vec3){-geo_normal.y, geo_normal.x, 0};
-	vec3_normalize(&tangent);
-	bitangent = vec3_cross(geo_normal, tangent);
-	normap.u = atan2(hit_point.y, hit_point.x) / (2.0 * M_PI) + 0.5;
-	normap.v = 0.5 + hit_point.z / obj->scal;
-	map_normal = sample_normal_map(obj, normap.u, normap.v);
-	return (apply_normal_mapping(geo_normal, tangent, bitangent, map_normal));
-}
+// 	// Version minimale basée sur votre original
+// 	geo_normal = vec3_sub(hit_point, obj->pt);
+// 	// Ajouter un petit facteur de torsion
+// 	double angle = atan2(hit_point.y, hit_point.x);
+// 	geo_normal.z += sin(angle/2); // facteur de torsion léger
+// 	vec3_normalize(&geo_normal);
+// 	if (!obj->normal_map_data || rt->basicrt)
+// 		return (geo_normal);
+// 	tangent = (t_vec3){-geo_normal.y, geo_normal.x, 0};
+// 	vec3_normalize(&tangent);
+// 	bitangent = vec3_cross(geo_normal, tangent);
+// 	normap.u = atan2(hit_point.y, hit_point.x) / (2.0 * M_PI) + 0.5;
+// 	normap.v = 0.5 + hit_point.z / obj->scal;
+// 	map_normal = sample_normal_map(obj, normap.u, normap.v);
+// 	return (apply_normal_mapping(geo_normal, tangent, bitangent, map_normal));
+// }

@@ -32,6 +32,8 @@ bool	is_valid_key_code(int kc, t_env *rt)
 		if (kc == KEY_MINUS2 || kc == KEY_PLUS2 || kc == KEY_X)
 			return (true);
 	}
+	if (kc == KEY_B)
+		return (true);
 	return (false);
 }
 void	move_selected(t_env *rt, t_vec3 move)
@@ -74,6 +76,8 @@ int	key_pressed(int kc, t_env *rt)
 		if (rt->render)
 			ray_trace(rt);
 	}
+	if (kc == KEY_B)
+		rt->basicrt = !rt->basicrt;
 	if (is_valid_key_code(kc, rt))
 		ray_trace(rt);
 	return (1);

@@ -26,7 +26,7 @@ t_vec3	apply_normal_mapping(t_vec3 geo_normal, t_vec3 tangent,
 	return (final_normal);
 }
 
-t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point)
+t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point, t_env *rt)
 {
 	t_vec3		geo_normal;
 	t_vec3		map_normal;
@@ -34,7 +34,7 @@ t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point)
 
 	geo_normal = vec3_sub(hit_point, obj->pt);
 	vec3_normalize(&geo_normal);
-	if (!obj->normal_map_data)
+	if (!obj->normal_map_data || rt->basicrt)
 		return (geo_normal);
 	normap.scale_u = 1.0;
 	normap.scale_v = 1.0;
@@ -51,7 +51,7 @@ t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point)
 			map_normal));
 }
 
-t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point)
+t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point, t_env *rt)
 {
 	t_vec3		geo_normal;
 	t_vec3		map_normal;
@@ -59,7 +59,7 @@ t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point)
 	t_normap	normap;
 
 	geo_normal = obj->n;
-	if (!obj->normal_map_data)
+	if (!obj->normal_map_data || rt->basicrt)
 		return (geo_normal);
 	local_pos = vec3_sub(hit_point, obj->pt);
 	if (fabs(geo_normal.y) < 0.9)
@@ -98,7 +98,7 @@ double	check_discs(t_obj *obj, t_vec3 hit_point)
 	return (0);
 }
 
-t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point)
+t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point, t_env *rt)
 {
 	t_vec3		geo_normal;
 	t_vec3		map_normal;
@@ -113,7 +113,7 @@ t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point)
 						obj->pt), obj->n), obj->n));
 	geo_normal = vec3_sub(hit_point, axis_point);
 	vec3_normalize(&geo_normal);
-	if (!obj->normal_map_data)
+	if (!obj->normal_map_data || rt->basicrt)
 		return (geo_normal);
 	normap.h = vec3_dot(vec3_sub(hit_point, obj->pt), obj->n);
 	normap.u = atan2(geo_normal.z, geo_normal.x) / (2.0 * M_PI) + 0.5;

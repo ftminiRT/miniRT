@@ -50,6 +50,7 @@ void	vec3_rotate(t_vec3 *v, t_vec3 r);
 double	hit_sphere(t_ray *r, t_obj *s);
 double	hit_plane(t_ray *r, t_obj *p);
 double	hit_cylinder(t_ray *r, t_obj *cy);
+int	inside_moebius(t_obj *m, t_vec3 h);
 double	hit_moebius(t_ray *ray, t_obj *obj);
 double	hit_torus(t_ray *ray, t_obj *obj);
 double	hit_ring(t_ray *ray, t_obj *obj);
@@ -58,6 +59,7 @@ double	hit_ring(t_ray *ray, t_obj *obj);
 
 t_basis	make_basis(t_vec3 n);
 t_vec3	camera_transform(t_vec3 dir_local, t_vec3 cam_dir);
+t_vec3 world_to_local_point(t_vec3 p, t_obj *obj, t_basis b);
 t_vec3	world_to_local_vec(t_vec3 v, t_basis b);
 t_vec3	local_to_world_vec(t_vec3 v, t_basis b);
 t_ray	world_to_local_ray(t_ray r, t_obj *obj, t_basis b);
@@ -104,7 +106,6 @@ t_color	color_add(t_color c1, t_color c2);
 t_color	color_scale(t_color c, double factor);
 t_color	color_multiply(t_color c1, t_color c2);
 t_color	color_clamp(t_color color);
-t_vec3	get_normal(t_obj *obj, t_vec3 hit_point);
 t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point, t_ray ray);
 t_color	get_checkered_color(t_env *rt, t_obj *obj, t_vec3 hit_point);
 bool	in_shadow(t_env *rt, t_light *spot, t_vec3 hit_point);
@@ -121,13 +122,13 @@ int		swapd(double *a, double *b);
 
 /////////////// OBJ NORMALS /////////////
 
-t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point);
-t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point);
-t_vec3 torus_normal(t_obj *obj, t_vec3 hit_point);
-t_vec3	ring_normal(t_obj *obj, t_vec3 hit_point);
-t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point, t_env *rt);
+t_vec3	plane_normal(t_obj *obj, t_vec3 hit_point, t_env *rt);
+t_vec3 torus_normal(t_obj *obj, t_vec3 hit_point, t_env *rt);
+t_vec3	ring_normal(t_obj *obj, t_vec3 hit_point, t_env *rt);
+t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point, t_env *rt);
 double	check_discs(t_obj *obj, t_vec3 hit_point);
-t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3	moebius_normal(t_obj *obj, t_vec3 hit_point, t_env *rt);
 
 /////////////// CLEAN /////////////
 

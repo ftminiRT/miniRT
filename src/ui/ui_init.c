@@ -68,7 +68,7 @@ t_items	*add_new_button(void *value, double factor, t_uipt pos, t_uipt scale)
 {
 	t_items	*new;
 
-	new = malloc(sizeof(t_items));
+	new = ft_calloc(1, sizeof(t_items));
 	if (!new)
 		return (NULL);
 	new->btn.factor = factor;
@@ -78,16 +78,6 @@ t_items	*add_new_button(void *value, double factor, t_uipt pos, t_uipt scale)
 	new->scale.x = scale.x;
 	new->scale.y = scale.y;
 	return (new);
-}
-
-int	add_default_buttons(t_env *rt)
-{
-	rt->ui.dft_itms = add_new_button(&rt->ambient.brightness, 0.1, (t_uipt){100,
-			100}, (t_uipt){30, 30});
-	if (!rt->ui.dft_itms)
-		return (1);
-	putpixel_ui(100, 100, rt, (t_color){255, 0, 0});
-	return (0);
 }
 
 int	ui_init(t_env *rt)
@@ -103,10 +93,6 @@ int	ui_init(t_env *rt)
 	// printf("%d, %s\n", __LINE__, __FILE__);
 	// fflush(stdout);
 	if (init_ui_panes(rt))
-		return (1);
-	// printf("%d, %s\n", __LINE__, __FILE__);
-	// fflush(stdout);
-	if (add_default_buttons(rt))
 		return (1);
 	// printf("%d, %s\n", __LINE__, __FILE__);
 	// fflush(stdout);

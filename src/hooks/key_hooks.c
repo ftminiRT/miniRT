@@ -83,7 +83,7 @@ int	key_pressed(int kc, t_env *rt)
 
 int	close_window(t_env *rt)
 {
-	clear_mlx(rt);
+	mrt_cleaner(rt);
 	exit(0);
 	return (0);
 }

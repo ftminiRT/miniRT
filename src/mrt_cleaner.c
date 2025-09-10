@@ -36,27 +36,7 @@ static void	clean_spots(t_light *current)
 	}
 }
 
-/* void	close_imgs(t_env *rt)
-{
-	size_t	i;
-	char	*data_addr;
-	int		bits_per_pixel;
-	int		line_size;
-	int		endian;
-
-	i = 0;
-	while (1)
-	{
-		data_addr = mlx_get_data_addr(rt->ui.pane_img[i], \
-			&bits_per_pixel, &line_size, &endian);
-		mlx_destroy_image(rt->mlx.mlx, (void *)data_addr);
-		i = (i + 1) % OBJTYPENUMBER;
-		if (!i)
-			return ;
-	}
-} */
-
-/* void	close_imgs(t_env *rt)
+void	close_imgs(t_env *rt)
 {
 	size_t	i;
 
@@ -68,7 +48,7 @@ static void	clean_spots(t_light *current)
 		if (!i)
 			return ;
 	}
-} */
+}
 
 void	clean_panes(t_env *rt)
 {
@@ -95,11 +75,13 @@ void	clean_panes(t_env *rt)
 void	mrt_cleaner(t_env *rt)
 {
 	printf("MRT CLEANER //////\n");
-	// close_imgs(rt);
+	close_imgs(rt);
 	clean_panes(rt);
 	// printf("%d, %s\n", __LINE__, __FILE__);
+	clear_all_textures(rt);
 	clean_obj(rt->objects);
 	// printf("%d, %s\n", __LINE__, __FILE__);
 	clean_spots(rt->spot.next);
+	clear_mlx(rt);
 	// printf("%d, %s\n", __LINE__, __FILE__);
 }

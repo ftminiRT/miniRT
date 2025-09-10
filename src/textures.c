@@ -56,5 +56,4 @@ void	free_texture(void *mlx_ptr, t_obj *obj)
 	obj->texture_bpp = 0;
 	obj->texture_size_line = 0;
 	obj->texture_endian = 0;
-	printf("Texture reset (MLX cleanup handled by clear_mlx)\n");
 }

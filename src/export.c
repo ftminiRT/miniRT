@@ -30,16 +30,37 @@ static void	redirect_to_file(int fd, int stdout_backup, char *filename,
 			"Erreur lors de la redirection");
 }
 
+static int	ensure_export_dir_exists(void)
+{
+	struct stat st;
+
+	if (stat("exports", &st) == -1)
+	{
+		if (mkdir("exports", 0755) == -1)
+		{
+			fprintf(stderr, "Erreur lors de la création du dossier exports: %s\n",
+				strerror(errno));
+			return (1);
+		}
+	}
+	return (0);
+}
+
 void	export_to_rt(t_env *rt)
 {
 	char	*filename;
 	int		fd;
 	int		stdout_backup;
 
-	filename = get_next_export_filename(rt);
-	if (!filename
-		&& printf("Erreur: impossible de générer un nom de fichier\n"))
+	if (ensure_export_dir_exists())
 		return ;
+	filename = get_next_export_filename(rt);
+	if (!filename)
+	{
+		printf("Erreur: impossible de générer un nom de fichier\n");
+		fflush(stdout);
+		return ;
+	}
 	fd = setup_export_file(filename, rt);
 	stdout_backup = backup_stdout(fd, filename, rt);
 	redirect_to_file(fd, stdout_backup, filename, rt);

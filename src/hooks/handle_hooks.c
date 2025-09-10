@@ -4,7 +4,6 @@ void	handle_exit(int kc, t_env *rt)
 {
 	if (kc == KEY_ESC)
 	{
-		clear_mlx(rt);
 		mrt_cleaner(rt);
 		exit(1);
 	}

@@ -40,7 +40,6 @@ void	clear_all_textures(t_env *rt)
 
 int	clear_mlx(t_env *rt)
 {
-	clear_all_textures(rt);
 	mlx_destroy_window(rt->mlx.mlx, rt->mlx.win);
 	mlx_destroy_image(rt->mlx.mlx, rt->mlx.img.img);
 	mlx_destroy_display(rt->mlx.mlx);
@@ -50,7 +49,6 @@ int	clear_mlx(t_env *rt)
 
 int		mega_clean(t_env *rt)
 {
-	clear_mlx(rt);
 	mrt_cleaner(rt);
 	return (1);
 }

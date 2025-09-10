@@ -135,6 +135,7 @@ t_vec3		moebius_normal(t_obj *obj, t_vec3 hit_point);
 
 /////////////// CLEAN /////////////
 
+void	clear_all_textures(t_env *rt);
 void		mrt_cleaner(t_env *rt);
 int			mega_clean(t_env *rt);
 void		exit_from_export(t_vec3int info, t_env *rt, char *filename,

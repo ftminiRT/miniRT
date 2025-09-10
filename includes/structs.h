@@ -338,9 +338,9 @@ typedef struct s_select
 
 typedef struct s_env	t_env;
 typedef struct s_ui		t_ui;
-typedef double			(*t_hit_funcs[OBJTYPENUMBER + 1])(t_ray *, t_obj *);
-typedef t_vec3			(*t_get_norm[OBJTYPENUMBER + 1])(t_obj *, t_vec3);
-typedef void			(*t_get_uv[OBJTYPENUMBER + 1])(t_obj *, t_vec3,
+typedef double			(*t_hit_funcs[OBJTYPENUMBER])(t_ray *, t_obj *);
+typedef t_vec3			(*t_get_norm[OBJTYPENUMBER])(t_obj *, t_vec3);
+typedef void			(*t_get_uv[OBJTYPENUMBER])(t_obj *, t_vec3,
 				int map[2]);
 
 typedef struct s_env

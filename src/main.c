@@ -74,8 +74,8 @@ void	debug_print_object(t_obj obj)
 		printf("%f ", 2 * obj.scal);
 		printf("%f ", obj.scal2);
 	}
-	else
-		debug_print_bonus_object(obj);
+	// else
+	// 	debug_print_bonus_object(obj);
 	printf("%d,%d,%d ", obj.color.r, obj.color.g, obj.color.b);
 	if (BONUS)
 	{	
@@ -144,17 +144,15 @@ int	main(int ac, char **av)
 	t_env	rt;
 
 	if (ac < 2)
-		return (printf("%d, %s\n",__LINE__, __FILE__), printf("Argument file needed\n"), 0);
+		return (printf("Argument file needed\n"), 0);
 	env_init(&rt);
 	if (parsing(&rt, av[1]))
-		return (printf("%d, %s\n",__LINE__, __FILE__),  1);
+		return (1);
 	rt_mlx_init(&rt.mlx);
 	load_textures(&rt);
-	debug_print_set(&rt);
-	printf("%d, %s\n",__LINE__, __FILE__);
+	// debug_print_set(&rt);
 	if (ui_init(&rt))
-		return (printf("%d, %s\n",__LINE__, __FILE__), mrt_cleaner(&rt), 1);
-	printf("%d, %s\n",__LINE__, __FILE__);
+		return (mrt_cleaner(&rt), 1);
 	display_ui(&rt);
 	ray_trace(&rt);
 	mlx_mouse_hook(rt.mlx.win, &mouse_hook, &rt);

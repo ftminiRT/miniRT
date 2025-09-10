@@ -14,7 +14,7 @@
 # define MINIRT_H
 
 # ifndef WIDTH
-#  define WIDTH 700
+#  define WIDTH 500
 # endif
 # ifndef HEIGHT
 #  define HEIGHT 500

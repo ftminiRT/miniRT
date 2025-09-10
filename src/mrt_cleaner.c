@@ -88,7 +88,7 @@ void	clean_panes(t_env *rt)
 		}
 		tmp = cpane;
 		cpane = cpane->next;
-		free(cpane);
+		free(tmp);
 	}
 }
 

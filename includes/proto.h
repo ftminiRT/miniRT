@@ -6,7 +6,7 @@
 /*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/09/09 18:22:06 by tcoeffet         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:46:09 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			mouse_hook(int bt, int x, int y, t_env *e);
 void		putpixel(int x, int y, t_env *rt, t_color c);
 void		putpixel_ui(int x, int y, t_env *rt, t_color c);
 void		putpixel_ui_img(int x, int y, t_color c, void *img);
-t_mlxdata	*init_img(t_mlx *mlx, t_mlxdata *img, int x, int y);
+t_mlxdata	*init_img(t_env *rt, t_mlxdata *img, int x, int y);
 void		putstr_ui(t_env *rt, int x, int y, char *str);
 
 ////////////// VEC3 LIB ////////////////

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:56 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/09/04 23:18:39 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 18:52:45 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINIRT_H
 
 # ifndef WIDTH
-#  define WIDTH 700
+#  define WIDTH 500
 # endif
 # ifndef HEIGHT
 #  define HEIGHT 500

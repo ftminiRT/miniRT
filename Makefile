@@ -81,6 +81,7 @@ FILES		= 	clean\
 				compute_intersections\
 				hit_cyl\
 				hit_moebius\
+				hit_cone \
 				moebius_normal\
 				torus_normal\
 				solve_cubic\

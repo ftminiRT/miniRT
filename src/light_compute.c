@@ -103,6 +103,8 @@ t_color	get_color(t_env *rt, t_obj *obj, t_vec3 hit_point, const t_ray ray)
 	t_color	ret;
 	t_color	base_color;
 
+	if (obj->type == OT_CONE)
+		return(obj->color);
 	if (obj->checkered)
 		base_color = get_checkered_color(rt, obj, hit_point);
 	else if (obj->texture_data)

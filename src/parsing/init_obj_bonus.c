@@ -28,8 +28,8 @@ int	init_cone(char **args, t_env *rt)
 		return (1);
 	if (!str_is_double(args[3]))
 		return (1);
-	new->a = ft_atod(args[3]);
-	if (new->a < 0 || new->a > 360)
+	new->scal = ft_atod(args[3]);
+	if (new->scal <= 0 || new->scal >= 180)
 		return (1);
 	if (str_to_colors(&new->color, args[4]))
 		return (1);

@@ -125,3 +125,10 @@ t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point)
 	return (apply_normal_mapping(geo_normal, normap.tangent, normap.bitangent,
 			map_normal));
 }
+
+t_vec3 cone_normal(t_obj *obj, t_vec3 hit_point)
+{
+	(void) hit_point;
+	(void) obj;
+	return ((t_vec3){1,0,0});
+}

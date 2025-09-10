@@ -57,6 +57,7 @@ int			inside_moebius(t_obj *m, t_vec3 h);
 double		hit_moebius(t_ray *ray, t_obj *obj);
 double		hit_torus(t_ray *ray, t_obj *obj);
 double		hit_ring(t_ray *ray, t_obj *obj);
+double		hit_cone(t_ray *ray, t_obj *obj);
 
 ////////////// UTILS ////////////////
 
@@ -132,6 +133,7 @@ t_vec3		ring_normal(t_obj *obj, t_vec3 hit_point);
 t_vec3		cylinder_normal(t_obj *obj, t_vec3 hit_point);
 double		check_discs(t_obj *obj, t_vec3 hit_point);
 t_vec3		moebius_normal(t_obj *obj, t_vec3 hit_point);
+t_vec3		cone_normal(t_obj *obj, t_vec3 hit_point);
 
 /////////////// CLEAN /////////////
 

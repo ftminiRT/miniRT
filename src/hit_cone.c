@@ -12,23 +12,46 @@
 
 #include "minirt.h"
 
-void	compute_coefs_cone(t_ray *r, t_obj *obj, double *arg)
+// void	compute_coefs_cone(t_ray *r, t_obj *obj, double *arg)
+// {
+// 	t_vec3	tmp;
+// 	double	angle;
+
+// 	angle = (obj->scal * M_PI) / 180.0;
+// 	tmp = vec3_sub(r->pt, obj->pt);
+// 	arg[2] =	 /* C      */	vec3_dot(tmp,tmp)
+// 				/* 1/tan^2 */	- (1 / (tan(angle) * tan(angle)))
+// 				/* A^2     */	* vec3_dot(obj->n, tmp) * vec3_dot(obj->n, tmp);
+
+// 	arg[1] = 	/* D       */	2 * vec3_dot(tmp, r->dir)
+// 				/* 1/tan^2 */	- (1 / (tan(angle) * tan(angle)))
+// 				/* AB      */	* vec3_dot(tmp, obj->n) * 
+// 									vec3_dot(obj->n, r->dir);
+	
+// 	arg[0] =	/* E       */	vec3_dot(r->dir, r->dir)
+// 				/* 1/tan^2 */	- (1 / (tan(angle) * tan(angle)))
+// 				/*  B^2    */	* vec3_dot(obj->n, r->dir) * vec3_dot(obj->n, r->dir);
+// }
+
+void compute_coefs_cone(t_ray *r, t_obj *obj, double *arg)
 {
 	t_vec3	tmp;
+	double	angle;
+	double	k;
+
+	angle = (obj->scal * M_PI) / 180.0;
+	k = 1.0 / (tan(angle) * tan(angle)); // cos²θ
 
 	tmp = vec3_sub(r->pt, obj->pt);
-	arg[2] =	 /* C      */	((tmp.x * tmp.x + tmp.y * tmp.y + tmp.z * tmp.z)
-				/* 1/tan^2 */	- 1 / (tan(obj->a) * tan(obj->a)))
-				/* A^2     */	* ((tmp.x * obj->n.x + tmp.y * obj->n.y + tmp.z * obj->n.z) * (tmp.x * obj->n.x + tmp.y * obj->n.y + tmp.z * obj->n.z));
 
-	arg[1] = 	/* D       */	((2 * tmp.x) + (2 * tmp.y) + (2 * tmp.z)
-				/* 1/tan^2 */	- 1 / (tan(obj->a) * tan(obj->a)))
-				/* AB      */	* ((tmp.x * obj->n.x + tmp.y * obj->n.y + tmp.z * obj->n.z) * ((obj->n.x * r->dir.x) + (obj->n.y * r->dir.y) + (obj->n.z * r->dir.z)));
-	
-	arg[0] =	/* E       */	(((r->dir.x * r->dir.x) + (r->dir.y * r->dir.y) + (r->dir.z * r->dir.z))
-				/* 1/tan^2 */	- 1 / (tan(obj->a) * tan(obj->a)))
-				/*  B^2    */	* (((obj->n.x * r->dir.x) + (obj->n.y * r->dir.y) + (obj->n.z * r->dir.z)) * ((obj->n.x * r->dir.x) + (obj->n.y * r->dir.y) + (obj->n.z * r->dir.z)));
+	double dot_nv = vec3_dot(obj->n, tmp);
+	double dot_nd = vec3_dot(obj->n, r->dir);
+
+	arg[2] = vec3_dot(tmp, tmp) - k * dot_nv * dot_nv;
+	arg[1] = 2.0 * (vec3_dot(tmp, r->dir) - k * dot_nv * dot_nd);
+	arg[0] = vec3_dot(r->dir, r->dir) - k * dot_nd * dot_nd;
 }
+
 
 double	hit_cone(t_ray *r, t_obj *obj)
 {
@@ -37,15 +60,14 @@ double	hit_cone(t_ray *r, t_obj *obj)
 	int		ret;
 
 	compute_coefs_cone(r, obj, args);
-	if (obj->a == 0 || obj->a == 180)
+	if (obj->scal <= 0 || obj->scal >= 180)
 		return (INFINITY);
 	ret = solve_quadratic(args, dist);
 	if (!ret)
-		return (0);
-	if (ret == 1)
+		return (INFINITY);
+	if (dist[0] > EPSILON)
 		return (dist[0]);
-	if (dist[0] > dist[1])
+	if (dist[1] > EPSILON)
 		return (dist[1]);
-	return (dist[0]);
-	
+	return (INFINITY);
 }

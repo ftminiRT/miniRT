@@ -70,7 +70,7 @@ void	ray_trace(t_env *rt)
 	t_color	color;
 
 	init_rt(rt);
-	//debug_print_set(rt);
+	debug_print_set(rt);
 	j = 0;
 	while (j < HEIGHT)
 	{

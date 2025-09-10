@@ -7,6 +7,7 @@ static void	init_hit_fcts(t_env *rt)
 	rt->hit_object[OT_CYL] = hit_cylinder;
 	rt->hit_object[OT_TORE] = hit_torus;
 	rt->hit_object[OT_RING] = hit_ring;
+	rt->hit_object[OT_CONE] = hit_cone;
 	rt->hit_object[OT_MOEB] = hit_moebius;
 }
 
@@ -17,6 +18,7 @@ static void	init_normal_fcts(t_env *rt)
 	rt->get_norm[OT_CYL] = cylinder_normal;
 	rt->get_norm[OT_TORE] = torus_normal;
 	rt->get_norm[OT_RING] = ring_normal;
+	rt->get_norm[OT_CONE] = cone_normal;
 	rt->get_norm[OT_MOEB] = moebius_normal;
 }
 

@@ -81,7 +81,7 @@ void	normalize_objs(t_env *rt)
 			objs->shine = 1;
 		if (objs->type == OT_PLANE || objs->type == OT_CYL
 			|| objs->type == OT_MOEB || objs->type == OT_TORE
-			|| objs->type == OT_RING)
+			|| objs->type == OT_RING || objs->type == OT_CONE)
 			vec3_normalize(&objs->n);
 		if (objs->scal < EPSILON)
 			objs->scal = 0;

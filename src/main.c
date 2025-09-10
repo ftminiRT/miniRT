@@ -74,6 +74,13 @@ void	debug_print_object(t_obj obj)
 		printf("%f ", 2 * obj.scal);
 		printf("%f ", obj.scal2);
 	}
+	else if (obj.type == OT_CONE)
+	{
+		printf("co ");
+		printf("%f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);
+		printf("%f,%f,%f ", obj.n.x, obj.n.y, obj.n.z);
+		printf("%f ", obj.scal);
+	}
 	// else
 	// 	debug_print_bonus_object(obj);
 	printf("%d,%d,%d ", obj.color.r, obj.color.g, obj.color.b);

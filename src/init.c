@@ -90,6 +90,8 @@ void	normalize_objs(t_env *rt)
 			objs->scal2 = 0;
 		if (objs->scal3 < EPSILON && objs->type == OT_RING)
 			objs->scal3 = 0;
+		if (objs->type == OT_CONE)
+			objs->k = tan(objs->scal * M_PI / 180) * tan(objs->scal * M_PI / 180);
 		objs = objs->next;
 	}
 }

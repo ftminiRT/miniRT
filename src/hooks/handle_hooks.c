@@ -72,12 +72,14 @@ void	handle_object_mod(int kc, t_env *rt, double step)
 		rt->selected.obj->max += step / 10;
 	if ((rt->selected.obj->type == OT_RING
 		|| rt->selected.obj->type == OT_TORE
-		|| rt->selected.obj->type == OT_CYL)
+		|| rt->selected.obj->type == OT_CYL
+		|| rt->selected.obj->type == OT_CONE)
 		&& kc == KEY_MINUS2)
 		rt->selected.obj->scal2 -= step;
 	if ((rt->selected.obj->type == OT_RING
 		|| rt->selected.obj->type == OT_TORE
-		|| rt->selected.obj->type == OT_CYL)
+		|| rt->selected.obj->type == OT_CYL
+		|| rt->selected.obj->type == OT_CONE)
 		&& kc == KEY_PLUS2)
 		rt->selected.obj->scal2 += step;
 	if (rt->selected.type == OBJ && kc == KEY_X)

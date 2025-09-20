@@ -19,7 +19,7 @@ void	debug_print_bonus_object(t_obj obj)
 		printf("co ");
 		printf("%f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);
 		printf("%f,%f,%f ", obj.n.x, obj.n.y, obj.n.z);
-		printf("%f", obj.a);
+		printf("%f %f", obj.scal, obj.scal2);
 	}
 	else if (obj.type == OT_TORE)
 	{
@@ -79,7 +79,7 @@ void	debug_print_object(t_obj obj)
 		printf("co ");
 		printf("%f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);
 		printf("%f,%f,%f ", obj.n.x, obj.n.y, obj.n.z);
-		printf("%f ", obj.scal);
+		printf("%f %f ", obj.scal, obj.scal2);
 	}
 	// else
 	// 	debug_print_bonus_object(obj);

@@ -14,7 +14,7 @@ int	build_pane_events(void *rt, t_uipane *current)
 				UIT_CAM_BTN}, pt(85, 17), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){NULL, 1, VEC0, UIT_EXPORT_BTN}, pt(115,
 					17), BTNSZ), current) || add_btn(setb((t_btn_data){NULL, 1,
-				VEC0, UIT_RND_BTN}, pt(135, 17), BTNSZ), current))
+				VEC0, UIT_RND_BTN}, pt(145, 17), BTNSZ), current))
 		return (1);
 	return (0);
 }

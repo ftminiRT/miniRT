@@ -32,7 +32,6 @@ int	set_pane_img(t_env *rt, t_objtype type, char *path)
 	height = UI_HEIGHT;
 	height = UI_HEIGHT;
 	width = UI_WIDTH;
-	// printf("loading file : [%s] w:%d h:%d t:%d\n", path, width, height, type);
 	new_img = mlx_xpm_file_to_image(rt->mlx.mlx, path, &width, &height);
 	if (!new_img)
 		return (write(2, "miniRT : error while loading xpm img\n", 38), 1);
@@ -83,21 +82,11 @@ t_items	*add_new_button(void *value, double factor, t_uipt pos, t_uipt scale)
 int	ui_init(t_env *rt)
 {
 	init_pane_builders(rt);
-	// printf("%d, %s\n", __LINE__, __FILE__);
-	// fflush(stdout);
 	init_pane_fillers(rt);
-	// printf("%d, %s\n", __LINE__, __FILE__);
-	// fflush(stdout);
 	if (init_pane_img(rt))
 		return (1);
-	// printf("%d, %s\n", __LINE__, __FILE__);
-	// fflush(stdout);
 	if (init_ui_panes(rt))
 		return (1);
-	// printf("%d, %s\n", __LINE__, __FILE__);
-	// fflush(stdout);
 	display_ui(rt);
-	// printf("%d, %s\n", __LINE__, __FILE__);
-	// fflush(stdout);
 	return (0);
 }

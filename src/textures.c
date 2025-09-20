@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 15:51:33 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 15:51:33 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	load_texture(void *mlx_ptr, t_obj *obj, char *filename)
@@ -22,13 +34,11 @@ void	load_textures(t_env *rt)
 	{
 		if (obj->texture_filename)
 		{
-			printf("loading texture [%s]\n", obj->texture_filename);
 			if (!load_texture(rt->mlx.mlx, obj, obj->texture_filename))
 				obj->texture_data = NULL;
 		}
 		if (obj->normal_map_filename)
 		{
-			printf("loading texture [%s]\n", obj->texture_filename);
 			if (!load_normal_map(rt->mlx.mlx, obj, obj->normal_map_filename))
 				obj->normal_map_data = NULL;
 		}
@@ -36,11 +46,6 @@ void	load_textures(t_env *rt)
 	}
 }
 
-/**
- * Libère la mémoire d'une texture
- * @param mlx_ptr: Pointeur MLX
- * @param obj: Objet dont libérer la texture
- */
 void	free_texture(void *mlx_ptr, t_obj *obj)
 {
 	if (!obj)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_button.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 16:02:09 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 16:02:09 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 static void	handle_value_buttons(t_env *rt, t_items *itm)
@@ -30,11 +42,12 @@ static void	handle_value_buttons(t_env *rt, t_items *itm)
 
 static void	handle_vector_buttons(t_env *rt, t_items *itm)
 {
-	double *value;
+	double	*value;
+
 	(void)rt;
 	if (itm->type == UIT_SH_BTN)
 	{
-		value = (double*)itm->btn.value;
+		value = (double *)itm->btn.value;
 		*value = fmax(1, *value * itm->btn.factor);
 	}
 	else if (itm->type == UIT_MV_BTN)
@@ -63,13 +76,12 @@ void	exec_button(t_env *rt, t_items *itm)
 	handle_vector_buttons(rt, itm);
 	handle_selection_buttons(rt, itm);
 	if (itm->type == UIT_EXPORT_BTN)
-		export_to_rt(rt);
-	else if (itm->type == UIT_RND_BTN)
 	{
-		rt->render = !rt->render;
-		if (!rt->render)
-			ray_trace(rt);
+		printf("Exporting set...\n");
+		export_to_rt(rt);
 	}
+	else if (itm->type == UIT_RND_BTN)
+		rt->render = !rt->render;
 	else if (itm->function)
 		itm->function(rt);
 }

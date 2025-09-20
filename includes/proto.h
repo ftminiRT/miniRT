@@ -123,6 +123,8 @@ void		ray_trace(t_env *rt);
 /////////////// UTILS /////////////
 
 int			swapd(double *a, double *b);
+t_vec3		null_vec(void);
+t_uipt		btn_sz(void);
 
 /////////////// OBJ NORMALS /////////////
 
@@ -137,7 +139,7 @@ t_vec3		cone_normal(t_obj *obj, t_vec3 hit_point);
 
 /////////////// CLEAN /////////////
 
-void	clear_all_textures(t_env *rt);
+void		clear_all_textures(t_env *rt);
 void		mrt_cleaner(t_env *rt);
 int			mega_clean(t_env *rt);
 void		exit_from_export(t_vec3int info, t_env *rt, char *filename,
@@ -147,7 +149,7 @@ void		exit_from_export(t_vec3int info, t_env *rt, char *filename,
 
 void		normalize_objs(t_env *rt);
 void		init_rt(t_env *rt);
-void		debug_print_set(t_env *rt);
+void		print_set(t_env *rt);
 void		init_base(t_obj *obj, t_basis *b);
 void		init_quartic_solver(t_quartic *q, double *a);
 
@@ -155,7 +157,7 @@ void		init_quartic_solver(t_quartic *q, double *a);
 
 int			solve_cubic(double *a, double *r);
 
-void		debug_print_set(t_env *rt);
+void		print_set(t_env *rt);
 
 /////////////// GALOIS ALGEBRA /////////////
 

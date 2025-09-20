@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_values_dft.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 16:14:10 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 16:14:10 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	fill_values_dft(void *rt, t_uipane *cur)
@@ -16,7 +28,6 @@ int	fill_values_dft(void *rt, t_uipane *cur)
 	putnbr_ui((t_env *)rt, 157, 302, c->pos.z);
 	putnbr_ui((t_env *)rt, 157, 332, c->dir.x);
 	putnbr_ui((t_env *)rt, 157, 362, c->dir.y);
-	putnbr_ui((t_env *)rt, 157, 392, c->dir.z);
-	putnbr_ui((t_env *)rt, 157, 422, c->fov);
+	putnbr_ui((t_env *)rt, 157, 392, c->fov);
 	return (0);
 }

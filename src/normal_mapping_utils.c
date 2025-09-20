@@ -1,12 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   normal_mapping_utils.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 15:43:30 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 15:43:30 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
-/**
- * Charge une normal map XPM sur un objet
- * @param mlx_ptr: Pointeur MLX
- * @param obj: Objet sur lequel charger la texture
- * @param filename: Nom du fichier XPM
- * @return: 1 si succès, 0 si échec
- */
 int	load_normal_map(void *mlx_ptr, t_obj *obj, char *filename)
 {
 	if (!mlx_ptr || !obj || !filename)
@@ -15,7 +20,8 @@ int	load_normal_map(void *mlx_ptr, t_obj *obj, char *filename)
 			&obj->normal_map_width, &obj->normal_map_height);
 	if (!obj->normal_map_img)
 	{
-		printf("Erreur: Impossible de charger %s\n", filename);
+		write(2, "Error : cant load ", 19);
+		ft_putendl_fd(filename, 2);
 		return (0);
 	}
 	obj->normal_map_data = mlx_get_data_addr(obj->normal_map_img,
@@ -27,16 +33,9 @@ int	load_normal_map(void *mlx_ptr, t_obj *obj, char *filename)
 		obj->normal_map_img = NULL;
 		return (0);
 	}
-	printf("Normal map chargée: %dx%d pixels\n", obj->normal_map_width,
-		obj->normal_map_height);
 	return (1);
 }
 
-/**
- * Libère la mémoire d'une normal map
- * @param mlx_ptr: Pointeur MLX
- * @param obj: Objet dont libérer la texture
- */
 void	free_normal_map(void *mlx_ptr, t_obj *obj)
 {
 	if (!obj)
@@ -49,16 +48,8 @@ void	free_normal_map(void *mlx_ptr, t_obj *obj)
 	obj->normal_map_bpp = 0;
 	obj->normal_map_size_line = 0;
 	obj->normal_map_endian = 0;
-	printf("Normal map reset (MLX cleanup handled by clear_mlx)\n");
 }
 
-/**
- * Sample une normale depuis la texture à des coordonnées UV données
- * @param obj: Objet avec la normal map
- * @param u: Coordonnée U [0,1]
- * @param v: Coordonnée V [0,1]
- * @return: Normale en tangent space [-1,1]
- */
 t_vec3	sample_normal_map(t_obj *obj, float u, float v)
 {
 	t_vec3	map_normal;

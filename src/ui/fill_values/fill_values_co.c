@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_values_co.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 16:14:02 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 16:14:02 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	fill_values_co(void *rt, t_uipane *cur)
@@ -17,5 +29,6 @@ int	fill_values_co(void *rt, t_uipane *cur)
 	putnbr_ui((t_env *)rt, 157, 362, o->scal);
 	putnbr_ui((t_env *)rt, 157, 392, o->shine);
 	putnbr_ui((t_env *)rt, 157, 422, o->reflect);
+	putnbr_ui((t_env *)rt, 157, 392, o->scal2);
 	return (0);
 }

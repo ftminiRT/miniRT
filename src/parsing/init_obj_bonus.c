@@ -80,7 +80,8 @@ int	init_ring(char **args, t_env *rt)
 		return (1);
 	if (str_to_vec3(&new->n, args[2]) || check_norm(new->n))
 		return (1);
-	if (!str_is_double(args[3]) || !str_is_double(args[4]) || !str_is_double(args[5]))
+	if (!str_is_double(args[3]) || !str_is_double(args[4])
+		|| !str_is_double(args[5]))
 		return (1);
 	new->scal = ft_atod(args[3]);
 	new->scal2 = ft_atod(args[4]);

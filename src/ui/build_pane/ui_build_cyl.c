@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ui_build_cyl.c                                      :+:      :+:    :+:   */
+/*   ui_build_cyl.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-04 15:19:25 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-09-04 15:19:25 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025-09-20 16:08:05 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 16:08:05 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ int	build_pane_cyl(void *rt, t_uipane *current)
 		return (1);
 	if (build_pane_mat(rt, current, 422))
 		return (1);
-	if (add_btn(setb((t_btn_data){&o->scal2, -STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(106, 362), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->scal, -STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(106, 392), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->scal2, STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(136, 362), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->scal, STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(136, 392), BTNSZ), current))
+	if (add_btn(setb((t_btn_data){&o->scal2, -STEP_RAY,
+				null_vec(), UIT_SCL_BTN}, pt(106, 362), btn_sz()), current)
+			|| add_btn(setb((t_btn_data){&o->scal, -STEP_RAY,
+				null_vec(), UIT_SCL_BTN}, pt(106, 392), btn_sz()), current)
+			|| add_btn(setb((t_btn_data){&o->scal2, STEP_RAY,
+				null_vec(), UIT_SCL_BTN}, pt(136, 362), btn_sz()), current)
+			|| add_btn(setb((t_btn_data){&o->scal, STEP_RAY,
+				null_vec(), UIT_SCL_BTN}, pt(136, 392), btn_sz()), current))
 		return (1);
 	return (0);
 }

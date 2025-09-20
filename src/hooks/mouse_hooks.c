@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mouse_hooks.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 16:16:12 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 16:16:12 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minirt.h"
 
@@ -34,12 +45,9 @@ static t_uipane	*get_current(t_env *rt, t_obj *clicked)
 int	mouse_hook(int bt, int x, int y, t_env *rt)
 {
 	t_obj	*clicked;
-	double	step;
 
-	step = 1;
 	if (bt == LEFT_CLIC)
 	{
-		printf("clicked {%d, %d}\n", x, y);
 		if (x >= WIDTH)
 			click_ui(x - WIDTH, y, rt);
 		else
@@ -54,11 +62,10 @@ int	mouse_hook(int bt, int x, int y, t_env *rt)
 		}
 	}
 	if (bt == SCROLL_UP)
-		modify_scal(&rt->selected, step);
+		modify_scal(&rt->selected, 1);
 	if (bt == SCROLL_DOWN)
-		modify_scal(&rt->selected, -step);
+		modify_scal(&rt->selected, -1);
 	if (rt->render)
 		ray_trace(rt);
-	display_ui(rt);
-	return (1);
+	return (display_ui(rt), 1);
 }

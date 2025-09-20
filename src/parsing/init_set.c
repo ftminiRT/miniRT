@@ -33,8 +33,9 @@ int	init_cam(char **args, t_env *rt)
 
 int	set_new_spotlight(char **args, t_env *rt)
 {
-	t_light	*new;
-	t_light	*current;
+	t_light			*new;
+	t_light			*current;
+	static size_t	index;
 
 	current = &rt->spot;
 	new = ft_calloc(1, sizeof(t_light));
@@ -43,6 +44,8 @@ int	set_new_spotlight(char **args, t_env *rt)
 	while (current->next)
 		current = current->next;
 	current->next = new;
+	index++;
+	current->index = index;
 	if (str_to_vec3(&new->pos, args[1]))
 		return (1);
 	new->brightness = ft_atod(args[2]);
@@ -60,6 +63,7 @@ int	init_spotlight(char **args, t_env *rt)
 	rt->spot.is_set = 1;
 	if (str_to_vec3(&rt->spot.pos, args[1]))
 		return (1);
+	rt->spot.index = 0;
 	rt->spot.brightness = ft_atod(args[2]);
 	if (str_to_colors(&rt->spot.color, args[3]))
 		return (1);

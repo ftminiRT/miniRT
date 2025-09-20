@@ -59,7 +59,7 @@ void	putpixel_ui_img(int x, int y, t_color c, void *img)
 
 void	putnbr_ui(t_env *rt, int x, int y, double nbr)
 {
-	char *str;
+	char	*str;
 
 	str = dota(rt, nbr);
 	mlx_string_put(rt->mlx.mlx, rt->mlx.win, WIDTH + x, y, 0xfffffff, str);

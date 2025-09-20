@@ -20,7 +20,8 @@ int	load_normal_map(void *mlx_ptr, t_obj *obj, char *filename)
 			&obj->normal_map_width, &obj->normal_map_height);
 	if (!obj->normal_map_img)
 	{
-		printf("Erreur: Impossible de charger %s\n", filename);
+		write(2, "Error : cant load ", 19);
+		ft_putendl_fd(filename, 2);
 		return (0);
 	}
 	obj->normal_map_data = mlx_get_data_addr(obj->normal_map_img,
@@ -32,8 +33,6 @@ int	load_normal_map(void *mlx_ptr, t_obj *obj, char *filename)
 		obj->normal_map_img = NULL;
 		return (0);
 	}
-	printf("Normal map chargée: %dx%d pixels\n", obj->normal_map_width,
-		obj->normal_map_height);
 	return (1);
 }
 
@@ -49,7 +48,6 @@ void	free_normal_map(void *mlx_ptr, t_obj *obj)
 	obj->normal_map_bpp = 0;
 	obj->normal_map_size_line = 0;
 	obj->normal_map_endian = 0;
-	printf("Normal map reset (MLX cleanup handled by clear_mlx)\n");
 }
 
 t_vec3	sample_normal_map(t_obj *obj, float u, float v)

@@ -74,7 +74,6 @@ int	set_bonus_attributes(char **args, t_env *rt, t_obj *new)
 			return (1);
 		if (!ft_strncmp(args[i], "t:", 2))
 		{
-			printf("%d %s\n", __LINE__, __FILE__);
 			if (!ft_strncmp(args[i] + 2, "checkered", 10))
 				new->checkered = 1;
 			else if (set_texture(new, args[i] + 2))

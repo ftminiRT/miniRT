@@ -31,7 +31,7 @@ int	main(int ac, char **av)
 	t_env	rt;
 
 	if (ac < 2)
-		return (printf("Argument file needed\n"), 0);
+		return (write(2, "Error : argument file needed\n", 30), 0);
 	env_init(&rt);
 	if (parsing(&rt, av[1]))
 		return (1);

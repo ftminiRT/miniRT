@@ -34,13 +34,11 @@ void	load_textures(t_env *rt)
 	{
 		if (obj->texture_filename)
 		{
-			printf("loading texture [%s]\n", obj->texture_filename);
 			if (!load_texture(rt->mlx.mlx, obj, obj->texture_filename))
 				obj->texture_data = NULL;
 		}
 		if (obj->normal_map_filename)
 		{
-			printf("loading texture [%s]\n", obj->texture_filename);
 			if (!load_normal_map(rt->mlx.mlx, obj, obj->normal_map_filename))
 				obj->normal_map_data = NULL;
 		}

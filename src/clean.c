@@ -14,7 +14,7 @@
 
 void	clear_all_textures(t_env *rt)
 {
-	t_obj *obj;
+	t_obj	*obj;
 
 	obj = rt->objects;
 	while (obj)
@@ -33,24 +33,22 @@ void	clear_all_textures(t_env *rt)
 		}
 		if (obj->normal_map_filename)
 			free(obj->normal_map_filename);
-
 		obj = obj->next;
 	}
 }
 
 int	clear_mlx(t_env *rt)
 {
-	clear_all_textures(rt);
 	mlx_destroy_window(rt->mlx.mlx, rt->mlx.win);
 	mlx_destroy_image(rt->mlx.mlx, rt->mlx.img.img);
+	mlx_destroy_image(rt->mlx.mlx, rt->mlx.ui.img);
 	mlx_destroy_display(rt->mlx.mlx);
 	free(rt->mlx.mlx);
 	return (1);
 }
 
-int		mega_clean(t_env *rt)
+int	mega_clean(t_env *rt)
 {
-	clear_mlx(rt);
 	mrt_cleaner(rt);
 	return (1);
 }

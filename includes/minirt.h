@@ -13,6 +13,17 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# ifndef WIDTH
+#  define WIDTH 500
+# endif
+# ifndef HEIGHT
+#  define HEIGHT 500
+# endif
+# define EPSILON 1e-6
+# define MAX_DEPTH 5
+# define BONUS 1
+# define OBJTYPENUMBER 9
+
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -23,21 +34,10 @@
 # include <stdbool.h>
 # include "../minilibx-linux/mlx.h"
 # include "../minilibx-linux/mlx_int.h"
-# include "structs.h"
 # include "keycodes.h"
 # include "proto.h"
 # include "libft.h"
-
-# ifndef WIDTH
-// #  define WIDTH 2560
-#  define WIDTH 600
-# endif
-# ifndef HEIGHT
-// #  define HEIGHT 1440
-#  define HEIGHT 400
-# endif
-# define EPSILON 1e-6
-# define MAX_DEPTH 10
-# define BONUS 1
+# include "ui.h"
+# include "structs.h"
 
 #endif

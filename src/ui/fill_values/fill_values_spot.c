@@ -1,0 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_values_spot.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 16:14:30 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 16:14:30 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minirt.h"
+
+int	fill_values_spot(void *rt, t_uipane *cur)
+{
+	t_light	*s;
+
+	s = cur->light;
+	putnbr_ui((t_env *)rt, 157, 92, s->color.r);
+	putnbr_ui((t_env *)rt, 157, 122, s->color.g);
+	putnbr_ui((t_env *)rt, 157, 152, s->color.b);
+	putnbr_ui((t_env *)rt, 157, 182, s->pos.x);
+	putnbr_ui((t_env *)rt, 157, 212, s->pos.y);
+	putnbr_ui((t_env *)rt, 157, 242, s->pos.z);
+	putnbr_ui((t_env *)rt, 157, 272, s->brightness);
+	putnbr_ui((t_env *)rt, 157, 302, s->index);
+	return (0);
+}

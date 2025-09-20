@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:57 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/09/03 07:41:04 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 23:10:10 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ bool	is_valid_key_code(int kc, t_env *rt)
 		if (kc == KEY_MINUS2 || kc == KEY_PLUS2 || kc == KEY_X)
 			return (true);
 	}
+	if (kc == KEY_B)
+		return (true);
 	return (false);
 }
+
 void	move_selected(t_env *rt, t_vec3 move)
 {
 	if (rt->selected.type == CAM)
@@ -68,6 +71,12 @@ int	key_pressed(int kc, t_env *rt)
 	handle_object_mod(kc, rt, step);
 	if (kc == KEY_E)
 		export_to_rt(rt);
+	if (kc == KEY_T)
+	{
+		rt->render = !rt->render;
+		if (rt->render)
+			ray_trace(rt);
+	}
 	if (is_valid_key_code(kc, rt))
 		ray_trace(rt);
 	return (1);
@@ -75,7 +84,7 @@ int	key_pressed(int kc, t_env *rt)
 
 int	close_window(t_env *rt)
 {
-	clear_mlx(rt);
+	mrt_cleaner(rt);
 	exit(0);
 	return (0);
 }

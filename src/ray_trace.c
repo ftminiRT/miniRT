@@ -1,17 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_trace.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 15:28:30 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 15:28:30 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minirt.h"
 
 t_vec3	compute_ray_dir(t_env *rt, int i, int j)
 {
 	t_vec3	ret;
-	double	fov_rad;
+	double	fov_xrad;
+	double	fov_yrad;
 	double	px;
 	double	py;
 
-	fov_rad = rt->cam.fov * M_PI / 180.0;
-	px = (2 * ((i + 0.5) / (double)WIDTH) - 1) * tan(fov_rad / 2)
+	fov_xrad = rt->cam.fov * M_PI / 180.0;
+	fov_yrad = 2 * atan(tan(fov_xrad / 2) / ((double)WIDTH / (double)HEIGHT));
+	px = (2 * ((i + 0.5) / (double)WIDTH) - 1) * tan(fov_xrad / 2)
 		* ((double)WIDTH / (double)HEIGHT);
-	py = (1 - 2 * ((j + 0.5) / (double)HEIGHT)) * tan(fov_rad / 2);
+	py = (1 - 2 * ((j + 0.5) / (double)HEIGHT)) * tan(fov_yrad / 2);
 	ret = camera_transform((t_vec3){px, py, 1}, rt->cam.dir);
 	vec3_normalize(&ret);
 	return (ret);
@@ -68,7 +81,6 @@ void	ray_trace(t_env *rt)
 	t_color	color;
 
 	init_rt(rt);
-	debug_print_set(rt);
 	j = 0;
 	while (j < HEIGHT)
 	{

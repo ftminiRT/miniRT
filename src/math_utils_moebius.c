@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   math_utils_moebius.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 15:47:55 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 15:47:55 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 t_basis	make_basis(t_vec3 n)
@@ -13,6 +25,14 @@ t_basis	make_basis(t_vec3 n)
 	b.u = vec3_normalized(vec3_cross(tmp, b.w));
 	b.v = vec3_cross(b.w, b.u);
 	return (b);
+}
+
+t_vec3	world_to_local_point(t_vec3 p, t_obj *obj, t_basis b)
+{
+	t_vec3	rel;
+
+	rel = vec3_sub(p, obj->pt);
+	return (world_to_local_vec(rel, b));
 }
 
 t_vec3	world_to_local_vec(t_vec3 v, t_basis b)
@@ -34,11 +54,3 @@ t_ray	world_to_local_ray(t_ray r, t_obj *obj, t_basis b)
 	out.dir = world_to_local_vec(r.dir, b);
 	return (out);
 }
-
-int	dblsgn(double x)
-{
-	if (x < -EPSILON)
-		return (-1);
-	return (x > EPSILON);
-}
-

@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:16:26 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/09/05 07:48:38 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/09 23:15:43 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static t_color	compute_diffuse(t_phong phong, t_obj *obj, t_light *cur_spot)
 	t_color	diffuse;
 
 	if (obj->type == OT_PLANE)
-		diff_factor = cur_spot->brightness * fabs(vec3_dot(phong.light,
+		diff_factor = fabs(vec3_dot(phong.light,
 					phong.normal));
 	else
-		diff_factor = cur_spot->brightness * fmax(0.0, vec3_dot(phong.light,
+		diff_factor = fmax(0.0, vec3_dot(phong.light,
 					phong.normal));
 	diffuse = color_scale(color_multiply(cur_spot->color, obj->t_color),
 			diff_factor * cur_spot->brightness);
@@ -37,7 +37,6 @@ static t_color	compute_specular(t_phong phong, t_obj *obj, t_light *cur_spot)
 						phong.light)), phong.normal), phong.light);
 	vec3_normalize(&phong.reflected);
 	spec_factor = 0.0;
-	vec3_normalize(&phong.reflected);
 	if (vec3_dot(phong.normal, phong.light) > 0.0)
 		spec_factor = cur_spot->brightness * pow(fmax(0.0,
 					vec3_dot(phong.reflected, phong.view)), obj->shine);
@@ -66,8 +65,8 @@ static t_color	multi_spotlights(t_env *rt, t_obj *obj, t_vec3 hit_point,
 			phong.light = vec3_sub(cur_spot->pos, hit_point);
 			vec3_normalize(&phong.light);
 			phong.diffuse = compute_diffuse(phong, obj, cur_spot);
-			phong.specular = compute_specular(phong, obj, cur_spot);
 			ret = color_add(ret, phong.diffuse);
+			phong.specular = compute_specular(phong, obj, cur_spot);
 			ret = color_add(ret, phong.specular);
 		}
 		cur_spot = cur_spot->next;

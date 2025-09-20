@@ -52,14 +52,11 @@ void	rt_mlx_init(t_mlx *mlx)
 	mlx->mlx = mlx_init();
 	if (!mlx->mlx)
 		error_exit("connection to mlx error");
-	mlx->win = mlx_new_window(mlx->mlx, WIDTH, HEIGHT, "miniRT");
+	mlx->win = mlx_new_window(mlx->mlx, WIDTH + UI_WIDTH, HEIGHT, "miniRT");
 	if (!mlx->win)
 		error_exit("window error");
-	mlx->img.img = mlx_new_image(mlx->mlx, WIDTH, HEIGHT);
-	if (!mlx->img.img)
-		error_exit("image error");
-	mlx->img.addr = mlx_get_data_addr(mlx->img.img, &mlx->img.bits_per_pixel,
-			&mlx->img.line_length, &mlx->img.endian);
+	mlx->img.img = init_img(mlx, &mlx->img, WIDTH, HEIGHT);
+	mlx->ui.img = init_img(mlx, &mlx->ui, UI_WIDTH, UI_HEIGHT);
 }
 
 void	init_rt(t_env *rt)
@@ -80,11 +77,11 @@ void	normalize_objs(t_env *rt)
 	objs = rt->objects;
 	while (objs)
 	{
-		if (!objs->shine)
-			objs->shine = 100;
+		if (objs->shine <= 0)
+			objs->shine = 1;
 		if (objs->type == OT_PLANE || objs->type == OT_CYL
 			|| objs->type == OT_MOEB || objs->type == OT_TORE
-			|| objs->type == OT_RING)
+			|| objs->type == OT_RING || objs->type == OT_CONE)
 			vec3_normalize(&objs->n);
 		if (objs->scal < EPSILON)
 			objs->scal = 0;
@@ -93,6 +90,8 @@ void	normalize_objs(t_env *rt)
 			objs->scal2 = 0;
 		if (objs->scal3 < EPSILON && objs->type == OT_RING)
 			objs->scal3 = 0;
+		if (objs->type == OT_CONE)
+			objs->k = tan(objs->scal * M_PI / 180) * tan(objs->scal * M_PI / 180);
 		objs = objs->next;
 	}
 }

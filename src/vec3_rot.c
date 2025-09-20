@@ -46,3 +46,8 @@ void	vec3_rotate(t_vec3 *v, t_vec3 r)
 	if (r.z)
 		vec3_rot(v, Z_AXIS, r.z);
 }
+
+void	move_vec3(t_vec3 *v, t_vec3 move)
+{
+	*v = vec3_add(*v, move);
+}

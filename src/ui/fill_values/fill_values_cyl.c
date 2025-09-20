@@ -1,0 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_values_cyl.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 16:14:06 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 16:14:06 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minirt.h"
+
+int	fill_values_cy(void *rt, t_uipane *cur)
+{
+	t_obj	*o;
+
+	o = cur->obj;
+	putnbr_ui((t_env *)rt, 157, 92, o->color.r);
+	putnbr_ui((t_env *)rt, 157, 122, o->color.g);
+	putnbr_ui((t_env *)rt, 157, 152, o->color.b);
+	putnbr_ui((t_env *)rt, 157, 182, o->pt.x);
+	putnbr_ui((t_env *)rt, 157, 212, o->pt.y);
+	putnbr_ui((t_env *)rt, 157, 242, o->pt.z);
+	putnbr_ui((t_env *)rt, 157, 272, o->n.x);
+	putnbr_ui((t_env *)rt, 157, 302, o->n.y);
+	putnbr_ui((t_env *)rt, 157, 332, o->n.z);
+	putnbr_ui((t_env *)rt, 157, 362, o->scal2);
+	putnbr_ui((t_env *)rt, 157, 392, o->scal);
+	putnbr_ui((t_env *)rt, 157, 422, o->shine);
+	putnbr_ui((t_env *)rt, 157, 452, o->reflect);
+	return (0);
+}

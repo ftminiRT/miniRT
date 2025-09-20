@@ -6,7 +6,7 @@ MAKEFLAGS += --no-print-directory
 QUIET		=	
 
 CC			= 	cc
-CFLAGS		= 	-Wall -Werror -Wextra -g3 -O3
+CFLAGS		= 	-Wall -Werror -Wextra -g
 AR			=	ar -rcs
 NAME		= 	miniRT
 
@@ -27,7 +27,10 @@ FILES		= 	clean\
 				init\
 				env_init\
 				hit_basics\
-				key_hooks\
+				hooks/key_hooks\
+				hooks/mouse_hooks\
+				hooks/handle_hooks\
+				hooks/handle_rota\
 				mlx_tools\
 				mrt_cleaner\
 				ray_trace\
@@ -40,6 +43,35 @@ FILES		= 	clean\
 				parsing/parsing_utils \
 				parsing/parsing_utils_bonus \
 				parsing/parsing \
+				ui/build_pane/ui_build_co \
+				ui/build_pane/ui_build_cyl \
+				ui/build_pane/ui_build_dft \
+				ui/build_pane/ui_build_mo \
+				ui/build_pane/ui_build_pl \
+				ui/build_pane/ui_build_ri \
+				ui/build_pane/ui_build_sp \
+				ui/build_pane/ui_build_spot \
+				ui/build_pane/ui_build_to \
+				ui/build_pane/ui_build_utils \
+				ui/build_pane/ui_build_events \
+				ui/build_pane/ui_gen_builders \
+				ui/fill_values/fill_values_co \
+				ui/fill_values/fill_values_cyl \
+				ui/fill_values/fill_values_dft \
+				ui/fill_values/fill_values_mo \
+				ui/fill_values/fill_values_pl \
+				ui/fill_values/fill_values_ri \
+				ui/fill_values/fill_values_sp \
+				ui/fill_values/fill_values_spot \
+				ui/fill_values/fill_values_to \
+				ui/fill_values/fv_utils \
+				ui/click_ui \
+				ui/exec_button \
+				ui/ui_init \
+				ui/ui_init2 \
+				ui/ui_panes \
+				ui/ui \
+				ui/ui_select_spot \
 				light_compute \
 				vec3_norm \
 				vec3_refs \
@@ -49,11 +81,12 @@ FILES		= 	clean\
 				compute_intersections\
 				hit_cyl\
 				hit_moebius\
+				hit_cone \
+				moebius_normal\
+				torus_normal\
 				solve_cubic\
-				mouse_hooks\
 				checkered\
 				normal_mapping_utils\
-				handle_hooks\
 				math_utils_moebius\
 				solve_quartic\
 				root_compute_utils\
@@ -70,7 +103,8 @@ FILES		= 	clean\
 				solve_quartic_helpers\
 				in_shadow\
 				export\
-				export_filename
+				export_filename\
+				print_set
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))
@@ -97,6 +131,11 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 $(OBJ_DIR) : 
 	$(QUIET) mkdir -p $(OBJ_DIR)
 	$(QUIET) mkdir -p $(OBJ_DIR)/parsing
+	$(QUIET) mkdir -p $(OBJ_DIR)/ui
+	$(QUIET) mkdir -p $(OBJ_DIR)/ui/build_pane
+	$(QUIET) mkdir -p $(OBJ_DIR)/ui/fill_values
+	$(QUIET) mkdir -p $(OBJ_DIR)/hooks
+
 
 
 all : $(NAME)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_init.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 15:42:50 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 15:42:50 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 static void	init_hit_fcts(t_env *rt)
@@ -7,6 +19,7 @@ static void	init_hit_fcts(t_env *rt)
 	rt->hit_object[OT_CYL] = hit_cylinder;
 	rt->hit_object[OT_TORE] = hit_torus;
 	rt->hit_object[OT_RING] = hit_ring;
+	rt->hit_object[OT_CONE] = hit_cone;
 	rt->hit_object[OT_MOEB] = hit_moebius;
 }
 
@@ -17,6 +30,7 @@ static void	init_normal_fcts(t_env *rt)
 	rt->get_norm[OT_CYL] = cylinder_normal;
 	rt->get_norm[OT_TORE] = torus_normal;
 	rt->get_norm[OT_RING] = ring_normal;
+	rt->get_norm[OT_CONE] = cone_normal;
 	rt->get_norm[OT_MOEB] = moebius_normal;
 }
 
@@ -44,4 +58,7 @@ void	env_init(t_env *rt)
 	rt->selected.spot = &rt->spot;
 	rt->selected.amb = &rt->ambient;
 	rt->selected.obj = NULL;
+	rt->ui.dft_itms = 0;
+	rt->nb_spots = 0;
+	rt->render = false;
 }

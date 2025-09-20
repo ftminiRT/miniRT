@@ -28,13 +28,16 @@ int	init_cone(char **args, t_env *rt)
 		return (1);
 	if (!str_is_double(args[3]))
 		return (1);
-	new->a = ft_atod(args[3]);
-	if (new->a < 0 || new->a > 360)
+	new->scal = ft_atod(args[3]);
+	if (!str_is_double(args[4]))
 		return (1);
-	if (str_to_colors(&new->color, args[4]))
+	new->scal2 = ft_atod(args[4]);
+	if (new->scal <= 0 || new->scal >= 180)
 		return (1);
-	if (arg_len >= 6)
-		return (set_bonus_attributes(&args[5], rt, new));
+	if (str_to_colors(&new->color, args[5]))
+		return (1);
+	if (arg_len >= 7)
+		return (set_bonus_attributes(&args[6], rt, new));
 	return (0);
 }
 
@@ -77,7 +80,8 @@ int	init_ring(char **args, t_env *rt)
 		return (1);
 	if (str_to_vec3(&new->n, args[2]) || check_norm(new->n))
 		return (1);
-	if (!str_is_double(args[3]) || !str_is_double(args[4]) || !str_is_double(args[5]))
+	if (!str_is_double(args[3]) || !str_is_double(args[4])
+		|| !str_is_double(args[5]))
 		return (1);
 	new->scal = ft_atod(args[3]);
 	new->scal2 = ft_atod(args[4]);

@@ -1,11 +1,15 @@
 /* ************************************************************************** */
-/*                                                       :::      ::::::::   */
-/*   basics_norm.c (avec normal mapping)                :+:      :+:    :+:   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   basics_norm.c                                      :+:      :+:    :+:   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   basics_norm.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/28 14:25:56 by tbeauman          #+#    #+#             */
-/*   Updated: 2025/09/02 XX:XX:XX by tbeauman         ###   ########.fr       */
+/*   Created: 2025-09-20 15:25:19 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 15:25:19 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,3 +129,70 @@ t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point)
 	return (apply_normal_mapping(geo_normal, normap.tangent, normap.bitangent,
 			map_normal));
 }
+
+// Normale adaptée
+t_vec3	cone_normal(t_obj *obj, t_vec3 hit_point)
+{
+	double h = vec3_dot(vec3_sub(hit_point, obj->pt), obj->n);
+
+	// Sur le cap bas
+	if (h <= EPSILON && h >= -EPSILON)
+		return vec3_scalmult(-1, obj->n);
+	// Sur le cap haut
+	if (fabs(h - obj->scal2) <= EPSILON)
+		return obj->n;
+
+	// Sur le côté
+	t_vec3 v = vec3_sub(hit_point, obj->pt);
+	t_vec3 dir = obj->n;
+	t_vec3 radial = vec3_sub(v, vec3_scalmult(vec3_dot(v, dir), dir));
+	double denom = vec3_dot(dir, v);
+	double alpha = vec3_dot(radial, v) / denom;
+	t_vec3 N = vec3_sub(radial, vec3_scalmult(alpha, dir));
+	vec3_normalize(&N);
+	return N;
+}
+
+// t_vec3 cone_normal(t_obj *obj, t_vec3 hit_point)
+// {
+//     t_vec3 v = vec3_sub(hit_point, obj->pt); // vecteur sommet → hit
+//     t_vec3 dir = obj->n;                     // axe du cône (unitaire)
+//     t_vec3 radial;
+//     t_vec3 N;
+//     double alpha;
+
+//     // projection de v sur l'axe
+//     double proj_len = vec3_dot(v, dir);
+//     t_vec3 proj = vec3_scalmult(proj_len, dir);
+
+//     // vecteur radial dans le plan du cône
+//     radial = vec3_sub(v, proj);
+
+//     // calcule alpha pour que N soit perpendiculaire à la génératrice
+//     // N = radial - alpha * dir
+//     // dot(N, v) = 0 → alpha = dot(radial, v) / dot(dir, v)
+//     if (proj_len != 0)
+//         alpha = vec3_dot(radial, v) / proj_len;
+//     else
+//         alpha = 0;
+
+//     N = vec3_sub(radial, vec3_scalmult(alpha, dir));
+
+//     vec3_normalize(&N);
+//     return N;
+// }
+// t_vec3	cone_normal(t_obj *obj, t_vec3 hit_point)
+// {
+// 	t_vec3	v;
+// 	double	alpha;
+// 	t_vec3	ret;
+
+// 	v = vec3_sub(hit_point, obj->pt);
+// 	alpha = vec3_dot(v, obj->n);
+// 	// obj->k = tan(angle) * tan(angle);
+// 	// obj->n est bien normalise
+// 	ret = vec3_sub(v,
+// 		vec3_scalmult((1 + obj->k) * alpha, obj->n));
+// 	vec3_normalize(&ret);
+// 	return (ret);
+// }

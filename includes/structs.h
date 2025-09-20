@@ -254,7 +254,6 @@ typedef struct s_obj
 	double				scal;
 	double				scal2;
 	double				scal3;
-	double				k;
 	t_vec3				pt;
 	t_vec3				pt2;
 	t_vec3				pt3;

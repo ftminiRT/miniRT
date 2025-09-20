@@ -74,7 +74,6 @@ void	clean_panes(t_env *rt)
 
 void	mrt_cleaner(t_env *rt)
 {
-	printf("MRT CLEANER //////\n");
 	close_imgs(rt);
 	clean_panes(rt);
 	clear_all_textures(rt);

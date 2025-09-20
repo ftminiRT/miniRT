@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_hooks.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 16:16:04 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 16:16:04 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 void	handle_exit(int kc, t_env *rt)
@@ -71,13 +83,13 @@ void	handle_object_mod(int kc, t_env *rt, double step)
 	if (rt->selected.obj->type == OT_MOEB && kc == KEY_PLUS2)
 		rt->selected.obj->max += step / 10;
 	if ((rt->selected.obj->type == OT_RING
-		|| rt->selected.obj->type == OT_TORE
-		|| rt->selected.obj->type == OT_CYL)
+			|| rt->selected.obj->type == OT_TORE
+			|| rt->selected.obj->type == OT_CYL)
 		&& kc == KEY_MINUS2)
 		rt->selected.obj->scal2 -= step;
 	if ((rt->selected.obj->type == OT_RING
-		|| rt->selected.obj->type == OT_TORE
-		|| rt->selected.obj->type == OT_CYL)
+			|| rt->selected.obj->type == OT_TORE
+			|| rt->selected.obj->type == OT_CYL)
 		&& kc == KEY_PLUS2)
 		rt->selected.obj->scal2 += step;
 	if (rt->selected.type == OBJ && kc == KEY_X)

@@ -27,15 +27,17 @@ void	auto_render_fill(t_env *rt, t_color clr)
 	{
 		while (i < 26)
 		{
-			if ((j >= 0 && j < 2) || (i >= 0 && i < 2) ||
-				(j > 23 && j < 26) || (i > 23 && i < 26))
+			if ((j >= 0 && j < 2) || (i >= 0 && i < 2)
+				|| (j > 23 && j < 26) || (i > 23 && i < 26))
+			{
 				putpixel_ui_img(i + pos.x, j + pos.y, clr,
-				rt->ui.pane_img[rt->ui.current->type]);
+					rt->ui.pane_img[rt->ui.current->type]);
+			}
 			i++;
 		}
 		i = 0;
 		j++;
-	};
+	}
 }
 
 void	display_color_frame(t_env *rt, void *img, t_objtype type)
@@ -96,7 +98,7 @@ void	ui_print_values(t_env *rt, void *img)
 
 void	display_ui(t_env *rt)
 {
-	void *img;
+	void	*img;
 
 	img = rt->ui.pane_img[rt->ui.current->type];
 	ui_print_values(rt, img);

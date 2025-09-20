@@ -37,32 +37,18 @@ int	hit_ui(int x, int y, t_items *itm)
 
 void	click_ui(int x, int y, t_env *rt)
 {
-	int found;
-	int dft;
-	t_items *current;
+	int		found;
+	t_items	*current;
 
-	dft = 0;
 	found = 0;
 	current = rt->ui.current->itms;
-	if (!current)
-	{
-		current = rt->ui.dft_itms;
-		dft = 1;
-	}
 	while (current)
 	{
 		found = hit_ui(x, y, current);
 		if (found)
 			break ;
 		current = current->next;
-		if (!current && !dft)
-		{
-			dft = 1;
-			current = rt->ui.dft_itms;
-			printf("%p\n", current);
-		}
 	}
-	if (!found || !current)
-		return ;
-	exec_button(rt, current);
+	if (found && current)
+		exec_button(rt, current);
 }

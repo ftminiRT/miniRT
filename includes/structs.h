@@ -153,7 +153,7 @@ typedef struct s_moebius
 	double				g;
 }						t_moebius;
 
-typedef	struct s_moebnorm
+typedef struct s_moebnorm
 {
 	double				t;
 	double				s;
@@ -170,7 +170,6 @@ typedef struct s_torusnorm
 	double		br;
 	double		r;
 }				t_torusnorm;
-
 
 typedef struct s_ring
 {

@@ -36,6 +36,7 @@ bool	is_valid_key_code(int kc, t_env *rt)
 		return (true);
 	return (false);
 }
+
 void	move_selected(t_env *rt, t_vec3 move)
 {
 	if (rt->selected.type == CAM)

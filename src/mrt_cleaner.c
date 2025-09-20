@@ -14,7 +14,7 @@
 
 static void	clean_obj(t_obj *current)
 {
-	t_obj *next;
+	t_obj	*next;
 
 	while (current)
 	{
@@ -77,11 +77,8 @@ void	mrt_cleaner(t_env *rt)
 	printf("MRT CLEANER //////\n");
 	close_imgs(rt);
 	clean_panes(rt);
-	// printf("%d, %s\n", __LINE__, __FILE__);
 	clear_all_textures(rt);
 	clean_obj(rt->objects);
-	// printf("%d, %s\n", __LINE__, __FILE__);
 	clean_spots(rt->spot.next);
 	clear_mlx(rt);
-	// printf("%d, %s\n", __LINE__, __FILE__);
 }

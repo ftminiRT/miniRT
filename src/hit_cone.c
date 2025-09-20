@@ -12,46 +12,23 @@
 
 #include "minirt.h"
 
-// void	compute_coefs_cone(t_ray *r, t_obj *obj, double *arg)
-// {
-// 	t_vec3	tmp;
-// 	double	angle;
-
-// 	angle = (obj->scal * M_PI) / 180.0;
-// 	tmp = vec3_sub(r->pt, obj->pt);
-// 	arg[2] =	 /* C      */	vec3_dot(tmp,tmp)
-// 				/* 1/tan^2 */	- (1 / (tan(angle) * tan(angle)))
-// 				/* A^2     */	* vec3_dot(obj->n, tmp) * vec3_dot(obj->n, tmp);
-
-// 	arg[1] = 	/* D       */	2 * vec3_dot(tmp, r->dir)
-// 				/* 1/tan^2 */	- (1 / (tan(angle) * tan(angle)))
-// 				/* AB      */	* vec3_dot(tmp, obj->n) * 
-// 									vec3_dot(obj->n, r->dir);
-	
-// 	arg[0] =	/* E       */	vec3_dot(r->dir, r->dir)
-// 				/* 1/tan^2 */	- (1 / (tan(angle) * tan(angle)))
-// 				/*  B^2    */	* vec3_dot(obj->n, r->dir) * vec3_dot(obj->n, r->dir);
-// }
-
-void compute_coefs_cone(t_ray *r, t_obj *obj, double *arg)
+void	compute_coefs_cone(t_ray *r, t_obj *obj, double *arg)
 {
 	t_vec3	tmp;
 	double	angle;
 	double	k;
+	double	dot_nv;
+	double	dot_nd;
 
 	angle = (obj->scal * M_PI) / 180.0;
-	k = 1.0 / (tan(angle) * tan(angle)); // cos²θ
-
+	k = 1.0 / (tan(angle) * tan(angle));
 	tmp = vec3_sub(r->pt, obj->pt);
-
-	double dot_nv = vec3_dot(obj->n, tmp);
-	double dot_nd = vec3_dot(obj->n, r->dir);
-
+	dot_nd = vec3_dot(obj->n, r->dir);
+	dot_nv = vec3_dot(obj->n, tmp);
 	arg[2] = vec3_dot(tmp, tmp) - k * dot_nv * dot_nv;
 	arg[1] = 2.0 * (vec3_dot(tmp, r->dir) - k * dot_nv * dot_nd);
 	arg[0] = vec3_dot(r->dir, r->dir) - k * dot_nd * dot_nd;
 }
-
 
 double	hit_cone(t_ray *r, t_obj *obj)
 {

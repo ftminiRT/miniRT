@@ -62,7 +62,7 @@ int	set_reflect(t_obj *new, char *arg)
 
 int	set_bonus_attributes(char **args, t_env *rt, t_obj *new)
 {
-	int i;
+	int	i;
 
 	(void)rt;
 	i = 0;

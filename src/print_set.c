@@ -28,8 +28,8 @@ void	print_bonus_object(t_obj obj)
 {
 	if (obj.type == OT_CONE)
 	{
-		printf("co %f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);
-		printf("%f,%f,%f %f", obj.n.x, obj.n.y, obj.n.z, obj.a);
+		printf("co %f,%f,%f %f,", obj.pt.x, obj.pt.y, obj.pt.z, obj.n.x);
+		printf("%f,%f %f %f", obj.n.y, obj.n.z, obj.scal, obj.scal2);
 	}
 	else if (obj.type == OT_TORE)
 	{

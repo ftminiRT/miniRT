@@ -76,7 +76,10 @@ void	exec_button(t_env *rt, t_items *itm)
 	handle_vector_buttons(rt, itm);
 	handle_selection_buttons(rt, itm);
 	if (itm->type == UIT_EXPORT_BTN)
+	{
+		printf("Exporting set...\n");
 		export_to_rt(rt);
+	}
 	else if (itm->type == UIT_RND_BTN)
 		rt->render = !rt->render;
 	else if (itm->function)

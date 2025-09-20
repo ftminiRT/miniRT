@@ -46,11 +46,6 @@ void	load_textures(t_env *rt)
 	}
 }
 
-/**
- * Libère la mémoire d'une texture
- * @param mlx_ptr: Pointeur MLX
- * @param obj: Objet dont libérer la texture
- */
 void	free_texture(void *mlx_ptr, t_obj *obj)
 {
 	if (!obj)

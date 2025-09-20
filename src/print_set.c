@@ -56,7 +56,7 @@ void	print_bonus_object(t_obj obj)
 void	print_object(t_obj obj)
 {
 	if (obj.type == OT_SPHERE)
-		printf("sp %f,%f,%f %f", obj.pt.x, obj.pt.y, obj.pt.z, obj.scal);
+		printf("sp %f,%f,%f %f ", obj.pt.x, obj.pt.y, obj.pt.z, 2 * obj.scal);
 	else if (obj.type == OT_PLANE)
 	{
 		printf("pl %f,%f,%f ", obj.pt.x, obj.pt.y, obj.pt.z);

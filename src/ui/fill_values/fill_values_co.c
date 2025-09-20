@@ -29,6 +29,6 @@ int	fill_values_co(void *rt, t_uipane *cur)
 	putnbr_ui((t_env *)rt, 157, 362, o->scal);
 	putnbr_ui((t_env *)rt, 157, 392, o->shine);
 	putnbr_ui((t_env *)rt, 157, 422, o->reflect);
-	putnbr_ui((t_env *)rt, 157, 392, o->scal2);
+	putnbr_ui((t_env *)rt, 157, 452, o->scal2);
 	return (0);
 }

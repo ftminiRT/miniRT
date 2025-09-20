@@ -30,12 +30,18 @@ int	build_pane_dft(void *rt, t_uipane *current)
 		return (1);
 	if (build_pane_pos(rt, current, &c->pos, 242))
 		return (1);
-	if (build_pane_dir(rt, current, &c->dir, 332))
-		return (1);
-	if (add_btn(setb((t_btn_data){&c->fov, -STEP_FOV, VEC0, UIT_FOV_BTN},
-				pt(106, 422), BTNSZ), current)
+	if (add_btn(setb((t_btn_data){&c->dir, 0, (t_vec3){-STEP_ROT, 0, 0},
+				UIT_ROT_BTN}, pt(106, 332), BTNSZ), current)
+		|| add_btn(setb((t_btn_data){&c->dir, 0, (t_vec3){0, -STEP_ROT, 0},
+				UIT_ROT_BTN}, pt(106, 362), BTNSZ), current)
+		|| add_btn(setb((t_btn_data){&c->dir, 0, (t_vec3){STEP_ROT, 0, 0},
+				UIT_ROT_BTN}, pt(136, 332), BTNSZ), current)
+		|| add_btn(setb((t_btn_data){&c->dir, 0, (t_vec3){0, STEP_ROT, 0},
+				UIT_ROT_BTN}, pt(136, 362), BTNSZ), current)
+		|| add_btn(setb((t_btn_data){&c->fov, -STEP_FOV, VEC0, UIT_FOV_BTN},
+				pt(106, 392), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&c->fov, STEP_FOV, VEC0, UIT_FOV_BTN},
-				pt(136, 422), BTNSZ), current))
+				pt(136, 392), BTNSZ), current))
 		return (1);
 	return (0);
 }

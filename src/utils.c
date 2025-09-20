@@ -19,7 +19,7 @@ t_vec3	null_vec(void)
 
 t_uipt	btn_sz(void)
 {
-	return (btn_sz());
+	return ((t_uipt){26, 26});
 }
 
 int	swapd(double *a, double *b)

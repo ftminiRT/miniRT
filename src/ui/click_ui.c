@@ -31,7 +31,7 @@ int	hit_ui(int x, int y, t_items *itm)
 	if ((x > itm->pos.x - (itm->scale.x / 2) && x < itm->pos.x + (itm->scale.x
 				/ 2)) && y > itm->pos.y - (itm->scale.y / 2) && y < itm->pos.y
 		+ (itm->scale.y / 2))
-		return (printf("button clicked at %d, %d\n", x, y), 1);
+		return (1);
 	return (0);
 }
 

@@ -65,11 +65,7 @@ void	exec_button(t_env *rt, t_items *itm)
 	if (itm->type == UIT_EXPORT_BTN)
 		export_to_rt(rt);
 	else if (itm->type == UIT_RND_BTN)
-	{
 		rt->render = !rt->render;
-		if (!rt->render)
-			ray_trace(rt);
-	}
 	else if (itm->function)
 		itm->function(rt);
 }

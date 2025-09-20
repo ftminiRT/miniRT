@@ -104,8 +104,7 @@ FILES		= 	clean\
 				in_shadow\
 				export\
 				export_filename\
-				print_set\
-				bonus_norm
+				print_set
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

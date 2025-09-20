@@ -26,8 +26,8 @@ int	build_pane_spot(void *rt, t_uipane *current)
 	if (build_pane_pos(rt, current, &s->pos, 182))
 		return (1);
 	if (add_btn(setb((t_btn_data){&s->brightness, -STEP_BRI, VEC0, UIT_SCL_BTN},
-				pt(106, 272), BTNSZ), current) || add_btn(setb((t_btn_data){0,
-				-1, VEC0, UIT_SEL_BTN}, pt(106, 302), BTNSZ), current)
+				pt(106, 272), BTNSZ), current)
+		|| add_btn(setb((t_btn_data){0, -1, VEC0, UIT_SEL_BTN}, pt(106, 302), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){&s->brightness, STEP_BRI, VEC0,
 				UIT_SCL_BTN}, pt(136, 272), BTNSZ), current)
 		|| add_btn(setb((t_btn_data){0, 1, VEC0, UIT_SEL_BTN}, pt(136, 302),

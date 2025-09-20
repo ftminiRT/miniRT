@@ -43,6 +43,7 @@ typedef struct s_cam
 
 typedef struct s_light
 {
+	size_t				index;
 	bool				is_set;
 	t_vec3				pos;
 	double				brightness;

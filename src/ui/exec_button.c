@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_button.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 16:02:09 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 16:02:09 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 static void	handle_value_buttons(t_env *rt, t_items *itm)
@@ -30,11 +42,12 @@ static void	handle_value_buttons(t_env *rt, t_items *itm)
 
 static void	handle_vector_buttons(t_env *rt, t_items *itm)
 {
-	double *value;
+	double	*value;
+
 	(void)rt;
 	if (itm->type == UIT_SH_BTN)
 	{
-		value = (double*)itm->btn.value;
+		value = (double *)itm->btn.value;
 		*value = fmax(1, *value * itm->btn.factor);
 	}
 	else if (itm->type == UIT_MV_BTN)

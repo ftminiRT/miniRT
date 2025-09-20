@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ui_gen_builders.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 16:13:04 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 16:13:04 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 int	build_pane_color(void *rt, t_uipane *current)
@@ -13,18 +25,18 @@ int	build_pane_color(void *rt, t_uipane *current)
 		color = &current->obj->color;
 	else
 		return (1);
-	if (add_btn(setb((t_btn_data){&color->r, -STEP_COL, VEC0, UIT_COL_BTN},
-				pt(106, 92), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&color->g, -STEP_COL, VEC0, UIT_COL_BTN},
-				pt(106, 122), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&color->b, -STEP_COL, VEC0, UIT_COL_BTN},
-				pt(106, 152), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&color->r, STEP_COL, VEC0, UIT_COL_BTN},
-				pt(136, 92), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&color->g, STEP_COL, VEC0, UIT_COL_BTN},
-				pt(136, 122), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&color->b, STEP_COL, VEC0, UIT_COL_BTN},
-				pt(136, 152), BTNSZ), current))
+	if (add_btn(setb((t_btn_data){&color->r, -STEP_COL,
+				null_vec(), UIT_COL_BTN}, pt(106, 92), btn_sz()), current)
+			|| add_btn(setb((t_btn_data){&color->g, -STEP_COL,
+				null_vec(), UIT_COL_BTN}, pt(106, 122), btn_sz()), current)
+			|| add_btn(setb((t_btn_data){&color->b, -STEP_COL,
+				null_vec(), UIT_COL_BTN}, pt(106, 152), btn_sz()), current)
+			|| add_btn(setb((t_btn_data){&color->r, STEP_COL,
+				null_vec(), UIT_COL_BTN}, pt(136, 92), btn_sz()), current)
+			|| add_btn(setb((t_btn_data){&color->g, STEP_COL,
+				null_vec(), UIT_COL_BTN}, pt(136, 122), btn_sz()), current)
+			|| add_btn(setb((t_btn_data){&color->b, STEP_COL,
+				null_vec(), UIT_COL_BTN}, pt(136, 152), btn_sz()), current))
 		return (1);
 	return (0);
 }
@@ -63,17 +75,17 @@ int	build_pane_pos(void *rt, t_uipane *current, t_vec3 *pos, int y)
 	if (current->type == OT_LIGHT)
 		step = STEP_SPOS;
 	if (add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(-step, b.w),
-				UIT_MV_BTN}, pt(106, y), BTNSZ), current)
+				UIT_MV_BTN}, pt(106, y), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(-step, b.v),
-				UIT_MV_BTN}, pt(106, y + 30), BTNSZ), current)
+				UIT_MV_BTN}, pt(106, y + 30), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(-step, b.u),
-				UIT_MV_BTN}, pt(106, y + 60), BTNSZ), current)
+				UIT_MV_BTN}, pt(106, y + 60), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(step, b.w),
-				UIT_MV_BTN}, pt(136, y), BTNSZ), current)
+				UIT_MV_BTN}, pt(136, y), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(step, b.v),
-				UIT_MV_BTN}, pt(136, y + 30), BTNSZ), current)
+				UIT_MV_BTN}, pt(136, y + 30), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){pos, 0, vec3_scalmult(step, b.u),
-				UIT_MV_BTN}, pt(136, y + 60), BTNSZ), current))
+				UIT_MV_BTN}, pt(136, y + 60), btn_sz()), current))
 		return (1);
 	return (0);
 }
@@ -82,17 +94,17 @@ int	build_pane_dir(void *rt, t_uipane *current, t_vec3 *dir, int y)
 {
 	(void)rt;
 	if (add_btn(setb((t_btn_data){dir, 0, (t_vec3){-STEP_ROT, 0, 0},
-				UIT_ROT_BTN}, pt(106, y), BTNSZ), current)
+			UIT_ROT_BTN}, pt(106, y), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){dir, 0, (t_vec3){0, -STEP_ROT, 0},
-				UIT_ROT_BTN}, pt(106, y + 30), BTNSZ), current)
+			UIT_ROT_BTN}, pt(106, y + 30), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){dir, 0, (t_vec3){0, 0, -STEP_ROT},
-				UIT_ROT_BTN}, pt(106, y + 60), BTNSZ), current)
+			UIT_ROT_BTN}, pt(106, y + 60), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){dir, 0, (t_vec3){STEP_ROT, 0, 0},
-				UIT_ROT_BTN}, pt(136, y), BTNSZ), current)
+			UIT_ROT_BTN}, pt(136, y), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){dir, 0, (t_vec3){0, STEP_ROT, 0},
-				UIT_ROT_BTN}, pt(136, y + 30), BTNSZ), current)
+			UIT_ROT_BTN}, pt(136, y + 30), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){dir, 0, (t_vec3){0, 0, STEP_ROT},
-				UIT_ROT_BTN}, pt(136, y + 60), BTNSZ), current))
+			UIT_ROT_BTN}, pt(136, y + 60), btn_sz()), current))
 		return (1);
 	return (0);
 }
@@ -103,14 +115,15 @@ int	build_pane_mat(void *rt, t_uipane *current, int y)
 
 	(void)rt;
 	o = current->obj;
-	if (add_btn(setb((t_btn_data){&o->shine, (double)1 / STEP_SH, VEC0, UIT_SH_BTN},
-				pt(106, y), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->reflect, -STEP_RF, VEC0, UIT_01_BTN},
-				pt(106, y + 30), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->shine, STEP_SH, VEC0, UIT_SH_BTN},
-				pt(136, y), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->reflect, STEP_RF, VEC0, UIT_01_BTN},
-				pt(136, y + 30), BTNSZ), current))
+	if (add_btn(setb((t_btn_data){&o->shine, (double)1
+				/ STEP_SH, null_vec(), UIT_SH_BTN},
+			pt(106, y), btn_sz()), current)
+		|| add_btn(setb((t_btn_data){&o->reflect, -STEP_RF,
+			null_vec(), UIT_01_BTN}, pt(106, y + 30), btn_sz()), current)
+		|| add_btn(setb((t_btn_data){&o->shine, STEP_SH,
+			null_vec(), UIT_SH_BTN}, pt(136, y), btn_sz()), current)
+		|| add_btn(setb((t_btn_data){&o->reflect, STEP_RF,
+			null_vec(), UIT_01_BTN}, pt(136, y + 30), btn_sz()), current))
 		return (1);
 	return (0);
 }

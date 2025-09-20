@@ -15,18 +15,18 @@
 static int	build_ring_btns(void *rt, t_uipane *current, t_obj *o)
 {
 	(void)rt;
-	if (add_btn(setb((t_btn_data){&o->scal, -STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(106, 362), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->scal2, -STEP_BIGRAY, VEC0,
-				UIT_SCL_BTN}, pt(106, 392), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->scal3, -STEP_RING, VEC0, UIT_SCL_BTN},
-				pt(106, 392), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->scal, STEP_RAY, VEC0, UIT_SCL_BTN},
-				pt(136, 362), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->scal2, STEP_BIGRAY, VEC0, UIT_SCL_BTN},
-				pt(136, 392), BTNSZ), current)
-		|| add_btn(setb((t_btn_data){&o->scal3, STEP_RING, VEC0, UIT_SCL_BTN},
-				pt(136, 392), BTNSZ), current))
+	if (add_btn(setb((t_btn_data){&o->scal, -STEP_RAY, null_vec(), UIT_SCL_BTN},
+			pt(106, 362), btn_sz()), current)
+		|| add_btn(setb((t_btn_data){&o->scal2, -STEP_BIGRAY, null_vec(),
+			UIT_SCL_BTN}, pt(106, 392), btn_sz()), current)
+		|| add_btn(setb((t_btn_data){&o->scal3, -STEP_RING,
+			null_vec(), UIT_SCL_BTN}, pt(106, 392), btn_sz()), current)
+		|| add_btn(setb((t_btn_data){&o->scal, STEP_RAY,
+			null_vec(), UIT_SCL_BTN}, pt(136, 362), btn_sz()), current)
+		|| add_btn(setb((t_btn_data){&o->scal2, STEP_BIGRAY,
+			null_vec(), UIT_SCL_BTN}, pt(136, 392), btn_sz()), current)
+		|| add_btn(setb((t_btn_data){&o->scal3, STEP_RING,
+			null_vec(), UIT_SCL_BTN}, pt(136, 392), btn_sz()), current))
 		return (1);
 	return (0);
 }

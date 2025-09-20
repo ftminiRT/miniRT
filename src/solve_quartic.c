@@ -1,9 +1,16 @@
-#include "minirt.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solve_quartic.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 15:28:18 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 15:28:18 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*
-** Finds the real roots of x^4 + a[3] x^3 + a[2] x^2 + a[1] x + a[0] = 0
-** arranging them ordered in r and returning the number of the roots (0, 2 or 4)
-*/
+#include "minirt.h"
 
 static void	deal_with_neg_disc(t_quartic *q)
 {

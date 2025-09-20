@@ -103,7 +103,9 @@ FILES		= 	clean\
 				solve_quartic_helpers\
 				in_shadow\
 				export\
-				export_filename
+				export_filename\
+				print_set\
+				bonus_norm
 
 SRC_DIR		= 	src/
 SRC_FILES	=	$(addsuffix .c, $(FILES))

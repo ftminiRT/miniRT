@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moebius_normal.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 15:48:22 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 15:48:22 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 static t_vec3	moebius_local_coords(t_obj *obj, t_vec3 hit_point, t_basis b,
@@ -18,7 +30,7 @@ static t_vec3	moebius_local_coords(t_obj *obj, t_vec3 hit_point, t_basis b,
 
 static void	moebius_derivatives(t_obj *obj, t_moebnorm *comp)
 {
-	comp->dp_dt = (t_vec3){ -(obj->scal + comp->s * cos(comp->t / 2))
+	comp->dp_dt = (t_vec3){(-1 * (obj->scal + comp->s * cos(comp->t / 2)))
 		* sin(comp->t) - 0.5 * comp->s * sin(comp->t / 2) * cos(comp->t),
 		(obj->scal + comp->s * cos(comp->t / 2)) * cos(comp->t) - 0.5 * comp->s
 		* sin(comp->t / 2) * sin(comp->t), 0.5 * comp->s * cos(comp->t / 2)};

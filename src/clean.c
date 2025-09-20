@@ -14,7 +14,7 @@
 
 void	clear_all_textures(t_env *rt)
 {
-	t_obj *obj;
+	t_obj	*obj;
 
 	obj = rt->objects;
 	while (obj)
@@ -33,7 +33,6 @@ void	clear_all_textures(t_env *rt)
 		}
 		if (obj->normal_map_filename)
 			free(obj->normal_map_filename);
-
 		obj = obj->next;
 	}
 }
@@ -48,7 +47,7 @@ int	clear_mlx(t_env *rt)
 	return (1);
 }
 
-int		mega_clean(t_env *rt)
+int	mega_clean(t_env *rt)
 {
 	mrt_cleaner(rt);
 	return (1);

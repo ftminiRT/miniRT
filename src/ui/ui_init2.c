@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ui_init2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-20 16:04:20 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-20 16:04:20 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 void	init_pane_builders(t_env *rt)
@@ -25,4 +37,3 @@ void	init_pane_fillers(t_env *rt)
 	rt->ui.fill_values[OT_TORE] = fill_values_to;
 	rt->ui.fill_values[OT_LIGHT] = fill_values_spot;
 }
-

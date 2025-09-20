@@ -19,7 +19,7 @@
 # define UI_WIDTH 200
 # define UI_HEIGHT 500
 # define UI_CS_WIDTH 2
-# define UI_CS HEIGHT 5
+# define UI_CS_HEIGHT 5
 # define STEP_COL 50
 # define STEP_POS 5
 # define STEP_SPOS 25
@@ -34,16 +34,6 @@
 # define STEP_RING 2
 # define STEP_BRI 0.1
 # define STEP_FOV 10
-# define BTNSZ  \
-	(t_uipt)   \
-	{          \
-		26, 26 \
-	}
-# define VEC0    \
-	(t_vec3)    \
-	{           \
-		0, 0, 0 \
-	}
 
 typedef enum e_itm_type
 {

@@ -48,6 +48,7 @@ int	init_line_data(char *line, t_env *rt, int i)
 {
 	char	**split;
 	int		ret;
+	char	*line_index;
 
 	ret = 0;
 	split = ft_split(line, ' ');
@@ -58,8 +59,12 @@ int	init_line_data(char *line, t_env *rt, int i)
 	ft_free_split(split);
 	if (ret)
 	{
+		line_index = ft_itoa(i + 1);
+		if (!line_index)
+			return (1);
 		ret = write (2, "miniRT : file content error at line ", 37);
-		ret = write (2, ft_itoa(i + 1), ft_strlen(ft_itoa(i + 1)));
+		ret = write (2, line_index, ft_strlen(line_index));
+		free(line_index);
 		ret = write (2, "\n", 1);
 		return (1);
 	}

@@ -34,7 +34,7 @@ int	main(int ac, char **av)
 		return (write(2, "Error : argument file needed\n", 30), 0);
 	env_init(&rt);
 	if (parsing(&rt, av[1]))
-		return (1);
+		return (mrt_cleaner(&rt), 1);
 	rt_mlx_init(&rt.mlx);
 	load_textures(&rt);
 	if (ui_init(&rt))

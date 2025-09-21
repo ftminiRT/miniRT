@@ -39,11 +39,17 @@ void	clear_all_textures(t_env *rt)
 
 int	clear_mlx(t_env *rt)
 {
-	mlx_destroy_window(rt->mlx.mlx, rt->mlx.win);
-	mlx_destroy_image(rt->mlx.mlx, rt->mlx.img.img);
-	mlx_destroy_image(rt->mlx.mlx, rt->mlx.ui.img);
-	mlx_destroy_display(rt->mlx.mlx);
-	free(rt->mlx.mlx);
+	if (rt->mlx.win)
+		mlx_destroy_window(rt->mlx.mlx, rt->mlx.win);
+	if (rt->mlx.img.img)
+		mlx_destroy_image(rt->mlx.mlx, rt->mlx.img.img);
+	if (rt->mlx.ui.img)
+		mlx_destroy_image(rt->mlx.mlx, rt->mlx.ui.img);
+	if (rt->mlx.mlx)
+	{
+		mlx_destroy_display(rt->mlx.mlx);
+		free(rt->mlx.mlx);
+	}
 	return (1);
 }
 

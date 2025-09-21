@@ -128,6 +128,7 @@ void		manage_reflect(t_env *rt, t_reflect_data *d, t_ray ray, int depth);
 int			swapd(double *a, double *b);
 t_vec3		null_vec(void);
 t_uipt		btn_sz(void);
+void		clear_buffer_gnl(int fd);
 
 /////////////// OBJ NORMALS /////////////
 

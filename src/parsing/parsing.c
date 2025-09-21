@@ -105,7 +105,7 @@ int	parsing(t_env *rt, char *file)
 	while (line)
 	{
 		if (init_line_data(line, rt, i))
-			return (free(line), close(fd), 1);
+			return (free(line), clear_buffer_gnl(fd), 1);
 		free(line);
 		line = get_next_line(fd);
 		i++;

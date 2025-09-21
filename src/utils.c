@@ -12,6 +12,19 @@
 
 #include "minirt.h"
 
+void	clear_buffer_gnl(int fd)
+{
+	char *line;
+
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+}
+
 t_vec3	null_vec(void)
 {
 	return ((t_vec3){0, 0, 0});

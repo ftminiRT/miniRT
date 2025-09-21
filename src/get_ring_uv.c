@@ -54,8 +54,8 @@ void	get_ring_uv(t_obj *obj, t_vec3 hit_point, int map[2])
 	uv.v = (uv.phi / M_PI) + 0.5;
 	if (!obj->checkered)
 	{
-		map[0] = (int)floor(uv.u * obj->texture_width);
-		map[1] = (int)floor(uv.v * obj->texture_height);
+		map[0] = (int)floor(uv.u * obj->texture_w);
+		map[1] = (int)floor(uv.v * obj->texture_h);
 	}
 	else
 	{

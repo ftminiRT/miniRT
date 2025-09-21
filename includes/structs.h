@@ -268,8 +268,8 @@ typedef struct s_obj
 	int					id;
 	t_basis				local_basis;
 	char				*texture_filename;
-	int					texture_width;
-	int					texture_height;
+	int					texture_w;
+	int					texture_h;
 	void				*texture_data;
 	void				*texture_img;
 	int					texture_size_line;

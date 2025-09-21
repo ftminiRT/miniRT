@@ -83,12 +83,12 @@ t_color	get_texture_color(t_env *rt, t_obj *obj, t_vec3 hit_point)
 
 	(void)rt;
 	rt->get_uv[obj->type](obj, hit_point, map);
-	map[0] = (map[0] % obj->texture_width + obj->texture_width)
-		% obj->texture_width;
-	map[1] = (map[1] % obj->texture_height + obj->texture_height)
-		% obj->texture_height;
+	map[0] = (map[0] % obj->texture_w + obj->texture_w)
+		% obj->texture_w;
+	map[1] = (map[1] % obj->texture_h + obj->texture_h)
+		% obj->texture_h;
 	if (obj->type == OT_PLANE)
-		map[1] = obj->texture_height - 1 - map[1];
+		map[1] = obj->texture_h - 1 - map[1];
 	data = (unsigned char *)obj->texture_data;
 	offset = map[1] * obj->texture_size_line + map[0] * (obj->texture_bpp / 8);
 	color.r = data[offset + 2];

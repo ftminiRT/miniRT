@@ -3,13 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basics_norm.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/09/21 01:47:12 by tbeauman         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+/*   Created: 2025-09-21 10:16:46 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-21 10:16:46 by tcoeffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +32,8 @@ t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point)
 	t_vec3		geo_normal;
 	t_vec3		map_normal;
 	t_normap	normap;
+	double		theta;
+	double		phi;
 
 	geo_normal = vec3_sub(hit_point, obj->pt);
 	vec3_normalize(&geo_normal);
@@ -45,24 +44,13 @@ t_vec3	sphere_normal(t_obj *obj, t_vec3 hit_point)
 	normap.u = (atan2(geo_normal.z, geo_normal.x) / (2.0 * M_PI) + 0.5)
 		* normap.scale_u;
 	normap.v = (asin(geo_normal.y) / M_PI + 0.5) * normap.scale_v;
-
-	double theta = atan2(geo_normal.z, geo_normal.x);
-	double phi = asin(geo_normal.y);
-
+	theta = atan2(geo_normal.z, geo_normal.x);
+	phi = asin(geo_normal.y);
 	normap.tangent = (t_vec3){-sin(theta), 0, cos(theta)};
 	vec3_normalize(&normap.tangent);
-
-	normap.bitangent = (t_vec3){
-		-cos(theta) * sin(phi),
-		cos(phi),
+	normap.bitangent = (t_vec3){-cos(theta) * sin(phi), cos(phi),
 		-sin(theta) * sin(phi)};
 	vec3_normalize(&normap.bitangent);
-
-	// normap.tangent = (t_vec3){-sin(2.0 * M_PI * (normap.u - 0.5)), 0, cos(2.0
-	// 		* M_PI * (normap.u - 0.5))};
-	// vec3_normalize(&normap.tangent);
-	// normap.bitangent = vec3_cross(geo_normal, normap.tangent);
-	// vec3_normalize(&normap.bitangent);
 	map_normal = sample_normal_map(obj, normap.u, normap.v);
 	return (apply_normal_mapping(geo_normal, normap.tangent, normap.bitangent,
 			map_normal));
@@ -142,4 +130,3 @@ t_vec3	cylinder_normal(t_obj *obj, t_vec3 hit_point)
 	return (apply_normal_mapping(geo_normal, normap.tangent, normap.bitangent,
 			map_normal));
 }
-

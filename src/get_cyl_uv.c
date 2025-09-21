@@ -23,10 +23,10 @@ static void	write_body_mapping(t_obj *obj, double u, double v, int map[2])
 	}
 	else
 	{
-		map[0] = (int)floor(u * obj->texture_width) % obj->texture_width;
-		map[1] = (int)floor(v * obj->texture_height);
+		map[0] = (int)floor(u * obj->texture_w) % obj->texture_w;
+		map[1] = (int)floor(v * obj->texture_h);
 		if (map[0] < 0)
-			map[0] += obj->texture_width;
+			map[0] += obj->texture_w;
 	}
 }
 
@@ -62,11 +62,11 @@ static void	write_cap_mapping(t_obj *obj, double lx, double lz, int map[2])
 	}
 	else
 	{
-		map[0] = ((int)floor((lx + 1) * 0.5 * obj->texture_width)
-				% obj->texture_width + obj->texture_width) % obj->texture_width;
-		map[1] = ((int)floor((lz + 1) * 0.5 * obj->texture_height)
-				% obj->texture_height + obj->texture_height)
-			% obj->texture_height;
+		map[0] = ((int)floor((lx + 1) * 0.5 * obj->texture_w)
+				% obj->texture_w + obj->texture_w) % obj->texture_w;
+		map[1] = ((int)floor((lz + 1) * 0.5 * obj->texture_h)
+				% obj->texture_h + obj->texture_h)
+			% obj->texture_h;
 	}
 }
 

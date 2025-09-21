@@ -26,7 +26,6 @@ int	set_shine(t_obj *new, char *arg)
 
 int	set_texture(t_obj *new, char *arg)
 {
-	printf("parsing texture:[%s]\n", arg);
 	if (new->texture_filename)
 		return (1);
 	if (access(arg, F_OK))
@@ -39,7 +38,6 @@ int	set_texture(t_obj *new, char *arg)
 
 int	set_normal_map(t_obj *new, char *arg)
 {
-	printf("parsing normap:[%s]\n", arg);
 	if (new->normal_map_filename)
 		return (1);
 	if (access(arg, F_OK))

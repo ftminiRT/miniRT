@@ -119,6 +119,9 @@ bool		in_shadow(t_env *rt, t_light *spot, t_vec3 hit_point);
 t_obj		*compute_intersections(t_env *rt, t_ray *ray);
 void		compute_ray(t_env *rt, t_ray *ray, int i, int j);
 void		ray_trace(t_env *rt);
+t_color		trace_ray(t_env *rt, t_ray ray, int depth);
+t_vec3		reflect(t_vec3 rdir, t_vec3 norm);
+void		manage_reflect(t_env *rt, t_reflect_data *d, t_ray ray, int depth);
 
 /////////////// UTILS /////////////
 
@@ -179,7 +182,7 @@ void		get_torus_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
 void		get_moebius_uv(t_obj *obj, t_vec3 p, int map[2]);
 void		get_ring_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
 void		get_cylinder_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
-void	get_cone_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
+void		get_cone_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
 int			load_normal_map(void *mlx_ptr, t_obj *obj, char *filename);
 void		free_normal_map(void *mlx_ptr, t_obj *obj);
 t_vec3		sample_normal_map(t_obj *obj, float u, float v);

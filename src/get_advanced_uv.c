@@ -27,8 +27,8 @@ void	get_torus_uv(t_obj *obj, t_vec3 hit_point, int map[2])
 	v = (vec3_dot(rel, obj->n) + obj->scal2) / (2.0 * obj->scal2);
 	if (!obj->checkered)
 	{
-		map[0] = (int)floor(u * obj->texture_width);
-		map[1] = (int)floor(v * obj->texture_height);
+		map[0] = (int)floor(u * obj->texture_w);
+		map[1] = (int)floor(v * obj->texture_h);
 	}
 	else
 	{
@@ -64,8 +64,8 @@ void	get_moebius_uv(t_obj *obj, t_vec3 p, int map[2])
 	compute_moebius_uv(obj, local_hit, uv);
 	if (!obj->checkered)
 	{
-		map[0] = (int)floor(uv[0] * obj->texture_width);
-		map[1] = (int)floor(uv[1] * obj->texture_height);
+		map[0] = (int)floor(uv[0] * obj->texture_w);
+		map[1] = (int)floor(uv[1] * obj->texture_h);
 	}
 	else
 	{

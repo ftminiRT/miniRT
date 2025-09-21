@@ -37,12 +37,12 @@ void	compute_ray(t_env *rt, t_ray *ray, int i, int j)
 	ray->hit = INFINITY;
 }
 
-t_vec3	reflect(t_vec3 I, t_vec3 N)
+t_vec3	reflect(t_vec3 rdir, t_vec3 norm)
 {
 	double	dot;
 
-	dot = vec3_dot(I, N);
-	return (vec3_normalized(vec3_sub(I, vec3_scalmult(2 * dot, N))));
+	dot = vec3_dot(rdir, norm);
+	return (vec3_normalized(vec3_sub(rdir, vec3_scalmult(2 * dot, norm))));
 }
 
 t_color	trace_ray(t_env *rt, t_ray ray, int depth)
@@ -56,23 +56,7 @@ t_color	trace_ray(t_env *rt, t_ray ray, int depth)
 		return ((t_color){0, 0, 0});
 	d.hit_point = vec3_add(ray.pt, vec3_scalmult(ray.hit, ray.dir));
 	d.local_color = get_color(rt, d.hitted, d.hit_point, ray);
-	if (d.hitted->reflect > 0.0)
-	{
-		d.normal = rt->get_norm[d.hitted->type](d.hitted, d.hit_point);
-		if (vec3_dot(ray.dir, d.normal) > 0)
-			d.normal = vec3_scalmult(-1, d.normal);
-		d.reflected = reflect(ray.dir, d.normal);
-		d.hit_point = vec3_add(d.hit_point, vec3_scalmult(EPSILON, d.normal));
-		d.reflected_ray = (t_ray){d.hit_point, d.reflected, 0, (t_color){0, 0,
-			0}};
-		d.reflected_color = trace_ray(rt, d.reflected_ray, depth + 1);
-		d.local_color.r = (1 - d.hitted->reflect) * d.local_color.r
-			+ d.hitted->reflect * d.reflected_color.r;
-		d.local_color.g = (1 - d.hitted->reflect) * d.local_color.g
-			+ d.hitted->reflect * d.reflected_color.g;
-		d.local_color.b = (1 - d.hitted->reflect) * d.local_color.b
-			+ d.hitted->reflect * d.reflected_color.b;
-	}
+	manage_reflect(rt, &d, ray, depth);
 	return (d.local_color);
 }
 

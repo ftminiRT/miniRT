@@ -17,7 +17,7 @@ int	load_texture(void *mlx_ptr, t_obj *obj, char *filename)
 	if (!mlx_ptr || !obj || !filename)
 		return (0);
 	obj->texture_img = mlx_xpm_file_to_image(mlx_ptr, filename,
-			&obj->texture_width, &obj->texture_height);
+			&obj->texture_w, &obj->texture_h);
 	if (!obj->texture_img)
 		return (0);
 	obj->texture_data = mlx_get_data_addr(obj->texture_img, &obj->texture_bpp,
@@ -56,8 +56,8 @@ void	free_texture(void *mlx_ptr, t_obj *obj)
 		obj->texture_img = NULL;
 	}
 	obj->texture_data = NULL;
-	obj->texture_width = 0;
-	obj->texture_height = 0;
+	obj->texture_w = 0;
+	obj->texture_h = 0;
 	obj->texture_bpp = 0;
 	obj->texture_size_line = 0;
 	obj->texture_endian = 0;

@@ -1,23 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cone_normal.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025-09-21 10:19:36 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025-09-21 10:19:36 by tcoeffet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minirt.h"
 
 static t_vec3	cone_geo_normal(t_obj *obj, t_vec3 hit_point)
 {
-	t_vec3 radial;
-	double h;
-    
-    h = vec3_dot(vec3_sub(hit_point, vec3_sub(obj->pt, vec3_scalmult(obj->scal2, obj->n))), obj->n);
+	t_vec3	radial;
+	t_vec3	geo_normal;
+	double	h;
+
+	h = vec3_dot(vec3_sub(hit_point, vec3_sub(obj->pt,
+					vec3_scalmult(obj->scal2, obj->n))), obj->n);
 	if (h >= obj->scal2 - EPSILON)
-		return obj->n;
-
-	radial = vec3_sub(vec3_sub(hit_point, vec3_sub(obj->pt, vec3_scalmult(obj->scal2, obj->n))),
-					  vec3_scalmult(vec3_dot(vec3_sub(hit_point, vec3_sub(obj->pt, vec3_scalmult(obj->scal2, obj->n))),
-											 obj->n), obj->n));
-	t_vec3 geo_normal = vec3_sub(vec3_scalmult(h, radial),
-								 vec3_scalmult(vec3_dot(radial, radial)/h, obj->n));
+		return (obj->n);
+	radial = vec3_sub(vec3_sub(hit_point, vec3_sub(obj->pt,
+					vec3_scalmult(obj->scal2, obj->n))),
+			vec3_scalmult(vec3_dot(vec3_sub(hit_point,
+						vec3_sub(obj->pt, vec3_scalmult(obj->scal2, obj->n))),
+					obj->n), obj->n));
+	geo_normal = vec3_sub(vec3_scalmult(h, radial),
+			vec3_scalmult(vec3_dot(radial, radial) / h, obj->n));
 	vec3_normalize(&geo_normal);
-	return geo_normal;
+	return (geo_normal);
 }
-
 
 t_vec3	cone_normal(t_obj *obj, t_vec3 hit_point)
 {

@@ -34,8 +34,8 @@ void	get_plane_uv(t_obj *obj, t_vec3 hit_point, int map[2])
 	}
 	else
 	{
-		map[0] = (int)floor(uvmap.u * obj->texture_width);
-		map[1] = (int)floor(uvmap.v * obj->texture_height);
+		map[0] = (int)floor(uvmap.u * obj->texture_w);
+		map[1] = (int)floor(uvmap.v * obj->texture_h);
 	}
 }
 
@@ -55,7 +55,7 @@ void	get_sphere_uv(t_obj *obj, t_vec3 hit_point, int map[2])
 	}
 	else
 	{
-		map[0] = (int)floor(u * obj->texture_width);
-		map[1] = (int)floor(v * obj->texture_height);
+		map[0] = (int)floor(u * obj->texture_w);
+		map[1] = (int)floor(v * obj->texture_h);
 	}
 }

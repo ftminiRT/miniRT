@@ -20,13 +20,13 @@ static int	build_ring_btns(void *rt, t_uipane *current, t_obj *o)
 		|| add_btn(setb((t_btn_data){&o->scal2, -STEP_BIGRAY, null_vec(),
 			UIT_SCL_BTN}, pt(106, 392), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){&o->scal3, -STEP_RING,
-			null_vec(), UIT_SCL_BTN}, pt(106, 392), btn_sz()), current)
+			null_vec(), UIT_SCL_BTN}, pt(106, 422), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){&o->scal, STEP_RAY,
 			null_vec(), UIT_SCL_BTN}, pt(136, 362), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){&o->scal2, STEP_BIGRAY,
 			null_vec(), UIT_SCL_BTN}, pt(136, 392), btn_sz()), current)
 		|| add_btn(setb((t_btn_data){&o->scal3, STEP_RING,
-			null_vec(), UIT_SCL_BTN}, pt(136, 392), btn_sz()), current))
+			null_vec(), UIT_SCL_BTN}, pt(136, 422), btn_sz()), current))
 		return (1);
 	return (0);
 }

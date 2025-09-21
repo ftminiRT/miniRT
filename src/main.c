@@ -12,6 +12,15 @@
 
 #include "minirt.h"
 
+void	write_error(char *str, char *arg)
+{
+	write(2, "Error :\n", 9);
+	write(2, str, ft_strlen(str));
+	if (arg)
+		write(2, arg, ft_strlen(arg));
+	write(2, "\n", 1);
+}
+
 void	clear_objects(t_env *rt)
 {
 	t_obj	*head;
@@ -31,7 +40,7 @@ int	main(int ac, char **av)
 	t_env	rt;
 
 	if (ac < 2)
-		return (write(2, "Error : argument file needed\n", 30), 0);
+		return (write_error("argument file needed", NULL), 0);
 	env_init(&rt);
 	if (parsing(&rt, av[1]))
 		return (mrt_cleaner(&rt), 1);

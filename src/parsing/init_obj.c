@@ -19,7 +19,7 @@ t_obj	*create_object(t_env *rt)
 
 	new = ft_calloc(1, sizeof(t_obj));
 	if (!new)
-		return (perror("miniRT :"), NULL);
+		return (perror("Error :\n"), NULL);
 	new->next = NULL;
 	current = rt->objects;
 	if (!rt->objects)

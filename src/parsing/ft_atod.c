@@ -35,7 +35,7 @@ double	ft_atod(char *str)
 	sign = sign_str(&str);
 	split = ft_split(str, '.');
 	if (!split)
-		return (perror("miniRT"), 0);
+		return (perror("Error :\n"), 0);
 	nb[0] = ft_atoi(split[0]);
 	if (!split[1])
 		return (ft_free_split(split), nb[0] * sign);

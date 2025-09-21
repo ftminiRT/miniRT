@@ -20,8 +20,7 @@ int	load_normal_map(void *mlx_ptr, t_obj *obj, char *filename)
 			&obj->normal_map_width, &obj->normal_map_height);
 	if (!obj->normal_map_img)
 	{
-		write(2, "Error : cant load ", 19);
-		ft_putendl_fd(filename, 2);
+		write_error("can't load ", filename);
 		return (0);
 	}
 	obj->normal_map_data = mlx_get_data_addr(obj->normal_map_img,

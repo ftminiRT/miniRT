@@ -34,8 +34,7 @@ int	set_pane_img(t_env *rt, t_objtype type, char *path)
 	width = UI_WIDTH;
 	new_img = mlx_xpm_file_to_image(rt->mlx.mlx, path, &width, &height);
 	if (!new_img)
-		return (write(2, "miniRT : error while loading xpm img for ui\n", 44),
-			1);
+		return (write_error("error while loading xpm img for ui", NULL), 1);
 	rt->ui.pane_img[type] = new_img;
 	return (0);
 }

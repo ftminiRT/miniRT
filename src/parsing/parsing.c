@@ -53,7 +53,7 @@ int	init_line_data(char *line, t_env *rt, int i)
 	ret = 0;
 	split = ft_split(line, ' ');
 	if (!split)
-		return (perror("miniRT :"), 1);
+		return (perror("Error :\n"), 1);
 	else
 		ret = init_obj(split, rt);
 	ft_free_split(split);
@@ -62,10 +62,10 @@ int	init_line_data(char *line, t_env *rt, int i)
 		line_index = ft_itoa(i + 1);
 		if (!line_index)
 			return (1);
-		ret = write (2, "miniRT : file content error at line ", 37);
-		ret = write (2, line_index, ft_strlen(line_index));
+		write(2, "Error :\nfile content error at line ", 36);
+		write(2, line_index, ft_strlen(line_index));
 		free(line_index);
-		ret = write (2, "\n", 1);
+		write (2, "\n", 1);
 		return (1);
 	}
 	return (0);
@@ -80,7 +80,7 @@ int	check_file(char *file)
 		i++;
 	if (ft_strncmp(file + i - 3, ".rt", 4))
 	{
-		i = write(2, "Error : file extension invalid\n", 32);
+		i = write(2, "Error :\nfile extension invalid\n", 32);
 		return (1);
 	}
 	return (0);
@@ -98,7 +98,7 @@ int	parsing(t_env *rt, char *file)
 		return (1);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (perror("miniRT "), 1);
+		return (perror("Error :\n"), 1);
 	line = get_next_line(fd);
 	if (!line)
 		return (1);

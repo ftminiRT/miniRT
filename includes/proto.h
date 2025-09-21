@@ -6,7 +6,7 @@
 /*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 14:22:57 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025/09/09 23:13:51 by tbeauman         ###   ########.fr       */
+/*   Updated: 2025/09/21 00:31:14 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ void		get_torus_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
 void		get_moebius_uv(t_obj *obj, t_vec3 p, int map[2]);
 void		get_ring_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
 void		get_cylinder_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
+void	get_cone_uv(t_obj *obj, t_vec3 hit_point, int map[2]);
 int			load_normal_map(void *mlx_ptr, t_obj *obj, char *filename);
 void		free_normal_map(void *mlx_ptr, t_obj *obj);
 t_vec3		sample_normal_map(t_obj *obj, float u, float v);

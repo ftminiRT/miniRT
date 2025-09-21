@@ -84,6 +84,7 @@ FILES		= 	clean\
 				hit_cone \
 				moebius_normal\
 				torus_normal\
+				cone_normal\
 				solve_cubic\
 				checkered\
 				normal_mapping_utils\
@@ -96,6 +97,7 @@ FILES		= 	clean\
 				get_cyl_uv\
 				get_ring_uv\
 				get_advanced_uv\
+				get_cone_uv\
 				hit_ring\
 				camera_transform\
 				ring_normal\

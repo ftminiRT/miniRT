@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcoeffet <tcoeffet@student.42.fr>          #+#  +:+       +#+        */
+/*   By: tbeauman <tbeauman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-09-20 15:42:50 by tcoeffet          #+#    #+#             */
-/*   Updated: 2025-09-20 15:42:50 by tcoeffet         ###   ########.fr       */
+/*   Created: 2025/09/20 15:42:50 by tcoeffet          #+#    #+#             */
+/*   Updated: 2025/09/21 00:31:00 by tbeauman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	init_uv_fcts(t_env *rt)
 	rt->get_uv[OT_TORE] = get_torus_uv;
 	rt->get_uv[OT_RING] = get_ring_uv;
 	rt->get_uv[OT_MOEB] = get_moebius_uv;
+	rt->get_uv[OT_CONE] = get_cone_uv;
 }
 
 void	env_init(t_env *rt)

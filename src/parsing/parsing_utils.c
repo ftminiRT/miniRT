@@ -47,7 +47,7 @@ int	str_to_vec3(t_vec3 *vec, char *str)
 
 	split = ft_split(str, ',');
 	if (!split)
-		return (perror("miniRT :"), 1);
+		return (perror("Error :\n"), 1);
 	if (count_arg(split) != 3 || !split_is_numeric(split))
 		return (ft_free_split(split), 1);
 	vec->x = ft_atod(split[0]);
@@ -63,7 +63,7 @@ int	str_to_colors(t_color *clr, char *str)
 
 	split = ft_split(str, ',');
 	if (!split)
-		return (perror("miniRT :"), 1);
+		return (perror("Error :\n"), 1);
 	if (count_arg(split) != 3 || !split_is_numeric(split))
 		return (ft_free_split(split), 1);
 	clr->r = (unsigned char)ft_atoi(split[0]);

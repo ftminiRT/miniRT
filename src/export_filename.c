@@ -29,7 +29,7 @@ static char	*build_export_path(int i, t_env *rt)
 	free(temp);
 	if (!filename && mega_clean(rt))
 		exit(1);
-	temp = ft_strjoin("exports/", filename);
+	temp = ft_strjoin("assets/exports/", filename);
 	free(filename);
 	return (temp);
 }

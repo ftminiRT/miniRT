@@ -46,9 +46,9 @@ static int	ensure_export_dir_exists(void)
 {
 	struct stat	st;
 
-	if (stat("exports", &st) == -1)
+	if (stat("assets/exports", &st) == -1)
 	{
-		if (mkdir("exports", 0755) == -1)
+		if (mkdir("assets/exports", 0755) == -1)
 		{
 			ft_putstr_fd("Error : issue while creating export file: ", 2);
 			ft_putendl_fd(strerror(errno), 2);

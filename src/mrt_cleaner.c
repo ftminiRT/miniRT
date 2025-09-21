@@ -43,7 +43,8 @@ void	close_imgs(t_env *rt)
 	i = 0;
 	while (1)
 	{
-		mlx_destroy_image(rt->mlx.mlx, rt->ui.pane_img[i]);
+		if (rt->ui.pane_img[i])
+			mlx_destroy_image(rt->mlx.mlx, rt->ui.pane_img[i]);
 		i = (i + 1) % OBJTYPENUMBER;
 		if (!i)
 			return ;

@@ -47,6 +47,7 @@ static void	init_uv_fcts(t_env *rt)
 
 void	env_init(t_env *rt)
 {
+	ft_bzero(rt, sizeof(t_env));
 	init_hit_fcts(rt);
 	init_normal_fcts(rt);
 	init_uv_fcts(rt);

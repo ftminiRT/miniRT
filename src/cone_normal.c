@@ -14,23 +14,22 @@
 
 static t_vec3	cone_geo_normal(t_obj *obj, t_vec3 hit_point)
 {
-	t_vec3	radial;
-	t_vec3	geo_normal;
 	double	h;
+	double	denom;
+	double	alpha;
+	t_vec3	v;
+	t_vec3	radial;
 
-	h = vec3_dot(vec3_sub(hit_point, vec3_sub(obj->pt, vec3_scalmult(obj->scal2,
-						obj->n))), obj->n);
-	if (h >= obj->scal2 - EPSILON)
+	h = vec3_dot(vec3_sub(hit_point, obj->pt), obj->n);
+	if (h <= EPSILON && h >= -EPSILON)
+		return (vec3_scalmult(-1, obj->n));
+	if (fabs(h - obj->scal2) <= EPSILON)
 		return (obj->n);
-	radial = vec3_sub(vec3_sub(hit_point, vec3_sub(obj->pt,
-					vec3_scalmult(obj->scal2, obj->n))),
-			vec3_scalmult(vec3_dot(vec3_sub(hit_point, vec3_sub(obj->pt,
-							vec3_scalmult(obj->scal2, obj->n))), obj->n),
-				obj->n));
-	geo_normal = vec3_sub(vec3_scalmult(h, radial),
-			vec3_scalmult(vec3_dot(radial, radial) / h, obj->n));
-	vec3_normalize(&geo_normal);
-	return (geo_normal);
+	v = vec3_sub(hit_point, obj->pt);
+	radial = vec3_sub(v, vec3_scalmult(vec3_dot(v, obj->n), obj->n));
+	denom = vec3_dot(obj->n, v);
+	alpha = vec3_dot(radial, v) / denom;
+	return (vec3_normalized(vec3_sub(radial, vec3_scalmult(alpha, obj->n))));
 }
 
 static void	get_tbn(t_obj *obj, t_vec3 hit_point, t_vec3 geo_normal,
@@ -47,8 +46,7 @@ static void	get_tbn(t_obj *obj, t_vec3 hit_point, t_vec3 geo_normal,
 					vec3_scalmult(obj->scal2, obj->n))), obj->n);
 }
 
-static void	get_normap_uv(t_obj *obj, t_vec3 hit_point,
-		t_normap *normap)
+static void	get_normap_uv(t_obj *obj, t_vec3 hit_point, t_normap *normap)
 {
 	t_vec3	local;
 	t_vec3	radial;

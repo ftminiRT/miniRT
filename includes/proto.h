@@ -147,6 +147,7 @@ void		mrt_cleaner(t_env *rt);
 int			mega_clean(t_env *rt);
 void		exit_from_export(t_vec3int info, t_env *rt, char *filename,
 				char *error);
+void		clean_panes(t_env *rt);
 
 /////////////// INIT /////////////
 

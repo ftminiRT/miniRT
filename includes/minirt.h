@@ -21,7 +21,7 @@
 # endif
 # define EPSILON 1e-6
 # define MAX_DEPTH 5
-# define BONUS 1
+# define BONUS_UI 1
 # define OBJTYPENUMBER 9
 
 # include <math.h>

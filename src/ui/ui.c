@@ -100,6 +100,8 @@ void	display_ui(t_env *rt)
 {
 	void	*img;
 
+	if (!rt->ui_set)
+		return ;
 	img = rt->ui.pane_img[rt->ui.current->type];
 	ui_print_values(rt, img);
 	mlx_put_image_to_window(rt->mlx.mlx, rt->mlx.win, img, WIDTH, 0);

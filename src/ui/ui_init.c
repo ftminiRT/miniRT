@@ -58,7 +58,11 @@ int	init_pane_img(t_env *rt)
 	while (i < OBJTYPENUMBER)
 	{
 		if (set_pane_img(rt, i, path[i]))
-			return (1);
+		{
+			rt->ui_set = 0;
+			clean_panes(rt);
+			return (0);
+		}
 		i++;
 	}
 	return (0);
@@ -82,6 +86,8 @@ t_items	*add_new_button(void *value, double factor, t_uipt pos, t_uipt scale)
 
 int	ui_init(t_env *rt)
 {
+	if (!BONUS_UI)
+		return (0);
 	init_pane_builders(rt);
 	init_pane_fillers(rt);
 	if (init_pane_img(rt))

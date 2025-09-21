@@ -52,7 +52,8 @@ void	rt_mlx_init(t_mlx *mlx)
 	mlx->mlx = mlx_init();
 	if (!mlx->mlx)
 		error_exit("connection to mlx error");
-	mlx->win = mlx_new_window(mlx->mlx, WIDTH + UI_WIDTH, HEIGHT, "miniRT");
+	mlx->win = mlx_new_window(mlx->mlx, WIDTH + (UI_WIDTH * BONUS_UI),
+			HEIGHT, "miniRT");
 	if (!mlx->win)
 		error_exit("window error");
 	mlx->img.img = init_img(mlx, &mlx->img, WIDTH, HEIGHT);

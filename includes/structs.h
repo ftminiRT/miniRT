@@ -357,6 +357,7 @@ typedef struct s_env
 	t_mlx				mlx;
 	t_ui				ui;
 	size_t				nb_spots;
+	bool				ui_set;
 	bool				render;
 	int					log_fd;
 }						t_env;

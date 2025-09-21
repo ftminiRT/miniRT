@@ -14,7 +14,7 @@
 
 void	clear_buffer_gnl(int fd)
 {
-	char *line;
+	char	*line;
 
 	line = get_next_line(fd);
 	while (line)

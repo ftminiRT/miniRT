@@ -49,7 +49,7 @@ double	get_t_caps(t_ray *ray, t_obj *obj)
 	}
 	return (INFINITY);
 }
-//pas sur du nom
+
 void	get_cone_sides(double rac[2], t_ray *ray, t_obj *obj, double *t_side)
 {
 	t_vec3	hit_p;
